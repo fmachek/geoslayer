@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bt3woopl0fuiy"]
+
+[ext_resource type="Script" uid="uid://fkbwkdijcmgd" path="res://scripts/user_interface/abilities_tab/ability_ui_element.gd" id="1_baa08"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a8y0u"]
+
+[node name="Ability" type="HBoxContainer" unique_id=389526093]
+offset_right = 391.0
+offset_bottom = 100.0
+theme_override_constants/separation = 10
+script = ExtResource("1_baa08")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=20019553]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_a8y0u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=221107057]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=591377577]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AbilityNameLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1797207735]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ability 1"
+
+[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1358461242]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12633526, 0.7517534, 0, 1)
+text = "Equipped in slot 1"
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=507026124]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Shoots a projectile and applies a short debuff."
+autowrap_mode = 2
+
+[node name="EquipButtonContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=879505461]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EquipSlot1Button" type="Button" parent="VBoxContainer/EquipButtonContainer" unique_id=636463387]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Equip in slot 1"
+
+[node name="EquipSlot2Button" type="Button" parent="VBoxContainer/EquipButtonContainer" unique_id=112017372]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Equip in slot 2"
+
+[connection signal="pressed" from="VBoxContainer/EquipButtonContainer/EquipSlot1Button" to="." method="_on_equip_slot_1_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/EquipButtonContainer/EquipSlot2Button" to="." method="_on_equip_slot_2_button_pressed"]

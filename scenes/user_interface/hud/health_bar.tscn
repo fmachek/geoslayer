@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dxtbqakp438ob"]
+
+[ext_resource type="Script" uid="uid://u2pr2tid1a2w" path="res://scripts/user_interface/hud/health_bar.gd" id="1_babk2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_babk2"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 0.6117647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37snd"]
+bg_color = Color(0, 1, 0, 0.38431373)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sk73o"]
+font_size = 12
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HealthBar" type="ProgressBar" unique_id=385742775]
+offset_right = 60.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_babk2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_37snd")
+step = 1.0
+value = 50.0
+show_percentage = false
+script = ExtResource("1_babk2")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=964449255]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "50/100"
+label_settings = SubResource("LabelSettings_sk73o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VisibilityTimer" type="Timer" parent="." unique_id=1249831334]
+wait_time = 5.0
+
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]

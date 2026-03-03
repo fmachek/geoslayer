@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c4trbsxfpwcjn"]
+
+[ext_resource type="Script" uid="uid://2r64ideuolsy" path="res://scripts/user_interface/world_labels/buff_pickup_label.gd" id="1_tvc37"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvc37"]
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="BuffPickupLabel" type="Label" unique_id=343786946]
+z_index = 2
+text = "+10 Max HP for 5 seconds!"
+label_settings = SubResource("LabelSettings_tvc37")
+script = ExtResource("1_tvc37")

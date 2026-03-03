@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bxor80jvep884"]
+
+[ext_resource type="Script" uid="uid://dhnmx2frbh45d" path="res://scripts/particle_effects/death_particles.gd" id="1_01pyd"]
+
+[sub_resource type="Curve" id="Curve_x8goq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7517241, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="DeathParticles" type="CPUParticles2D" unique_id=1559658901]
+emitting = false
+amount = 30
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+randomness = 0.5
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+orbit_velocity_min = 1.25
+orbit_velocity_max = 1.25
+scale_amount_min = 15.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_x8goq")
+color = Color(0.66245234, 0.66245234, 0.6624523, 1)
+script = ExtResource("1_01pyd")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

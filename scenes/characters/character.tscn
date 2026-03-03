@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://4x1o35rrk4rx"]
+
+[ext_resource type="Script" uid="uid://chnn2mj3tw8l4" path="res://scripts/characters/character.gd" id="1_2qjml"]
+[ext_resource type="PackedScene" uid="uid://d05p74efpag1g" path="res://scenes/characters/character_stats/health.tscn" id="1_e22cc"]
+[ext_resource type="Script" uid="uid://bawkqpf2atlge" path="res://scripts/characters/character_stats/character_stat.gd" id="2_2qjml"]
+[ext_resource type="PackedScene" uid="uid://dxtbqakp438ob" path="res://scenes/user_interface/hud/health_bar.tscn" id="3_ma1fs"]
+[ext_resource type="Script" uid="uid://bdilgwqtqc44e" path="res://scripts/characters/levels/level.gd" id="4_ma1fs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yscb1"]
+radius = 32.0
+
+[node name="Character" type="CharacterBody2D" unique_id=1080282355]
+z_index = 1
+collision_layer = 2
+script = ExtResource("1_2qjml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=295435238]
+shape = SubResource("CircleShape2D_yscb1")
+
+[node name="CharacterStats" type="Node" parent="." unique_id=465904387]
+
+[node name="Level" type="Node" parent="CharacterStats" unique_id=552437691]
+script = ExtResource("4_ma1fs")
+
+[node name="Health" parent="CharacterStats" unique_id=1614674917 instance=ExtResource("1_e22cc")]
+stat_name = "Health"
+max_value = 100
+current_value = 100
+
+[node name="Speed" type="Node" parent="CharacterStats" unique_id=1314298599]
+script = ExtResource("2_2qjml")
+stat_name = "Speed"
+max_value = 300
+current_value = 300
+metadata/_custom_type_script = "uid://bawkqpf2atlge"
+
+[node name="Abilities" type="Node" parent="." unique_id=1813596891]
+
+[node name="HealthBar" parent="." unique_id=385742775 instance=ExtResource("3_ma1fs")]
+visible = false
+z_index = 2
+z_as_relative = false
+offset_left = -30.0
+offset_top = 39.0
+offset_right = 30.0
+offset_bottom = 59.0
+
+[connection signal="current_value_changed" from="CharacterStats/Health" to="." method="emit_health_change"]
+[connection signal="max_value_after_buffs_changed" from="CharacterStats/Health" to="." method="emit_max_health_change"]

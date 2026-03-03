@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b1uydiw1trpr4"]
+
+[ext_resource type="Script" uid="uid://b20udjje5ueuu" path="res://scripts/objects/buff_objects/buff_object.gd" id="1_wmtn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lj3b"]
+
+[node name="BuffObject" type="Node2D" unique_id=1545253351]
+script = ExtResource("1_wmtn8")
+metadata/_custom_type_script = "uid://b20udjje5ueuu"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1034763640]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=200453494]
+shape = SubResource("RectangleShape2D_6lj3b")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

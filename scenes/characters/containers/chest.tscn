@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dvf4lqlur725"]
+
+[ext_resource type="PackedScene" uid="uid://4x1o35rrk4rx" path="res://scenes/characters/character.tscn" id="1_bik2x"]
+[ext_resource type="Script" uid="uid://dgsiedjggvhb8" path="res://scripts/characters/containers/chest.gd" id="2_j56lw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bik2x"]
+size = Vector2(60, 40)
+
+[node name="Chest" unique_id=1080282355 instance=ExtResource("1_bik2x")]
+script = ExtResource("2_j56lw")
+draw_color = Color(0.6333133, 0.6290579, 0.577869, 1)
+outline_color = Color(0.4929735, 0.48906142, 0.4394523, 1)
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=295435238]
+shape = SubResource("RectangleShape2D_bik2x")

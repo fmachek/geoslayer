@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://hyvgigvccrge"]
+
+[ext_resource type="Script" uid="uid://b56dod6uee1vp" path="res://scripts/user_interface/world_labels/damage_label.gd" id="1_15yql"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7khib"]
+font_size = 22
+font_color = Color(1, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DamageLabel" type="Label" unique_id=343786946]
+z_index = 2
+text = "10"
+label_settings = SubResource("LabelSettings_7khib")
+script = ExtResource("1_15yql")

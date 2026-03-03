@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://camk1jn3ffjai"]
+
+[ext_resource type="Texture2D" uid="uid://832r5don5a2m" path="res://assets/sprites/placeholder.png" id="1_n6tv8"]
+[ext_resource type="Script" uid="uid://bnc716akpdygt" path="res://scripts/user_interface/hud/ability_item.gd" id="1_w81ed"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w81ed"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="AbilityItem" type="TextureRect" unique_id=1268147562]
+clip_contents = true
+custom_minimum_size = Vector2(75, 75)
+offset_right = 75.0
+offset_bottom = 75.0
+mouse_default_cursor_shape = 2
+texture = ExtResource("1_n6tv8")
+script = ExtResource("1_w81ed")
+
+[node name="CooldownRect" type="ColorRect" parent="." unique_id=1455298497]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 150.0
+offset_bottom = 75.0
+rotation = 3.1415927
+mouse_filter = 2
+color = Color(0.6862745, 0, 0, 0.7647059)
+
+[node name="KeyLabel" type="Label" parent="." unique_id=1864683911]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 72.0
+text = "?"
+label_settings = SubResource("LabelSettings_w81ed")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

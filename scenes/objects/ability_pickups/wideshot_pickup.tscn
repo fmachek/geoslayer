@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bh8urr1ox8hwt"]
+
+[ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_yqnlc"]
+
+[node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_yqnlc")]
+ability_name = "Wideshot"

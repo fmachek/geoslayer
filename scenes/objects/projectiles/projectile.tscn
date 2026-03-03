@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://fa8fx68x0ycb"]
+
+[ext_resource type="Script" uid="uid://brhxbtooik0bo" path="res://scripts/objects/projectiles/projectile.gd" id="1_5kteg"]
+
+[sub_resource type="Gradient" id="Gradient_uu8kx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Projectile" type="Node2D" unique_id=2135564719]
+script = ExtResource("1_5kteg")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=538146069]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=896607698]
+
+[node name="FreeTimer" type="Timer" parent="." unique_id=62067954]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="FlyingParticles" type="CPUParticles2D" parent="." unique_id=492214561]
+unique_name_in_owner = true
+z_index = 1
+z_as_relative = false
+amount = 20
+randomness = 1.0
+direction = Vector2(10, 1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_uu8kx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="FreeTimer" to="." method="_on_free_timer_timeout"]
+[connection signal="finished" from="FlyingParticles" to="." method="_on_flying_particles_finished"]

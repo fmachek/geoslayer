@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d05p74efpag1g"]
+
+[ext_resource type="Script" uid="uid://7rctyo6o6ls3" path="res://scripts/characters/character_stats/health.gd" id="1_xhs0i"]
+
+[node name="Health" type="Node" unique_id=1614674917]
+script = ExtResource("1_xhs0i")
+metadata/_custom_type_script = "uid://bawkqpf2atlge"
+
+[node name="RegenTickTimer" type="Timer" parent="." unique_id=705297256]
+wait_time = 0.5
+
+[node name="RegenStartTimer" type="Timer" parent="." unique_id=2119095592]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="current_value_changed" from="." to="." method="_on_current_value_changed"]
+[connection signal="max_value_after_buffs_changed" from="." to="." method="_on_max_value_after_buffs_changed"]
+[connection signal="timeout" from="RegenTickTimer" to="." method="_on_regen_tick_timer_timeout"]
+[connection signal="timeout" from="RegenStartTimer" to="." method="_on_regen_start_timer_timeout"]

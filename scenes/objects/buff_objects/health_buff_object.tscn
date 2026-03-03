@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b6jfwgg45yqps"]
+
+[ext_resource type="PackedScene" uid="uid://b1uydiw1trpr4" path="res://scenes/objects/buff_objects/buff_object.tscn" id="1_fepqa"]
+
+[node name="HealthBuffObject" unique_id=1545253351 instance=ExtResource("1_fepqa")]
+draw_color = Color(0.3254902, 0.6901961, 0, 1)
+outline_color = Color(0.22352941, 0.49019608, 0, 1)
+buff_amount = 25
+buff_duration = 30
+target_stat_name = "health"

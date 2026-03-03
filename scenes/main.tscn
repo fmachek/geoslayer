@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://bke57kxcnjnho"]
+
+[ext_resource type="Script" uid="uid://b0iyx6c1ldl2p" path="res://scripts/main.gd" id="1_tipki"]
+[ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
+[ext_resource type="Script" uid="uid://fgq6y65w1341" path="res://scripts/user_interface/abilities_tab/abilities_tab_open_button.gd" id="10_choun"]
+[ext_resource type="Script" uid="uid://bme6txd5w6mac" path="res://scripts/user_interface/ability_unlock_popup.gd" id="10_ya4ey"]
+[ext_resource type="Script" uid="uid://b1bksppmpw8b6" path="res://scripts/user_interface/hud/level_hud.gd" id="12_eb6dy"]
+[ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/abilities_tab/abilities_tab.gd" id="14_jkv2x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
+bg_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkv2x"]
+bg_color = Color(0.73333335, 0, 0.73333335, 1)
+
+[node name="Main" type="Node2D" unique_id=1258532985]
+script = ExtResource("1_tipki")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=208246987]
+
+[node name="UserInterface" type="Control" parent="CanvasLayer" unique_id=327859827]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("7_choun")
+
+[node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/UserInterface" unique_id=249147002]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.75
+offset_top = -122.0
+offset_right = 145.75
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=1494206841]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AbilityItemContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=1281324131]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="AbilityItem1" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=1510360324 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AbilityItem2" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=729255619 instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
+layout_mode = 2
+key = "E"
+
+[node name="LevelHUD" type="HBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=193371173]
+layout_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("12_eb6dy")
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/LevelHUD" unique_id=896332673]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "Level 1"
+
+[node name="LevelProgressBar" type="ProgressBar" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/LevelHUD" unique_id=1463875009]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "Fill this bar to level up."
+theme_override_constants/outline_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_a8y0u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jkv2x")
+step = 1.0
+value = 50.0
+
+[node name="AbilitiesTab" type="Panel" parent="CanvasLayer/UserInterface" unique_id=1778104300]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 419.0
+offset_bottom = 2.0
+grow_vertical = 2
+script = ExtResource("14_jkv2x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/AbilitiesTab" unique_id=450423479]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer" unique_id=319028019]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Abilities"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipButtonContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer" unique_id=1471971175]
+layout_mode = 2
+alignment = 1
+
+[node name="UnequipSlot1Button" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer" unique_id=296003143]
+layout_mode = 2
+text = "Unequip slot 1"
+
+[node name="UnequipSlot2Button" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer" unique_id=1224284175]
+layout_mode = 2
+text = "Unequip slot 2"
+
+[node name="UnequipAllButton" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer" unique_id=1582088711]
+layout_mode = 2
+text = "Unequip all"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer" unique_id=1385663134]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AbilityContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/ScrollContainer" unique_id=1103967910]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab" unique_id=1311448772]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -31.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "X"
+
+[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface" unique_id=1054323433]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Abilities"
+script = ExtResource("10_choun")
+
+[node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface" unique_id=357967508]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/separation = -5
+script = ExtResource("10_ya4ey")
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/AbilityUnlockPopup" unique_id=117239358]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "New ability unlocked:"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/AbilityUnlockPopup" unique_id=1365762045]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73333335, 0, 0.73333335, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Wideshot"
+horizontal_alignment = 1
+
+[node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/AbilityUnlockPopup" unique_id=599509163]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="hidden" from="CanvasLayer/UserInterface/AbilitiesTab" to="CanvasLayer/UserInterface/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot1Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot2Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_2_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipAllButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_all_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/CloseButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTabOpenButton" method="_on_pressed"]
+[connection signal="timeout" from="CanvasLayer/UserInterface/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
