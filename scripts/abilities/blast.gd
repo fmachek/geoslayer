@@ -23,13 +23,7 @@ func spawn_projectiles(amount):
 	for i in range(amount):
 		# Calculate the angle for this specific projectile
 		var angle = i * (TAU / amount)
-		
 		# Create a direction vector from that angle
 		var direction = Vector2.from_angle(angle)
-		
-		var projectile_fill_color: Color = character.draw_color
-		var projectile_outline_color: Color = character.outline_color
-
-		var projectile: Projectile = projectile_scene.instantiate()
-		projectile.set_properties(projectile_fill_color, projectile_outline_color, direction, projectile_speed, character, damage, projectile_radius, character.global_position)
-		character.get_parent().add_child(projectile)
+		var projectile_properties: ProjectileProperties = ProjectileProperties.new(character.draw_color, character.outline_color, direction, projectile_speed, character, damage, projectile_radius, character.global_position)
+		ProjectileFunctions.fire_projectile(projectile_properties)
