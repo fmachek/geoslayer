@@ -45,7 +45,9 @@ func load_abilities():
 
 # Loads an ability. The enemy's abilities always have a longer cooldown.
 func load_ability(ability: Ability):
-	ability.cooldown *= ability_cooldown_multiplier # Nerf abilities
+	ability.cooldown *= ability_cooldown_multiplier # Nerf ability cooldown
+	if "base_damage" in ability: # Nerf ability damage
+		ability.base_damage = float(ability.base_damage) * 0.3
 	equip_ability(ability)
 	add_ability_to_castable(ability)
 	# Connect signals that manage castable
