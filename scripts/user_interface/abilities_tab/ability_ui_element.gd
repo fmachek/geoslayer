@@ -73,5 +73,5 @@ func first_slot_check():
 		if player.ability1.get_ability_name() == ability_name:
 			change_slot(1)
 	elif player.ability2:
-		if player.ability1.get_ability_name() == ability_name:
+		if player.ability2.get_ability_name() == ability_name:
 			change_slot(2)
