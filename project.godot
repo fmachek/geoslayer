@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="project01"
-run/main_scene="uid://bke57kxcnjnho"
+run/main_scene="uid://d1hbgw27crue0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
 PlayerManager="*uid://cbmflsin26xyg"
 WorldManager="*uid://bsml1uo2h07sk"
+GameManager="*uid://d0c3pd5wo3gu2"
 
 [display]
 
