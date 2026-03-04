@@ -3,7 +3,7 @@ extends Ability
 
 var projectile_scene = preload("res://scenes/objects/projectiles/projectile.tscn")
 var projectile_speed: int = 4
-var damage: int = 7
+var base_damage: int = 7
 var projectile_radius: int = 5
 var projectile_amount: int = 20
 var flurry_timer: Timer
@@ -42,6 +42,7 @@ func shoot_projectile():
 		var random_angle = randf_range(-recoil/2, recoil/2)
 		var direction = direction_to_mouse.rotated(deg_to_rad(random_angle))
 		
+		var damage: int = float(base_damage) * float(character.damage.max_value_after_buffs) / 100
 		var projectile_properties: ProjectileProperties = ProjectileProperties.new(character.draw_color, character.outline_color, direction, projectile_speed, character, damage, projectile_radius, character.global_position)
 		ProjectileFunctions.fire_projectile(projectile_properties)
 	else:

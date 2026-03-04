@@ -168,3 +168,8 @@ func update_stats(current_level: int) -> void:
 	# Health is 100 for level 1 (that's why we subtract 1 from the level)
 	var new_health: int = 100 + (current_level - 1) * 25
 	health.change_max_value(new_health)
+	
+	# New damage uses the same formula as health, but it represents a percentage.
+	# So with each level, damage increases by 25% of the base.
+	var new_damage: int = 100 + (current_level - 1) * 25
+	damage.change_max_value(new_damage)

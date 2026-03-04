@@ -3,7 +3,7 @@ extends Ability
 
 var projectile_scene = preload("res://scenes/objects/projectiles/projectile.tscn")
 var projectile_speed: int = 3
-var damage: int = 15
+var base_damage: int = 15
 var projectile_radius: int = 8
 
 func _init():
@@ -33,5 +33,6 @@ func perform_ability():
 	finished_casting.emit()
 
 func spawn_projectile(pos: Vector2, direction: Vector2):
+	var damage: int = float(base_damage) * float(character.damage.max_value_after_buffs) / 100
 	var projectile_properties: ProjectileProperties = ProjectileProperties.new(character.draw_color, character.outline_color, direction, projectile_speed, character, damage, projectile_radius, pos)
 	ProjectileFunctions.fire_projectile(projectile_properties)
