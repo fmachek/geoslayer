@@ -87,11 +87,10 @@ func change_max_value_after_buffs(value: int) -> void:
 
 # Changes the total buff
 func change_total_buff(value: int) -> void:
-	if total_buff == value:
-		return
-	var old_value = total_buff
-	total_buff = value
-	total_buff_changed.emit(old_value, total_buff)
+	if total_buff != value:
+		var old_value = total_buff
+		total_buff = value
+		total_buff_changed.emit(old_value, total_buff)
 	
 	change_max_value_after_buffs(max_value + total_buff)
 
