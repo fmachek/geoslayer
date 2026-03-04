@@ -64,3 +64,10 @@ func reset_base():
 	is_cooldown = false
 	if cooldown_timer:
 		cooldown_timer.stop()
+
+func get_ability_name() -> String:
+	var script: Script = get_script()
+	if script:
+		var ability_name: String = script.resource_path.get_file().get_basename().capitalize()
+		return ability_name
+	return "Unknown"

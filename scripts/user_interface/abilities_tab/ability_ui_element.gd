@@ -19,7 +19,7 @@ func connect_equip_events():
 	equip2_pressed.connect(PlayerManager._on_UI_ability2_equip)
 
 func load_ability(ability: Ability, player: PlayerCharacter):
-	ability_name = ability.ability_name
+	ability_name = ability.get_ability_name()
 	self.player = player
 	name_label.text = ability_name
 	$TextureRect.texture = ability.texture
@@ -40,7 +40,7 @@ func check_equip_slot(new_ability: Ability, slot: int):
 		if displaying_slot == slot:
 			# This means slot 1 is being displayed but was unequipped
 			change_slot(0)
-	elif new_ability.ability_name == ability_name:
+	elif new_ability.get_ability_name() == ability_name:
 		# This means that the player equipped this ability in slot 1.
 		change_slot(slot)
 	elif displaying_slot == slot:
@@ -70,8 +70,8 @@ func _on_equip_slot_2_button_pressed() -> void:
 
 func first_slot_check():
 	if player.ability1:
-		if player.ability1.ability_name == ability_name:
+		if player.ability1.get_ability_name() == ability_name:
 			change_slot(1)
 	elif player.ability2:
-		if player.ability1.ability_name == ability_name:
+		if player.ability1.get_ability_name() == ability_name:
 			change_slot(2)
