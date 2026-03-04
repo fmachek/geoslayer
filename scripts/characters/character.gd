@@ -49,6 +49,8 @@ func _draw():
 
 func _ready() -> void:
 	health_changed.connect(check_for_death)
+	level.level_changed.connect(_on_level_changed) # Connect level up signal
+	update_stats(level.current_level) # Update stats on spawn
 	generate_drop_pool()
 	$HealthBar.set_up() # Sets up the health bar which appears below the character
 
@@ -156,3 +158,12 @@ func _on_ability_unequipping(ability: Ability):
 	# set is_casting to true.
 	if ability.is_casting:
 		finish_casting()
+
+func _on_level_changed(new_level: int) -> void:
+	update_stats(new_level)
+
+func update_stats(current_level: int) -> void:
+	# Update health - the formula is basically "increase by 25 for every level"
+	# Health is 100 for level 1 (that's why we subtract 1 from the level)
+	var new_health: int = 100 + (current_level - 1) * 25
+	health.change_max_value(new_health)
