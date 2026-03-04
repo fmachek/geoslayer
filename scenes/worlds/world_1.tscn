@@ -2,37 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://cf883c61vdyvw" path="res://scenes/worlds/world.tscn" id="1_nlsqv"]
 [ext_resource type="PackedScene" uid="uid://dfc8fq2b7kwge" path="res://scenes/objects/character_spawner.tscn" id="2_xijrn"]
-[ext_resource type="PackedScene" uid="uid://csod2kqnx4jgc" path="res://scenes/objects/ability_pickups/blast_pickup.tscn" id="3_l4b44"]
-[ext_resource type="PackedScene" uid="uid://ce1887jnmvde2" path="res://scenes/objects/ability_pickups/cannonball_pickup.tscn" id="4_hbdd5"]
-[ext_resource type="PackedScene" uid="uid://cksx1tfrck0yj" path="res://scenes/objects/ability_pickups/doubleshot_pickup.tscn" id="5_s0mag"]
-[ext_resource type="PackedScene" uid="uid://dhe0vhg23svih" path="res://scenes/objects/ability_pickups/flurry_pickup.tscn" id="6_uhyjc"]
-[ext_resource type="PackedScene" uid="uid://bh8urr1ox8hwt" path="res://scenes/objects/ability_pickups/wideshot_pickup.tscn" id="7_mqxdf"]
 [ext_resource type="PackedScene" uid="uid://bn86y4tvdekxl" path="res://scenes/characters/enemies/enemy.tscn" id="8_hbdd5"]
-[ext_resource type="PackedScene" uid="uid://dvf4lqlur725" path="res://scenes/characters/containers/chest.tscn" id="10_uhyjc"]
 
 [node name="World1" unique_id=514046658 instance=ExtResource("1_nlsqv")]
 
-[node name="PlayerSpawnPoint" parent="." index="0" unique_id=432436946]
-position = Vector2(389, 0)
-
-[node name="CharacterSpawner" parent="." index="1" unique_id=1925204194 instance=ExtResource("2_xijrn")]
-position = Vector2(389, 200)
+[node name="CharacterSpawner" parent="." index="2" unique_id=1925204194 instance=ExtResource("2_xijrn")]
+position = Vector2(-500, 0)
 character_scene = ExtResource("8_hbdd5")
 
-[node name="AbilityPickup" parent="." index="2" unique_id=176297332 instance=ExtResource("3_l4b44")]
-position = Vector2(557, -100)
+[node name="CharacterSpawner2" parent="." index="3" unique_id=1513243607 instance=ExtResource("2_xijrn")]
+position = Vector2(500, 0)
+character_scene = ExtResource("8_hbdd5")
 
-[node name="AbilityPickup2" parent="." index="3" unique_id=1797437204 instance=ExtResource("4_hbdd5")]
-position = Vector2(473, -100)
+[node name="CharacterSpawner3" parent="." index="4" unique_id=358345738 instance=ExtResource("2_xijrn")]
+position = Vector2(0, -500)
+character_scene = ExtResource("8_hbdd5")
 
-[node name="AbilityPickup3" parent="." index="4" unique_id=1239000055 instance=ExtResource("5_s0mag")]
-position = Vector2(389, -100)
+[node name="CharacterSpawner4" parent="." index="5" unique_id=147456157 instance=ExtResource("2_xijrn")]
+position = Vector2(0, 500)
+character_scene = ExtResource("8_hbdd5")
 
-[node name="AbilityPickup4" parent="." index="5" unique_id=1564110824 instance=ExtResource("6_uhyjc")]
-position = Vector2(305, -100)
-
-[node name="AbilityPickup5" parent="." index="6" unique_id=599172888 instance=ExtResource("7_mqxdf")]
-position = Vector2(221, -100)
-
-[node name="Chest" parent="." index="7" unique_id=1080282355 instance=ExtResource("10_uhyjc")]
-position = Vector2(119, -100)
+[connection signal="wave_started" from="WaveManager" to="CharacterSpawner" method="_on_wave_started"]
+[connection signal="wave_started" from="WaveManager" to="CharacterSpawner2" method="_on_wave_started"]
+[connection signal="wave_started" from="WaveManager" to="CharacterSpawner3" method="_on_wave_started"]
+[connection signal="wave_started" from="WaveManager" to="CharacterSpawner4" method="_on_wave_started"]
