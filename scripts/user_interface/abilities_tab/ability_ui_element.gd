@@ -54,6 +54,7 @@ func change_slot(new_slot: int):
 		%EquipSlot1Button.disabled = false
 		%EquipSlot2Button.disabled = false
 	else:
+		equipped_label.text = "Equipped in slot " + str(new_slot)
 		equipped_label.show()
 		if new_slot == 1:
 			%EquipSlot1Button.disabled = true
