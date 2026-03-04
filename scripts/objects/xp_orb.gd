@@ -4,7 +4,7 @@ extends Node2D
 @export var draw_color: Color = Color(1.0, 0.0, 1.0, 1.0)
 @export var outline_color: Color = Color(0.732, 0.0, 0.732, 1.0)
 
-@export var xp_amount: int = 10
+@export var xp_amount: int = 30
 
 func _draw():
 	var radius = $Area2D/CollisionShape2D.shape.radius
