@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bh8urr1ox8hwt"]
 
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_yqnlc"]
+[ext_resource type="Script" uid="uid://bk47wnda8yd1h" path="res://scripts/abilities/wideshot.gd" id="2_ifxrg"]
 
 [node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_yqnlc")]
-ability_name = "Wideshot"
+ability_script = ExtResource("2_ifxrg")

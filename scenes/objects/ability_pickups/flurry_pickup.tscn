@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhe0vhg23svih"]
 
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_mtd6a"]
+[ext_resource type="Script" uid="uid://1eah58gmkx6x" path="res://scripts/abilities/flurry.gd" id="2_mlfyk"]
 
 [node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_mtd6a")]
-ability_name = "Flurry"
+ability_script = ExtResource("2_mlfyk")

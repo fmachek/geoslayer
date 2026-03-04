@@ -4,7 +4,8 @@ extends Node2D
 @export var draw_color: Color = Color.GRAY # Fill draw color
 @export var outline_color: Color = Color.DIM_GRAY # Outline draw color
 
-@export var ability_name: String
+@export var ability_script: Resource
+var ability_name: String
 
 var was_picked_up: bool = false
 
@@ -19,6 +20,8 @@ func _process(delta: float) -> void:
 	global_rotation += rot_speed*delta
 
 func _ready():
+	var path = ability_script.resource_path
+	ability_name = path.get_file().get_basename().capitalize()
 	spawn_label()
 
 func _draw():
@@ -35,7 +38,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		unlock_ability(body)
 
 func unlock_ability(player: PlayerCharacter) -> void:
-	var ability = load("res://scripts/abilities/player_abilities/" + ability_name.to_lower() + ".gd").new()
+	var ability = ability_script.new()
 	if ability:
 		if player.unlock_new_ability(ability):
 			$PickupParticles.emitting = true

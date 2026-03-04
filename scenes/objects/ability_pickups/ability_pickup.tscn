@@ -22,7 +22,6 @@ size = Vector2(30, 30)
 script = ExtResource("1_vn7f1")
 draw_color = Color(1, 0, 1, 1)
 outline_color = Color(0.73333335, 0, 0.73333335, 1)
-ability_name = "Shoot"
 
 [node name="PickupParticles" type="CPUParticles2D" parent="." unique_id=1399215160]
 emitting = false
