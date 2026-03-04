@@ -3,7 +3,8 @@ extends Node2D
 
 var projectile_properties: ProjectileProperties
 
-var can_explode = true
+var can_explode: bool = true
+var can_deal_damage: bool = true
 
 var explosion_particles_scene = preload("res://scenes/particle_effects/projectile_particles.tscn")
 @onready var col_shape := $Area2D/CollisionShape2D
@@ -23,10 +24,11 @@ func _draw():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not projectile_properties.source or body != projectile_properties.source:
-		if body is Character:
+		if body is Character and can_deal_damage:
 			if projectile_properties.source:
 				if projectile_properties.source is Character and projectile_properties.source is not PlayerCharacter and body is not PlayerCharacter:
 					return # Prevents enemies damaging other enemies
+			can_deal_damage = false
 			body.take_damage(projectile_properties.damage)
 			var damage_label: DamageLabel = load("res://scenes/user_interface/world_labels/damage_label.tscn").instantiate()
 			get_parent().add_child(damage_label)
