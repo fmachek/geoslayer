@@ -19,6 +19,7 @@ signal finished_casting()
 @export var outline_color: Color = Color.SEA_GREEN # Outline draw color
 
 @onready var health: Health = $CharacterStats/Health
+@onready var damage: CharacterStat = $CharacterStats/Damage # Damage in %
 @onready var speed: CharacterStat = $CharacterStats/Speed
 @onready var level: Level = $CharacterStats/Level
 

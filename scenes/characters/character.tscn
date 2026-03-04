@@ -34,6 +34,13 @@ max_value = 300
 current_value = 300
 metadata/_custom_type_script = "uid://bawkqpf2atlge"
 
+[node name="Damage" type="Node" parent="CharacterStats" unique_id=286315709]
+script = ExtResource("2_2qjml")
+stat_name = "Damage"
+max_value = 100
+current_value = 100
+metadata/_custom_type_script = "uid://bawkqpf2atlge"
+
 [node name="Abilities" type="Node" parent="." unique_id=1813596891]
 
 [node name="HealthBar" parent="." unique_id=385742775 instance=ExtResource("3_ma1fs")]
