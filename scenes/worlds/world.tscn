@@ -2,10 +2,63 @@
 
 [ext_resource type="Script" uid="uid://ktbtoeovvlvs" path="res://scripts/worlds/world.gd" id="1_6e51n"]
 [ext_resource type="Script" uid="uid://byi8jx8nx4koc" path="res://scripts/worlds/waves/wave_manager.gd" id="2_mnksr"]
+[ext_resource type="Texture2D" uid="uid://bny5w7a82bihl" path="res://assets/tilesets/floor_tileset.png" id="2_sqeqr"]
+[ext_resource type="Texture2D" uid="uid://ddvxwi1r64k4y" path="res://assets/tilesets/wall_tileset.png" id="3_jwygn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jwygn"]
+texture = ExtResource("2_sqeqr")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpaal"]
+texture = ExtResource("3_jwygn")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_vpaal"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_jwygn")
+sources/1 = SubResource("TileSetAtlasSource_vpaal")
 
 [node name="World" type="Node2D" unique_id=514046658]
 process_mode = 1
 script = ExtResource("1_6e51n")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1977106210]
+tile_set = SubResource("TileSet_vpaal")
 
 [node name="PlayerSpawnPoint" type="Node2D" parent="." unique_id=432436946]
 unique_name_in_owner = true
