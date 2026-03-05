@@ -16,6 +16,7 @@ func start_wave() -> void:
 	current_wave_changed.emit(current_wave)
 	
 	time_until_wave_end = 30 # Each wave lasts 30 seconds
+	time_until_wave_end_changed.emit(time_until_wave_end)
 	wave_timer.start()
 	
 	print("Wave " + str(current_wave) + " started!")

@@ -6,6 +6,7 @@ var world_1_scene_path = "res://scenes/worlds/world_1.tscn"
 
 signal wave_started()
 signal wave_ended()
+signal time_until_wave_end_changed(time: int)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -17,6 +18,7 @@ func load_world(main: Main):
 	main.add_child(current_world)
 	current_world.wave_manager.wave_started.connect(func(): wave_started.emit())
 	current_world.wave_manager.wave_ended.connect(func(): wave_ended.emit())
+	current_world.wave_manager.time_until_wave_end_changed.connect(func(time: int): time_until_wave_end_changed.emit(time))
 
 # Loads a world in the Main node when the Main node is ready.
 func _on_game_manager_loaded_main(main: Main) -> void:
