@@ -5,6 +5,7 @@ var world_1_scene_path = "res://scenes/worlds/world_1.tscn"
 # Note: this world loading is temporary and will be replaced with a better system
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	GameManager.loaded_main.connect(_on_game_manager_loaded_main)
 
 # Loads the world and adds it as a child of the Main node.

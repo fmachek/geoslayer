@@ -6,6 +6,9 @@ signal player_died(player: PlayerCharacter)
 var player_scene := preload("res://scenes/characters/player/player_character.tscn")
 var current_player: PlayerCharacter
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func spawn_player(pos: Vector2):
 	current_player = player_scene.instantiate()
 	WorldManager.current_world.add_child(current_player)
