@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bn86y4tvdekxl" path="res://scenes/characters/enemies/enemy.tscn" id="8_hbdd5"]
 
 [node name="World1" unique_id=514046658 instance=ExtResource("1_nlsqv")]
-process_mode = 1
 
 [node name="CharacterSpawner" parent="." index="2" unique_id=1925204194 instance=ExtResource("2_xijrn")]
 position = Vector2(-500, 0)
