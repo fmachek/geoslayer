@@ -7,7 +7,6 @@ var player_spawn_pos: Vector2
 func _ready() -> void:
 	player_spawn_pos = %PlayerSpawnPoint.global_position
 	call_deferred("spawn_player")
-	call_deferred("start_wave")
 
 func spawn_player():
 	PlayerManager.spawn_player(player_spawn_pos)

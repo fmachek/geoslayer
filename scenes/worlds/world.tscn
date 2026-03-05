@@ -15,8 +15,4 @@ script = ExtResource("2_mnksr")
 
 [node name="WaveTimer" type="Timer" parent="WaveManager" unique_id=1908291477]
 
-[node name="BreakTimer" type="Timer" parent="WaveManager" unique_id=307468774]
-wait_time = 15.0
-
 [connection signal="timeout" from="WaveManager/WaveTimer" to="WaveManager" method="_on_wave_timer_timeout"]
-[connection signal="timeout" from="WaveManager/BreakTimer" to="WaveManager" method="_on_break_timer_timeout"]

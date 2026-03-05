@@ -4,7 +4,6 @@ extends Node
 var current_wave: int = 0
 var time_until_wave_end: int = 0 # Time in seconds
 @onready var wave_timer: Timer = $WaveTimer
-@onready var break_timer: Timer = $BreakTimer
 
 signal current_wave_changed(wave: int)
 signal time_until_wave_end_changed(time: int)
@@ -29,8 +28,5 @@ func _on_wave_timer_timeout() -> void:
 
 func end_wave() -> void:
 	wave_ended.emit()
+	wave_ended.emit()
 	wave_timer.stop()
-	break_timer.start()
-
-func _on_break_timer_timeout() -> void:
-	start_wave()

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bke57kxcnjnho"]
 
 [ext_resource type="Script" uid="uid://b0iyx6c1ldl2p" path="res://scripts/main.gd" id="1_tipki"]
+[ext_resource type="Script" uid="uid://c3y5sbyxtgd61" path="res://scripts/user_interface/hud/start_wave_button.gd" id="3_tipki"]
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
 [ext_resource type="Script" uid="uid://fgq6y65w1341" path="res://scripts/user_interface/abilities_tab/abilities_tab_open_button.gd" id="10_choun"]
@@ -35,24 +36,27 @@ script = ExtResource("7_choun")
 
 [node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/UserInterface" unique_id=249147002]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -145.75
-offset_top = -122.0
-offset_right = 145.75
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=1494206841]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 theme_override_constants/separation = 20
 
+[node name="StartWaveButton" type="Button" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=417665695]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start next wave"
+script = ExtResource("3_tipki")
+
 [node name="AbilityItemContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=1281324131]
-custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
