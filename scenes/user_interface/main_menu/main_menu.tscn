@@ -1,7 +1,15 @@
 [gd_scene format=3 uid="uid://d1hbgw27crue0"]
 
 [ext_resource type="Script" uid="uid://313vd6xcooo1" path="res://scripts/user_interface/main_menu/buttons/play_button.gd" id="1_femvy"]
+[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="1_kibp0"]
 [ext_resource type="Script" uid="uid://c2n8vhx288uk4" path="res://scripts/user_interface/main_menu/buttons/exit_button.gd" id="2_bv0at"]
+[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_w5fdl"]
+[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_01m43"]
+[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_tlslw"]
+
+[sub_resource type="Gradient" id="Gradient_bv0at"]
+offsets = PackedFloat32Array(0.5253623, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="MainMenu" type="Control" unique_id=1060743549]
 layout_mode = 3
@@ -18,7 +26,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.08854237, 0.35650042, 0.42679256, 1)
+color = Color(0, 0.42140755, 0.51970077, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=281009213]
+position = Vector2(1180, 323)
+amount = 20
+lifetime = 10.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(0, 324)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(1, 0, 1, 1)
+color_ramp = SubResource("Gradient_bv0at")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=15512468]
 layout_mode = 1
@@ -29,55 +54,113 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LeftMarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1397053112]
-custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftMarginContainer" unique_id=553293725]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 50
 
 [node name="GameNameLabel" type="Label" parent="HBoxContainer/LeftMarginContainer/VBoxContainer" unique_id=1495207815]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "project01"
-horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="HBoxContainer/LeftMarginContainer/VBoxContainer" unique_id=1748120606]
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
 theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=526585102]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("1_kibp0")
+theme_override_styles/normal_mirrored = ExtResource("1_kibp0")
+theme_override_styles/pressed = ExtResource("2_w5fdl")
+theme_override_styles/pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/hover = ExtResource("3_01m43")
+theme_override_styles/hover_mirrored = ExtResource("3_01m43")
+theme_override_styles/hover_pressed = ExtResource("2_w5fdl")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/disabled = ExtResource("4_tlslw")
+theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
+theme_override_styles/focus = ExtResource("3_01m43")
 text = "Play"
+alignment = 0
 script = ExtResource("1_femvy")
 
 [node name="ShopButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=356799502]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("1_kibp0")
+theme_override_styles/normal_mirrored = ExtResource("1_kibp0")
+theme_override_styles/pressed = ExtResource("2_w5fdl")
+theme_override_styles/pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/hover = ExtResource("3_01m43")
+theme_override_styles/hover_mirrored = ExtResource("3_01m43")
+theme_override_styles/hover_pressed = ExtResource("2_w5fdl")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/disabled = ExtResource("4_tlslw")
+theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
+theme_override_styles/focus = ExtResource("3_01m43")
 disabled = true
 text = "Shop"
+alignment = 0
 
 [node name="ProgressionButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=1742011499]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("1_kibp0")
+theme_override_styles/normal_mirrored = ExtResource("1_kibp0")
+theme_override_styles/pressed = ExtResource("2_w5fdl")
+theme_override_styles/pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/hover = ExtResource("3_01m43")
+theme_override_styles/hover_mirrored = ExtResource("3_01m43")
+theme_override_styles/hover_pressed = ExtResource("2_w5fdl")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/disabled = ExtResource("4_tlslw")
+theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
+theme_override_styles/focus = ExtResource("3_01m43")
 disabled = true
 text = "Progression"
+alignment = 0
 
 [node name="SettingsButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=360731962]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("1_kibp0")
+theme_override_styles/normal_mirrored = ExtResource("1_kibp0")
+theme_override_styles/pressed = ExtResource("2_w5fdl")
+theme_override_styles/pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/hover = ExtResource("3_01m43")
+theme_override_styles/hover_mirrored = ExtResource("3_01m43")
+theme_override_styles/hover_pressed = ExtResource("2_w5fdl")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/disabled = ExtResource("4_tlslw")
+theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
+theme_override_styles/focus = ExtResource("3_01m43")
 disabled = true
 text = "Settings"
+alignment = 0
 
 [node name="ExitButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=1213047194]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("1_kibp0")
+theme_override_styles/normal_mirrored = ExtResource("1_kibp0")
+theme_override_styles/pressed = ExtResource("2_w5fdl")
+theme_override_styles/pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/hover = ExtResource("3_01m43")
+theme_override_styles/hover_mirrored = ExtResource("3_01m43")
+theme_override_styles/hover_pressed = ExtResource("2_w5fdl")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
+theme_override_styles/disabled = ExtResource("4_tlslw")
+theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
+theme_override_styles/focus = ExtResource("3_01m43")
 text = "Exit"
+alignment = 0
 script = ExtResource("2_bv0at")
