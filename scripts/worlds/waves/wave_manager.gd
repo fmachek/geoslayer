@@ -29,5 +29,4 @@ func _on_wave_timer_timeout() -> void:
 
 func end_wave() -> void:
 	wave_ended.emit()
-	wave_ended.emit()
 	wave_timer.stop()
