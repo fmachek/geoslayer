@@ -27,4 +27,4 @@ Because this is just a project I started in my free time for fun and learning, I
 ## Screenshots of the current state
 <img width="1152" height="648" alt="menu" src="https://github.com/user-attachments/assets/d9fe2b13-5560-4105-ae91-6bf462073eb2" />
 
-<img width="1152" height="648" alt="ingame" src="https://github.com/user-attachments/assets/4f6429ee-16f3-4850-88c6-c4ebc6d5dd42" />
+<img width="1152" height="648" alt="ingame" src="https://github.com/user-attachments/assets/17af71e1-2475-45ed-bc0c-06ddae286423" />
