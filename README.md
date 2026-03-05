@@ -10,19 +10,21 @@ I have a few things in mind:
 
 Of course, these are just a few things I came up with right now. I'll probably learn more stuff along the way.
 
-I did already try to add pathfinding to NPCs, but I feel like that might be a problem I want to tackle later. Perhaps in a different project, because right now I want to spend my time learning other, maybe more useful things. So I decided on a simple movement system and the map will have no walls or obstacles.
+In the last version of this readme, I mentioned that I had decided on a simple movement system without pathfinding for simplicity. That has changed (kind of), because I have run into an issue where the NPCs eventually occupy the exact same position if they chase you for a long enough time. Therefore, I need to use avoidance at the very least. So I can't completely avoid pathfinding. I have yet to look into how to use avoidance.
 
 ## What is this game even about?
 
-Because this is just a project I started in my free time, I don't exactly know what I'm making. I come up with stuff on the go. But to summarize the overall vision: it's a 2D game with simple shapes where you have two abilities which you can unlock and then equip in one of 2 slots, which you then cast to defeat enemies who will, inevitably, shoot at and defeat you. So it's not something particularly revolutionary. It's more of a learning project for me, as I've mentioned lots of times in this readme.
+Because this is just a project I started in my free time for fun and learning, I don't EXACTLY know what I'm making. I come up with stuff on the go. But to summarize the overall vision: it's a 2D game with simple shapes where you have two abilities which you can unlock and then equip in one of 2 slots, which you then cast to defeat enemies who will, inevitably, shoot at and defeat you. Enemies come in waves. You level up to become stronger and unlock new abilities (level up unlocks aren't implemented yet).
 
 ## What have I made so far?
 1. Characters (both player and NPCs)
 2. Stat system (HP etc)
 3. Ability system along with a very simple and yet to be redesigned UI
 4. Levels and XP
+5. Simple main menu
+6. Waves
 
-## A screenshot of the current state
-This is a VERY early prototype and I have only worked on it for a few days at the time when I'm writing this, but here it is:
+## Screenshots of the current state
+<img width="1152" height="648" alt="menu" src="https://github.com/user-attachments/assets/d9fe2b13-5560-4105-ae91-6bf462073eb2" />
 
-<img width="1152" height="645" alt="Screenshot (115)" src="https://github.com/user-attachments/assets/f5de039b-a395-476b-80de-df3292b9bcc2" />
+<img width="1152" height="648" alt="ingame" src="https://github.com/user-attachments/assets/4f6429ee-16f3-4850-88c6-c4ebc6d5dd42" />
