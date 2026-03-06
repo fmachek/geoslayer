@@ -13,3 +13,13 @@ outline_color = Color(0.6552603, 0.53839445, 0, 1)
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=295435238]
 shape = SubResource("RectangleShape2D_bik2x")
+
+[node name="InfoLabel" type="Label" parent="." index="4" unique_id=543637955]
+visible = false
+offset_left = -80.0
+offset_top = -56.0
+offset_right = 80.0
+offset_bottom = -33.0
+theme_override_constants/outline_size = 8
+text = "Wave X reward"
+horizontal_alignment = 1

@@ -20,6 +20,7 @@ func start_wave():
 
 func spawn_chest() -> void:
 	var chest: Chest = chest_scene.instantiate()
+	chest.show_info_label("Wave %d reward" % wave_manager.current_wave)
 	chest.died.connect(_on_chest_opened.bind(chest))
 	if unopened_chests.is_empty():
 		add_child(chest)

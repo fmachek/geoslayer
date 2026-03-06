@@ -25,3 +25,7 @@ func generate_drop_pool():
 	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/doubleshot_pickup.tscn", 5))
 	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/flurry_pickup.tscn", 5))
 	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/wideshot_pickup.tscn", 5))
+
+func show_info_label(text: String) -> void:
+	$InfoLabel.text = text
+	$InfoLabel.show()
