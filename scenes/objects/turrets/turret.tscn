@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://n5x4nh7rhf5q"]
+
+[ext_resource type="Script" uid="uid://ssvoogd832ln" path="res://scripts/objects/turrets/turret.gd" id="1_qhbyq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm26o"]
+size = Vector2(64, 64)
+
+[node name="Turret" type="Node2D" unique_id=1882429743]
+script = ExtResource("1_qhbyq")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=728011380]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1685914676]
+shape = SubResource("RectangleShape2D_dm26o")
+
+[node name="Muzzle" type="Node2D" parent="." unique_id=1564929469]
+position = Vector2(0, -10)
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1837056880]
+wait_time = 3.0
+
+[connection signal="timeout" from="ShootTimer" to="." method="shoot"]

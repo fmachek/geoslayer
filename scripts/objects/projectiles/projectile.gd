@@ -26,7 +26,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not projectile_properties.source or body != projectile_properties.source:
 		if body is Character and can_deal_damage:
 			if projectile_properties.source:
-				if projectile_properties.source is Character and projectile_properties.source is not PlayerCharacter and body is not PlayerCharacter:
+				if projectile_properties.source is not PlayerCharacter and body is not PlayerCharacter:
 					return # Prevents enemies damaging other enemies
 			can_deal_damage = false
 			body.take_damage(projectile_properties.damage)

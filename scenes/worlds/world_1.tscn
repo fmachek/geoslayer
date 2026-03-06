@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cf883c61vdyvw" path="res://scenes/worlds/world.tscn" id="1_nlsqv"]
 [ext_resource type="PackedScene" uid="uid://dfc8fq2b7kwge" path="res://scenes/objects/character_spawner.tscn" id="2_xijrn"]
+[ext_resource type="PackedScene" uid="uid://n5x4nh7rhf5q" path="res://scenes/objects/turrets/turret.tscn" id="4_tekg8"]
 [ext_resource type="PackedScene" uid="uid://bn86y4tvdekxl" path="res://scenes/characters/enemies/enemy.tscn" id="8_hbdd5"]
 
 [node name="World1" unique_id=514046658 instance=ExtResource("1_nlsqv")]
@@ -24,6 +25,36 @@ character_scene = ExtResource("8_hbdd5")
 [node name="CharacterSpawner4" parent="." index="5" unique_id=147456157 instance=ExtResource("2_xijrn")]
 position = Vector2(0, 500)
 character_scene = ExtResource("8_hbdd5")
+
+[node name="Turret" parent="." index="7" unique_id=1882429743 instance=ExtResource("4_tekg8")]
+position = Vector2(-224, 608)
+
+[node name="Turret2" parent="." index="8" unique_id=1822567370 instance=ExtResource("4_tekg8")]
+position = Vector2(224, 608)
+
+[node name="Turret3" parent="." index="9" unique_id=2090446026 instance=ExtResource("4_tekg8")]
+position = Vector2(-224, -608)
+rotation = 3.1415927
+
+[node name="Turret4" parent="." index="10" unique_id=1052990008 instance=ExtResource("4_tekg8")]
+position = Vector2(224, -608)
+rotation = -3.1415925
+
+[node name="Turret5" parent="." index="11" unique_id=1150541455 instance=ExtResource("4_tekg8")]
+position = Vector2(608, -224)
+rotation = -1.5707964
+
+[node name="Turret6" parent="." index="12" unique_id=1428030641 instance=ExtResource("4_tekg8")]
+position = Vector2(608, 224)
+rotation = -1.5707964
+
+[node name="Turret7" parent="." index="13" unique_id=1100697028 instance=ExtResource("4_tekg8")]
+position = Vector2(-608, -224)
+rotation = -4.712389
+
+[node name="Turret8" parent="." index="14" unique_id=831809843 instance=ExtResource("4_tekg8")]
+position = Vector2(-608, 224)
+rotation = 1.5707964
 
 [connection signal="wave_started" from="WaveManager" to="CharacterSpawner" method="_on_wave_started"]
 [connection signal="wave_started" from="WaveManager" to="CharacterSpawner2" method="_on_wave_started"]
