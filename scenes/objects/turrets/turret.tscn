@@ -15,6 +15,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Turret" type="Node2D" unique_id=1882429743]
 z_index = 1
 script = ExtResource("1_qhbyq")
+draw_color = Color(0.6117647, 0.09803922, 0.09803922, 1)
+outline_color = Color(0.3752164, 0.043487653, 0.04358112, 1)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=728011380]
 collision_layer = 2
@@ -23,6 +25,7 @@ collision_layer = 2
 shape = SubResource("RectangleShape2D_dm26o")
 
 [node name="Muzzle" type="Node2D" parent="." unique_id=1564929469]
+z_index = -1
 position = Vector2(0, -46)
 script = ExtResource("2_x1cbx")
 
@@ -49,4 +52,5 @@ color_ramp = SubResource("Gradient_x1cbx")
 [node name="ShootTimer" type="Timer" parent="." unique_id=1837056880]
 wait_time = 3.0
 
+[connection signal="shot" from="." to="Muzzle" method="apply_recoil"]
 [connection signal="timeout" from="ShootTimer" to="." method="shoot"]

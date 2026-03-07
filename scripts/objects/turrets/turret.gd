@@ -13,6 +13,8 @@ extends Node2D
 @export var projectile_speed: int = 2
 @export var projectile_radius: int = 10
 
+signal shot() # Emitted when the turret fires a projectile
+
 func _draw():
 	var width = $Area2D/CollisionShape2D.shape.size.x
 	var height = $Area2D/CollisionShape2D.shape.size.y
@@ -31,6 +33,7 @@ func stop_shooting() -> void:
 	shoot_timer.stop()
 
 func shoot() -> void:
+	shot.emit()
 	var proj_direction: Vector2 = (muzzle.global_position - global_position).normalized()
 	var proj_props := ProjectileProperties.new(draw_color, outline_color, proj_direction, projectile_speed, self, damage, projectile_radius, global_position)
 	var projectile: Projectile = ProjectileFunctions.fire_projectile(proj_props)
