@@ -4,6 +4,7 @@ extends Node2D
 @onready var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var muzzle: Node2D = $Muzzle
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var shoot_particles: CPUParticles2D = $ShootParticles
 
 @export var draw_color: Color = Color("#8f6e6e")
 @export var outline_color: Color = Color("664b4bff")
@@ -21,6 +22,7 @@ func _draw():
 func _ready() -> void:
 	WorldManager.wave_started.connect(start_shooting)
 	WorldManager.wave_ended.connect(stop_shooting)
+	shoot_particles.color = draw_color
 
 func start_shooting() -> void:
 	shoot_timer.start()
@@ -32,3 +34,4 @@ func shoot() -> void:
 	var proj_direction: Vector2 = (muzzle.global_position - global_position).normalized()
 	var proj_props := ProjectileProperties.new(draw_color, outline_color, proj_direction, projectile_speed, self, damage, projectile_radius, global_position)
 	var projectile: Projectile = ProjectileFunctions.fire_projectile(proj_props)
+	shoot_particles.emitting = true
