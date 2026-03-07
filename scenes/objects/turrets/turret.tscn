@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://n5x4nh7rhf5q"]
 
 [ext_resource type="Script" uid="uid://ssvoogd832ln" path="res://scripts/objects/turrets/turret.gd" id="1_qhbyq"]
+[ext_resource type="Script" uid="uid://bqnqh2vi8xu4w" path="res://scripts/objects/turrets/muzzle.gd" id="2_x1cbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dm26o"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhbyq"]
+size = Vector2(28, 28)
+
 [node name="Turret" type="Node2D" unique_id=1882429743]
+z_index = 1
 script = ExtResource("1_qhbyq")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=728011380]
@@ -15,7 +20,13 @@ collision_layer = 2
 shape = SubResource("RectangleShape2D_dm26o")
 
 [node name="Muzzle" type="Node2D" parent="." unique_id=1564929469]
-position = Vector2(0, -10)
+position = Vector2(0, -46)
+script = ExtResource("2_x1cbx")
+
+[node name="Area2D" type="Area2D" parent="Muzzle" unique_id=1971441437]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Muzzle/Area2D" unique_id=29020706]
+shape = SubResource("RectangleShape2D_qhbyq")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1837056880]
 wait_time = 3.0
