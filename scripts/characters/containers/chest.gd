@@ -13,18 +13,28 @@ func _draw():
 
 # Generates the drop pool for this chest - XP orbs, buffs and an ability.
 func generate_drop_pool():
-	drop_pool.append(Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 20))
-	drop_pool.append(Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 20))
+	drop_pool.append(Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 50))
+	drop_pool.append(Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 50))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
-	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/blast_pickup.tscn", 5))
-	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/cannonball_pickup.tscn", 5))
-	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/doubleshot_pickup.tscn", 5))
-	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/flurry_pickup.tscn", 5))
-	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/wideshot_pickup.tscn", 5))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
+	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
+	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/blast_pickup.tscn", 10))
+	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/cannonball_pickup.tscn", 10))
+	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/doubleshot_pickup.tscn", 10))
+	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/flurry_pickup.tscn", 10))
+	drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/wideshot_pickup.tscn", 10))
 
 func show_info_label(text: String) -> void:
 	$InfoLabel.text = text
