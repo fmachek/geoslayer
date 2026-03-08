@@ -48,10 +48,10 @@ func _on_player_detection_area_body_exited(body: Node2D) -> void:
 	if body is PlayerCharacter:
 		remove_target()
 
-# Loads the enemy's abilities.
+# Loads the enemy's abilities. Needs to be implemented by each
+# specific enemy.
 func load_abilities():
-	load_ability(Shoot.new())
-	load_ability(Flurry.new())
+	pass
 
 # Loads an ability. The enemy's abilities always have a longer cooldown.
 func load_ability(ability: Ability):

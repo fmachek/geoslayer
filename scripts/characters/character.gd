@@ -52,6 +52,7 @@ func _ready() -> void:
 	health_changed.connect(check_for_death)
 	level.level_changed.connect(_on_level_changed) # Connect level up signal
 	update_stats(level.current_level) # Update stats on spawn
+	health.change_current_value(health.max_value_after_buffs) # Spawn with max health
 	generate_drop_pool()
 	$HealthBar.set_up() # Sets up the health bar which appears below the character
 

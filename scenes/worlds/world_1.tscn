@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cf883c61vdyvw" path="res://scenes/worlds/world.tscn" id="1_nlsqv"]
 [ext_resource type="PackedScene" uid="uid://dfc8fq2b7kwge" path="res://scenes/objects/character_spawner.tscn" id="2_xijrn"]
+[ext_resource type="PackedScene" uid="uid://dfgkw445mxohq" path="res://scenes/characters/enemies/shooter.tscn" id="3_tekg8"]
+[ext_resource type="PackedScene" uid="uid://dmqpbnnvr7ic8" path="res://scenes/characters/enemies/spammer.tscn" id="4_ascmk"]
+[ext_resource type="PackedScene" uid="uid://b25laaj20mx3r" path="res://scenes/characters/enemies/tank.tscn" id="4_d46pn"]
 [ext_resource type="PackedScene" uid="uid://n5x4nh7rhf5q" path="res://scenes/objects/turrets/turret.tscn" id="4_tekg8"]
-[ext_resource type="PackedScene" uid="uid://bn86y4tvdekxl" path="res://scenes/characters/enemies/enemy.tscn" id="8_hbdd5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tekg8"]
 vertices = PackedVector2Array(630, 630, -630, 630, -630, -630, 630, -630)
@@ -17,43 +19,43 @@ tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAP//AAAAAAAAAAABAAAAAAAAAAA
 
 [node name="CharacterSpawner" parent="." index="2" unique_id=1925204194 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, 0)
-character_scene = ExtResource("8_hbdd5")
-spawn_waves = PackedInt32Array(1, 2, 3, 4)
+character_scene = ExtResource("3_tekg8")
+spawn_waves = PackedInt32Array(1, 3)
 
 [node name="CharacterSpawner2" parent="." index="3" unique_id=1513243607 instance=ExtResource("2_xijrn")]
 position = Vector2(576, 0)
-character_scene = ExtResource("8_hbdd5")
-spawn_waves = PackedInt32Array(1, 2, 3, 4)
+character_scene = ExtResource("3_tekg8")
+spawn_waves = PackedInt32Array(1, 3)
 
 [node name="CharacterSpawner3" parent="." index="4" unique_id=603960047 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, -576)
-character_scene = ExtResource("8_hbdd5")
+character_scene = ExtResource("4_d46pn")
 spawn_waves = PackedInt32Array(4)
 
 [node name="CharacterSpawner4" parent="." index="5" unique_id=2043547524 instance=ExtResource("2_xijrn")]
 position = Vector2(576, -576)
-character_scene = ExtResource("8_hbdd5")
-spawn_waves = PackedInt32Array(3, 4)
+character_scene = ExtResource("3_tekg8")
+spawn_waves = PackedInt32Array(3)
 
 [node name="CharacterSpawner5" parent="." index="6" unique_id=3215553 instance=ExtResource("2_xijrn")]
 position = Vector2(576, 576)
-character_scene = ExtResource("8_hbdd5")
+character_scene = ExtResource("4_d46pn")
 spawn_waves = PackedInt32Array(4)
 
 [node name="CharacterSpawner6" parent="." index="7" unique_id=934577623 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, 576)
-character_scene = ExtResource("8_hbdd5")
-spawn_waves = PackedInt32Array(3, 4)
+character_scene = ExtResource("3_tekg8")
+spawn_waves = PackedInt32Array(3)
 
 [node name="CharacterSpawner7" parent="." index="8" unique_id=532528630 instance=ExtResource("2_xijrn")]
 position = Vector2(0, -576)
-character_scene = ExtResource("8_hbdd5")
-spawn_waves = PackedInt32Array(2, 3, 4)
+character_scene = ExtResource("4_ascmk")
+spawn_waves = PackedInt32Array(2, 3)
 
 [node name="CharacterSpawner8" parent="." index="9" unique_id=1320745370 instance=ExtResource("2_xijrn")]
 position = Vector2(0, 576)
-character_scene = ExtResource("8_hbdd5")
-spawn_waves = PackedInt32Array(2, 3, 4)
+character_scene = ExtResource("4_ascmk")
+spawn_waves = PackedInt32Array(2, 3)
 
 [node name="Turret" parent="." index="11" unique_id=1882429743 instance=ExtResource("4_tekg8")]
 position = Vector2(-352, 608)
