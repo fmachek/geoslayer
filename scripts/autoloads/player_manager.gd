@@ -23,7 +23,6 @@ func connect_player_signals():
 func _on_player_died():
 	player_died.emit(current_player)
 	current_player.died.disconnect(_on_player_died)
-	spawn_player(WorldManager.current_world.player_spawn_pos)
 
 func _on_UI_ability1_equip(ability_name: String):
 	if not current_player:

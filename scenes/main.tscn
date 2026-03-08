@@ -6,9 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
 [ext_resource type="Script" uid="uid://fgq6y65w1341" path="res://scripts/user_interface/abilities_tab/abilities_tab_open_button.gd" id="10_choun"]
+[ext_resource type="Script" uid="uid://kf1tkrqd4dvl" path="res://scripts/user_interface/death_user_interface/death_user_interface.gd" id="10_eb6dy"]
 [ext_resource type="Script" uid="uid://bme6txd5w6mac" path="res://scripts/user_interface/ability_unlock_popup.gd" id="10_ya4ey"]
+[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="11_a8y0u"]
 [ext_resource type="Script" uid="uid://b1bksppmpw8b6" path="res://scripts/user_interface/hud/level_hud.gd" id="12_eb6dy"]
+[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="12_jkv2x"]
+[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="13_jbj1t"]
 [ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/abilities_tab/abilities_tab.gd" id="14_jkv2x"]
+[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="14_muem4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
@@ -18,6 +23,9 @@ bg_color = Color(0.73333335, 0, 0.73333335, 1)
 
 [node name="Main" type="Node2D" unique_id=1258532985]
 script = ExtResource("1_tipki")
+
+[node name="DeathCamera" type="Camera2D" parent="." unique_id=1662278339]
+enabled = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=208246987]
 
@@ -202,6 +210,98 @@ horizontal_alignment = 1
 wait_time = 5.0
 one_shot = true
 
+[node name="DeathUserInterface" type="Control" parent="CanvasLayer" unique_id=2020402892]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_eb6dy")
+
+[node name="BackgroundRect" type="ColorRect" parent="CanvasLayer/DeathUserInterface" unique_id=241410946]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62700003)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathUserInterface" unique_id=976729399]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="LabelContainer" type="VBoxContainer" parent="CanvasLayer/DeathUserInterface/VBoxContainer" unique_id=130393290]
+layout_mode = 2
+
+[node name="YouDiedLabel" type="Label" parent="CanvasLayer/DeathUserInterface/VBoxContainer/LabelContainer" unique_id=259385283]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "You died!"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer/DeathUserInterface/VBoxContainer/LabelContainer" unique_id=773567848]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+theme_override_font_sizes/font_size = 24
+text = "Better luck next time!"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/DeathUserInterface/VBoxContainer" unique_id=24187752]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer" unique_id=789144137]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("11_a8y0u")
+theme_override_styles/normal_mirrored = ExtResource("11_a8y0u")
+theme_override_styles/pressed = ExtResource("12_jkv2x")
+theme_override_styles/pressed_mirrored = ExtResource("12_jkv2x")
+theme_override_styles/hover = ExtResource("13_jbj1t")
+theme_override_styles/hover_mirrored = ExtResource("13_jbj1t")
+theme_override_styles/hover_pressed = ExtResource("12_jkv2x")
+theme_override_styles/hover_pressed_mirrored = ExtResource("12_jkv2x")
+theme_override_styles/disabled = ExtResource("14_muem4")
+theme_override_styles/disabled_mirrored = ExtResource("14_muem4")
+theme_override_styles/focus = ExtResource("13_jbj1t")
+text = "Restart"
+
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer" unique_id=1739043267]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("11_a8y0u")
+theme_override_styles/normal_mirrored = ExtResource("11_a8y0u")
+theme_override_styles/pressed = ExtResource("12_jkv2x")
+theme_override_styles/pressed_mirrored = ExtResource("12_jkv2x")
+theme_override_styles/hover = ExtResource("13_jbj1t")
+theme_override_styles/hover_mirrored = ExtResource("13_jbj1t")
+theme_override_styles/hover_pressed = ExtResource("12_jkv2x")
+theme_override_styles/hover_pressed_mirrored = ExtResource("12_jkv2x")
+theme_override_styles/disabled = ExtResource("14_muem4")
+theme_override_styles/disabled_mirrored = ExtResource("14_muem4")
+theme_override_styles/focus = ExtResource("13_jbj1t")
+text = "Back to menu"
+
 [connection signal="hidden" from="CanvasLayer/UserInterface/AbilitiesTab" to="CanvasLayer/UserInterface/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot1Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot2Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_2_button_pressed"]
@@ -210,3 +310,5 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTabOpenButton" method="_on_pressed"]
 [connection signal="timeout" from="CanvasLayer/UserInterface/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer/RestartButton" to="CanvasLayer/DeathUserInterface" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer/BackToMenuButton" to="CanvasLayer/DeathUserInterface" method="_on_back_to_menu_button_pressed"]

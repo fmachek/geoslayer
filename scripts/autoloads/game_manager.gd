@@ -25,3 +25,6 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().paused = not get_tree().paused
+
+func switch_to_menu() -> void:
+	get_tree().change_scene_to_file("res://scenes/user_interface/main_menu/main_menu.tscn")

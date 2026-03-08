@@ -24,4 +24,4 @@ func _on_ability2_changed(new_ability: Ability):
 	%AbilityItem2.load_ability(new_ability)
 
 func _on_player_died():
-	pass
+	hide()
