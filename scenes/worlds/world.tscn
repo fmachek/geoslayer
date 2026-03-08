@@ -71,4 +71,6 @@ script = ExtResource("2_mnksr")
 
 [node name="WaveTimer" type="Timer" parent="WaveManager" unique_id=1908291477]
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=732517934]
+
 [connection signal="timeout" from="WaveManager/WaveTimer" to="WaveManager" method="_on_wave_timer_timeout"]
