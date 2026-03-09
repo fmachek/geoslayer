@@ -21,7 +21,7 @@ func _init():
 	super._init()
 	ability_name = "Flurry"
 	cooldown = 4
-	texture = load("res://assets/sprites/placeholder.png")
+	texture = load("res://assets/sprites/flurry.png")
 	description = "Fires a flurry of projectiles."
 
 func perform_ability():

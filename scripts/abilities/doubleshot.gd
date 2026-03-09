@@ -10,7 +10,7 @@ func _init():
 	super._init()
 	ability_name = "Doubleshot"
 	cooldown = 0.75
-	texture = load("res://assets/sprites/placeholder.png")
+	texture = load("res://assets/sprites/doubleshot.png")
 	description = "Shoots two projectiles."
 
 func perform_ability():

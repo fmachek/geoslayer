@@ -24,7 +24,7 @@ func _init():
 	super._init()
 	ability_name = "Pierce"
 	cooldown = 4 # This ability has a long cooldown
-	texture = load("res://assets/sprites/placeholder.png")
+	texture = load("res://assets/sprites/pierce.png")
 	description = "Aims, slowing the user down temporarily, and fires a fast piercing projectile."
 
 # A speed debuff is applied to the caster and the aim timer starts.
