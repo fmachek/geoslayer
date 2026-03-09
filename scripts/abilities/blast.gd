@@ -1,7 +1,7 @@
 class_name Blast
 extends Ability
 
-var projectile_scene = preload("res://scenes/objects/projectiles/projectile.tscn")
+var projectile_scene: PackedScene = preload("res://scenes/objects/projectiles/projectile.tscn")
 var projectile_speed: int = 2
 var base_damage: int = 10
 var projectile_radius: int = 12
@@ -27,4 +27,4 @@ func spawn_projectiles(amount):
 		var direction = Vector2.from_angle(angle)
 		var damage: int = float(base_damage) * float(character.damage.max_value_after_buffs) / 100
 		var projectile_properties: ProjectileProperties = ProjectileProperties.new(character.draw_color, character.outline_color, direction, projectile_speed, character, damage, projectile_radius, character.global_position)
-		ProjectileFunctions.fire_projectile(projectile_properties)
+		ProjectileFunctions.fire_projectile(projectile_scene, projectile_properties)

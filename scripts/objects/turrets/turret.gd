@@ -13,6 +13,8 @@ extends Node2D
 @export var projectile_speed: int = 2
 @export var projectile_radius: int = 10
 
+var projectile_scene: PackedScene = preload("res://scenes/objects/projectiles/projectile.tscn")
+
 signal shot() # Emitted when the turret fires a projectile
 
 func _draw():
@@ -36,5 +38,5 @@ func shoot() -> void:
 	shot.emit()
 	var proj_direction: Vector2 = (muzzle.global_position - global_position).normalized()
 	var proj_props := ProjectileProperties.new(draw_color, outline_color, proj_direction, projectile_speed, self, damage, projectile_radius, global_position)
-	var projectile: Projectile = ProjectileFunctions.fire_projectile(proj_props)
+	var projectile: Projectile = ProjectileFunctions.fire_projectile(projectile_scene, proj_props)
 	shoot_particles.emitting = true

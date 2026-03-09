@@ -52,5 +52,15 @@ offset_top = 39.0
 offset_right = 30.0
 offset_bottom = 59.0
 
+[node name="AimLine" type="Line2D" parent="." unique_id=1345120831]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+points = PackedVector2Array(0, 0, 274, 37)
+width = 8.0
+default_color = Color(0, 0.47427702, 0.5847179, 0.416)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [connection signal="current_value_changed" from="CharacterStats/Health" to="." method="emit_health_change"]
 [connection signal="max_value_after_buffs_changed" from="CharacterStats/Health" to="." method="emit_max_health_change"]

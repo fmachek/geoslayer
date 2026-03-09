@@ -6,21 +6,27 @@ var projectile_properties: ProjectileProperties
 var can_explode: bool = true
 var can_deal_damage: bool = true
 
-var explosion_particles_scene = preload("res://scenes/particle_effects/projectile_particles.tscn")
-@onready var col_shape := $Area2D/CollisionShape2D
+var explosion_particles_scene: PackedScene = preload("res://scenes/particle_effects/projectile_particles.tscn")
+var damage_label_scene: PackedScene = preload("res://scenes/user_interface/world_labels/damage_label.tscn")
+@onready var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
 func _process(delta: float) -> void:
 	if can_explode and projectile_properties:
 		global_position += projectile_properties.speed * projectile_properties.direction * delta * 200
+		look_at(global_position + projectile_properties.direction)
 
 # Draws the projectile, in this case a circle.
-func _draw():
+func _draw() -> void:
 	if can_explode:
-		# Takes the radius of the collision shape (which should be a circle)
-		var radius = col_shape.shape.radius
-		draw_circle(Vector2.ZERO, projectile_properties.radius, projectile_properties.draw_color)
-		var outline_width = radius/8
-		draw_arc(Vector2.ZERO, radius, 0, TAU, 32, projectile_properties.outline_color, outline_width, true)
+		draw_projectile_shape()
+
+# This can be implemented by each specific projectile.
+func draw_projectile_shape() -> void:
+	# Takes the radius of the collision shape (which should be a circle)
+	var radius = col_shape.shape.radius
+	draw_circle(Vector2.ZERO, projectile_properties.radius, projectile_properties.draw_color)
+	var outline_width = radius/8
+	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, projectile_properties.outline_color, outline_width, true)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not projectile_properties.source or body != projectile_properties.source:
@@ -28,13 +34,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			if projectile_properties.source:
 				if projectile_properties.source is not PlayerCharacter and body is not PlayerCharacter:
 					return # Prevents enemies damaging other enemies
-			can_deal_damage = false
-			body.take_damage(projectile_properties.damage)
-			var damage_label: DamageLabel = load("res://scenes/user_interface/world_labels/damage_label.tscn").instantiate()
-			get_parent().add_child(damage_label)
-			damage_label.load_damage(projectile_properties.damage, global_position)
-			damage_label.play_tween()
-			explode()
+			handle_character_collision(body)
 		else:
 			explode()
 
@@ -80,3 +80,22 @@ func load_children() -> void:
 
 func _on_flying_particles_finished() -> void:
 	queue_free()
+
+# This can be implemented by each specific projectile.
+func handle_character_collision(character: Character) -> void:
+	can_deal_damage = false
+	deal_damage(character)
+	explode()
+
+# Deals damage to a character.
+func deal_damage(character: Character) -> void:
+	var damage: int = projectile_properties.damage
+	character.take_damage(damage)
+	spawn_damage_label(damage, global_position)
+
+# Spawns a label showing the damage dealt.
+func spawn_damage_label(damage: int, pos: Vector2) -> void:
+	var damage_label: DamageLabel = damage_label_scene.instantiate()
+	get_parent().add_child(damage_label)
+	damage_label.load_damage(damage, pos)
+	damage_label.play_tween()

@@ -33,6 +33,9 @@ var is_casting: bool = false
 
 var target_pos: Vector2
 
+func _process(delta: float) -> void:
+	move_aim_line()
+
 # Draws the character. It is different depending on the collision shape.
 # In case of the player for example, it's going to be a circle.
 # But for other characters it might be a rectangle.
@@ -55,6 +58,7 @@ func _ready() -> void:
 	health.change_current_value(health.max_value_after_buffs) # Spawn with max health
 	generate_drop_pool()
 	$HealthBar.set_up() # Sets up the health bar which appears below the character
+	%AimLine.default_color = Color(outline_color, 0.3)
 
 # Makes the player take damage.
 func take_damage(damage: int) -> void:
@@ -174,3 +178,21 @@ func update_stats(current_level: int) -> void:
 	# So with each level, damage increases by 25% of the base.
 	var new_damage: int = 100 + (current_level - 1) * 25
 	damage.change_max_value(new_damage)
+
+# Moves the aim line so that it aims at the target.
+func move_aim_line():
+	if %AimLine.visible:
+		var direction_to_target: Vector2 = (target_pos - global_position).normalized()
+		var aim_line_start_point: Vector2
+		if %AimIndicator:
+			aim_line_start_point = %AimIndicator.position
+		else:
+			aim_line_start_point = Vector2.ZERO
+		var aim_line_end_point: Vector2 = global_position + direction_to_target * 2000
+		%AimLine.points = PackedVector2Array([Vector2(aim_line_start_point), to_local(aim_line_end_point)])
+
+func show_aim_line():
+	%AimLine.show()
+
+func hide_aim_line():
+	%AimLine.hide()

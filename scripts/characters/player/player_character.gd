@@ -18,9 +18,9 @@ func _ready() -> void:
 	super()
 
 func _process(delta: float):
+	super._process(delta)
 	target_pos = get_global_mouse_position()
 	move_aim_indicator()
-	move_aim_line() # This is hidden right now
 
 # Simple movement logic is from Godot Docs (https://docs.godotengine.org/en/stable/tutorials/2d/2d_movement.html)
 func get_input():
@@ -128,8 +128,3 @@ func swap_ability_slots():
 	ability2 = ability1_temp
 	ability1_changed.emit(ability1)
 	ability2_changed.emit(ability2)
-
-# Moves the aim line so that it aims at the mouse position.
-func move_aim_line():
-	if %AimLine.visible:
-		%AimLine.points = PackedVector2Array([Vector2(%AimIndicator.position), Vector2(get_local_mouse_position())])

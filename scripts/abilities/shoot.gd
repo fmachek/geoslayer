@@ -1,7 +1,7 @@
 class_name Shoot
 extends Ability
 
-var projectile_scene = preload("res://scenes/objects/projectiles/projectile.tscn")
+var projectile_scene: PackedScene = preload("res://scenes/objects/projectiles/projectile.tscn")
 var projectile_speed: int = 3
 var base_damage: int = 20
 var projectile_radius: int = 10
@@ -15,5 +15,5 @@ func _init():
 
 func perform_ability():
 	var damage: int = float(base_damage) * float(character.damage.max_value_after_buffs) / 100
-	ProjectileFunctions.fire_projectile_from_character(character, projectile_speed, damage, projectile_radius)
+	ProjectileFunctions.fire_projectile_from_character(projectile_scene, character, projectile_speed, damage, projectile_radius)
 	finished_casting.emit()

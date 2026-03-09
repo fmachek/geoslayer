@@ -1,13 +1,11 @@
 class_name ProjectileFunctions
 
-static var projectile_scene = preload("res://scenes/objects/projectiles/projectile.tscn")
-
-static func fire_projectile(properties: ProjectileProperties):
+static func fire_projectile(projectile_scene: PackedScene, properties: ProjectileProperties):
 	var projectile: Projectile = projectile_scene.instantiate()
 	projectile.set_properties(properties)
 	properties.source.get_parent().add_child(projectile)
 
-static func fire_projectile_from_character(character: Character, speed: int, damage: int, radius: int):
+static func fire_projectile_from_character(projectile_scene: PackedScene, character: Character, speed: int, damage: int, radius: int):
 	var target_pos: Vector2 = character.target_pos
 	var player_pos: Vector2 = character.global_position
 	var direction = (target_pos - player_pos).normalized()
