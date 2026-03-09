@@ -6,6 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_blu3w"]
 radius = 1024.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwhyh"]
+radius = 28.0
+
 [node name="Enemy" unique_id=1080282355 instance=ExtResource("1_w0ky3")]
 collision_layer = 10
 script = ExtResource("2_blu3w")
@@ -28,6 +31,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" index="0" unique_id=1246221917]
 shape = SubResource("CircleShape2D_blu3w")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_nwhyh")
 
 [node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="2" unique_id=1314298599]
 max_value = 150
