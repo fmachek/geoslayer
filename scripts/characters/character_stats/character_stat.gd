@@ -75,6 +75,8 @@ func change_max_value(value: int) -> void:
 
 # Changes the max value after buffs
 func change_max_value_after_buffs(value: int) -> void:
+	if value < 0:
+		value = 0
 	if max_value_after_buffs == value:
 		return
 	var old_value = max_value_after_buffs
