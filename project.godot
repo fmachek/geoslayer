@@ -22,7 +22,10 @@ GameManager="*uid://d0c3pd5wo3gu2"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/mode=4
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 
