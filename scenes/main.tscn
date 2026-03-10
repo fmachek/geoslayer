@@ -50,6 +50,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=1494206841]
@@ -107,6 +110,13 @@ theme_override_styles/background = SubResource("StyleBoxFlat_a8y0u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jkv2x")
 step = 1.0
 value = 50.0
+
+[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=1054323433]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Abilities"
+script = ExtResource("10_choun")
 
 [node name="AbilitiesTab" type="Panel" parent="CanvasLayer/UserInterface" unique_id=1778104300]
 visible = false
@@ -170,13 +180,6 @@ offset_left = -31.0
 offset_bottom = 31.0
 grow_horizontal = 0
 text = "X"
-
-[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface" unique_id=1054323433]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Abilities"
-script = ExtResource("10_choun")
 
 [node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface" unique_id=357967508]
 visible = false
@@ -302,13 +305,13 @@ theme_override_styles/disabled_mirrored = ExtResource("14_muem4")
 theme_override_styles/focus = ExtResource("13_jbj1t")
 text = "Back to menu"
 
-[connection signal="hidden" from="CanvasLayer/UserInterface/AbilitiesTab" to="CanvasLayer/UserInterface/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" method="_on_pressed"]
+[connection signal="hidden" from="CanvasLayer/UserInterface/AbilitiesTab" to="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot1Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot2Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_2_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipAllButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_all_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/CloseButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_close_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTabOpenButton" method="_on_pressed"]
 [connection signal="timeout" from="CanvasLayer/UserInterface/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer/RestartButton" to="CanvasLayer/DeathUserInterface" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer/BackToMenuButton" to="CanvasLayer/DeathUserInterface" method="_on_back_to_menu_button_pressed"]
