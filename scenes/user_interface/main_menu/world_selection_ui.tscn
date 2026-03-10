@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://mot558rpc6ve"]
+
+[ext_resource type="Script" uid="uid://bar5hckyiodd1" path="res://scripts/user_interface/world_selection/world_selection_ui.gd" id="1_41qj7"]
+[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="1_wi1en"]
+[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_41qj7"]
+[ext_resource type="StyleBox" uid="uid://c2vtf7qlhecwb" path="res://assets/user_interface/styles/world_selection/selected_world_panel.tres" id="2_xxlyo"]
+[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_xxlyo"]
+[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_0fdx1"]
+
+[sub_resource type="Gradient" id="Gradient_wi1en"]
+offsets = PackedFloat32Array(0.17218544, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_41qj7"]
+font_size = 64
+
+[node name="WorldSelectionUI" type="Control" unique_id=382332760]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_41qj7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=278398267]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.42140755, 0.51970077, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=277871211]
+position = Vector2(1180, 323)
+amount = 20
+lifetime = 5.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(0, 324)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(1, 0, 1, 1)
+color_ramp = SubResource("Gradient_wi1en")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2024073401]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1883188257]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 80
+
+[node name="LeftContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1929627055]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1865738111]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Current world selected"
+
+[node name="SelectedWorldPanel" type="Panel" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1765578081]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("2_xxlyo")
+
+[node name="WorldNumberLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer/SelectedWorldPanel" unique_id=220363631]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "N"
+label_settings = SubResource("LabelSettings_41qj7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1542767275]
+layout_mode = 2
+
+[node name="EnemiesLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer/InfoContainer" unique_id=507973985]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6255971, 0.6255972, 0.6255969, 1)
+theme_override_font_sizes/font_size = 16
+text = "Enemies: Shooter, Spammer, Tank"
+horizontal_alignment = 1
+
+[node name="BossesLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer/InfoContainer" unique_id=1469671179]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6255971, 0.6255972, 0.6255969, 1)
+theme_override_font_sizes/font_size = 16
+text = "Bosses: Placeholder, Placeholder"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=2008140232]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="EnterWorldButton" type="Button" parent="MarginContainer/HBoxContainer/LeftContainer/ButtonContainer" unique_id=341689613]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_wi1en")
+theme_override_styles/normal_mirrored = ExtResource("1_wi1en")
+theme_override_styles/pressed = ExtResource("2_41qj7")
+theme_override_styles/pressed_mirrored = ExtResource("2_41qj7")
+theme_override_styles/hover = ExtResource("3_xxlyo")
+theme_override_styles/hover_mirrored = ExtResource("3_xxlyo")
+theme_override_styles/hover_pressed = ExtResource("2_41qj7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_41qj7")
+theme_override_styles/disabled = ExtResource("4_0fdx1")
+theme_override_styles/disabled_mirrored = ExtResource("4_0fdx1")
+theme_override_styles/focus = ExtResource("3_xxlyo")
+text = "Enter world"
+
+[node name="BackToMenuButton" type="Button" parent="MarginContainer/HBoxContainer/LeftContainer/ButtonContainer" unique_id=2138976093]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("1_wi1en")
+theme_override_styles/normal_mirrored = ExtResource("1_wi1en")
+theme_override_styles/pressed = ExtResource("2_41qj7")
+theme_override_styles/pressed_mirrored = ExtResource("2_41qj7")
+theme_override_styles/hover = ExtResource("3_xxlyo")
+theme_override_styles/hover_mirrored = ExtResource("3_xxlyo")
+theme_override_styles/hover_pressed = ExtResource("2_41qj7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_41qj7")
+theme_override_styles/disabled = ExtResource("4_0fdx1")
+theme_override_styles/disabled_mirrored = ExtResource("4_0fdx1")
+theme_override_styles/focus = ExtResource("3_xxlyo")
+text = "Back to main menu"
+
+[node name="WorldButtonContainer" type="HFlowContainer" parent="MarginContainer/HBoxContainer" unique_id=1311542076]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20

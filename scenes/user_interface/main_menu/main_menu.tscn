@@ -12,6 +12,7 @@ offsets = PackedFloat32Array(0.5253623, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="MainMenu" type="Control" unique_id=1060743549]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
