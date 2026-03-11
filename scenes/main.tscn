@@ -17,7 +17,7 @@
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="14_muem4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
-bg_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+bg_color = Color(0, 0, 0, 0.32941177)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkv2x"]
 bg_color = Color(0.73333335, 0, 0.73333335, 1)
