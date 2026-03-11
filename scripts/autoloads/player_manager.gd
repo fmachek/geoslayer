@@ -2,6 +2,7 @@ extends Node
 
 signal player_spawned(player: PlayerCharacter)
 signal player_died(player: PlayerCharacter)
+signal perk_points_changed(points: int)
 
 var player_scene := preload("res://scenes/characters/player/player_character.tscn")
 var current_player: PlayerCharacter
@@ -19,6 +20,7 @@ func spawn_player(pos: Vector2):
 
 func connect_player_signals():
 	current_player.died.connect(_on_player_died)
+	current_player.perk_points_available_changed.connect(func(points: int): perk_points_changed.emit(points))
 
 func _on_player_died():
 	player_died.emit(current_player)
@@ -53,3 +55,7 @@ func _on_UI_unequip_all_pressed():
 		return
 	current_player.replace_ability1(null)
 	current_player.replace_ability2(null)
+
+func apply_perk_point(stat: CharacterStat) -> void:
+	if current_player:
+		current_player.apply_perk_point(stat)

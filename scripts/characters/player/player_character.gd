@@ -10,6 +10,9 @@ signal ability2_changed(new_ability: Ability)
 var unlocked_abilities = [Shoot.new()]
 signal new_ability_unlocked(ability: Ability)
 
+var perk_points_available: int = 5
+signal perk_points_available_changed(new_amount: int)
+
 # Player drops nothing
 func generate_drop_pool():
 	pass
@@ -128,3 +131,27 @@ func swap_ability_slots():
 	ability2 = ability1_temp
 	ability1_changed.emit(ability1)
 	ability2_changed.emit(ability2)
+
+func _on_level_changed(new_level: int) -> void:
+	add_perk_points(5) # Add perk points on every level up
+
+func add_perk_points(amount: int) -> void:
+	if amount <= 0:
+		return
+	perk_points_available += amount
+	perk_points_available_changed.emit(perk_points_available)
+
+func spend_perk_point() -> bool:
+	if perk_points_available <= 0:
+		return false
+	perk_points_available -= 1
+	perk_points_available_changed.emit(perk_points_available)
+	return true
+
+func apply_perk_point(stat: CharacterStat) -> bool:
+	var has_points: bool = spend_perk_point()
+	if has_points:
+		var stat_increase: int = 5
+		stat.change_max_value(stat.max_value + stat_increase)
+		return true
+	return false
