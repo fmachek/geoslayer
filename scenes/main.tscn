@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c3y5sbyxtgd61" path="res://scripts/user_interface/hud/start_wave_button.gd" id="3_tipki"]
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
+[ext_resource type="Script" uid="uid://6vw25iml7gif" path="res://scripts/user_interface/hud/stats_tab/stats_tab.gd" id="8_jkv2x"]
 [ext_resource type="Script" uid="uid://fgq6y65w1341" path="res://scripts/user_interface/abilities_tab/abilities_tab_open_button.gd" id="10_choun"]
 [ext_resource type="Script" uid="uid://kf1tkrqd4dvl" path="res://scripts/user_interface/death_user_interface/death_user_interface.gd" id="10_eb6dy"]
 [ext_resource type="Script" uid="uid://bme6txd5w6mac" path="res://scripts/user_interface/ability_unlock_popup.gd" id="10_ya4ey"]
@@ -117,6 +118,46 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Abilities"
 script = ExtResource("10_choun")
+
+[node name="StatsTab" type="MarginContainer" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=2007498816]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("8_jkv2x")
+
+[node name="BackgroundRect" type="ColorRect" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab" unique_id=1092390241]
+layout_mode = 2
+color = Color(0, 0, 0, 0.33100003)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab" unique_id=1929085492]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab/MarginContainer" unique_id=1473008117]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab/MarginContainer/VBoxContainer" unique_id=1105331020]
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab/MarginContainer/VBoxContainer" unique_id=1891484495]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="StatNameContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1262723039]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatValueContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/StatsTab/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1855528659]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="AbilitiesTab" type="Panel" parent="CanvasLayer/UserInterface" unique_id=1778104300]
 visible = false
