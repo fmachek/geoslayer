@@ -66,6 +66,7 @@ theme_override_constants/separation = 20
 [node name="WaveTimeLabel" type="Label" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=550450244]
 visible = false
 layout_mode = 2
+theme_override_constants/outline_size = 8
 text = "Wave ends in X seconds"
 horizontal_alignment = 1
 script = ExtResource("3_85g3d")
