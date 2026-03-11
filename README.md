@@ -1,20 +1,23 @@
 # project01
-This is my Godot project which should, ideally, not take too long to finish and should help me learn some new things. I have made a game in Godot before, but there are some things I know I could do better and stuff I don't know at all.
+This is my Godot project I started to learn how to develop games in Godot better.
 
-I have a few things in mind:
-1. Simple saving and loading - most likely just permanent progression, not the current map
-2. Better use of signals
-3. Better overall project structure
+What I want to learn or have already learned:
+1. Simple saving and loading for permanent progression
+2. How to use signals more efficiently
+3. How to structure my games better
 4. Simple NPCs
-5. Learn Godot workflow better
+6. Pathfinding
+7. Other Godot features and workflow
 
-Of course, these are just a few things I came up with right now. I'll probably learn more stuff along the way.
+These are just a few things I came up with now, but I'll definitely learn more stuff along the way.
 
-Originally I wanted to avoid pathfinding, but it was inevitable and I finally managed to make it work, along with RVO avoidance.
+## Technologies used
+- Godot 4.6 (https://godotengine.org/): for the game itself
+- Piskel (https://www.piskelapp.com/): for some assets
 
 ## What is this game about?
 
-Because this is just a project I started in my free time for fun and learning, I don't know what I'm making exactly. I come up with stuff on the go. But to summarize the overall vision: it's a 2D game with simple graphics where enemies come in waves. You use your 2 abilities to defeat them. Level up, grow stronger, and unlock new abilities. I'd also like to add some permanent progression.
+I don't know what I'm making exactly and I come up with a lot of stuff on the go. But to summarize: it's a 2D game with simple graphics where enemies come in waves. You use your 2 abilities to defeat them. Level up, grow stronger, and unlock new abilities. I'd also like to add some permanent progression.
 
 ## What have I made so far?
 1. Characters (both player and NPCs)
@@ -24,8 +27,12 @@ Because this is just a project I started in my free time for fun and learning, I
 5. Simple main menu
 6. Enemy waves
 7. Implemented pathfinding with avoidance
+8. World selection
+9. Perk points
 
 ## Screenshots of the current state
 <img width="1152" height="648" alt="menu" src="https://github.com/user-attachments/assets/d9fe2b13-5560-4105-ae91-6bf462073eb2" />
 
-<img width="1151" height="646" alt="ingame" src="https://github.com/user-attachments/assets/ac3a45ed-354f-4b6b-a9f8-c2b4bc8fc764" />
+<img width="1920" height="1080" alt="world_selection" src="https://github.com/user-attachments/assets/561c3aa3-ae60-42b2-b7c5-03811a344314" />
+
+<img width="1920" height="1080" alt="ingame" src="https://github.com/user-attachments/assets/4f844a95-ad43-43d5-a7e5-e5fd59bfecae" />
