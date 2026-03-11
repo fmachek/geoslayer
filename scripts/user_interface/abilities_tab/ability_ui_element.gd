@@ -24,6 +24,7 @@ func load_ability(ability: Ability, player: PlayerCharacter):
 	name_label.text = ability_name
 	$TextureRect.texture = ability.texture
 	%DescriptionLabel.text = ability.description
+	update_cooldown_label(ability.cooldown)
 	player.ability1_changed.connect(_on_player_ability1_changed)
 	player.ability2_changed.connect(_on_player_ability2_changed)
 	
@@ -76,3 +77,6 @@ func first_slot_check():
 	elif player.ability2:
 		if player.ability2.get_ability_name() == ability_name:
 			change_slot(2)
+
+func update_cooldown_label(cooldown: float) -> void:
+	%CooldownLabel.text = "Cooldown: " + str(cooldown) + " seconds"

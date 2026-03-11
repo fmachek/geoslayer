@@ -46,6 +46,14 @@ theme_override_font_sizes/font_size = 12
 text = "Shoots a projectile and applies a short debuff."
 autowrap_mode = 2
 
+[node name="CooldownLabel" type="Label" parent="VBoxContainer" unique_id=1089280797]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+theme_override_font_sizes/font_size = 12
+text = "Cooldown: 10 seconds"
+autowrap_mode = 2
+
 [node name="EquipButtonContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=879505461]
 layout_mode = 2
 size_flags_vertical = 3
