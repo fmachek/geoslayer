@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dkvouqivu5hta"]
+
+[ext_resource type="Script" uid="uid://bgwv0vxgrds1x" path="res://scripts/objects/healing_orb.gd" id="1_w05cr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v44f3"]
+radius = 12.0
+
+[node name="HealingOrb" type="Node2D" unique_id=548273283]
+script = ExtResource("1_w05cr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1627514470]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=568890778]
+shape = SubResource("CircleShape2D_v44f3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
