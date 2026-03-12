@@ -23,6 +23,9 @@ signal finished_casting()
 @onready var speed: CharacterStat = $CharacterStats/Speed
 @onready var level: Level = $CharacterStats/Level
 
+@export var base_health: int = 100
+@export var base_damage: int = 100
+
 @onready var abilities: Node = $Abilities
 
 var drop_pool = [] # Pool of items that can be dropped on death
@@ -169,14 +172,9 @@ func _on_level_changed(new_level: int) -> void:
 	update_stats(new_level)
 
 func update_stats(current_level: int) -> void:
-	# Update health - the formula is basically "increase by 25 for every level"
-	# Health is 100 for level 1 (that's why we subtract 1 from the level)
-	var new_health: int = 100 + (current_level - 1) * 25
+	var new_health: int = base_health + (current_level - 1) * 25
 	health.change_max_value(new_health)
-	
-	# New damage uses the same formula as health, but it represents a percentage.
-	# So with each level, damage increases by 25% of the base.
-	var new_damage: int = 100 + (current_level - 1) * 25
+	var new_damage: int = base_damage + (current_level - 1) * 25
 	damage.change_max_value(new_damage)
 
 # Moves the aim line so that it aims at the target.

@@ -7,6 +7,4 @@
 script = ExtResource("2_b8gl3")
 draw_color = Color(0.88574713, 0, 0.2767876, 1)
 outline_color = Color(0.68916637, 0, 0.20860153, 1)
-
-[node name="Level" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="0" unique_id=552437691]
-current_level = 5
+base_damage = 300

@@ -10,12 +10,11 @@ radius = 48.0
 script = ExtResource("2_dt6d0")
 draw_color = Color(0.02326548, 0.43491468, 1.92523e-07, 1)
 outline_color = Color(0.008949986, 0.2727485, 0, 1)
+base_health = 500
+base_damage = 500
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
 shape = SubResource("CircleShape2D_dt6d0")
-
-[node name="Level" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="0" unique_id=552437691]
-current_level = 20
 
 [node name="HealthBar" parent="." index="5" unique_id=385742775]
 offset_top = 56.0
