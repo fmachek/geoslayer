@@ -12,6 +12,7 @@ var ability_cooldown_multiplier: float = 3 # Ability cooldowns are longer for en
 var stop_distance: float = 180.0 # Distance at which the enemy stops following the player
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var cast_cooldown_timer: Timer = $CastCooldownTimer
 
 func _ready():
 	super()
@@ -78,9 +79,12 @@ func remove_ability_from_castable(ability: Ability):
 func cast_random_ability():
 	if not target:
 		return
+	if not cast_cooldown_timer.is_stopped():
+		return
 	var random_ability: Ability = castable_abilities.pick_random()
 	if random_ability:
 		target_pos = target.global_position
+		cast_cooldown_timer.start()
 		random_ability.cast()
 
 # Removes the target, disconnecting the signals.
@@ -104,3 +108,6 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	if safe_velocity != Vector2.ZERO:
 		velocity = safe_velocity
 	move_and_slide()
+
+func _on_cast_cooldown_timer_timeout() -> void:
+	cast_random_ability()

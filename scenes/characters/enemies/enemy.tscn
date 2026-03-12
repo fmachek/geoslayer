@@ -39,6 +39,11 @@ shape = SubResource("CircleShape2D_nwhyh")
 max_value = 150
 current_value = 150
 
+[node name="CastCooldownTimer" type="Timer" parent="." index="7" unique_id=1013332621]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+[connection signal="timeout" from="CastCooldownTimer" to="." method="_on_cast_cooldown_timer_timeout"]
