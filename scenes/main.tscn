@@ -15,6 +15,7 @@
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="13_jbj1t"]
 [ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/abilities_tab/abilities_tab.gd" id="14_jkv2x"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="14_muem4"]
+[ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_interface/pause_interface.tscn" id="16_jbj1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(0, 0, 0, 0.32941177)
@@ -309,6 +310,11 @@ theme_override_styles/disabled = ExtResource("14_muem4")
 theme_override_styles/disabled_mirrored = ExtResource("14_muem4")
 theme_override_styles/focus = ExtResource("13_jbj1t")
 text = "Back to menu"
+
+[node name="PauseInterface" parent="CanvasLayer" unique_id=1531428449 instance=ExtResource("16_jbj1t")]
+visible = false
+offset_left = 0.0
+offset_right = 0.0
 
 [connection signal="pressed" from="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]

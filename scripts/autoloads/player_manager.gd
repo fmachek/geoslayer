@@ -20,6 +20,7 @@ func spawn_player(pos: Vector2):
 
 func connect_player_signals():
 	current_player.died.connect(_on_player_died)
+	current_player.died.connect(GameManager._on_player_died)
 	current_player.perk_points_available_changed.connect(func(points: int): perk_points_changed.emit(points))
 
 func _on_player_died():
