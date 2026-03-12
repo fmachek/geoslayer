@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bh8urr1ox8hwt" path="res://scenes/objects/ability_pickups/wideshot_pickup.tscn" id="7_3cia4"]
 [ext_resource type="PackedScene" uid="uid://dfc8fq2b7kwge" path="res://scenes/objects/character_spawner.tscn" id="8_csmx3"]
 [ext_resource type="PackedScene" uid="uid://dfgkw445mxohq" path="res://scenes/characters/enemies/shooter.tscn" id="9_6at2a"]
+[ext_resource type="PackedScene" uid="uid://b25laaj20mx3r" path="res://scenes/characters/enemies/tank.tscn" id="9_csmx3"]
+[ext_resource type="PackedScene" uid="uid://dmqpbnnvr7ic8" path="res://scenes/characters/enemies/spammer.tscn" id="10_kphqs"]
+[ext_resource type="PackedScene" uid="uid://cg8e1vg617x38" path="res://scenes/characters/enemies/swarmer.tscn" id="11_ug2mq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5nye6"]
 vertices = PackedVector2Array(374, 374, -374, 374, -374, -374, 374, -374)
@@ -43,14 +46,26 @@ position = Vector2(-177, -335)
 position = Vector2(49, -335)
 
 [node name="CharacterSpawner" parent="." index="11" unique_id=1925204194 instance=ExtResource("8_csmx3")]
-position = Vector2(-192, 256)
+position = Vector2(-320, 320)
 character_scene = ExtResource("9_6at2a")
-spawn_waves = PackedInt32Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+spawn_waves = PackedInt32Array(1)
 
 [node name="CharacterSpawner2" parent="." index="12" unique_id=233789418 instance=ExtResource("8_csmx3")]
-position = Vector2(192, 256)
-character_scene = ExtResource("9_6at2a")
-spawn_waves = PackedInt32Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+position = Vector2(-192, 320)
+character_scene = ExtResource("10_kphqs")
+spawn_waves = PackedInt32Array(2)
+
+[node name="CharacterSpawner3" parent="." index="13" unique_id=1367749655 instance=ExtResource("8_csmx3")]
+position = Vector2(-64, 320)
+character_scene = ExtResource("11_ug2mq")
+spawn_waves = PackedInt32Array(3)
+
+[node name="CharacterSpawner4" parent="." index="14" unique_id=547866194 instance=ExtResource("8_csmx3")]
+position = Vector2(64, 320)
+character_scene = ExtResource("9_csmx3")
+spawn_waves = PackedInt32Array(4)
 
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner2" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner3" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner4" method="_on_wave_changed"]

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmqpbnnvr7ic8" path="res://scenes/characters/enemies/spammer.tscn" id="4_ascmk"]
 [ext_resource type="PackedScene" uid="uid://b25laaj20mx3r" path="res://scenes/characters/enemies/tank.tscn" id="4_d46pn"]
 [ext_resource type="PackedScene" uid="uid://n5x4nh7rhf5q" path="res://scenes/objects/turrets/turret.tscn" id="4_tekg8"]
+[ext_resource type="PackedScene" uid="uid://cg8e1vg617x38" path="res://scenes/characters/enemies/swarmer.tscn" id="6_l4b44"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tekg8"]
 vertices = PackedVector2Array(630, 630, -630, 630, -630, -630, 630, -630)
@@ -28,24 +29,24 @@ character_scene = ExtResource("3_tekg8")
 spawn_waves = PackedInt32Array(1, 3)
 
 [node name="CharacterSpawner3" parent="." index="4" unique_id=603960047 instance=ExtResource("2_xijrn")]
-position = Vector2(-576, -576)
+position = Vector2(-448, -448)
 character_scene = ExtResource("4_d46pn")
 spawn_waves = PackedInt32Array(4)
 
 [node name="CharacterSpawner4" parent="." index="5" unique_id=2043547524 instance=ExtResource("2_xijrn")]
-position = Vector2(576, -576)
+position = Vector2(448, -448)
 character_scene = ExtResource("3_tekg8")
-spawn_waves = PackedInt32Array(3)
+spawn_waves = PackedInt32Array(1, 3)
 
 [node name="CharacterSpawner5" parent="." index="6" unique_id=3215553 instance=ExtResource("2_xijrn")]
-position = Vector2(576, 576)
+position = Vector2(448, 448)
 character_scene = ExtResource("4_d46pn")
 spawn_waves = PackedInt32Array(4)
 
 [node name="CharacterSpawner6" parent="." index="7" unique_id=934577623 instance=ExtResource("2_xijrn")]
-position = Vector2(-576, 576)
+position = Vector2(-448, 448)
 character_scene = ExtResource("3_tekg8")
-spawn_waves = PackedInt32Array(3)
+spawn_waves = PackedInt32Array(1, 3)
 
 [node name="CharacterSpawner7" parent="." index="8" unique_id=532528630 instance=ExtResource("2_xijrn")]
 position = Vector2(0, -576)
@@ -57,37 +58,93 @@ position = Vector2(0, 576)
 character_scene = ExtResource("4_ascmk")
 spawn_waves = PackedInt32Array(2, 3)
 
-[node name="Turret" parent="." index="11" unique_id=1882429743 instance=ExtResource("4_tekg8")]
+[node name="CharacterSpawner9" parent="." index="10" unique_id=1561046154 instance=ExtResource("2_xijrn")]
+position = Vector2(-192, 576)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(4, 5)
+
+[node name="CharacterSpawner10" parent="." index="11" unique_id=1140618311 instance=ExtResource("2_xijrn")]
+position = Vector2(192, 576)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(5)
+
+[node name="CharacterSpawner11" parent="." index="12" unique_id=865685526 instance=ExtResource("2_xijrn")]
+position = Vector2(-576, 192)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(4, 5)
+
+[node name="CharacterSpawner12" parent="." index="13" unique_id=158662813 instance=ExtResource("2_xijrn")]
+position = Vector2(-576, -192)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(5)
+
+[node name="CharacterSpawner13" parent="." index="14" unique_id=2013830369 instance=ExtResource("2_xijrn")]
+position = Vector2(576, 384)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(4, 5)
+
+[node name="CharacterSpawner14" parent="." index="15" unique_id=1232166954 instance=ExtResource("2_xijrn")]
+position = Vector2(576, -384)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(5)
+
+[node name="CharacterSpawner15" parent="." index="16" unique_id=582493119 instance=ExtResource("2_xijrn")]
+position = Vector2(384, -576)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(4, 5)
+
+[node name="CharacterSpawner16" parent="." index="17" unique_id=1462470063 instance=ExtResource("2_xijrn")]
+position = Vector2(-384, -576)
+character_scene = ExtResource("6_l4b44")
+spawn_waves = PackedInt32Array(5)
+
+[node name="Turret" parent="." index="19" unique_id=1882429743 instance=ExtResource("4_tekg8")]
 position = Vector2(-352, 608)
 
-[node name="Turret2" parent="." index="12" unique_id=1822567370 instance=ExtResource("4_tekg8")]
+[node name="Turret2" parent="." index="20" unique_id=1822567370 instance=ExtResource("4_tekg8")]
 position = Vector2(352, 608)
 
-[node name="Turret3" parent="." index="13" unique_id=2090446026 instance=ExtResource("4_tekg8")]
+[node name="Turret3" parent="." index="21" unique_id=2090446026 instance=ExtResource("4_tekg8")]
 position = Vector2(-224, -608)
 rotation = 3.1415927
 
-[node name="Turret4" parent="." index="14" unique_id=1052990008 instance=ExtResource("4_tekg8")]
+[node name="Turret4" parent="." index="22" unique_id=1052990008 instance=ExtResource("4_tekg8")]
 position = Vector2(224, -608)
 rotation = -3.1415925
 
-[node name="Turret5" parent="." index="15" unique_id=1150541455 instance=ExtResource("4_tekg8")]
+[node name="Turret5" parent="." index="23" unique_id=1150541455 instance=ExtResource("4_tekg8")]
 position = Vector2(608, -224)
 rotation = -1.5707964
 
-[node name="Turret6" parent="." index="16" unique_id=1428030641 instance=ExtResource("4_tekg8")]
+[node name="Turret6" parent="." index="24" unique_id=1428030641 instance=ExtResource("4_tekg8")]
 position = Vector2(608, 224)
 rotation = -1.5707964
 
-[node name="Turret7" parent="." index="17" unique_id=1100697028 instance=ExtResource("4_tekg8")]
+[node name="Turret7" parent="." index="25" unique_id=1100697028 instance=ExtResource("4_tekg8")]
 position = Vector2(-608, -352)
 rotation = -4.712389
 
-[node name="Turret8" parent="." index="18" unique_id=831809843 instance=ExtResource("4_tekg8")]
+[node name="Turret8" parent="." index="26" unique_id=831809843 instance=ExtResource("4_tekg8")]
 position = Vector2(-608, 352)
 rotation = 1.5707964
 
-[node name="NavigationRegion2D" parent="." index="20" unique_id=732517934]
+[node name="Turret9" parent="." index="27" unique_id=927297977 instance=ExtResource("4_tekg8")]
+position = Vector2(-576, 576)
+rotation = 0.7853982
+
+[node name="Turret10" parent="." index="28" unique_id=1660194876 instance=ExtResource("4_tekg8")]
+position = Vector2(-576, -576)
+rotation = 2.3561945
+
+[node name="Turret11" parent="." index="29" unique_id=2043070376 instance=ExtResource("4_tekg8")]
+position = Vector2(576, -576)
+rotation = -2.3561945
+
+[node name="Turret12" parent="." index="30" unique_id=657515891 instance=ExtResource("4_tekg8")]
+position = Vector2(576, 576)
+rotation = -0.7853982
+
+[node name="NavigationRegion2D" parent="." index="32" unique_id=732517934]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_tekg8")
 
@@ -99,3 +156,11 @@ navigation_polygon = SubResource("NavigationPolygon_tekg8")
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner6" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner7" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner8" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner9" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner10" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner11" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner12" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner13" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner14" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner15" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner16" method="_on_wave_changed"]
