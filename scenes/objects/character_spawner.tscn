@@ -7,6 +7,8 @@ radius = 42.0
 
 [node name="CharacterSpawner" type="Node2D" unique_id=1925204194]
 script = ExtResource("1_ym4pf")
+draw_color = Color(0.44672376, 0.44672376, 0.44672376, 0.25)
+outline_color = Color(0.35253903, 0.35253903, 0.35253903, 0.25)
 spawn_waves = PackedInt32Array(0)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1520312149]
