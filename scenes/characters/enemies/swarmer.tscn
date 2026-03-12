@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cg8e1vg617x38"]
+
+[ext_resource type="PackedScene" uid="uid://bn86y4tvdekxl" path="res://scenes/characters/enemies/enemy.tscn" id="1_8bf4s"]
+[ext_resource type="Script" uid="uid://w2mkrqvcfqtv" path="res://scripts/characters/enemies/swarmer.gd" id="2_80jk3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8bf4s"]
+radius = 16.0
+
+[node name="Swarmer" unique_id=1080282355 instance=ExtResource("1_8bf4s")]
+script = ExtResource("2_80jk3")
+draw_color = Color(0.7229122, 0.63069284, 1.1551381e-06, 1)
+outline_color = Color(0.48786014, 0.42480856, 9.62615e-08, 1)
+base_damage = 500
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_8bf4s")
