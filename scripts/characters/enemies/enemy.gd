@@ -81,6 +81,8 @@ func cast_random_ability():
 		return
 	if not cast_cooldown_timer.is_stopped():
 		return
+	if castable_abilities.is_empty():
+		return
 	var random_ability: Ability = castable_abilities.pick_random()
 	if random_ability:
 		target_pos = target.global_position
