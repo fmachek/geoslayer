@@ -20,7 +20,7 @@ func load_all_worlds() -> void:
 	var i: int = 0
 	while true:
 		var world_scene_path: String = get_world_scene_path(i)
-		if FileAccess.file_exists(world_scene_path):
+		if ResourceLoader.exists(world_scene_path):
 			load_world(i)
 		else:
 			break
