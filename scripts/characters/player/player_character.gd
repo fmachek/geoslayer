@@ -7,7 +7,7 @@ var ability2: Ability = null
 signal ability1_changed(new_ability: Ability)
 signal ability2_changed(new_ability: Ability)
 
-var unlocked_abilities = [Shoot.new()]
+var unlocked_abilities = []
 signal new_ability_unlocked(ability: Ability)
 
 var perk_points_available: int = 5
@@ -19,6 +19,12 @@ func generate_drop_pool():
 
 func _ready() -> void:
 	super()
+	load_unlocked_abilities()
+	equip_ability(unlocked_abilities[0])
+
+func load_unlocked_abilities() -> void:
+	var starter_ability: Ability = Shoot.new()
+	unlocked_abilities.append(starter_ability)
 
 func _process(delta: float):
 	super._process(delta)
