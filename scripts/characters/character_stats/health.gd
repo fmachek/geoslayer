@@ -6,7 +6,7 @@ extends CharacterStat
 var regen_tick_timer: Timer # Timer for regeneration ticks
 var regen_start_timer: Timer # Timer for regeneration cooldown
 
-@export var regen_amount: int = 1 # Heal amount each tick
+@export var regen_amount: int = 2 # Heal amount each tick
 
 func _ready() -> void:
 	super()
