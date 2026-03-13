@@ -16,6 +16,8 @@ extends Node2D
 var projectile_scene: PackedScene = preload("res://scenes/objects/projectiles/projectile.tscn")
 
 signal shot() # Emitted when the turret fires a projectile
+signal started_shooting()
+signal stopped_shooting()
 
 func _draw():
 	var width = $Area2D/CollisionShape2D.shape.size.x
@@ -30,9 +32,11 @@ func _ready() -> void:
 
 func start_shooting() -> void:
 	shoot_timer.start()
+	started_shooting.emit()
 
 func stop_shooting() -> void:
 	shoot_timer.stop()
+	stopped_shooting.emit()
 
 func shoot() -> void:
 	shot.emit()
