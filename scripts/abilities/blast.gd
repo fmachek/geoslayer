@@ -1,3 +1,4 @@
+## Represents the Blast ability which fires projectiles outward in all directions.
 class_name Blast
 extends Ability
 
@@ -7,19 +8,15 @@ var base_damage: int = 10
 var projectile_radius: int = 12
 var projectile_amount = 20
 
-func _init():
-	super._init()
-	ability_name = "Blast"
-	cooldown = 2
-	texture = load("res://assets/sprites/blast.png")
-	description = "Shoots projectiles in all directions."
+func _init() -> void:
+	super._init(2, "res://assets/sprites/blast.png", "Shoots projectiles in all directions.")
 
-func perform_ability():
-	var player_pos: Vector2 = character.global_position
+func perform_ability() -> void:
 	spawn_projectiles(projectile_amount)
 	finished_casting.emit()
 
-func spawn_projectiles(amount):
+## Fires projectiles in all directions outward from the Character.
+func spawn_projectiles(amount) -> void:
 	for i in range(amount):
 		# Calculate the angle for this specific projectile
 		var angle = i * (TAU / amount)
