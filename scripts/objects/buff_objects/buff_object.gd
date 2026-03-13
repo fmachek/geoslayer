@@ -33,7 +33,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func buff_stat(stat: CharacterStat) -> void:
 	var buff := Buff.new(buff_amount, buff_duration)
-	buff.apply(stat)
+	buff.apply_to_stat(stat)
 	spawn_pickup_label(buff)
 	size_tween = create_tween()
 	size_tween.tween_property(self, "scale", Vector2.ZERO, 0.25)

@@ -26,5 +26,4 @@ func perform_ability() -> void:
 ## Applies a short speed debuff to the caster.
 func add_speed_debuff() -> void:
 	var debuff = Buff.new(-speed_debuff, speed_debuff_duration)
-	character.speed.add_buff(debuff)
-	debuff.apply(character.speed)
+	debuff.apply_to_stat(character.speed)

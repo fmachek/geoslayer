@@ -41,8 +41,7 @@ func perform_ability() -> void:
 ## Applies a speed debuff to the caster. It lasts as long as the aiming.
 func _apply_speed_debuff() -> void:
 	var speed_debuff: Buff = Buff.new(-aim_speed_debuff, aim_time)
-	character.speed.add_buff(speed_debuff)
-	speed_debuff.apply(character.speed)
+	speed_debuff.apply_to_stat(character.speed)
 
 ## Aiming finishes and the piercing projectile is fired.
 ## The caster's aim line is hidden.
