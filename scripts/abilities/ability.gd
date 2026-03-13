@@ -1,7 +1,7 @@
 ## Represents an in-game ability which makes a character do something, for example fire
 ## a projectile. All specific abilities such as Shoot and Wideshot extend this class.
 class_name Ability
-extends Node2D
+extends Node
 
 ## The Character the ability belongs to.
 var character: Character
