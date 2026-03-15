@@ -7,6 +7,7 @@ func _ready() -> void:
 	%ResumeButton.pressed.connect(GameManager.resume_game)
 	%WorldSelectionButton.pressed.connect(GameManager.switch_to_world_selection)
 	%MainMenuButton.pressed.connect(GameManager.switch_to_menu)
+	%RestartButton.pressed.connect(GameManager.start_game)
 	%ExitButton.pressed.connect(GameManager.exit_game)
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
