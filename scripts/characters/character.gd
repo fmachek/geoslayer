@@ -86,10 +86,10 @@ func check_for_death(old_health: int, new_health: int):
 
 # Death function
 func die():
+	died.emit()
 	drop_items()
 	spawn_death_particles()
 	get_parent().remove_child(self)
-	died.emit()
 	queue_free()
 
 func spawn_death_particles():
