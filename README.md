@@ -31,8 +31,8 @@ I don't know what I'm making exactly and I come up with a lot of stuff on the go
 9. Perk points
 
 ## Screenshots of the current state
-<img width="1152" height="648" alt="menu" src="https://github.com/user-attachments/assets/d9fe2b13-5560-4105-ae91-6bf462073eb2" />
+![Main menu](./assets/screenshots/main_menu.png)
 
-<img width="1920" height="1080" alt="world_selection" src="https://github.com/user-attachments/assets/561c3aa3-ae60-42b2-b7c5-03811a344314" />
+![World selection](./assets/screenshots/world_selection.png)
 
-<img width="1920" height="1080" alt="ingame" src="https://github.com/user-attachments/assets/4f844a95-ad43-43d5-a7e5-e5fd59bfecae" />
+![In-game screenshot](./assets/screenshots/in_game_1.png)
