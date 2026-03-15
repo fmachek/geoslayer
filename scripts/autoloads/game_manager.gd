@@ -28,6 +28,7 @@ func select_world(world_number: int) -> void:
 
 ## Instantiates the Main scene and switches to it.
 func start_game() -> void:
+	resume_game()
 	main_node = load("res://scenes/main.tscn").instantiate()
 	main_node.ready.connect(_on_main_ready)
 	get_tree().change_scene_to_node(main_node)
