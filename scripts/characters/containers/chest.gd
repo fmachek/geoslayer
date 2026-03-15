@@ -69,3 +69,4 @@ func generate_ability_drop_pool() -> void:
 	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/flurry_pickup.tscn", 100))
 	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/wideshot_pickup.tscn", 100))
 	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/pierce_pickup.tscn", 100))
+	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/explosive_pickup.tscn", 100))

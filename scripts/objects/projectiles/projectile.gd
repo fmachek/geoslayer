@@ -10,6 +10,9 @@ var explosion_particles_scene: PackedScene = preload("res://scenes/particle_effe
 var damage_label_scene: PackedScene = preload("res://scenes/user_interface/world_labels/damage_label.tscn")
 @onready var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
+## Emitted when the [Projectile] explodes.
+signal exploded()
+
 func _process(delta: float) -> void:
 	if can_explode and projectile_properties:
 		global_position += projectile_properties.speed * projectile_properties.direction * delta * 200
@@ -45,6 +48,7 @@ func explode():
 		var explosion_particles: ProjectileParticles = explosion_particles_scene.instantiate()
 		explosion_particles.load_from_projectile(self)
 		%FlyingParticles.emitting = false
+		exploded.emit()
 
 func disappear():
 	if can_explode:
