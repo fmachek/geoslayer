@@ -43,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("7_choun")
 
 [node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/UserInterface" unique_id=249147002]

@@ -96,12 +96,13 @@ func replace_ability2(ability: Ability):
 	ability2_changed.emit(ability2)
 
 # Input handling from Godot Docs (https://docs.godotengine.org/en/stable/tutorials/inputs/inputevent.html)
+# (partially)
 func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_Q:
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if ability1:
 				ability1.cast()
-		elif event.pressed and event.keycode == KEY_E:
+		elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 			if ability2:
 				ability2.cast()
 

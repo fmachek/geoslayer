@@ -8,10 +8,6 @@ var current_ability: Ability
 signal cast()
 
 @onready var cooldown_rect = $CooldownRect
-@export var key = "Q"
-
-func _ready() -> void:
-	$KeyLabel.text = key.capitalize()
 
 func play_cooldown_tween():
 	if not current_ability:
