@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://b1qcqh81a03yg"]
+
+[ext_resource type="Script" uid="uid://kf1tkrqd4dvl" path="res://scripts/user_interface/death_user_interface/death_user_interface.gd" id="1_ko8uv"]
+[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_kv8eg"]
+[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_d5n1b"]
+[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_2qkag"]
+[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_7ifyo"]
+
+[node name="DeathUserInterface" type="Control" unique_id=1370909485]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ko8uv")
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1627618480]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62700003)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=616965276]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="LabelContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=2074192207]
+layout_mode = 2
+
+[node name="YouDiedLabel" type="Label" parent="VBoxContainer/LabelContainer" unique_id=747251889]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "You died!"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/LabelContainer" unique_id=2078263483]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Better luck next time!"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1949312984]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=88688813]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_kv8eg")
+theme_override_styles/normal_mirrored = ExtResource("2_kv8eg")
+theme_override_styles/pressed = ExtResource("3_d5n1b")
+theme_override_styles/pressed_mirrored = ExtResource("3_d5n1b")
+theme_override_styles/hover = ExtResource("4_2qkag")
+theme_override_styles/hover_mirrored = ExtResource("4_2qkag")
+theme_override_styles/hover_pressed = ExtResource("3_d5n1b")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_d5n1b")
+theme_override_styles/disabled = ExtResource("5_7ifyo")
+theme_override_styles/disabled_mirrored = ExtResource("5_7ifyo")
+theme_override_styles/focus = ExtResource("4_2qkag")
+text = "Restart"
+
+[node name="BackToMenuButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=272731280]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_kv8eg")
+theme_override_styles/normal_mirrored = ExtResource("2_kv8eg")
+theme_override_styles/pressed = ExtResource("3_d5n1b")
+theme_override_styles/pressed_mirrored = ExtResource("3_d5n1b")
+theme_override_styles/hover = ExtResource("4_2qkag")
+theme_override_styles/hover_mirrored = ExtResource("4_2qkag")
+theme_override_styles/hover_pressed = ExtResource("3_d5n1b")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_d5n1b")
+theme_override_styles/disabled = ExtResource("5_7ifyo")
+theme_override_styles/disabled_mirrored = ExtResource("5_7ifyo")
+theme_override_styles/focus = ExtResource("4_2qkag")
+text = "Back to menu"
+
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

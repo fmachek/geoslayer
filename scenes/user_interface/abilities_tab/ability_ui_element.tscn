@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://bt3woopl0fuiy"]
 
 [ext_resource type="Script" uid="uid://fkbwkdijcmgd" path="res://scripts/user_interface/abilities_tab/ability_ui_element.gd" id="1_baa08"]
+[ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="2_68v6b"]
+[ext_resource type="StyleBox" uid="uid://btot0y1uy4bm4" path="res://assets/user_interface/styles/regular_button/regular_button_pressed.tres" id="3_66knh"]
+[ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="4_alygc"]
+[ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="5_l8js3"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a8y0u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_68v6b"]
+line_spacing = -2.0
+font_size = 10
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Ability" type="HBoxContainer" unique_id=389526093]
 offset_right = 391.0
@@ -11,7 +21,7 @@ theme_override_constants/separation = 10
 script = ExtResource("1_baa08")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=20019553]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("PlaceholderTexture2D_a8y0u")
@@ -20,6 +30,7 @@ texture = SubResource("PlaceholderTexture2D_a8y0u")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_constants/separation = 0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=591377577]
 layout_mode = 2
@@ -28,7 +39,9 @@ theme_override_constants/separation = 10
 [node name="AbilityNameLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1797207735]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
 text = "Ability 1"
 
 [node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1358461242]
@@ -36,21 +49,27 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.12633526, 0.7517534, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
 text = "Equipped in slot 1"
 vertical_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=507026124]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
 text = "Shoots a projectile and applies a short debuff."
+label_settings = SubResource("LabelSettings_68v6b")
 autowrap_mode = 2
 
 [node name="CooldownLabel" type="Label" parent="VBoxContainer" unique_id=1089280797]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
 text = "Cooldown: 10 seconds"
 autowrap_mode = 2
 
@@ -61,11 +80,41 @@ size_flags_vertical = 3
 [node name="EquipSlot1Button" type="Button" parent="VBoxContainer/EquipButtonContainer" unique_id=636463387]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("2_68v6b")
+theme_override_styles/normal_mirrored = ExtResource("2_68v6b")
+theme_override_styles/pressed = ExtResource("3_66knh")
+theme_override_styles/pressed_mirrored = ExtResource("3_66knh")
+theme_override_styles/hover = ExtResource("4_alygc")
+theme_override_styles/hover_mirrored = ExtResource("4_alygc")
+theme_override_styles/hover_pressed = ExtResource("3_66knh")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_66knh")
+theme_override_styles/disabled = ExtResource("5_l8js3")
+theme_override_styles/disabled_mirrored = ExtResource("5_l8js3")
+theme_override_styles/focus = ExtResource("4_alygc")
 text = "Equip in slot 1"
 
 [node name="EquipSlot2Button" type="Button" parent="VBoxContainer/EquipButtonContainer" unique_id=112017372]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("2_68v6b")
+theme_override_styles/normal_mirrored = ExtResource("2_68v6b")
+theme_override_styles/pressed = ExtResource("3_66knh")
+theme_override_styles/pressed_mirrored = ExtResource("3_66knh")
+theme_override_styles/hover = ExtResource("4_alygc")
+theme_override_styles/hover_mirrored = ExtResource("4_alygc")
+theme_override_styles/hover_pressed = ExtResource("3_66knh")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_66knh")
+theme_override_styles/disabled = ExtResource("5_l8js3")
+theme_override_styles/disabled_mirrored = ExtResource("5_l8js3")
+theme_override_styles/focus = ExtResource("4_alygc")
 text = "Equip in slot 2"
 
 [connection signal="pressed" from="VBoxContainer/EquipButtonContainer/EquipSlot1Button" to="." method="_on_equip_slot_1_button_pressed"]

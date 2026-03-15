@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://yyko5br814tu"]
+
+[ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/abilities_tab/abilities_tab.gd" id="1_q5rh2"]
+[ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="2_u20yl"]
+[ext_resource type="StyleBox" uid="uid://btot0y1uy4bm4" path="res://assets/user_interface/styles/regular_button/regular_button_pressed.tres" id="3_xrc3s"]
+[ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="4_te8my"]
+[ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="5_5332j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqmmt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
+bg_color = Color(0, 0, 0, 0.58431375)
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
+bg_color = Color(0, 0, 0, 0.32941177)
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pm3ni"]
+
+[node name="AbilitiesTab" type="PanelContainer" unique_id=667711675]
+custom_minimum_size = Vector2(300, 400)
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
+script = ExtResource("1_q5rh2")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=190630423]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=971302996]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=651107582]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Abilities"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipButtonContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer" unique_id=1935050172]
+layout_mode = 2
+alignment = 1
+
+[node name="UnequipSlot1Button" type="Button" parent="MarginContainer/VBoxContainer/EquipButtonContainer" unique_id=13822694]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("2_u20yl")
+theme_override_styles/normal_mirrored = ExtResource("2_u20yl")
+theme_override_styles/pressed = ExtResource("3_xrc3s")
+theme_override_styles/pressed_mirrored = ExtResource("3_xrc3s")
+theme_override_styles/hover = ExtResource("4_te8my")
+theme_override_styles/hover_mirrored = ExtResource("4_te8my")
+theme_override_styles/hover_pressed = ExtResource("3_xrc3s")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_xrc3s")
+theme_override_styles/disabled = ExtResource("5_5332j")
+theme_override_styles/disabled_mirrored = ExtResource("5_5332j")
+theme_override_styles/focus = ExtResource("4_te8my")
+text = "Unequip slot 1"
+
+[node name="UnequipSlot2Button" type="Button" parent="MarginContainer/VBoxContainer/EquipButtonContainer" unique_id=1582519184]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("2_u20yl")
+theme_override_styles/normal_mirrored = ExtResource("2_u20yl")
+theme_override_styles/pressed = ExtResource("3_xrc3s")
+theme_override_styles/pressed_mirrored = ExtResource("3_xrc3s")
+theme_override_styles/hover = ExtResource("4_te8my")
+theme_override_styles/hover_mirrored = ExtResource("4_te8my")
+theme_override_styles/hover_pressed = ExtResource("3_xrc3s")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_xrc3s")
+theme_override_styles/disabled = ExtResource("5_5332j")
+theme_override_styles/disabled_mirrored = ExtResource("5_5332j")
+theme_override_styles/focus = ExtResource("4_te8my")
+text = "Unequip slot 2"
+
+[node name="UnequipAllButton" type="Button" parent="MarginContainer/VBoxContainer/EquipButtonContainer" unique_id=610643469]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("2_u20yl")
+theme_override_styles/normal_mirrored = ExtResource("2_u20yl")
+theme_override_styles/pressed = ExtResource("3_xrc3s")
+theme_override_styles/pressed_mirrored = ExtResource("3_xrc3s")
+theme_override_styles/hover = ExtResource("4_te8my")
+theme_override_styles/hover_mirrored = ExtResource("4_te8my")
+theme_override_styles/hover_pressed = ExtResource("3_xrc3s")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_xrc3s")
+theme_override_styles/disabled = ExtResource("5_5332j")
+theme_override_styles/disabled_mirrored = ExtResource("5_5332j")
+theme_override_styles/focus = ExtResource("4_te8my")
+text = "Unequip all"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=1686797555]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AbilityContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1004253013]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="CloseButton" type="Button" parent="." unique_id=753646034]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gqmmt")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_gqmmt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yc10j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yc10j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jscy8")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_jscy8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_yc10j")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_yc10j")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_pm3ni")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_pm3ni")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jscy8")
+text = "X"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/EquipButtonContainer/UnequipSlot1Button" to="." method="_on_unequip_slot_1_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/EquipButtonContainer/UnequipSlot2Button" to="." method="_on_unequip_slot_2_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/EquipButtonContainer/UnequipAllButton" to="." method="_on_unequip_all_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

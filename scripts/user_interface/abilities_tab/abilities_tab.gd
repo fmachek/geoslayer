@@ -1,5 +1,5 @@
 class_name AbilitiesTab
-extends Panel
+extends PanelContainer
 
 var player: PlayerCharacter
 var ability_ui_element_scene := preload("res://scenes/user_interface/abilities_tab/ability_ui_element.tscn")

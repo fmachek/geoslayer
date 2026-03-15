@@ -29,6 +29,7 @@ layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/LabelContainer" unique_id=797912068]
 layout_mode = 2
+theme_override_constants/outline_size = 8
 text = "Stats"
 horizontal_alignment = 1
 
@@ -37,6 +38,7 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Each perk point increases a stat by 5."
 mouse_filter = 0
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 12
 text = "Perk Points: 0"
 horizontal_alignment = 1

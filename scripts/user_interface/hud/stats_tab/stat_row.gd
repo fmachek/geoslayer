@@ -11,7 +11,11 @@ signal pressed_stat_increase(player_stat: CharacterStat)
 
 func _ready() -> void:
 	stat_name_label.label_settings = LabelSettings.new()
+	stat_name_label.label_settings.outline_size = 8
+	stat_name_label.label_settings.outline_color = Color.BLACK
 	stat_value_label.label_settings = LabelSettings.new()
+	stat_value_label.label_settings.outline_size = 8
+	stat_value_label.label_settings.outline_color = Color.BLACK
 	pressed_stat_increase.connect(PlayerManager.apply_perk_point)
 	PlayerManager.perk_points_changed.connect(check_perk_points)
 

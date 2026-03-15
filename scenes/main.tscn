@@ -7,15 +7,15 @@
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://cwjp3a61svi3j" path="res://scenes/user_interface/hud/stats_tab/stats_tab.tscn" id="8_jkv2x"]
 [ext_resource type="Script" uid="uid://fgq6y65w1341" path="res://scripts/user_interface/abilities_tab/abilities_tab_open_button.gd" id="10_choun"]
-[ext_resource type="Script" uid="uid://kf1tkrqd4dvl" path="res://scripts/user_interface/death_user_interface/death_user_interface.gd" id="10_eb6dy"]
+[ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="10_gqmmt"]
 [ext_resource type="Script" uid="uid://bme6txd5w6mac" path="res://scripts/user_interface/ability_unlock_popup.gd" id="10_ya4ey"]
-[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="11_a8y0u"]
+[ext_resource type="StyleBox" uid="uid://btot0y1uy4bm4" path="res://assets/user_interface/styles/regular_button/regular_button_pressed.tres" id="11_yc10j"]
 [ext_resource type="Script" uid="uid://b1bksppmpw8b6" path="res://scripts/user_interface/hud/level_hud.gd" id="12_eb6dy"]
-[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="12_jkv2x"]
-[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="13_jbj1t"]
-[ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/abilities_tab/abilities_tab.gd" id="14_jkv2x"]
-[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="14_muem4"]
-[ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_interface/pause_interface.tscn" id="16_jbj1t"]
+[ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="12_jscy8"]
+[ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="13_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://yyko5br814tu" path="res://scenes/user_interface/abilities_tab/abilities_tab.tscn" id="14_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://b1qcqh81a03yg" path="res://scenes/user_interface/death_ui/death_user_interface.tscn" id="15_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_ui/pause_interface.tscn" id="16_jbj1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(0, 0, 0, 0.32941177)
@@ -46,26 +46,57 @@ size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("7_choun")
 
-[node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/UserInterface" unique_id=249147002]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UserInterface" unique_id=1766453243]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=1494206841]
+[node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=357967508]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -5
+script = ExtResource("10_ya4ey")
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" unique_id=117239358]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "New ability unlocked:"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" unique_id=1365762045]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73333335, 0, 0.73333335, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "AbilityName"
+horizontal_alignment = 1
+
+[node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" unique_id=599509163]
+wait_time = 5.0
+one_shot = true
+
+[node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=249147002]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1494206841]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 20
 
-[node name="WaveTimeLabel" type="Label" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=550450244]
+[node name="WaveTimeLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=550450244]
 visible = false
 layout_mode = 2
 theme_override_constants/outline_size = 8
@@ -73,38 +104,52 @@ text = "Wave ends in X seconds"
 horizontal_alignment = 1
 script = ExtResource("3_85g3d")
 
-[node name="StartWaveButton" type="Button" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=417665695]
+[node name="StartWaveButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=417665695]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_styles/normal = ExtResource("10_gqmmt")
+theme_override_styles/normal_mirrored = ExtResource("10_gqmmt")
+theme_override_styles/pressed = ExtResource("11_yc10j")
+theme_override_styles/pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/hover = ExtResource("12_jscy8")
+theme_override_styles/hover_mirrored = ExtResource("12_jscy8")
+theme_override_styles/hover_pressed = ExtResource("11_yc10j")
+theme_override_styles/hover_pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/disabled = ExtResource("13_pm3ni")
+theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
+theme_override_styles/focus = ExtResource("12_jscy8")
 text = "Start next wave"
 script = ExtResource("3_tipki")
 
-[node name="AbilityItemContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=1281324131]
+[node name="AbilityItemContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=1281324131]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="AbilityItem1" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=1510360324 instance=ExtResource("6_tefeu")]
+[node name="AbilityItem1" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=1510360324 instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AbilityItem2" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=729255619 instance=ExtResource("6_tefeu")]
+[node name="AbilityItem2" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=729255619 instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 layout_mode = 2
-key = "E"
 
-[node name="LevelHUD" type="HBoxContainer" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer" unique_id=193371173]
+[node name="LevelHUD" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=193371173]
 layout_mode = 2
 theme_override_constants/separation = 12
 script = ExtResource("12_eb6dy")
 
-[node name="LevelLabel" type="Label" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/LevelHUD" unique_id=896332673]
+[node name="LevelLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/LevelHUD" unique_id=896332673]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Level 1"
 
-[node name="LevelProgressBar" type="ProgressBar" parent="CanvasLayer/UserInterface/BottomHUD/VBoxContainer/LevelHUD" unique_id=1463875009]
+[node name="LevelProgressBar" type="ProgressBar" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/LevelHUD" unique_id=1463875009]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -115,215 +160,43 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jkv2x")
 step = 1.0
 value = 50.0
 
-[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=1054323433]
+[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1054323433]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_styles/normal = ExtResource("10_gqmmt")
+theme_override_styles/normal_mirrored = ExtResource("10_gqmmt")
+theme_override_styles/pressed = ExtResource("11_yc10j")
+theme_override_styles/pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/hover = ExtResource("12_jscy8")
+theme_override_styles/hover_mirrored = ExtResource("12_jscy8")
+theme_override_styles/hover_pressed = ExtResource("11_yc10j")
+theme_override_styles/hover_pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/disabled = ExtResource("13_pm3ni")
+theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
+theme_override_styles/focus = ExtResource("12_jscy8")
 text = "Abilities"
 script = ExtResource("10_choun")
 
-[node name="StatsTab" parent="CanvasLayer/UserInterface/BottomHUD" unique_id=764354913 instance=ExtResource("8_jkv2x")]
+[node name="StatsTab" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=764354913 instance=ExtResource("8_jkv2x")]
 layout_mode = 2
 
-[node name="AbilitiesTab" type="Panel" parent="CanvasLayer/UserInterface" unique_id=1778104300]
+[node name="AbilitiesTab" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=667711675 instance=ExtResource("14_jbj1t")]
 visible = false
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 419.0
-offset_bottom = 2.0
-grow_vertical = 2
-script = ExtResource("14_jkv2x")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/AbilitiesTab" unique_id=450423479]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="TitleLabel" type="Label" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer" unique_id=319028019]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Abilities"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="EquipButtonContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer" unique_id=1471971175]
-layout_mode = 2
-alignment = 1
-
-[node name="UnequipSlot1Button" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer" unique_id=296003143]
-layout_mode = 2
-text = "Unequip slot 1"
-
-[node name="UnequipSlot2Button" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer" unique_id=1224284175]
-layout_mode = 2
-text = "Unequip slot 2"
-
-[node name="UnequipAllButton" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer" unique_id=1582088711]
-layout_mode = 2
-text = "Unequip all"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer" unique_id=1385663134]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="AbilityContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/ScrollContainer" unique_id=1103967910]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="CloseButton" type="Button" parent="CanvasLayer/UserInterface/AbilitiesTab" unique_id=1311448772]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -31.0
-offset_bottom = 31.0
-grow_horizontal = 0
-text = "X"
-
-[node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface" unique_id=357967508]
+[node name="DeathUserInterface" parent="CanvasLayer" unique_id=1370909485 instance=ExtResource("15_jbj1t")]
 visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.0
-offset_right = 125.0
-offset_bottom = 40.0
-grow_horizontal = 2
-theme_override_constants/separation = -5
-script = ExtResource("10_ya4ey")
-
-[node name="Label" type="Label" parent="CanvasLayer/UserInterface/AbilityUnlockPopup" unique_id=117239358]
-layout_mode = 2
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 24
-text = "New ability unlocked:"
-horizontal_alignment = 1
-
-[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/AbilityUnlockPopup" unique_id=1365762045]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.73333335, 0, 0.73333335, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 32
-text = "Wideshot"
-horizontal_alignment = 1
-
-[node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/AbilityUnlockPopup" unique_id=599509163]
-wait_time = 5.0
-one_shot = true
-
-[node name="DeathUserInterface" type="Control" parent="CanvasLayer" unique_id=2020402892]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("10_eb6dy")
-
-[node name="BackgroundRect" type="ColorRect" parent="CanvasLayer/DeathUserInterface" unique_id=241410946]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.62700003)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathUserInterface" unique_id=976729399]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 40
-
-[node name="LabelContainer" type="VBoxContainer" parent="CanvasLayer/DeathUserInterface/VBoxContainer" unique_id=130393290]
-layout_mode = 2
-
-[node name="YouDiedLabel" type="Label" parent="CanvasLayer/DeathUserInterface/VBoxContainer/LabelContainer" unique_id=259385283]
-layout_mode = 2
-theme_override_font_sizes/font_size = 42
-text = "You died!"
-horizontal_alignment = 1
-
-[node name="DescriptionLabel" type="Label" parent="CanvasLayer/DeathUserInterface/VBoxContainer/LabelContainer" unique_id=773567848]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
-theme_override_font_sizes/font_size = 24
-text = "Better luck next time!"
-horizontal_alignment = 1
-
-[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/DeathUserInterface/VBoxContainer" unique_id=24187752]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer" unique_id=789144137]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = ExtResource("11_a8y0u")
-theme_override_styles/normal_mirrored = ExtResource("11_a8y0u")
-theme_override_styles/pressed = ExtResource("12_jkv2x")
-theme_override_styles/pressed_mirrored = ExtResource("12_jkv2x")
-theme_override_styles/hover = ExtResource("13_jbj1t")
-theme_override_styles/hover_mirrored = ExtResource("13_jbj1t")
-theme_override_styles/hover_pressed = ExtResource("12_jkv2x")
-theme_override_styles/hover_pressed_mirrored = ExtResource("12_jkv2x")
-theme_override_styles/disabled = ExtResource("14_muem4")
-theme_override_styles/disabled_mirrored = ExtResource("14_muem4")
-theme_override_styles/focus = ExtResource("13_jbj1t")
-text = "Restart"
-
-[node name="BackToMenuButton" type="Button" parent="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer" unique_id=1739043267]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = ExtResource("11_a8y0u")
-theme_override_styles/normal_mirrored = ExtResource("11_a8y0u")
-theme_override_styles/pressed = ExtResource("12_jkv2x")
-theme_override_styles/pressed_mirrored = ExtResource("12_jkv2x")
-theme_override_styles/hover = ExtResource("13_jbj1t")
-theme_override_styles/hover_mirrored = ExtResource("13_jbj1t")
-theme_override_styles/hover_pressed = ExtResource("12_jkv2x")
-theme_override_styles/hover_pressed_mirrored = ExtResource("12_jkv2x")
-theme_override_styles/disabled = ExtResource("14_muem4")
-theme_override_styles/disabled_mirrored = ExtResource("14_muem4")
-theme_override_styles/focus = ExtResource("13_jbj1t")
-text = "Back to menu"
 
 [node name="PauseInterface" parent="CanvasLayer" unique_id=1531428449 instance=ExtResource("16_jbj1t")]
 visible = false
 offset_left = 0.0
 offset_right = 0.0
 
-[connection signal="pressed" from="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
-[connection signal="hidden" from="CanvasLayer/UserInterface/AbilitiesTab" to="CanvasLayer/UserInterface/BottomHUD/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot1Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_1_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipSlot2Button" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_slot_2_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/VBoxContainer/EquipButtonContainer/UnequipAllButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_unequip_all_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/AbilitiesTab/CloseButton" to="CanvasLayer/UserInterface/AbilitiesTab" method="_on_close_button_pressed"]
-[connection signal="timeout" from="CanvasLayer/UserInterface/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer/RestartButton" to="CanvasLayer/DeathUserInterface" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/DeathUserInterface/VBoxContainer/ButtonContainer/BackToMenuButton" to="CanvasLayer/DeathUserInterface" method="_on_back_to_menu_button_pressed"]
+[connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
+[connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/AbilitiesTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]
