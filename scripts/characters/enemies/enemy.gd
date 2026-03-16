@@ -4,23 +4,30 @@
 class_name Enemy
 extends Character
 
+## Represents an enemy which follows the player around and casts abilities.
+##
+## This class uses [NavigationAgent2D] with RVO avoidance.
+
+## [Character] being followed by the [Enemy].
 var target: Character
-
-var castable_abilities = [] # Abilities ready to be cast
-var ability_cooldown_multiplier: float = 3 # Ability cooldowns are longer for enemies
-
-var stop_distance: float = 180.0 # Distance at which the enemy stops following the player
-
+## Array of abilities ready to be cast.
+var castable_abilities: Array[Ability] = []
+## Multiplier used to make [Ability] cooldowns longer than usual.
+var ability_cooldown_multiplier: float = 3
+## Distance at which the [Enemy] stops following [member Character.target].
+var stop_distance: float = 180.0
+## [NavigationAgent2D] used for avoidance of other enemies.
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+## [Timer] used to time a casting cooldown.
 @onready var cast_cooldown_timer: Timer = $CastCooldownTimer
 
-func _ready():
+func _ready() -> void:
 	super()
 	nav_agent.target_desired_distance = stop_distance
 	load_abilities()
 
-# Handles movement
-func _physics_process(delta):
+# Handles movement.
+func _physics_process(delta: float) -> void:
 	if target:
 		target_pos = target.global_position
 		# Set target position in navigation agent
@@ -38,24 +45,25 @@ func _physics_process(delta):
 		# the safe velocity
 		nav_agent.set_velocity(direction * speed.max_value_after_buffs)
 
-# Detects the player entering the enemy's range
+# Detects the player entering the enemy's range.
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if body is PlayerCharacter:
 		set_target(body)
 		cast_random_ability()
 
-# Detects the player leaving the enemy's range
+# Detects the player leaving the enemy's range.
 func _on_player_detection_area_body_exited(body: Node2D) -> void:
 	if body is PlayerCharacter:
 		remove_target()
 
-# Loads the enemy's abilities. Needs to be implemented by each
-# specific enemy.
-func load_abilities():
+## Loads the [Enemy]'s abilities. Needs to be implemented by each
+## class extending [Enemy].
+func load_abilities() -> void:
 	pass
 
-# Loads an ability. The enemy's abilities always have a longer cooldown.
-func load_ability(ability: Ability):
+## Makes the [param ability] cooldown longer, base damage lower,
+## and equips the [param ability].
+func load_ability(ability: Ability) -> void:
 	ability.cooldown *= ability_cooldown_multiplier # Nerf ability cooldown
 	if "base_damage" in ability: # Nerf ability damage
 		ability.base_damage = float(ability.base_damage) * 0.3
@@ -66,37 +74,37 @@ func load_ability(ability: Ability):
 	ability.finished_casting.connect(cast_random_ability)
 	ability.cooldown_ended.connect(add_ability_to_castable.bind(ability))
 
-# Adds an ability to the list of castable abilities.
-func add_ability_to_castable(ability: Ability):
+## Adds an [Ability] to [member Enemy.castable_abilities]. Also attempts
+## to cast a random [Ability].
+func add_ability_to_castable(ability: Ability) -> void:
 	castable_abilities.append(ability)
 	cast_random_ability()
 
-# Removes an ability from the list of castable abilities.
-func remove_ability_from_castable(ability: Ability):
+## Removes an [Ability] from [member Enemy.castable_abilities].
+func remove_ability_from_castable(ability: Ability) -> void:
 	castable_abilities.erase(ability)
 
-# Casts a random ability.
-func cast_random_ability():
-	if not target:
-		return
-	if not cast_cooldown_timer.is_stopped():
-		return
-	if castable_abilities.is_empty():
-		return
+## Attempts to cast a random [Ability] from [member Enemy.castable_abilities].
+func cast_random_ability() -> void:
+	if not target: return # No target to attack
+	if not cast_cooldown_timer.is_stopped(): return # Cast is on cooldown
+	if castable_abilities.is_empty(): return # No abilities to cast
+	
 	var random_ability: Ability = castable_abilities.pick_random()
 	if random_ability:
 		target_pos = target.global_position
 		cast_cooldown_timer.start()
 		random_ability.cast()
 
-# Removes the target, disconnecting the signals.
-func remove_target():
+## Disconnects the [member Character.tree_exiting] signal and sets [member Enemy.target]
+## to [code]null[/code].
+func remove_target() -> void:
 	if not target: return
 	if target.tree_exiting.is_connected(remove_target):
 		target.tree_exiting.disconnect(remove_target)
 	target = null
 
-# Sets a new target, connecting signals.
+## Sets [member Enemy.target] and connects to the [Character.tree_exiting] signal.
 func set_target(new_target: Character):
 	target = new_target
 	if not target.tree_exiting.is_connected(remove_target):
