@@ -1,25 +1,37 @@
+class_name CharacterSpawner
 extends Node2D
 
-@export var character_scene: PackedScene = preload("res://scenes/characters/character.tscn")
+## Represents a spawner which spawns characters on certain waves.
 
+#region @export variables
+## Scene of the [Character] being spawned.
+@export var character_scene := preload("res://scenes/characters/character.tscn")
+## Fill color of the [CharacterSpawner] shape.
 @export var draw_color := Color(0.447, 0.447, 0.447, 1.0)
+## Outline color of the [CharacterSpawner] shape.
 @export var outline_color := Color(0.352, 0.352, 0.352, 1.0)
+## Used by the [CharacterSpawner] to determine whether a [Character] should
+## be spawned on specific waves. For example, if the array contains
+## integers 1, 3 and 5, the [CharacterSpawner] will trigger on each
+## one of those waves.
+@export var spawn_waves: PackedInt32Array
+#endregion
 
-# Used for spawning in waves.
-# Allows for placement in a scene and setting the waves during which
-# the character should be spawned via the inspector.
-@export var spawn_waves: PackedInt32Array # Used for spawning in waves
 
-func _draw():
-	var radius = $Area2D/CollisionShape2D.shape.radius
+func _draw() -> void:
+	var radius: int = $Area2D/CollisionShape2D.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width = radius/8
+	var outline_width: int = radius/8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
+
+## Spawns a [Character] instantiated from
+## [member CharacterSpawner.character_scene].
 func spawn_character() -> void:
 	var character: Character = character_scene.instantiate()
 	character.global_position = global_position
 	get_parent().add_child(character)
+
 
 # Checks if the new wave is in the spawn_waves array.
 # If it is, then a character shold be spawned.

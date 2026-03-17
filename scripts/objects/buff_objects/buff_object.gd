@@ -1,48 +1,70 @@
 class_name BuffObject
 extends Node2D
 
-@export var draw_color: Color = Color.GRAY # Fill draw color
-@export var outline_color: Color = Color.DIM_GRAY # Outline draw color
+## Represents an object which buffs a [PlayerCharacter]'s [CharacterStat]
+## on pickup.
 
+## Fill color of the shape.
+@export var draw_color: Color = Color.GRAY
+## Outline color of the shape.
+@export var outline_color: Color = Color.DIM_GRAY
+## Amount by which the [CharacterStat] will be modified on pickup.
 @export var buff_amount: int
+## Duration for which the [CharacterStat] will be modified after pickup.
 @export var buff_duration: int
+## Name of the [CharacterStat] which is to be modified.
 @export var target_stat_name: String
+## Speed at which the [BuffObject] rotates every frame.
+@export var rot_speed: float = 3.0
 
-var was_picked_up: bool = false
+# True if the BuffObject has been picked up.
+var _was_picked_up := false
+# Used to tween scale on pickup.
+var _scale_tween: Tween
+# Used to instantiate BuffPickupLabel.
+var _pickup_label_scene := preload("res://scenes/user_interface/world_labels/buff_pickup_label.tscn")
 
-var size_tween: Tween
-var rot_speed = 3
 
 func _process(delta: float) -> void:
-	global_rotation += rot_speed*delta
+	global_rotation += rot_speed * delta
 
-func _draw():
-	var width = $Area2D/CollisionShape2D.shape.size.x
-	var height = $Area2D/CollisionShape2D.shape.size.y
-	draw_rect(Rect2(-width/2, -height/2, width, height), draw_color)
-	draw_rect(Rect2(-width/2, -height/2, width, height), outline_color, false, 4)
+
+func _draw() -> void:
+	var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
+	var width: int = col_shape.shape.size.x
+	var height: int = col_shape.shape.size.y
+	var rect := Rect2(-width/2, -height/2, width, height)
+	draw_rect(rect, draw_color)
+	draw_rect(rect, outline_color, false, 4)
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if was_picked_up:
+	if _was_picked_up:
 		return
 	if body is PlayerCharacter:
 		var stat: CharacterStat = body.get(target_stat_name)
 		if stat:
-			was_picked_up = true
-			buff_stat(stat)
+			_was_picked_up = true
+			_buff_stat(stat)
 
-func buff_stat(stat: CharacterStat) -> void:
+
+func _buff_stat(stat: CharacterStat) -> void:
 	var buff := Buff.new(buff_amount, buff_duration)
 	buff.apply_to_stat(stat)
-	spawn_pickup_label(buff)
-	size_tween = create_tween()
-	size_tween.tween_property(self, "scale", Vector2.ZERO, 0.25)
-	size_tween.parallel().tween_property(self, "modulate:a", 0, 0.25)
-	size_tween.tween_callback(queue_free)
+	_spawn_pickup_label(buff)
+	_play_scale_tween()
 
-func spawn_pickup_label(buff: Buff) -> void:
-	var buff_pickup_label = load("res://scenes/user_interface/world_labels/buff_pickup_label.tscn").instantiate()
+
+func _play_scale_tween() -> void:
+	_scale_tween = create_tween()
+	_scale_tween.tween_property(self, "scale", Vector2.ZERO, 0.25)
+	_scale_tween.parallel().tween_property(self, "modulate:a", 0, 0.25)
+	_scale_tween.tween_callback(queue_free)
+
+
+func _spawn_pickup_label(buff: Buff) -> void:
+	var buff_pickup_label: BuffPickupLabel = _pickup_label_scene.instantiate()
 	get_parent().add_child(buff_pickup_label)
-	buff_pickup_label.global_position = self.global_position
+	buff_pickup_label.global_position = global_position
 	buff_pickup_label.load_buff(buff)
 	buff_pickup_label.play_tween()

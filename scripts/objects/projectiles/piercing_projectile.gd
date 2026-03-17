@@ -1,20 +1,41 @@
 class_name PiercingProjectile
 extends Projectile
 
-# Overries the Projectile draw function. This projectile is special
+## Represents a projectile which pierces through targets of type [Character].
+
+# Used to track collisions to prevent multiple collisions with one target.
+var _collisions: Array[Character] = []
+
+
+# Overrides the Projectile draw function. This projectile is special
 # because while it has a circular collision shape, the drawn shape is
 # a pointy bullet.
-func draw_projectile_shape() -> void:
-	var radius = col_shape.shape.radius
-	var outline_width = radius/8
+func _draw_projectile_shape() -> void:
+	var radius: int = _col_shape.shape.radius
+	var outline_width: int = radius/8
 	
-	draw_rect(Rect2(Vector2(-radius, -radius), Vector2(radius*2, radius*2)), projectile_properties.draw_color, true)
-	var pointy_part_points = [Vector2(radius, -radius), Vector2(radius, radius), Vector2(radius*4, 0)]
+	var rect := Rect2(Vector2(-radius, -radius), Vector2(radius*2, radius*2))
+	draw_rect(rect, projectile_properties.draw_color, true)
+	var pointy_part_points := [
+			Vector2(radius, -radius),
+			Vector2(radius, radius),
+			Vector2(radius*4, 0)
+	]
 	draw_colored_polygon(pointy_part_points, projectile_properties.draw_color)
-	var outline_points = [Vector2(-radius, -radius), Vector2(radius, -radius), Vector2(radius*4, 0), Vector2(radius, radius), Vector2(-radius, radius), Vector2(-radius, -radius)]
+	var outline_points := [
+			Vector2(-radius, -radius),
+			Vector2(radius, -radius),
+			Vector2(radius*4, 0),
+			Vector2(radius, radius),
+			Vector2(-radius, radius),
+			Vector2(-radius, -radius)
+	]
 	draw_polyline(outline_points, projectile_properties.outline_color, outline_width, true)
 
-# Overriding the Projectile collision function. Unlike regular projectiles,
-# it does not explode on impact, but pierces through enemies.
-func handle_character_collision(character: Character) -> void:
-	deal_damage(character)
+
+# Overrides the Projectile character collision function. Unlike regular projectiles,
+# it does not explode on impact, but pierces through characters.
+func _handle_character_collision(character: Character) -> void:
+	if not character in _collisions:
+		_collisions.append(character)
+		_deal_damage(character)

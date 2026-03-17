@@ -1,46 +1,77 @@
 class_name Turret
 extends Node2D
 
-@onready var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
-@onready var muzzle: Node2D = $Muzzle
-@onready var shoot_timer: Timer = $ShootTimer
-@onready var shoot_particles: CPUParticles2D = $ShootParticles
+## Represents a turret which sits in place and fires projectiles
+## in the direction it is facing.
 
-@export var draw_color: Color = Color("#8f6e6e")
-@export var outline_color: Color = Color("664b4bff")
-
-@export var damage: int = 5
-@export var projectile_speed: int = 2
-@export var projectile_radius: int = 10
-
-var projectile_scene: PackedScene = preload("res://scenes/objects/projectiles/projectile.tscn")
-
-signal shot() # Emitted when the turret fires a projectile
+## Emitted when the [Turret] fires a [Projectile].
+signal shot()
+## Emitted when the [Turret] starts shooting.
 signal started_shooting()
+## Emitted when the [Turret] stops shooting.
 signal stopped_shooting()
 
-func _draw():
+const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
+
+#region @export variables
+## Fill color of the [Turret] shape and its [Muzzle].
+@export var draw_color: Color = Color("#8f6e6e")
+## Outline color of the [Turret] shape and its [Muzzle].
+@export var outline_color: Color = Color("664b4bff")
+## Damage dealt by every [Projectile] fired by the [Turret].
+@export var damage: int = 5
+## Speed at which every [Projectile] fired by the [Turret] travels.
+@export var projectile_speed: int = 2
+## Radius of every [Projectile] fired by the [Turret].
+@export var projectile_radius: int = 10
+#endregion
+
+#region @onready variables
+@onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var _muzzle: Node2D = $Muzzle
+@onready var _shoot_timer: Timer = $ShootTimer
+@onready var _shoot_particles: CPUParticles2D = $ShootParticles
+#endregion
+
+
+func _draw() -> void:
 	var width = $Area2D/CollisionShape2D.shape.size.x
 	var height = $Area2D/CollisionShape2D.shape.size.y
 	draw_rect(Rect2(-width/2, -height/2, width, height), draw_color)
 	draw_rect(Rect2(-width/2, -height/2, width, height), outline_color, false, 4)
 
+
 func _ready() -> void:
 	WorldManager.wave_started.connect(start_shooting)
 	WorldManager.wave_ended.connect(stop_shooting)
-	shoot_particles.color = draw_color
+	_shoot_particles.color = draw_color
 
+
+## Makes the [Turret] start shooting. Emits [member Turret.started_shooting].
 func start_shooting() -> void:
-	shoot_timer.start()
+	_shoot_timer.start()
 	started_shooting.emit()
 
+
+## Makes the [Turret] stop shooting. Emits [member Turret.stopped_shooting].
 func stop_shooting() -> void:
-	shoot_timer.stop()
+	_shoot_timer.stop()
 	stopped_shooting.emit()
 
+
+## Fires a projectile in the direction of the [Muzzle].
 func shoot() -> void:
 	shot.emit()
-	var proj_direction: Vector2 = (muzzle.global_position - global_position).normalized()
-	var proj_props := ProjectileProperties.new(draw_color, outline_color, proj_direction, projectile_speed, self, damage, projectile_radius, global_position)
-	var projectile: Projectile = ProjectileFunctions.fire_projectile(projectile_scene, proj_props)
-	shoot_particles.emitting = true
+	var proj_direction: Vector2 = (_muzzle.global_position - global_position).normalized()
+	var proj_props := ProjectileProperties.new(
+							draw_color,
+							outline_color,
+							proj_direction,
+							projectile_speed,
+							self,
+							damage,
+							projectile_radius,
+							global_position
+					)
+	var projectile := ProjectileFunctions.fire_projectile(_PROJ_SCENE, proj_props)
+	_shoot_particles.emitting = true

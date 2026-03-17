@@ -1,14 +1,20 @@
 class_name HealingOrb
 extends Node2D
 
+## Represents a healing orb which heals the player to full HP on pickup.
+
+## Fill color of the [HealingOrb] shape.
 @export var draw_color: Color = Color(0.257, 0.742, 0.0, 1.0)
+## Outline color of the [HealingOrb] shape.
 @export var outline_color: Color = Color(0.162, 0.499, 0.0, 1.0)
 
+
 func _draw():
-	var radius = $Area2D/CollisionShape2D.shape.radius
+	var radius: int = $Area2D/CollisionShape2D.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width = radius/8
+	var outline_width: int = radius/8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is PlayerCharacter:
