@@ -36,6 +36,7 @@ func _ready() -> void:
 	super()
 	load_unlocked_abilities()
 	equip_ability(unlocked_abilities[0]) # Equip first unlocked ability on spawn
+	target_pos = get_global_mouse_position()
 
 ## Adds [Shoot] to [member PlayerCharacter.unlocked_abilities].
 func load_unlocked_abilities() -> void:
