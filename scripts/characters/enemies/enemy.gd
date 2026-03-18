@@ -9,7 +9,7 @@ extends Character
 ## This class uses [NavigationAgent2D] with RVO avoidance.
 
 ## [Character] being followed by the [Enemy].
-var target: Character
+var target: Character: set = set_target
 ## Array of abilities ready to be cast.
 var castable_abilities: Array[Ability] = []
 ## Multiplier used to make [Ability] cooldowns longer than usual.
@@ -21,10 +21,12 @@ var stop_distance: float = 180.0
 ## [Timer] used to time a casting cooldown.
 @onready var cast_cooldown_timer: Timer = $CastCooldownTimer
 
+
 func _ready() -> void:
 	super()
 	nav_agent.target_desired_distance = stop_distance
-	load_abilities()
+	_load_abilities()
+
 
 # Handles movement.
 func _physics_process(delta: float) -> void:
@@ -45,44 +47,51 @@ func _physics_process(delta: float) -> void:
 		# the safe velocity
 		nav_agent.set_velocity(direction * speed.max_value_after_buffs)
 
+
 # Detects the player entering the enemy's range.
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if body is PlayerCharacter:
-		set_target(body)
+		target = body
 		cast_random_ability()
+
 
 # Detects the player leaving the enemy's range.
 func _on_player_detection_area_body_exited(body: Node2D) -> void:
 	if body is PlayerCharacter:
-		remove_target()
+		target = null
+
 
 ## Loads the [Enemy]'s abilities. Needs to be implemented by each
 ## class extending [Enemy].
-func load_abilities() -> void:
+func _load_abilities() -> void:
 	pass
+
 
 ## Makes the [param ability] cooldown longer, base damage lower,
 ## and equips the [param ability].
-func load_ability(ability: Ability) -> void:
+func _load_ability(ability: Ability) -> void:
 	ability.cooldown *= ability_cooldown_multiplier # Nerf ability cooldown
 	if "base_damage" in ability: # Nerf ability damage
 		ability.base_damage = float(ability.base_damage) * 0.3
 	equip_ability(ability)
-	add_ability_to_castable(ability)
+	_add_ability_to_castable(ability)
 	# Connect signals that manage castable
-	ability.casted.connect(remove_ability_from_castable.bind(ability))
+	ability.casted.connect(_remove_ability_from_castable.bind(ability))
 	ability.finished_casting.connect(cast_random_ability)
-	ability.cooldown_ended.connect(add_ability_to_castable.bind(ability))
+	ability.cooldown_ended.connect(_add_ability_to_castable.bind(ability))
+
 
 ## Adds an [Ability] to [member Enemy.castable_abilities]. Also attempts
 ## to cast a random [Ability].
-func add_ability_to_castable(ability: Ability) -> void:
+func _add_ability_to_castable(ability: Ability) -> void:
 	castable_abilities.append(ability)
 	cast_random_ability()
 
+
 ## Removes an [Ability] from [member Enemy.castable_abilities].
-func remove_ability_from_castable(ability: Ability) -> void:
+func _remove_ability_from_castable(ability: Ability) -> void:
 	castable_abilities.erase(ability)
+
 
 ## Attempts to cast a random [Ability] from [member Enemy.castable_abilities].
 func cast_random_ability() -> void:
@@ -96,19 +105,24 @@ func cast_random_ability() -> void:
 		cast_cooldown_timer.start()
 		random_ability.cast()
 
-## Disconnects the [member Character.tree_exiting] signal and sets [member Enemy.target]
-## to [code]null[/code].
+
+## Sets [member Enemy.target] to [code]null[/code].
 func remove_target() -> void:
-	if not target: return
-	if target.tree_exiting.is_connected(remove_target):
-		target.tree_exiting.disconnect(remove_target)
 	target = null
 
-## Sets [member Enemy.target] and connects to the [Character.tree_exiting] signal.
+
+## Sets [member Enemy.target] and connects to the [member Character.tree_exiting] signal.
 func set_target(new_target: Character):
-	target = new_target
-	if not target.tree_exiting.is_connected(remove_target):
-		target.tree_exiting.connect(remove_target)
+	if new_target == null:
+		if target:
+			if target.tree_exiting.is_connected(remove_target):
+				target.tree_exiting.disconnect(remove_target)
+		target = new_target
+	else:
+		target = new_target
+		if not target.tree_exiting.is_connected(remove_target):
+			target.tree_exiting.connect(remove_target)
+
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	# Skip if navigation is finished
@@ -118,6 +132,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	if safe_velocity != Vector2.ZERO:
 		velocity = safe_velocity
 	move_and_slide()
+
 
 func _on_cast_cooldown_timer_timeout() -> void:
 	cast_random_ability()

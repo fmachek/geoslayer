@@ -3,5 +3,5 @@ extends Enemy
 
 ## Represents an enemy who casts [Cannonball].
 
-func load_abilities() -> void:
-	load_ability(Cannonball.new())
+func _load_abilities() -> void:
+	_load_ability(Cannonball.new())

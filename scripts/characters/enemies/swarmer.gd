@@ -3,5 +3,5 @@ extends Enemy
 
 ## Represents an enemy who casts [Blast].
 
-func load_abilities() -> void:
-	load_ability(Blast.new())
+func _load_abilities() -> void:
+	_load_ability(Blast.new())

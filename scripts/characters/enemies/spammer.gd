@@ -3,6 +3,6 @@ extends Enemy
 
 ## Represents an enemy who casts [Shoot] and [Wideshot].
 
-func load_abilities() -> void:
-	load_ability(Flurry.new())
-	load_ability(Wideshot.new())
+func _load_abilities() -> void:
+	_load_ability(Flurry.new())
+	_load_ability(Wideshot.new())

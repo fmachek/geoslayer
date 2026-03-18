@@ -14,28 +14,34 @@ extends Character
 ## Array of [Drop] instances with [Ability] scene paths.
 var ability_drop_pool: Array[Drop] = []
 
+
 func _ready() -> void:
 	super()
 	# Ensures that an ability is dropped on death
 	died.connect(drop_ability)
 
+
 # Draws a simple chest shape.
 func _draw():
-	var width = $CollisionShape2D.shape.size.x
-	var height = $CollisionShape2D.shape.size.y
-	var line_width = 4
-	draw_rect(Rect2(-width/2, -height/2, width, height), draw_color)
-	draw_rect(Rect2(-width/2, -height/2, width, height), outline_color, false, line_width)
+	var width: int = $CollisionShape2D.shape.size.x
+	var height: int = $CollisionShape2D.shape.size.y
+	var line_width: int = 4
+	var rect := Rect2(-width/2, -height/2, width, height)
+	draw_rect(rect, draw_color)
+	draw_rect(rect, outline_color, false, line_width)
 	draw_line(Vector2(-width/2, -4), Vector2(width/2, -4), outline_color, line_width)
 	draw_circle(Vector2(0, -4), 6, outline_color, true)
+
 
 ## Generates the drop pool. In this case, chests have a chance to drop temporary buffs,
 ## they always drop [XPOrb], but the amount is random (5 orbs are spawned at minimum,
 ## maximum is 15). A [HealingOrb] always drops as well.[br][br]
 ## [member Chest.ability_drop_pool] is also generated.
 func generate_drop_pool():
-	drop_pool.append(Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 50))
-	drop_pool.append(Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 50))
+	drop_pool.append(
+			Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 50))
+	drop_pool.append(
+			Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 50))
 	for i in range(5):
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
@@ -44,11 +50,13 @@ func generate_drop_pool():
 	
 	generate_ability_drop_pool()
 
+
 ## Shows the [Label] displaying information about the [Chest]
 ## and sets its text.
 func show_info_label(text: String) -> void:
 	$InfoLabel.text = text
 	$InfoLabel.show()
+
 
 ## Uses [member Chest.ability_drop_pool] to randomly pick a [Drop] which
 ## will be used to instantiate an [AbilityPickup]. Chests always drop exactly one
@@ -57,6 +65,7 @@ func drop_ability() -> void:
 	if ability_drop_pool.is_empty(): return
 	var ability_drop: Drop = ability_drop_pool.pick_random()
 	drop_item(ability_drop)
+
 
 ## Appends [Drop] instances to [member Chest.ability_drop_pool], each containing
 ## a path to an [Ability] scene. The drop chance does not matter because ultimately

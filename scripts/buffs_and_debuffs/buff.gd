@@ -11,6 +11,13 @@ extends Node
 ##speed_buff.apply_to_stat(character.speed) # parameter: CharacterStat
 ## [/codeblock]
 
+## Emitted when the buff/debuff effect takes effect.
+## The [Buff] itself is passed as a parameter.
+signal began(buff: Buff)
+## Emitted when the buff/debuff ends. The [Buff] itself
+## is passed as a parameter.
+signal ended(buff: Buff)
+
 ## Stat which will be modified temporarily.
 var target_stat: CharacterStat
 ## Amount by which the stat will be modified. Can be positive or negative.
@@ -18,19 +25,16 @@ var amount: int
 ## Says how long the buff/debuff lasts in seconds.
 var duration: float
 ## Timer which times the buff/debuff duration.
-var duration_timer: Timer
+var _duration_timer: Timer
 
-## Emitted when the buff/debuff effect takes effect. The Buff itself is passed as a parameter.
-signal began(buff: Buff)
-## Emitted when the buff/debuff ends. The Buff itself is passed as a parameter.
-signal ended(buff: Buff)
 
 ## Sets the [param amount] and [param duration].
-func _init(amount: int, duration: float):
+func _init(amount: int, duration: float) -> void:
 	self.amount = amount
 	self.duration = duration
 
-## Adds the Buff to a given [param stat].
+
+## Adds the [Buff] to a given [param stat].
 func apply_to_stat(stat: CharacterStat) -> void:
 	target_stat = stat
 	# Buff will actually start after the added_buff signal is emitted by the stat
@@ -38,27 +42,34 @@ func apply_to_stat(stat: CharacterStat) -> void:
 	ended.connect(target_stat.remove_buff)
 	target_stat.add_buff(self)
 
-## Instantiates [member Buff.duration_timer] and adds it as a child of the Buff.
+
+## Instantiates [member Buff._duration_timer] and adds
+## it as a child of the [Buff].
 func _create_duration_timer() -> void:
-	duration_timer = Timer.new()
-	add_child(duration_timer)
-	duration_timer.one_shot = true
-	duration_timer.wait_time = duration
-	duration_timer.timeout.connect(_on_duration_timer_timeout)
+	_duration_timer = Timer.new()
+	add_child(_duration_timer)
+	_duration_timer.one_shot = true
+	_duration_timer.wait_time = duration
+	_duration_timer.timeout.connect(_on_duration_timer_timeout)
+
 
 ## Emits the [member Buff.ended] signal on duration timer timeout.
-func _on_duration_timer_timeout():
+func _on_duration_timer_timeout() -> void:
 	ended.emit(self)
 	print("%s buff (%d for %f sec) has ended." % [target_stat.stat_name, amount, duration])
 
-## Checks if the [param buff] parameter is equal to this specific Buff and starts the Buff.
+
+## Checks if the [param buff] parameter is equal to this specific
+## [Buff] and starts the [Buff].
 func _on_added_buff(buff: Buff) -> void:
 	if buff == self:
-		begin()
+		_begin()
 
-## Creates and starts [member Buff.duration_timer] and emits the [member Buff.began] signal.
-func begin() -> void:
+
+## Creates and starts [member Buff._duration_timer]
+## and emits the [member Buff.began] signal.
+func _begin() -> void:
 	_create_duration_timer()
-	duration_timer.start()
+	_duration_timer.start()
 	began.emit(self)
 	print("%s buff (%d for %f sec) has begun." % [target_stat.stat_name, amount, duration])
