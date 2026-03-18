@@ -9,7 +9,7 @@ var draw_color: Color ## Color of the [AimIndicator].
 
 func _draw():
 	var radius: int = 6
-	draw_circle(Vector2.ZERO, radius, draw_color)
+	draw_circle(Vector2.ZERO, radius, draw_color, true, -1.0, true)
 
 
 # Changes draw_color when the PlayerCharacter's outline_color
