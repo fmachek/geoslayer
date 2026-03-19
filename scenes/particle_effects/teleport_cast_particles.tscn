@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://co8efpq0tj5d0"]
+
+[ext_resource type="Script" uid="uid://bjm1s8gn6hxgc" path="res://scripts/particle_effects/teleport_cast_particles.gd" id="1_i08mb"]
+
+[sub_resource type="Gradient" id="Gradient_hftm7"]
+offsets = PackedFloat32Array(0.6098901, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="TeleportCastParticles" type="CPUParticles2D" unique_id=432015199]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+orbit_velocity_max = 0.5
+scale_amount_min = 10.0
+scale_amount_max = 25.0
+color = Color(0.09869445, 2.1706968e-05, 0.118752666, 1)
+color_ramp = SubResource("Gradient_hftm7")
+script = ExtResource("1_i08mb")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

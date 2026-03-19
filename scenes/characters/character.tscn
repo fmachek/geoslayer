@@ -62,5 +62,7 @@ default_color = Color(0, 0.47427702, 0.5847179, 0.416)
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=245394807]
+
 [connection signal="current_value_changed" from="CharacterStats/Health" to="." method="emit_health_change"]
 [connection signal="max_value_after_buffs_changed" from="CharacterStats/Health" to="." method="emit_max_health_change"]
