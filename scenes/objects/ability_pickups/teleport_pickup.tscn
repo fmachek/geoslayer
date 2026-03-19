@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b4svsptcn1aq7"]
+
+[ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_nie33"]
+[ext_resource type="Script" uid="uid://bkxcj6asp05ob" path="res://scripts/abilities/teleport.gd" id="2_cb5e6"]
+
+[node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_nie33")]
+ability_script = ExtResource("2_cb5e6")
