@@ -64,6 +64,8 @@ escape={
 2d_physics/layer_2="Characters"
 2d_physics/layer_3="Projectiles"
 2d_physics/layer_4="Enemies"
+2d_physics/layer_5="Pickups"
+2d_physics/layer_6="Spawners"
 
 [physics]
 
