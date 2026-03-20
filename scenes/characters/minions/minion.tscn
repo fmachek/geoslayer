@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://likuivsrj5bj"]
+
+[ext_resource type="PackedScene" uid="uid://dd1ete4tj31rv" path="res://scenes/characters/casting_character.tscn" id="1_2y4jy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2y4jy"]
+radius = 22.0
+
+[node name="Minion" unique_id=1080282355 instance=ExtResource("1_2y4jy")]
+collision_layer = 74
+draw_color = Color(1, 1, 1, 1)
+outline_color = Color(0.72882295, 0.7288216, 0.7288219, 1)
+base_health = 30
+base_damage = 30
+
+[node name="NavigationAgent2D" parent="." index="0" unique_id=902596167]
+radius = 60.0
+avoidance_layers = 192
+avoidance_mask = 192
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_2y4jy")
+
+[node name="Health" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="1" unique_id=1614674917]
+regen_amount = 0
+max_value = 30
+current_value = 30
+
+[node name="HealthBar" parent="." index="5" unique_id=385742775]
+offset_top = 29.0
+offset_bottom = 49.0
+
+[node name="HealthDecayTimer" type="Timer" parent="." index="9" unique_id=1164130493]
+autostart = true

@@ -49,8 +49,17 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not projectile_properties.source or body != projectile_properties.source:
 		if body is Character and _can_deal_damage:
 			if projectile_properties.source:
-				if projectile_properties.source is not PlayerCharacter and body is not PlayerCharacter:
+				var source: Node2D = projectile_properties.source
+				if source is Minion:
+					if body is PlayerCharacter or body is Minion:
+						return # Prevents minions damaging player and other minions
+				elif source is Enemy and body is Enemy:
 					return # Prevents enemies damaging other enemies
+				elif source is PlayerCharacter and body is Minion:
+					return # Prevents player damaging minions
+				elif source is Turret:
+					if body is Enemy or body is Chest:
+						return # Prevents turrets damaging enemies or chests
 			_handle_character_collision(body)
 		else:
 			explode()

@@ -8,11 +8,15 @@ extends Character
 ## This class uses [NavigationAgent2D] with RVO avoidance.
 
 ## [Character] being followed by the [CastingCharacter].
-var target: Character: set = set_target
+var target: Character
 ## Array of abilities ready to be cast.
 var castable_abilities: Array[Ability] = []
 ## Multiplier used to make [Ability] cooldowns longer than usual.
 var ability_cooldown_multiplier: float = 3
+## Multiplier used to make [Ability] damage lower than usual.
+var ability_damage_multiplier: float = 0.3
+## Cooldown used to space out individual [Ability] casts.
+var cast_cooldown: float = 2.0
 ## Distance at which the [CastingCharacter] stops following [member CastingCharacter.target].
 var stop_distance: float = 180.0
 ## [NavigationAgent2D] used for avoidance of other casting characters.
@@ -21,8 +25,7 @@ var stop_distance: float = 180.0
 @onready var cast_cooldown_timer: Timer = $CastCooldownTimer
 
 
-## Loads the [CastingCharacter]'s abilities. Needs to be
-## implemented by each class extending [CastingCharacter].
+## Loads the [CastingCharacter]'s abilities.
 @abstract func _load_abilities() -> void
 
 
@@ -34,9 +37,14 @@ var stop_distance: float = 180.0
 @abstract func _on_character_detection_area_body_exited(body: Node2D) -> void
 
 
+## Finds a new target in an array of nodes.
+@abstract func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D
+
+
 func _ready() -> void:
 	super()
 	nav_agent.target_desired_distance = stop_distance
+	cast_cooldown_timer.wait_time = cast_cooldown
 	_load_abilities()
 
 
@@ -65,7 +73,7 @@ func _physics_process(delta: float) -> void:
 func _load_ability(ability: Ability) -> void:
 	ability.cooldown *= ability_cooldown_multiplier # Nerf ability cooldown
 	if "base_damage" in ability: # Nerf ability damage
-		ability.base_damage = float(ability.base_damage) * 0.3
+		ability.base_damage = float(ability.base_damage) * ability_damage_multiplier
 	equip_ability(ability)
 	_add_ability_to_castable(ability)
 	# Connect signals that manage castable
@@ -100,23 +108,12 @@ func cast_random_ability() -> void:
 		random_ability.cast()
 
 
-## Sets [member CastingCharacter.target] to [code]null[/code].
-func remove_target() -> void:
-	target = null
-
-
-## Sets [member CastingCharacter.target] and connects to the
-## [member Character.tree_exiting] signal.
-func set_target(new_target: Character) -> void:
-	if new_target == null:
-		if target:
-			if target.tree_exiting.is_connected(remove_target):
-				target.tree_exiting.disconnect(remove_target)
-		target = new_target
-	else:
-		target = new_target
-		if not target.tree_exiting.is_connected(remove_target):
-			target.tree_exiting.connect(remove_target)
+## Finds a new target in an array of nodes overlapping with
+## the [CastingCharacter]'s detection area.
+func _scan_for_target() -> void:
+	var char_area: Area2D = %CharacterDetectionArea
+	var bodies: Array[Node2D] = char_area.get_overlapping_bodies()
+	target = _get_target_from_bodies(bodies)
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
