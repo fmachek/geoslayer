@@ -39,6 +39,11 @@ var is_casting: bool = false
 #endregion
 
 
+## Performs what the [Ability] is supposed to do. This function must be
+## implemented by each specific Ability.
+@abstract func _perform_ability() -> void
+
+
 ## Sets the Ability name, cooldown, texture and description. Also connects
 ## some necessary signals.
 func _init(cooldown: float, texture_path: String, description: String) -> void:
@@ -61,12 +66,6 @@ func cast() -> void:
 		cooldown_timer.start()
 		cooldown_started.emit()
 		_perform_ability()
-
-
-## Performs what the [Ability] is supposed to do. This function must be
-## implemented by each specific Ability.
-func _perform_ability() -> void:
-	pass
 
 
 func _on_cooldown_timer_timeout() -> void:
