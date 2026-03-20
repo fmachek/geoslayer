@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dd1ete4tj31rv"]
 
 [ext_resource type="PackedScene" uid="uid://4x1o35rrk4rx" path="res://scenes/characters/character.tscn" id="1_04xvn"]
-[ext_resource type="Script" uid="uid://b73esug8wb83f" path="res://scripts/characters/casting_character.gd" id="2_x8g75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_blu3w"]
 radius = 1024.0
@@ -11,7 +10,6 @@ radius = 28.0
 
 [node name="CastingCharacter" unique_id=1080282355 instance=ExtResource("1_04xvn")]
 collision_layer = 10
-script = ExtResource("2_x8g75")
 draw_color = Color(0.8092718, 0.47136456, 1.92523e-07, 1)
 outline_color = Color(0.58554137, 0.33517605, 3.85046e-07, 1)
 
