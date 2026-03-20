@@ -8,12 +8,10 @@ What I want to learn or have already learned:
 4. Simple NPCs
 6. Pathfinding
 7. Other Godot features and workflow
+8. Raycasting
+9. GDScript features
 
 These are just a few things I came up with now, but I'll definitely learn more stuff along the way.
-
-## Technologies used
-- Godot 4.6 (https://godotengine.org/): for the game itself
-- Piskel (https://www.piskelapp.com/): for some assets
 
 ## What is this game about?
 
