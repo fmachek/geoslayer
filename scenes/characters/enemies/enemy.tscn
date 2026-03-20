@@ -3,3 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dd1ete4tj31rv" path="res://scenes/characters/casting_character.tscn" id="1_blu3w"]
 
 [node name="Enemy" unique_id=1080282355 instance=ExtResource("1_blu3w")]
+collision_layer = 138
+
+[node name="NavigationAgent2D" parent="." index="0" unique_id=902596167]
+radius = 60.0
+avoidance_layers = 128
+avoidance_mask = 128
