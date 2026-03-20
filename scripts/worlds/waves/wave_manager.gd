@@ -1,6 +1,7 @@
 class_name WaveManager
 extends Node
 
+@export var time_per_wave: int = 30
 var current_wave: int = 0
 var time_until_wave_end: int = 0 # Time in seconds
 @onready var wave_timer: Timer = $WaveTimer
@@ -15,7 +16,7 @@ func start_wave() -> void:
 	wave_started.emit()
 	current_wave_changed.emit(current_wave)
 	
-	time_until_wave_end = 30 # Each wave lasts 30 seconds
+	time_until_wave_end = time_per_wave
 	time_until_wave_end_changed.emit(time_until_wave_end)
 	wave_timer.start()
 	
