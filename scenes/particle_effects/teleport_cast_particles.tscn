@@ -7,6 +7,7 @@ offsets = PackedFloat32Array(0.6098901, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="TeleportCastParticles" type="CPUParticles2D" unique_id=432015199]
+z_index = 2
 emitting = false
 amount = 40
 one_shot = true
