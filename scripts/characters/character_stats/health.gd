@@ -19,8 +19,10 @@ func _ready() -> void:
 # regeneration is interrupted.
 func _on_current_value_changed(old_value: int, new_value: int) -> void:
 	if old_value > new_value: # Damage was taken
-		_regen_tick_timer.stop() # Stop healing
-		_regen_start_timer.start() # Start cooldown for healing
+		if _regen_tick_timer:
+			_regen_tick_timer.stop() # Stop healing
+		if _regen_start_timer:
+			_regen_start_timer.start() # Start cooldown for healing
 
 
 # Regeneration starts when regen_start_timer times out.
