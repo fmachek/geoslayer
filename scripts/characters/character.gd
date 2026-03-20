@@ -266,3 +266,18 @@ func show_aim_line():
 
 func hide_aim_line():
 	%AimLine.hide()
+
+
+## Checks for raycast collisions between self
+## and [param global_target_pos]. Returns [param global_target_pos]
+## if there were no collisions. Otherwise returns the point at which
+## the collision occurred.
+func get_raycast_collision(global_target_pos: Vector2) -> Vector2:
+	var raycast: RayCast2D = $RayCast2D
+	raycast.target_position = to_local(global_target_pos)
+	raycast.force_raycast_update()
+	var col_point: Vector2 = raycast.get_collision_point()
+	if raycast.is_colliding():
+		return col_point
+	else:
+		return global_target_pos

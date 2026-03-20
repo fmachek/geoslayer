@@ -46,7 +46,7 @@ func _create_cast_timer() -> void:
 
 func _start_casting() -> void:
 	var target_pos: Vector2 = character.target_pos
-	_teleport_pos = _get_raycast_collision(target_pos)
+	_teleport_pos = character.get_raycast_collision(target_pos)
 	_apply_speed_debuff()
 	_spawn_teleport_position_particles(_teleport_pos)
 	_cast_timer.start()
@@ -63,21 +63,6 @@ func _finish_casting() -> void:
 	if _teleport_pos:
 		_teleport_caster(_teleport_pos)
 	finished_casting.emit()
-
-
-## Checks for raycast collisions between [member Teleport.character]
-## and [param global_target_pos]. Returns [param global_target_pos]
-## if there were no collisions. Otherwise returns the point at which
-## the collision occurred.
-func _get_raycast_collision(global_target_pos: Vector2) -> Vector2:
-	var raycast: RayCast2D = character.get_node("RayCast2D")
-	raycast.target_position = character.to_local(global_target_pos)
-	raycast.force_raycast_update()
-	var col_point: Vector2 = raycast.get_collision_point()
-	if raycast.is_colliding():
-		return col_point
-	else:
-		return global_target_pos
 
 
 func _spawn_teleport_position_particles(pos: Vector2) -> void:
