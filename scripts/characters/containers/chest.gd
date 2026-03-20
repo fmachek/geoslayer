@@ -12,13 +12,15 @@ extends Character
 ## that every [Chest] drops exactly one [AbilityPickup].
 
 ## Array of [Drop] instances with [Ability] scene paths.
-var ability_drop_pool: Array[Drop] = []
+static var ability_drop_pool: Array[Drop] = []
 
 
 func _ready() -> void:
 	super()
 	# Ensures that an ability is dropped on death
 	died.connect(drop_ability)
+	if ability_drop_pool.is_empty():
+		generate_ability_drop_pool()
 
 
 # Draws a simple chest shape.
@@ -36,7 +38,6 @@ func _draw():
 ## Generates the drop pool. In this case, chests have a chance to drop temporary buffs,
 ## they always drop [XPOrb], but the amount is random (5 orbs are spawned at minimum,
 ## maximum is 15). A [HealingOrb] always drops as well.[br][br]
-## [member Chest.ability_drop_pool] is also generated.
 func generate_drop_pool():
 	drop_pool.append(
 			Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 50))
@@ -47,8 +48,6 @@ func generate_drop_pool():
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
 	drop_pool.append(Drop.new("res://scenes/objects/healing_orb.tscn", 100))
-	
-	generate_ability_drop_pool()
 
 
 ## Shows the [Label] displaying information about the [Chest]
@@ -64,6 +63,7 @@ func show_info_label(text: String) -> void:
 func drop_ability() -> void:
 	if ability_drop_pool.is_empty(): return
 	var ability_drop: Drop = ability_drop_pool.pick_random()
+	ability_drop_pool.erase(ability_drop)
 	drop_item(ability_drop)
 
 
