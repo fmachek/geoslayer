@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dd1ete4tj31rv"]
+
+[ext_resource type="PackedScene" uid="uid://4x1o35rrk4rx" path="res://scenes/characters/character.tscn" id="1_04xvn"]
+[ext_resource type="Script" uid="uid://b73esug8wb83f" path="res://scripts/characters/casting_character.gd" id="2_x8g75"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_blu3w"]
+radius = 1024.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwhyh"]
+radius = 28.0
+
+[node name="CastingCharacter" unique_id=1080282355 instance=ExtResource("1_04xvn")]
+collision_layer = 10
+script = ExtResource("2_x8g75")
+draw_color = Color(0.8092718, 0.47136456, 1.92523e-07, 1)
+outline_color = Color(0.58554137, 0.33517605, 3.85046e-07, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="0" unique_id=902596167]
+target_desired_distance = 120.0
+path_max_distance = 150.0
+avoidance_enabled = true
+radius = 120.0
+max_speed = 150.0
+avoidance_layers = 8
+avoidance_mask = 8
+
+[node name="CharacterDetectionArea" type="Area2D" parent="." index="1" unique_id=53080534]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterDetectionArea" index="0" unique_id=1246221917]
+shape = SubResource("CircleShape2D_blu3w")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_nwhyh")
+
+[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="2" unique_id=1314298599]
+max_value = 150
+current_value = 150
+
+[node name="CastCooldownTimer" type="Timer" parent="." index="7" unique_id=1013332621]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="CharacterDetectionArea" to="." method="_on_character_detection_area_body_entered"]
+[connection signal="body_exited" from="CharacterDetectionArea" to="." method="_on_character_detection_area_body_exited"]
+[connection signal="timeout" from="CastCooldownTimer" to="." method="_on_cast_cooldown_timer_timeout"]
