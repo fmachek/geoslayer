@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cg8e1vg617x38" path="res://scenes/characters/enemies/swarmer.tscn" id="11_ug2mq"]
 [ext_resource type="PackedScene" uid="uid://dwqtngf511cjj" path="res://scenes/objects/ability_pickups/explosive_pickup.tscn" id="13_gvw4d"]
 [ext_resource type="PackedScene" uid="uid://b4svsptcn1aq7" path="res://scenes/objects/ability_pickups/teleport_pickup.tscn" id="14_f2clg"]
+[ext_resource type="PackedScene" uid="uid://bamvpklq5xf23" path="res://scenes/objects/ability_pickups/summon_pickup.tscn" id="15_hqw31"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5nye6"]
 vertices = PackedVector2Array(374, 374, -374, 374, -374, -374, 374, -374)
@@ -75,6 +76,9 @@ position = Vector2(-305, -207)
 
 [node name="AbilityPickup8" parent="." index="16" unique_id=70857302 instance=ExtResource("14_f2clg")]
 position = Vector2(-177, -207)
+
+[node name="AbilityPickup9" parent="." index="17" unique_id=1929001480 instance=ExtResource("15_hqw31")]
+position = Vector2(-49, -207)
 
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner2" method="_on_wave_changed"]
