@@ -66,6 +66,8 @@ escape={
 2d_physics/layer_4="NPCs"
 2d_physics/layer_5="Pickups"
 2d_physics/layer_6="Spawners"
+2d_physics/layer_7="Minions"
+2d_physics/layer_8="Enemies"
 
 [physics]
 
