@@ -7,6 +7,7 @@
 size = Vector2(60, 40)
 
 [node name="Chest" unique_id=1080282355 instance=ExtResource("1_bik2x")]
+collision_layer = 1026
 script = ExtResource("2_j56lw")
 draw_color = Color(0.87615037, 0.7196684, 7.70092e-07, 1)
 outline_color = Color(0.6552603, 0.53839445, 0, 1)

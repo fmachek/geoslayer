@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b8eqnowv1p6o8" path="res://scripts/characters/player/aim_indicator.gd" id="5_ecrnf"]
 
 [node name="PlayerCharacter" unique_id=1080282355 instance=ExtResource("1_ajk8a")]
+collision_layer = 514
 script = ExtResource("1_g2els")
 draw_color = Color(0, 0.6862745, 0.8392157, 1)
 outline_color = Color(0, 0.4745098, 0.58431375, 1)

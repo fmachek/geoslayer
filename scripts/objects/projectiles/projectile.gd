@@ -13,7 +13,7 @@ const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn
 
 ## Contains all important properties the [Projectile] requires,
 ## such as the damage or radius.
-var projectile_properties: ProjectileProperties
+var projectile_properties: ProjectileProperties: set = _set_properties
 
 var _can_explode: bool = true
 var _can_deal_damage: bool = true
@@ -46,23 +46,10 @@ func _draw_projectile_shape() -> void:
 
 # Handles collisions.
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if not projectile_properties.source or body != projectile_properties.source:
-		if body is Character and _can_deal_damage:
-			if projectile_properties.source:
-				var source: Node2D = projectile_properties.source
-				if source is Minion:
-					if body is PlayerCharacter or body is Minion:
-						return # Prevents minions damaging player and other minions
-				elif source is Enemy and body is Enemy:
-					return # Prevents enemies damaging other enemies
-				elif source is PlayerCharacter and body is Minion:
-					return # Prevents player damaging minions
-				elif source is Turret:
-					if body is Enemy or body is Chest:
-						return # Prevents turrets damaging enemies or chests
-			_handle_character_collision(body)
-		else:
-			explode()
+	if body is Character and _can_deal_damage:
+		_handle_character_collision(body)
+	else:
+		explode()
 
 
 ## Causes the [Projectile] to explode, emitting particles. The [Projectile] is freed
@@ -142,3 +129,33 @@ func _spawn_damage_label(damage: int, pos: Vector2) -> void:
 	get_parent().add_child(damage_label)
 	damage_label.load_damage(damage, pos)
 	damage_label.play_tween()
+
+
+func _set_properties(props: ProjectileProperties) -> void:
+	projectile_properties = props
+	var source: Node2D = projectile_properties.source
+	_set_area_collision_mask(source)
+
+
+# Sets the Area2D collision mask based on what type the
+# projectile source is. For example, a PlayerCharacter's
+# projectile will only be able to collide with enemies and
+# containers (and walls).
+func _set_area_collision_mask(source: Node2D) -> void:
+	var area: Area2D = $Area2D
+	if source:
+		if source is PlayerCharacter:
+			_set_mask_for_layers([1, 8, 11], area)
+		elif source is Minion:
+			_set_mask_for_layers([1, 8, 11], area)
+		elif source is Enemy:
+			_set_mask_for_layers([1, 7, 10], area)
+		elif source is Turret:
+			_set_mask_for_layers([1, 7, 10], area)
+	else:
+		_set_mask_for_layers([1, 7, 10], area)
+
+
+func _set_mask_for_layers(layers: Array[int], area: Area2D) -> void:
+	for layer: int in layers:
+		area.set_collision_mask_value(layer, true)
