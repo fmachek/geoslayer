@@ -192,7 +192,9 @@ func drop_item(drop: Drop) -> void:
 		return
 	var item = load(drop.item_scene_path).instantiate()
 	item.global_position = Vector2(random_x, random_y)
-	get_parent().add_child(item)
+	var parent = get_parent()
+	if is_instance_valid(parent):
+		parent.add_child(item)
 
 
 ## Changes [member Character.draw_color] and [member Character.outline_color]
