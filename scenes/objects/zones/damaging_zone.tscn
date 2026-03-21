@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dwpyf1gkq7myw"]
+
+[ext_resource type="PackedScene" uid="uid://cpfjgbwdxb0y3" path="res://scenes/objects/zones/zone.tscn" id="1_gnwex"]
+[ext_resource type="Script" uid="uid://djnakipwa0x1m" path="res://scripts/objects/zones/damaging_zone.gd" id="2_0kfi1"]
+
+[sub_resource type="Gradient" id="Gradient_chu66"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DamagingZone" unique_id=391910855 instance=ExtResource("1_gnwex")]
+script = ExtResource("2_0kfi1")
+
+[node name="RingParticles" parent="." index="1" unique_id=203274882]
+amount = 40
+emission_ring_inner_radius = 200.0
+emission_ring_radius = 180.0
+direction = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color_ramp = SubResource("Gradient_chu66")
+
+[node name="DamageTickTimer" type="Timer" parent="." index="4" unique_id=1096925631]
+autostart = true
+
+[connection signal="timeout" from="DamageTickTimer" to="." method="_on_damage_tick_timer_timeout"]
