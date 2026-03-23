@@ -19,6 +19,8 @@ var ability_damage_multiplier: float = 0.3
 var cast_cooldown: float = 2.0
 ## Distance at which the [CastingCharacter] stops following [member CastingCharacter.target].
 var stop_distance: float = 180.0
+## Minimum cooldown applied after every [Ability] cast, in seconds.
+var min_cast_cooldown: float = 1.0
 ## [NavigationAgent2D] used for avoidance of other casting characters.
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 ## [Timer] used to time a casting cooldown.
@@ -104,6 +106,7 @@ func cast_random_ability() -> void:
 	var random_ability: Ability = castable_abilities.pick_random()
 	if random_ability:
 		target_pos = target.global_position
+		cast_cooldown_timer.wait_time = min_cast_cooldown + randf_range(0, 1.0)
 		cast_cooldown_timer.start()
 		random_ability.cast()
 
