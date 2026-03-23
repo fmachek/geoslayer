@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b4svsptcn1aq7" path="res://scenes/objects/ability_pickups/teleport_pickup.tscn" id="14_f2clg"]
 [ext_resource type="PackedScene" uid="uid://bamvpklq5xf23" path="res://scenes/objects/ability_pickups/summon_pickup.tscn" id="15_hqw31"]
 [ext_resource type="PackedScene" uid="uid://dwmxwtgwvuf7d" path="res://scenes/objects/ability_pickups/storm_pickup.tscn" id="16_dj1uu"]
+[ext_resource type="PackedScene" uid="uid://bmrr4xs6o4db" path="res://scenes/objects/ability_pickups/lifesteal_pickup.tscn" id="17_2msne"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5nye6"]
 vertices = PackedVector2Array(374, 374, -374, 374, -374, -374, 374, -374)
@@ -83,6 +84,9 @@ position = Vector2(-49, -207)
 
 [node name="AbilityPickup10" parent="." index="18" unique_id=978017221 instance=ExtResource("16_dj1uu")]
 position = Vector2(49, -207)
+
+[node name="AbilityPickup11" parent="." index="19" unique_id=559850540 instance=ExtResource("17_2msne")]
+position = Vector2(143, -207)
 
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner2" method="_on_wave_changed"]
