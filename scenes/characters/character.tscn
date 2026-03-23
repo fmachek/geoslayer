@@ -26,12 +26,14 @@ script = ExtResource("4_ma1fs")
 stat_name = "Health"
 max_value = 100
 current_value = 100
+perk_point_increase = 2
 
 [node name="Speed" type="Node" parent="CharacterStats" unique_id=1314298599]
 script = ExtResource("2_2qjml")
 stat_name = "Speed"
 max_value = 300
 current_value = 300
+perk_point_increase = 10
 metadata/_custom_type_script = "uid://bawkqpf2atlge"
 
 [node name="Damage" type="Node" parent="CharacterStats" unique_id=286315709]
@@ -39,6 +41,7 @@ script = ExtResource("2_2qjml")
 stat_name = "Damage"
 max_value = 100
 current_value = 100
+perk_point_increase = 2
 metadata/_custom_type_script = "uid://bawkqpf2atlge"
 
 [node name="Abilities" type="Node" parent="." unique_id=1813596891]

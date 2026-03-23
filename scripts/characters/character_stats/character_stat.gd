@@ -30,6 +30,8 @@ signal added_buff(buff: Buff)
 @export var max_value: int: set = _change_max_value
 ## The current value. Used for stats which have a maximum and current value such as HP.
 @export var current_value: int: set = _change_current_value
+## Value by which the stat increases when a perk point is applied.
+@export var perk_point_increase: int = 5
 #endregion
 
 ## The modified maximum value after buffs and debuffs are applied. It is the main value
@@ -141,3 +143,9 @@ func _change_total_buff(value: int) -> void:
 ## Adds a given [param amount] to [member CharacterStat.current_value].
 func add_value(value: int) -> void:
 	current_value += value
+
+
+## Increases [member CharacterStat.max_value] by
+## [member CharacterStat.perk_point_increase].
+func apply_perk_point() -> void:
+	max_value += perk_point_increase

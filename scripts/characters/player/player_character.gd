@@ -34,8 +34,6 @@ var perk_points_available: int = 5:
 			perk_points_available_changed.emit(value)
 ## Amount of perk points the player gains with every level up.
 var perk_points_per_level: int = 5
-## Amount by which stats increase when a perk point is spent.
-var stat_increase_per_point: int = 5
 #endregion
 
 
@@ -211,7 +209,6 @@ func spend_perk_point() -> bool:
 func apply_perk_point(stat: CharacterStat) -> bool:
 	var has_points: bool = spend_perk_point()
 	if has_points:
-		var stat_increase: int = stat_increase_per_point
-		stat.max_value += stat_increase
+		stat.apply_perk_point()
 		return true
 	return false
