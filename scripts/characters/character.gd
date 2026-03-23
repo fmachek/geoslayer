@@ -161,9 +161,10 @@ func drop_items() -> void:
 
 ## Generates the drop pool. Only XP orbs by default.
 func generate_drop_pool() -> void:
-	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
-	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
-	drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
+	for i in range(level.current_level):
+		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
+		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
+		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 
 
 ## Drops an item. It it spawned within the bounds of the collision shape.
