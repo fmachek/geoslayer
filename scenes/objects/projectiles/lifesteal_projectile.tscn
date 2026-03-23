@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://g1sse6dde1mp"]
+
+[ext_resource type="PackedScene" uid="uid://fa8fx68x0ycb" path="res://scenes/objects/projectiles/projectile.tscn" id="1_emc1l"]
+[ext_resource type="Texture2D" uid="uid://b68xd0f5nfff2" path="res://assets/user_interface/misc/plus_sign.png" id="2_1d2xe"]
+[ext_resource type="Script" uid="uid://ogedmfkb61y8" path="res://scripts/objects/projectiles/lifesteal_projectile.gd" id="2_s2g2i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_emc1l"]
+radius = 6.0
+
+[node name="LifestealProjectile" unique_id=2135564719 instance=ExtResource("1_emc1l")]
+script = ExtResource("2_s2g2i")
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(538146069) index="0" unique_id=896607698]
+shape = SubResource("CircleShape2D_emc1l")
+
+[node name="FlyingParticles" parent="." index="2" unique_id=492214561]
+texture_filter = 1
+texture = ExtResource("2_1d2xe")
+scale_amount_min = 0.2
+scale_amount_max = 0.5
