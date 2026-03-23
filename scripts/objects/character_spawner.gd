@@ -27,14 +27,24 @@ func _draw() -> void:
 
 ## Spawns a [Character] instantiated from
 ## [member CharacterSpawner.character_scene].
-func spawn_character() -> void:
+func spawn_character(current_wave: int) -> void:
 	var character: Character = character_scene.instantiate()
 	character.global_position = global_position
 	get_parent().add_child(character)
+	call_deferred("_change_character_level", character, current_wave)
+	call_deferred("_fill_character_health", character)
 
 
 # Checks if the new wave is in the spawn_waves array.
 # If it is, then a character shold be spawned.
 func _on_wave_changed(wave: int) -> void:
 	if wave in spawn_waves:
-		spawn_character()
+		spawn_character(wave)
+
+
+func _change_character_level(character: Character, level: int) -> void:
+	character.level.current_level = level
+
+
+func _fill_character_health(character: Character) -> void:
+	character.heal(character.health.max_value_after_buffs)
