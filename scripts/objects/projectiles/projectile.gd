@@ -82,8 +82,13 @@ func change_projectile_radius(new_radius: int) -> void:
 	if not _col_shape.shape:
 		_col_shape.shape = CircleShape2D.new()
 	_col_shape.shape.radius = new_radius
-	%FlyingParticles.scale_amount_min = new_radius/2
-	%FlyingParticles.scale_amount_max = %FlyingParticles.scale_amount_min * 2
+	_update_particle_size(new_radius)
+
+
+func _update_particle_size(projectile_radius: int) -> void:
+	var particles: CPUParticles2D = %FlyingParticles
+	particles.scale_amount_min = projectile_radius / 2
+	particles.scale_amount_max = particles.scale_amount_min * 2
 
 
 ## Sets [member Projectile.projectile_properties].
