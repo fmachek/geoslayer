@@ -47,6 +47,7 @@ var _fade_tween: Tween
 
 func _ready() -> void:
 	_handle_radius_change()
+	_update_particle_colors()
 	_char_detection_area.body_entered.connect(_handle_body_entered)
 	_char_detection_area.body_exited.connect(_handle_body_exited)
 	_life_time_timer.timeout.connect(_become_inactive)
@@ -102,6 +103,13 @@ func _handle_radius_change() -> void:
 func _handle_life_time_change() -> void:
 	if _life_time_timer:
 		_life_time_timer.wait_time = life_time
+
+
+func _update_particle_colors() -> void:
+	var ring_particles: CPUParticles2D = $RingParticles
+	var tick_particles: CPUParticles2D = $TickParticles
+	ring_particles.color = draw_color
+	tick_particles.color = draw_color
 
 
 #region setters
