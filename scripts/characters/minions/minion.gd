@@ -40,11 +40,16 @@ func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D:
 	var smallest_distance: float = 100000.0
 	var chosen_target: Node2D = null
 	for body: Node2D in bodies:
-		if (body is Enemy or body is Chest) and body != target:
-			var distance: float = global_position.distance_to(body.global_position)
-			if distance < smallest_distance:
-				smallest_distance = distance
-				chosen_target = body
+		if not (body is Enemy or body is Chest):
+			return
+		if body == target:
+			return
+		if not body.is_alive:
+			return
+		var distance: float = global_position.distance_to(body.global_position)
+		if distance < smallest_distance:
+			smallest_distance = distance
+			chosen_target = body
 	return chosen_target
 
 

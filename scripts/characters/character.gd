@@ -40,6 +40,7 @@ var is_casting: bool = false
 ## usually be the current mouse position. For [Enemy], this will usually be
 ## the [PlayerCharacter]'s position.
 var target_pos: Vector2
+var is_alive: bool = true
 #endregion
 
 #region @onready variables
@@ -119,6 +120,7 @@ func check_for_death(old_health: int, new_health: int) -> void:
 ## death particles and then frees itself. [member Character.died] is emitted
 ## at the very start of this function.
 func die() -> void:
+	is_alive = false
 	died.emit()
 	drop_items()
 	_spawn_death_particles()
