@@ -8,8 +8,12 @@ extends Node
 signal wave_started()
 ## Emitted when a wave ends in the world.
 signal wave_ended()
+## Emitted when the current wave changes.
+signal wave_changed(wave: int)
 ## Emitted when the time until the current wave ends in the world changes.
 signal time_until_wave_end_changed(time: int)
+## Emitted when the final wave finishes.
+signal final_wave_finished()
 
 ## The [World] currently loaded.
 var current_world: World
@@ -37,7 +41,11 @@ func load_world(main: Main, world_number: int) -> void:
 		current_world.wave_manager.wave_ended.connect(
 				func(): wave_ended.emit())
 		current_world.wave_manager.time_until_wave_end_changed.connect(
-			func(time: int): time_until_wave_end_changed.emit(time))
+				func(time: int): time_until_wave_end_changed.emit(time))
+		current_world.wave_manager.current_wave_changed.connect(
+				func(wave: int): wave_changed.emit(wave))
+		current_world.wave_manager.final_wave_finished.connect(
+				func(): final_wave_finished.emit())
 
 
 ## Loads a world in [param main] when it is ready.
