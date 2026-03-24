@@ -57,6 +57,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func explode() -> void:
 	if _can_explode:
 		_can_explode = false
+		_can_deal_damage = false
 		queue_redraw() # The projectile needs to disappear
 		var explosion_particles: ProjectileParticles = _explosion_particles_scene.instantiate()
 		explosion_particles.load_from_projectile(self)
