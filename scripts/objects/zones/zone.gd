@@ -4,6 +4,8 @@ extends Node2D
 
 ## Emitted when the [Zone] becomes inactive.
 signal became_inactive()
+## Emitted when [member Zone.caster] changes.
+signal caster_changed(caster: Character)
 
 #region regular variables
 ## Used to draw the fill of the [Zone] shape.
@@ -118,6 +120,7 @@ func _set_caster(new_caster: Character) -> void:
 	_load_caster_variables(caster)
 	_load_caster_colors(caster.draw_color, caster.outline_color)
 	caster.tree_exiting.connect(_become_inactive)
+	caster_changed.emit(caster)
 
 
 func _set_life_time(value: float) -> void:

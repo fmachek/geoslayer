@@ -10,6 +10,9 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="DamagingZone" unique_id=391910855 instance=ExtResource("1_gnwex")]
 script = ExtResource("2_0kfi1")
 
+[node name="CharacterDetectionArea" parent="." index="0" unique_id=1287240121]
+collision_mask = 0
+
 [node name="RingParticles" parent="." index="1" unique_id=203274882]
 amount = 40
 emission_ring_inner_radius = 200.0

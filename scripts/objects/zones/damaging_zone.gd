@@ -13,12 +13,15 @@ var damage_per_tick: int
 var time_per_tick: float: set = _set_time_per_tick
 
 @onready var _damage_tick_timer := $DamageTickTimer
+@onready var _area: Area2D = $CharacterDetectionArea
 
 
 func _ready() -> void:
 	super()
 	became_inactive.connect(func(): _damage_tick_timer.stop())
+	caster_changed.connect(_on_caster_changed)
 	_update_tick_timer()
+	CollisionMaskFunctions.set_area_collision_mask(_area, caster)
 
 
 func _handle_body_entered(body: Node2D) -> void:
@@ -43,15 +46,6 @@ func _on_damage_tick_timer_timeout() -> void:
 	for body: Node2D in bodies:
 		if body is not Character:
 			continue
-		if caster is PlayerCharacter:
-			if body is PlayerCharacter or body is Minion:
-				continue
-		elif caster is Minion:
-			if body is Minion or body is PlayerCharacter:
-				continue
-		elif caster is Enemy:
-			if body is Enemy or body is Chest:
-				continue
 		_deal_damage(body)
 
 
@@ -80,3 +74,7 @@ func _set_time_per_tick(value: float) -> void:
 		return
 	time_per_tick = value
 	_update_tick_timer()
+
+
+func _on_caster_changed(new_caster: Character) -> void:
+	CollisionMaskFunctions.set_area_collision_mask(_area, new_caster)

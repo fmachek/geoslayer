@@ -139,29 +139,10 @@ func _spawn_damage_label(damage: int, pos: Vector2) -> void:
 
 func _set_properties(props: ProjectileProperties) -> void:
 	projectile_properties = props
-	var source: Node2D = projectile_properties.source
-	_set_area_collision_mask(source)
+	_update_collision_mask()
 
 
-# Sets the Area2D collision mask based on what type the
-# projectile source is. For example, a PlayerCharacter's
-# projectile will only be able to collide with enemies and
-# containers (and walls).
-func _set_area_collision_mask(source: Node2D) -> void:
+func _update_collision_mask() -> void:
 	var area: Area2D = $Area2D
-	if source:
-		if source is PlayerCharacter:
-			_set_mask_for_layers([1, 8, 11], area)
-		elif source is Minion:
-			_set_mask_for_layers([1, 8, 11], area)
-		elif source is Enemy:
-			_set_mask_for_layers([1, 7, 10], area)
-		elif source is Turret:
-			_set_mask_for_layers([1, 7, 10], area)
-	else:
-		_set_mask_for_layers([1, 7, 10], area)
-
-
-func _set_mask_for_layers(layers: Array[int], area: Area2D) -> void:
-	for layer: int in layers:
-		area.set_collision_mask_value(layer, true)
+	var source: Node2D = projectile_properties.source
+	CollisionMaskFunctions.set_area_collision_mask(area, source)
