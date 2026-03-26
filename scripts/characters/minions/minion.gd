@@ -40,7 +40,7 @@ func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D:
 	var smallest_distance: float = 100000.0
 	var chosen_target: Node2D = null
 	for body: Node2D in bodies:
-		if not (body is Enemy or body is Chest):
+		if not (body is Enemy or body is Chest or body is HealingStation):
 			return
 		if body == target:
 			return
@@ -55,7 +55,7 @@ func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D:
 
 # Detects Enemy or Chest nodes entering the detection area.
 func _on_character_detection_area_body_entered(body: Node2D) -> void:
-	if body is Enemy or body is Chest:
+	if body is Enemy or body is Chest or body is HealingStation:
 		if target:
 			var distance_to_body: float = global_position.distance_to(body.global_position)
 			var distance_to_target: float = global_position.distance_to(target.global_position)
