@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://db864u6onn44v"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_yqrbj"]
+[ext_resource type="Script" uid="uid://d35asbx58dv1g" path="res://scripts/characters/enemies/bosses/boss_1/boss_1.gd" id="2_oapbf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ci7y"]
+radius = 48.0
+
+[node name="Boss" unique_id=1080282355 instance=ExtResource("1_yqrbj")]
+collision_layer = 2186
+script = ExtResource("2_oapbf")
+draw_color = Color(0.93253213, 0, 0.063352175, 1)
+outline_color = Color(0.6582416, 0, 0.03047952, 1)
+base_health = 2000
+base_damage = 500
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_5ci7y")

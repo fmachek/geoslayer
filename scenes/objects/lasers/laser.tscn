@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://468kxvqubqks"]
+
+[ext_resource type="Script" uid="uid://kpsxjdl27pbi" path="res://scripts/objects/lasers/laser.gd" id="1_w584r"]
+
+[node name="Laser" type="Node2D" unique_id=407778691]
+script = ExtResource("1_w584r")
+draw_color = Color(0, 0.6862745, 0.8392157, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1371159915]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=234475045]
+position = Vector2(100, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=553158428]
+hit_from_inside = true
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=839988767]
+wait_time = 0.1
+
+[node name="StartTimer" type="Timer" parent="." unique_id=914459700]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

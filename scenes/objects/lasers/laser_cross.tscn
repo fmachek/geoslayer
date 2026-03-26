@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bg6fsk13e1by3"]
+
+[ext_resource type="PackedScene" uid="uid://468kxvqubqks" path="res://scenes/objects/lasers/laser.tscn" id="1_cy1x8"]
+[ext_resource type="Script" uid="uid://irwmack5pypw" path="res://scripts/objects/lasers/laser_cross.gd" id="1_igeg0"]
+
+[node name="LaserCross" type="Node2D" unique_id=69811907]
+script = ExtResource("1_igeg0")
+
+[node name="Laser1" parent="." unique_id=407778691 instance=ExtResource("1_cy1x8")]
+
+[node name="Laser2" parent="." unique_id=1611747892 instance=ExtResource("1_cy1x8")]
+rotation = 1.5707964
+
+[node name="Laser3" parent="." unique_id=1421257702 instance=ExtResource("1_cy1x8")]
+rotation = 3.1415927
+
+[node name="Laser4" parent="." unique_id=1861343563 instance=ExtResource("1_cy1x8")]
+rotation = 4.712389
+
+[node name="FreeTimer" type="Timer" parent="." unique_id=936740151]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="FreeTimer" to="." method="_on_free_timer_timeout"]

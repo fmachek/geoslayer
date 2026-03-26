@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://l6vhgef26p4u"]
+
+[ext_resource type="PackedScene" uid="uid://fa8fx68x0ycb" path="res://scenes/objects/projectiles/projectile.tscn" id="1_mo4dd"]
+[ext_resource type="Script" uid="uid://btmdxrdtfrerc" path="res://scripts/objects/projectiles/slowing_projectile.gd" id="2_hlhv6"]
+[ext_resource type="Texture2D" uid="uid://bfimaocou76ax" path="res://assets/sprites/objects/projectiles/particles/arrow_down.png" id="3_0ia7u"]
+
+[node name="SlowingProjectile" unique_id=2135564719 instance=ExtResource("1_mo4dd")]
+script = ExtResource("2_hlhv6")
+
+[node name="FlyingParticles" parent="." index="2" unique_id=492214561]
+texture_filter = 1
+texture = ExtResource("3_0ia7u")
