@@ -20,9 +20,12 @@ func start_wave() -> void:
 	wave_started.emit()
 	current_wave_changed.emit(current_wave)
 	
-	time_until_wave_end = time_per_wave
-	time_until_wave_end_changed.emit(time_until_wave_end)
-	wave_timer.start()
+	if current_wave != max_waves:
+		time_until_wave_end = time_per_wave
+		time_until_wave_end_changed.emit(time_until_wave_end)
+		wave_timer.start()
+	else:
+		end_wave()
 	
 	print("Wave " + str(current_wave) + " started!")
 

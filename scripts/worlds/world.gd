@@ -8,7 +8,7 @@ var chest_scene: PackedScene = preload("res://scenes/characters/containers/chest
 var unopened_chests: Array = []
 
 func _ready() -> void:
-	wave_manager.wave_ended.connect(spawn_chest)
+	wave_manager.wave_ended.connect(_handle_wave_end)
 	player_spawn_pos = %PlayerSpawnPoint.global_position
 	call_deferred("spawn_player")
 
@@ -33,3 +33,8 @@ func _on_chest_opened(chest: Chest) -> void:
 		var new_chest: Chest = unopened_chests[0]
 		add_child(new_chest)
 		new_chest.global_position = %ChestSpawnPoint.global_position
+
+func _handle_wave_end() -> void:
+	if wave_manager.current_wave == wave_manager.max_waves:
+		return
+	spawn_chest()
