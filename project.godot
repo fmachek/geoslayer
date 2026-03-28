@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 PlayerManager="*uid://cbmflsin26xyg"
 WorldManager="*uid://bsml1uo2h07sk"
 GameManager="*uid://d0c3pd5wo3gu2"
+UserManager="*uid://da7wyp7qrn6f8"
 
 [display]
 
