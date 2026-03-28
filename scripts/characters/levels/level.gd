@@ -46,8 +46,8 @@ func add_xp(xp: int) -> void:
 
 ## Resets [member Level.current_xp] to 0 and increases
 ## [member Level.current_level] by 1. Also multiplies
-## [member Level.required_xp] by 1.3 to require more XP for higher levels.
+## [member Level.required_xp] by 1.05 to require more XP for higher levels.
 func level_up() -> void:
 	current_xp = 0
 	current_level += 1
-	required_xp *= 1.3 # Required XP increases with each new level
+	required_xp *= 1.05 # Required XP increases with each new level
