@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ci13jsaqlgqvo"]
+
+[ext_resource type="Script" uid="uid://dvbdb24ao7vlh" path="res://scripts/user_interface/progression/permanent_stats/permanent_stat_row.gd" id="1_736st"]
+[ext_resource type="PackedScene" uid="uid://ychke5jdt41e" path="res://scenes/user_interface/hud/stats_tab/stat_increase_button.tscn" id="2_6v10b"]
+
+[node name="PermanentStatRow" type="HBoxContainer" unique_id=1140627092]
+offset_right = 69.0
+offset_bottom = 23.0
+size_flags_horizontal = 4
+script = ExtResource("1_736st")
+
+[node name="StatNameContainer" type="MarginContainer" parent="." unique_id=1529367564]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="StatNameLabel" type="Label" parent="StatNameContainer" unique_id=1980757713]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+text = "Damage"
+
+[node name="StatValueContainer" type="MarginContainer" parent="." unique_id=663191942]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="StatValueLabel" type="Label" parent="StatValueContainer" unique_id=1397334825]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+text = "100"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=496456]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatIncreaseButton" parent="MarginContainer" unique_id=1554493104 instance=ExtResource("2_6v10b")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

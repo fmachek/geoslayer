@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://d1hbgw27crue0"]
 
 [ext_resource type="Texture2D" uid="uid://hfgq5uu4vabl" path="res://assets/user_interface/textures/xp_orb_sprite.png" id="1_01m43"]
-[ext_resource type="Script" uid="uid://313vd6xcooo1" path="res://scripts/user_interface/main_menu/buttons/play_button.gd" id="1_femvy"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="1_kibp0"]
-[ext_resource type="Script" uid="uid://c2n8vhx288uk4" path="res://scripts/user_interface/main_menu/buttons/exit_button.gd" id="2_bv0at"]
+[ext_resource type="Script" uid="uid://gjgt7sy17snq" path="res://scripts/user_interface/main_menu/buttons/menu_button_container.gd" id="2_tlslw"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_w5fdl"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_01m43"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_tlslw"]
@@ -93,6 +92,7 @@ text = "project01"
 [node name="ButtonContainer" type="VBoxContainer" parent="HBoxContainer/LeftMarginContainer/VBoxContainer" unique_id=1748120606]
 layout_mode = 2
 theme_override_constants/separation = 20
+script = ExtResource("2_tlslw")
 
 [node name="PlayButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=526585102]
 layout_mode = 2
@@ -113,7 +113,6 @@ theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
 theme_override_styles/focus = ExtResource("3_01m43")
 text = "Play"
 alignment = 0
-script = ExtResource("1_femvy")
 
 [node name="ShopButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=356799502]
 layout_mode = 2
@@ -137,6 +136,7 @@ alignment = 0
 
 [node name="ProgressionButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=1742011499]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
@@ -151,7 +151,6 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
 theme_override_styles/disabled = ExtResource("4_tlslw")
 theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
 theme_override_styles/focus = ExtResource("3_01m43")
-disabled = true
 text = "Progression"
 alignment = 0
 
@@ -194,4 +193,3 @@ theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
 theme_override_styles/focus = ExtResource("3_01m43")
 text = "Exit"
 alignment = 0
-script = ExtResource("2_bv0at")

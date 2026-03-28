@@ -90,6 +90,14 @@ func switch_to_win_screen() -> void:
 	main_node = null
 
 
+## Switches to the permanent progression UI.
+func switch_to_progression() -> void:
+	resume_game()
+	can_pause_game = false
+	get_tree().change_scene_to_file("res://scenes/user_interface/progression/progression_ui.tscn")
+	main_node = null
+
+
 ## Pauses the game if allowed.
 func pause_game() -> void:
 	if can_pause_game:

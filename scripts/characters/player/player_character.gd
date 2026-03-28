@@ -42,6 +42,8 @@ func _ready() -> void:
 	load_unlocked_abilities()
 	equip_ability(unlocked_abilities[0]) # Equip first unlocked ability on spawn
 	target_pos = get_global_mouse_position()
+	_apply_user_stats()
+	health.current_value = health.max_value
 
 
 func _process(delta: float) -> void:
@@ -212,3 +214,16 @@ func apply_perk_point(stat: CharacterStat) -> bool:
 		stat.apply_perk_point()
 		return true
 	return false
+
+
+func _apply_user_stats() -> void:
+	var user_stats: Array[UserStat] = UserManager.user_stats
+	for user_stat in user_stats:
+		var stat_name: String = user_stat.stat_name
+		var stat_value: int = user_stat.stat_value
+		var char_stats: Array = get_node("CharacterStats").get_children()
+		for child in char_stats:
+			if child is CharacterStat:
+				if child.stat_name == stat_name:
+					child.max_value += child.perk_point_increase * stat_value
+					break

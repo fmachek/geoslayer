@@ -165,7 +165,33 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_22730")
 step = 1.0
 value = 50.0
 
-[node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=304845399]
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=421448359]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="ProgressionButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer" unique_id=1093130459]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("4_nl1kk")
+theme_override_styles/normal_mirrored = ExtResource("4_nl1kk")
+theme_override_styles/pressed = ExtResource("5_h5p5c")
+theme_override_styles/pressed_mirrored = ExtResource("5_h5p5c")
+theme_override_styles/hover = ExtResource("6_r6n0o")
+theme_override_styles/hover_mirrored = ExtResource("6_r6n0o")
+theme_override_styles/hover_pressed = ExtResource("5_h5p5c")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_h5p5c")
+theme_override_styles/disabled = ExtResource("7_m3r6q")
+theme_override_styles/disabled_mirrored = ExtResource("7_m3r6q")
+theme_override_styles/focus = ExtResource("6_r6n0o")
+text = "View progression"
+
+[node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer" unique_id=304845399]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
