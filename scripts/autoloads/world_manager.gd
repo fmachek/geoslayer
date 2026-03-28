@@ -14,6 +14,8 @@ signal wave_changed(wave: int)
 signal time_until_wave_end_changed(time: int)
 ## Emitted when the final wave finishes.
 signal final_wave_finished()
+## Emitted when boss death in [member current_world] is handled.
+signal boss_died()
 
 ## The [World] currently loaded.
 var current_world: World
@@ -56,3 +58,7 @@ func _on_game_manager_loaded_main(main: Main) -> void:
 # Starts a new wave when the button for it is pressed.
 func _on_spawn_wave_button_pressed() -> void:
 	current_world.start_wave()
+
+
+func handle_boss_death() -> void:
+	boss_died.emit()

@@ -33,6 +33,8 @@ func spawn_character(current_wave: int) -> void:
 	get_parent().add_child(character)
 	call_deferred("_change_character_level", character, current_wave)
 	call_deferred("_fill_character_health", character)
+	if character is Boss:
+		character.died.connect(WorldManager.handle_boss_death)
 
 
 # Checks if the new wave is in the spawn_waves array.

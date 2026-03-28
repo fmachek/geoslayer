@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://xoe0q5drw1s6"]
+
+[ext_resource type="Texture2D" uid="uid://hfgq5uu4vabl" path="res://assets/user_interface/textures/xp_orb_sprite.png" id="1_f5h0i"]
+
+[node name="XpOrbSprite" type="TextureRect" unique_id=1274966846]
+z_index = 1
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("1_f5h0i")
+expand_mode = 2
+stretch_mode = 5

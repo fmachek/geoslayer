@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://brwugvat8jvn4"]
+
+[ext_resource type="Script" uid="uid://5ak5ge25pugp" path="res://scripts/user_interface/win_screen/win_screen.gd" id="1_nf2rp"]
+[ext_resource type="Script" uid="uid://bdilgwqtqc44e" path="res://scripts/characters/levels/level.gd" id="2_7ip05"]
+[ext_resource type="Script" uid="uid://c63qsw8tg3y26" path="res://scripts/user_interface/win_screen/player_level_container.gd" id="2_22730"]
+[ext_resource type="Texture2D" uid="uid://hfgq5uu4vabl" path="res://assets/user_interface/textures/xp_orb_sprite.png" id="2_h5p5c"]
+[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="4_nl1kk"]
+[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="5_h5p5c"]
+[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="6_r6n0o"]
+[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="7_m3r6q"]
+
+[sub_resource type="Gradient" id="Gradient_r6n0o"]
+offsets = PackedFloat32Array(0.17218544, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5j0h"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22730"]
+bg_color = Color(0.73333335, 0, 0.73333335, 1)
+
+[node name="WinScreen" type="Control" unique_id=1907474496]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nf2rp")
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=361006508]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.41960785, 0.52156866, 1)
+
+[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1057797905]
+position = Vector2(576, 680)
+amount = 5
+lifetime = 2.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 0)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+color = Color(1.2995303e-06, 0.3387098, 0.4232913, 1)
+color_ramp = SubResource("Gradient_r6n0o")
+
+[node name="OrbParticles" type="CPUParticles2D" parent="." unique_id=145046814]
+position = Vector2(576, 680)
+amount = 10
+texture = ExtResource("2_h5p5c")
+lifetime = 2.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 0)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.03
+scale_amount_max = 0.05
+color = Color(1, 0, 1, 1)
+color_ramp = SubResource("Gradient_r6n0o")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=387678051]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1065047026]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="YouHaveWonLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=775417743]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 48
+text = "YOU HAVE WON!"
+horizontal_alignment = 1
+
+[node name="LevelAchievedContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1740229585]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LevelAchievedContainer" unique_id=887688969]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Level achieved:"
+horizontal_alignment = 1
+
+[node name="LevelAchievedLabel" type="Label" parent="MarginContainer/VBoxContainer/LevelAchievedContainer" unique_id=1702370157]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 64
+text = "10"
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=872704093]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 18
+text = "Levels you gained have been transformed into player XP."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PlayerLevelContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1858597974]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("2_22730")
+
+[node name="MockLevel" type="Node" parent="MarginContainer/VBoxContainer/PlayerLevelContainer" unique_id=1067874691]
+unique_name_in_owner = true
+script = ExtResource("2_7ip05")
+metadata/_custom_type_script = "uid://bdilgwqtqc44e"
+
+[node name="PlayerLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/PlayerLevelContainer" unique_id=794515650]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Current player level: 10"
+horizontal_alignment = 1
+
+[node name="LevelProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/PlayerLevelContainer" unique_id=1858968857]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+theme_override_styles/background = SubResource("StyleBoxFlat_n5j0h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_22730")
+step = 1.0
+value = 50.0
+
+[node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=304845399]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("4_nl1kk")
+theme_override_styles/normal_mirrored = ExtResource("4_nl1kk")
+theme_override_styles/pressed = ExtResource("5_h5p5c")
+theme_override_styles/pressed_mirrored = ExtResource("5_h5p5c")
+theme_override_styles/hover = ExtResource("6_r6n0o")
+theme_override_styles/hover_mirrored = ExtResource("6_r6n0o")
+theme_override_styles/hover_pressed = ExtResource("5_h5p5c")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_h5p5c")
+theme_override_styles/disabled = ExtResource("7_m3r6q")
+theme_override_styles/disabled_mirrored = ExtResource("7_m3r6q")
+theme_override_styles/focus = ExtResource("6_r6n0o")
+text = "Back to main menu"

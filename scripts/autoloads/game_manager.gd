@@ -9,6 +9,8 @@ signal loaded_main(main: Main)
 signal paused_game()
 ## Emitted when the game is resumed.
 signal resumed_game()
+## Emitted when the game is won.
+signal won_game()
 
 ## Main [Node2D] containing the in-game UI and world.
 var main_node: Main
@@ -16,6 +18,10 @@ var main_node: Main
 var selected_world_number: int
 ## [code]true[/code] if the game can be paused.
 var can_pause_game: bool = false
+## User XP last given.
+var last_xp_gained: int = 0
+## Last game level achieved.
+var level_achieved: int
 
 
 func _ready() -> void:
@@ -76,6 +82,14 @@ func switch_to_world_selection() -> void:
 	main_node = null
 
 
+## Switches to the win screen UI scene.
+func switch_to_win_screen() -> void:
+	resume_game()
+	can_pause_game = false
+	get_tree().change_scene_to_file("res://scenes/user_interface/win_screen/win_screen.tscn")
+	main_node = null
+
+
 ## Pauses the game if allowed.
 func pause_game() -> void:
 	if can_pause_game:
@@ -93,3 +107,15 @@ func resume_game() -> void:
 # Disables pausing on player death.
 func _on_player_died() -> void:
 	can_pause_game = false
+
+
+## Gives XP to the user and switches to the win screen.
+func win_game() -> void:
+	won_game.emit()
+	var character: PlayerCharacter = PlayerManager.current_player
+	var character_level: Level = character.level
+	level_achieved = character_level.current_level
+	var user_xp: int = level_achieved * 5
+	UserManager.add_xp(user_xp)
+	last_xp_gained = user_xp
+	switch_to_win_screen()
