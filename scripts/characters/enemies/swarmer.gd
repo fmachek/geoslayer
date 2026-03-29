@@ -4,4 +4,6 @@ extends Enemy
 ## Represents an enemy who casts [Blast].
 
 func _load_abilities() -> void:
-	_load_ability(Blast.new())
+	var blast := Blast.new()
+	blast.cooldown *= 3
+	_load_ability(blast)

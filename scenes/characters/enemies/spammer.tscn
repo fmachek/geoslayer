@@ -7,3 +7,4 @@
 script = ExtResource("2_b8gl3")
 draw_color = Color(0.88574713, 0, 0.2767876, 1)
 outline_color = Color(0.68916637, 0, 0.20860153, 1)
+base_damage = 50

@@ -11,7 +11,6 @@ script = ExtResource("2_80jk3")
 draw_color = Color(0.7229122, 0.63069284, 1.1551381e-06, 1)
 outline_color = Color(0.48786014, 0.42480856, 9.62615e-08, 1)
 base_health = 30
-base_damage = 400
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
 shape = SubResource("CircleShape2D_8bf4s")
