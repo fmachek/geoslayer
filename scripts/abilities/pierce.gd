@@ -17,7 +17,7 @@ var base_damage: int = 50
 var projectile_radius: int = 10
 
 ## The amount of time the cäster has to aim before firing the projectile.
-var aim_time: float = 1.0
+var aim_time: float = 0.5
 ## Timer used to time the aiming.
 var aim_timer: Timer
 ## Amount by which the caster's speed is debuffed on ability cast.
@@ -37,7 +37,7 @@ func _create_aim_timer() -> void:
 
 
 func _init()-> void:
-	super._init(4, "res://assets/sprites/pierce.png",
+	super(2.0, "res://assets/sprites/pierce.png",
 			"Aims, slowing the user down temporarily,
 			and fires a fast piercing projectile.")
 
