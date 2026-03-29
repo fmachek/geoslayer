@@ -1,6 +1,7 @@
 class_name DamagingZone
 extends Zone
-## Represents a [Zone] which damages [Character]s inside of it.
+## Represents a [Zone] which damages [Character]s inside of it and
+## slows them down.
 
 const _DMG_LABEL_SCENE := preload(
 		"res://scenes/user_interface/world_labels/damage_label.tscn")
@@ -8,9 +9,13 @@ const _DMG_LABEL_SCENE := preload(
 ## Base damage dealt by the [DamagingZone].
 var base_damage: int = 7
 ## Damage dealt by the [DamagingZone] every tick.
-var damage_per_tick: int
+var damage_per_tick: int = base_damage
 ## Time each tick takes in seconds.
 var time_per_tick: float: set = _set_time_per_tick
+## Speed debuff applied to the [Character] hit.
+var speed_debuff: int = 100
+## Duration of the speed debuff applied to the [Character] hit, in seconds.
+var speed_debuff_duration: float = time_per_tick
 
 @onready var _damage_tick_timer := $DamageTickTimer
 @onready var _area: Area2D = $CharacterDetectionArea
@@ -47,12 +52,19 @@ func _on_damage_tick_timer_timeout() -> void:
 		if body is not Character:
 			continue
 		_deal_damage(body)
+		_slow_character(body)
 
 
 # Deals damage to a character and spawns a label.
 func _deal_damage(character: Character) -> void:
 	character.take_damage(damage_per_tick)
 	_spawn_damage_label(damage_per_tick, character.global_position)
+
+
+# Applies a speed debuff to the target.
+func _slow_character(target: Character) -> void:
+	var speed_debuff := Buff.new(-speed_debuff, speed_debuff_duration)
+	speed_debuff.apply_to_stat(target.speed)
 
 
 # Spawns a label showing the damage dealt.

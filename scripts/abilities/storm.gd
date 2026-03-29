@@ -1,6 +1,7 @@
 class_name Storm
 extends Ability
-## Summons a [DamagingZone] which deals damage to enemies standing inside of it.
+## Summons a [DamagingZone] which deals damage to enemies standing inside of it
+## and slows them down.
 
 const _ZONE_SCENE := preload(
 		"res://scenes/objects/zones/damaging_zone.tscn")
@@ -27,7 +28,7 @@ var speed_debuff_amount: int = 200
 
 func _init() -> void:
 	super._init(12.0, "res://assets/sprites/storm.png",
-			"Summons a damaging storm.")
+			"Summons a damaging and slowing storm.")
 
 
 func _ready() -> void:
