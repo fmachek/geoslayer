@@ -2,11 +2,9 @@
 extends Enemy
 ## Represents a boss [Enemy].
 ##
-## A [Boss] has a lot of health and deals a lot of damage. Unlike a
-## regular [Enemy], its [Ability] cooldown and damage is not
-## nerfed.[br][br]
+## A [Boss] has a lot of health and deals a lot of damage.
 ##
-## A [Boss] has 3 phases. The first phase begins immediately upon entering
+## It has 3 phases. The first phase begins immediately upon entering
 ## the scene tree. The second phase begins when the [Boss] health drops by
 ## a third. The last phase begins when the [Boss] health drops by another third
 ## of the max health.[br][br]
@@ -21,11 +19,6 @@ var _current_phase: int = 1
 @abstract func _start_phase_1() -> void
 @abstract func _start_phase_2() -> void
 @abstract func _start_phase_3() -> void
-
-
-func _init() -> void:
-	ability_cooldown_multiplier = 1.0
-	ability_damage_multiplier = 1.0
 
 
 func _ready() -> void:

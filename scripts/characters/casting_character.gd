@@ -11,10 +11,6 @@ extends Character
 var target: Character
 ## Array of abilities ready to be cast.
 var castable_abilities: Array[Ability] = []
-## Multiplier used to make [Ability] cooldowns longer than usual.
-var ability_cooldown_multiplier: float = 3
-## Multiplier used to make [Ability] damage lower than usual.
-var ability_damage_multiplier: float = 0.3
 ## Cooldown used to space out individual [Ability] casts.
 var cast_cooldown: float = 2.0
 ## Distance at which the [CastingCharacter] stops following [member CastingCharacter.target].
@@ -70,12 +66,7 @@ func _physics_process(delta: float) -> void:
 		nav_agent.set_velocity(direction * speed.max_value_after_buffs)
 
 
-## Makes the [param ability] cooldown longer, base damage lower,
-## and equips the [param ability].
 func _load_ability(ability: Ability) -> void:
-	ability.cooldown *= ability_cooldown_multiplier # Nerf ability cooldown
-	if "base_damage" in ability: # Nerf ability damage
-		ability.base_damage = float(ability.base_damage) * ability_damage_multiplier
 	equip_ability(ability)
 	_add_ability_to_castable(ability)
 	# Connect signals that manage castable

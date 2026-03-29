@@ -21,8 +21,6 @@ var spawner: PlayerCharacter:
 
 
 func _init() -> void:
-	ability_damage_multiplier = 1.0
-	ability_cooldown_multiplier = 1.0
 	cast_cooldown = 0.75
 
 
