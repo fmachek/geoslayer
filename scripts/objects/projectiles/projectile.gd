@@ -50,7 +50,7 @@ func _draw() -> void:
 func _draw_projectile_shape() -> void:
 	var radius: int = _col_shape.shape.radius
 	draw_circle(Vector2.ZERO, projectile_properties.radius, projectile_properties.draw_color)
-	var outline_width: int = radius/8
+	var outline_width: float = float(radius) / 8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, projectile_properties.outline_color, outline_width, true)
 
 
