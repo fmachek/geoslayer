@@ -78,6 +78,7 @@ func explode() -> void:
 
 ## Causes the [Projectile] to disappear
 func disappear() -> void:
+	_can_deal_damage = false
 	if _can_explode:
 		_can_explode = false
 		queue_redraw() # The projectile needs to disappear
