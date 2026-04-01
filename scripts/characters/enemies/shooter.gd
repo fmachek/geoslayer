@@ -5,4 +5,6 @@ extends Enemy
 
 func _load_abilities() -> void:
 	_load_ability(Shoot.new())
-	_load_ability(Angleshot.new())
+	var angleshot := Angleshot.new()
+	angleshot.cooldown = 1.5
+	_load_ability(angleshot)
