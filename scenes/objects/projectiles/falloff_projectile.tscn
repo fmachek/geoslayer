@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c2vo58ngyvdmy"]
+
+[ext_resource type="PackedScene" uid="uid://fa8fx68x0ycb" path="res://scenes/objects/projectiles/projectile.tscn" id="1_nix8n"]
+[ext_resource type="Script" uid="uid://dqv4mkhenwmka" path="res://scripts/objects/projectiles/falloff_projectile.gd" id="2_nf287"]
+
+[node name="FalloffProjectile" unique_id=2135564719 instance=ExtResource("1_nix8n")]
+script = ExtResource("2_nf287")
