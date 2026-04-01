@@ -5,6 +5,8 @@ extends Node2D
 
 ## Emitted when the [Projectile] explodes.
 signal exploded()
+## Emitted when a [Character] gets hit by the [Projectile].
+signal hit_character(char: Character)
 
 # Path to the ProjectileParticles scene.
 const _PARTICLES_PATH := "res://scenes/particle_effects/projectile_particles.tscn"
@@ -14,6 +16,8 @@ const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn
 ## Contains all important properties the [Projectile] requires,
 ## such as the damage or radius.
 var projectile_properties: ProjectileProperties: set = _set_properties
+## Time until the [Projectile] disappears automatically.
+var free_time: float = 5.0: set = _set_free_time
 
 var _can_explode: bool = true
 var _can_deal_damage: bool = true
@@ -21,6 +25,12 @@ var _explosion_particles_scene := preload(_PARTICLES_PATH)
 var _damage_label_scene := preload(_LABEL_PATH)
 
 @onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var _free_timer: Timer = $FreeTimer
+
+
+func _ready() -> void:
+	_update_free_timer(free_time)
+	_free_timer.start()
 
 
 # Moves on every physics frame.
@@ -47,6 +57,7 @@ func _draw_projectile_shape() -> void:
 # Handles collisions.
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Character and _can_deal_damage:
+		hit_character.emit(body)
 		_handle_character_collision(body)
 	else:
 		explode()
@@ -146,3 +157,18 @@ func _update_collision_mask() -> void:
 	var area: Area2D = $Area2D
 	var source: Node2D = projectile_properties.source
 	CollisionMaskFunctions.set_area_collision_mask(area, source)
+
+
+func _update_free_timer(new_time: float) -> void:
+	if not is_instance_valid(_free_timer):
+		return
+	_free_timer.stop()
+	_free_timer.wait_time = new_time
+	_free_timer.start()
+
+
+func _set_free_time(value: float) -> void:
+	if value <= 0:
+		value = 0.1
+	free_time = value
+	_update_free_timer(free_time)

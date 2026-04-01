@@ -17,7 +17,6 @@ collision_mask = 0
 [node name="FreeTimer" type="Timer" parent="." unique_id=62067954]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
 [node name="FlyingParticles" type="CPUParticles2D" parent="." unique_id=492214561]
 unique_name_in_owner = true
