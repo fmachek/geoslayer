@@ -28,6 +28,12 @@ max_value = 100
 current_value = 100
 perk_point_increase = 2
 
+[node name="Armor" type="Node" parent="CharacterStats" unique_id=2127940257]
+script = ExtResource("2_2qjml")
+stat_name = "Armor"
+perk_point_increase = 2
+metadata/_custom_type_script = "uid://bawkqpf2atlge"
+
 [node name="Speed" type="Node" parent="CharacterStats" unique_id=1314298599]
 script = ExtResource("2_2qjml")
 stat_name = "Speed"

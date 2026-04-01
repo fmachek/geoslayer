@@ -94,8 +94,8 @@ func _on_damage_timer_timeout() -> void:
 	var bodies: Array[Node2D] = area.get_overlapping_bodies()
 	for body: Node2D in bodies:
 		if body is Character:
-			body.take_damage(damage)
-			_spawn_damage_label(damage, body.global_position)
+			var damage_taken: int = body.take_damage(damage)
+			_spawn_damage_label(damage_taken, body.global_position)
 
 
 func _spawn_damage_label(damage: int, pos: Vector2) -> void:

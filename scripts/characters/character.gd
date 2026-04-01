@@ -46,6 +46,8 @@ var is_alive: bool = true
 #region @onready variables
 ## Health stat node.
 @onready var health: Health = $CharacterStats/Health
+## Armor stat node. Every 10 armor blocks 1 point of damage.
+@onready var armor: CharacterStat = $CharacterStats/Armor
 ## Damage stat node. Damage is measured in percentage.
 @onready var damage: CharacterStat = $CharacterStats/Damage
 ## Speed stat node.
@@ -90,9 +92,16 @@ func _ready() -> void:
 	%AimLine.default_color = Color(outline_color, 0.3)
 
 
-## Makes the [Character] take damage.
-func take_damage(damage: int) -> void:
-	health.add_value(-damage)
+## Makes the [Character] take damage. Returns the damage taken,
+## which can be different depending on the [Character]'s armor.
+func take_damage(damage: int) -> int:
+	var armor_amount: int = armor.max_value_after_buffs
+	var damage_reduction: int = armor_amount / 10
+	var damage_taken: int = damage - damage_reduction
+	if damage_taken < 0:
+		damage_taken = 0
+	health.add_value(-damage_taken)
+	return damage_taken
 
 
 ## Heals the [Character] (its health increases).

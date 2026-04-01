@@ -57,8 +57,8 @@ func _on_damage_tick_timer_timeout() -> void:
 
 # Deals damage to a character and spawns a label.
 func _deal_damage(character: Character) -> void:
-	character.take_damage(damage_per_tick)
-	_spawn_damage_label(damage_per_tick, character.global_position)
+	var damage_taken: int = character.take_damage(damage_per_tick)
+	_spawn_damage_label(damage_taken, character.global_position)
 
 
 # Applies a speed debuff to the target.

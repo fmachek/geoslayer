@@ -125,8 +125,8 @@ func _handle_character_collision(character: Character) -> void:
 # Deals damage to a Character.
 func _deal_damage(character: Character) -> void:
 	var damage: int = projectile_properties.damage
-	character.take_damage(damage)
-	_spawn_damage_label(damage, global_position)
+	var damage_taken: int = character.take_damage(damage)
+	_spawn_damage_label(damage_taken, global_position)
 
 
 # Spawns a label showing the damage dealt.
