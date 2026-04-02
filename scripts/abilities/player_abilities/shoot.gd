@@ -14,7 +14,7 @@ var projectile_radius: int = 10
 
 
 func _init() -> void:
-	super._init(0.5, "res://assets/sprites/shoot.png", "Shoots a projectile.")
+	super._init(0.5, "Shoots a projectile.")
 
 
 ## Fires a [Projectile] in a direction.

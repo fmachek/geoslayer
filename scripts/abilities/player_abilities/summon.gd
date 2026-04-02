@@ -29,7 +29,7 @@ var _speed_debuff: int = 200
 
 func _init() -> void:
 	var description: String = "Summons %d minions." % _MINION_AMOUNT
-	super._init(8, "res://assets/sprites/summon.png", description)
+	super._init(8, description)
 
 
 func _ready() -> void:

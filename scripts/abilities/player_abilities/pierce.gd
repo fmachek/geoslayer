@@ -37,8 +37,7 @@ func _create_aim_timer() -> void:
 
 
 func _init()-> void:
-	super(2.0, "res://assets/sprites/pierce.png",
-			"Aims, slowing the user down temporarily,
+	super(2.0, "Aims, slowing the user down temporarily,
 			and fires a fast piercing projectile.")
 
 

@@ -15,8 +15,7 @@ var projectile_radius: int = 8
 
 
 func _init() -> void:
-	var description := "Fires a slowing projectile."
-	super._init(0.5, "res://assets/sprites/placeholder.png", description)
+	super._init(0.5, "Fires a slowing projectile.")
 
 
 ## Fires a [SlowingProjectile] in a direction.

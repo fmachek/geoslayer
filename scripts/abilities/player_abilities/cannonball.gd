@@ -21,8 +21,8 @@ var speed_debuff_duration: float = 0.5
 
 
 func _init() -> void:
-	super._init(1,"res://assets/sprites/cannonball.png",
-			"Shoots a large projectile and applies a short speed debuff to the caster.")
+	super._init(1, "Shoots a large projectile and applies
+			a short speed debuff to the caster.")
 
 
 ## Fires a large, slow and high-damage [Projectile].

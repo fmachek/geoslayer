@@ -29,7 +29,7 @@ var _flurry_timer: Timer
 
 
 func _init() -> void:
-	super._init(4, "res://assets/sprites/flurry.png", "Fires a flurry of projectiles.")
+	super._init(4, "Fires a flurry of projectiles.")
 
 
 func _ready() -> void:

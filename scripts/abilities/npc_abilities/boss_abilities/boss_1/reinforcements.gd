@@ -9,7 +9,7 @@ const _SLOWER_DISTANCE: float = 1000.0
 
 
 func _init() -> void:
-	super._init(30, "res://assets/sprites/placeholder.png", "Spawns 4 Slowers.")
+	super._init(30, "Spawns 4 Slowers.")
 
 
 func _perform_ability() -> void:

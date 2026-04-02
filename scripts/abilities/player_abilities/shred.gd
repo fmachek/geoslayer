@@ -34,7 +34,7 @@ func _init() -> void:
 	var desc := ("Fires %d projectiles in a close range cone. " + \
 	"The projectiles deal more damage up close. Each hit applies " + \
 	" an armor and speed buff to the caster.") % projectile_amount
-	super(1.0, "res://assets/sprites/shred.png", desc)
+	super(1.0, desc)
 
 
 func _perform_ability() -> void:

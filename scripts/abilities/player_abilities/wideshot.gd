@@ -19,7 +19,7 @@ var spread_angle: float = deg_to_rad(40)
 
 
 func _init() -> void:
-	super._init(1, "res://assets/sprites/wideshot.png", "Shoots projectiles in a cone.")
+	super._init(1, "Shoots projectiles in a cone.")
 
 
 ## Fires [Projectile]s in a cone.

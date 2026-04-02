@@ -14,8 +14,7 @@ var projectile_radius: int = 8
 
 
 func _init() -> void:
-	super._init(0.75, "res://assets/sprites/doubleshot.png",
-			"Shoots two projectiles.")
+	super._init(0.75, "Shoots two projectiles.")
 
 
 ## Fires two [Projectile]s next to each other.

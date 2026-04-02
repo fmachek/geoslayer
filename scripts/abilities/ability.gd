@@ -44,11 +44,12 @@ var is_casting: bool = false
 @abstract func _perform_ability() -> void
 
 
-## Sets the Ability name, cooldown, texture and description. Also connects
-## some necessary signals.
-func _init(cooldown: float, texture_path: String, description: String) -> void:
+## Sets the Ability name, cooldown and description. Loads the icon texture.
+## Also connects some necessary signals.
+func _init(cooldown: float, description: String) -> void:
 	ability_name = get_ability_name()
 	self.cooldown = cooldown
+	var texture_path = TextureManager.get_ability_icon_path(get_ability_name())
 	self.texture = load(texture_path)
 	self.description = description
 	tree_exiting.connect(_alert_unequip)

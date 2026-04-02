@@ -15,8 +15,7 @@ var projectile_radius: int = 15
 
 
 func _init() -> void:
-	super._init(0.5, "res://assets/sprites/grenade.png",
-			"Fires a grenade which explodes on impact.")
+	super._init(0.5, "Fires a grenade which explodes on impact.")
 
 
 ## Fires one [Grenade].

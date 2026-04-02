@@ -19,8 +19,7 @@ const _CAST_PART_SCENE := preload(
 
 
 func _init() -> void:
-	super._init(5, "res://assets/sprites/teleport.png",
-			"Teleports the caster to the position they're aiming at.")
+	super._init(5, "Teleports the caster to the position they're aiming at.")
 
 
 func _ready() -> void:

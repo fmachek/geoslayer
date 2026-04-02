@@ -18,8 +18,7 @@ var angle: float = 45.0
 
 
 func _init() -> void:
-	var desc := "Fires two projectiles in different directions."
-	super(0.5, "res://assets/sprites/placeholder.png", desc)
+	super(0.5, "Fires two projectiles in different directions.")
 
 
 func _perform_ability() -> void:

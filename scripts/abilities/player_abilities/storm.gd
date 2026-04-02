@@ -27,8 +27,7 @@ var speed_debuff_amount: int = 200
 
 
 func _init() -> void:
-	super._init(12.0, "res://assets/sprites/storm.png",
-			"Summons a damaging and slowing storm.")
+	super._init(12.0, "Summons a damaging and slowing storm.")
 
 
 func _ready() -> void:

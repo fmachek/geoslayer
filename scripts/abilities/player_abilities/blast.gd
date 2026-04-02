@@ -16,7 +16,7 @@ var projectile_amount: int = 20
 
 
 func _init() -> void:
-	super._init(2, "res://assets/sprites/blast.png", "Shoots projectiles in all directions.")
+	super._init(2, "Shoots projectiles in all directions.")
 
 
 ## Fires projectiles in all directions outward from the caster.
