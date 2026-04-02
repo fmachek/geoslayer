@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3664p7dc8584"
-path="res://.godot/imported/teleport.png-2a6f92d2ef02a3e5335c7c75cc9e203d.ctex"
+uid="uid://cb0ny7skf011h"
+path="res://.godot/imported/shoot.png-a5ad1886701572d1a9d83ba5d5b9f2cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/teleport.png"
-dest_files=["res://.godot/imported/teleport.png-2a6f92d2ef02a3e5335c7c75cc9e203d.ctex"]
+source_file="res://assets/user_interface/abilities/shoot.png"
+dest_files=["res://.godot/imported/shoot.png-a5ad1886701572d1a9d83ba5d5b9f2cf.ctex"]
 
 [params]
 

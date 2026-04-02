@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://832r5don5a2m"
-path="res://.godot/imported/placeholder.png-c4b95d2d63e0401d7731ebbad5ee9c37.ctex"
+uid="uid://d3664p7dc8584"
+path="res://.godot/imported/teleport.png-65421f4f4d89f1cf11afa59cb08deb21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/placeholder.png"
-dest_files=["res://.godot/imported/placeholder.png-c4b95d2d63e0401d7731ebbad5ee9c37.ctex"]
+source_file="res://assets/user_interface/abilities/teleport.png"
+dest_files=["res://.godot/imported/teleport.png-65421f4f4d89f1cf11afa59cb08deb21.ctex"]
 
 [params]
 

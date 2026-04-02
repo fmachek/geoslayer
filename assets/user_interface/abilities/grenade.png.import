@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjtc66r4cweav"
-path="res://.godot/imported/cannonball.png-cb7a0cad0a1eedf62ce6377dc6e86b79.ctex"
+uid="uid://cek3bb6va08ku"
+path="res://.godot/imported/grenade.png-b30186f2921a8f6872b2a7c0891139bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cannonball.png"
-dest_files=["res://.godot/imported/cannonball.png-cb7a0cad0a1eedf62ce6377dc6e86b79.ctex"]
+source_file="res://assets/user_interface/abilities/grenade.png"
+dest_files=["res://.godot/imported/grenade.png-b30186f2921a8f6872b2a7c0891139bf.ctex"]
 
 [params]
 

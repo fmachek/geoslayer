@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk0mtgnyc58ik"
-path="res://.godot/imported/blast.png-ff02fd0ea4eb07fc3e73006be9760f6b.ctex"
+uid="uid://dbjhv02fhihtg"
+path="res://.godot/imported/shred.png-0ee67750b4125caa04c1b79effbc0026.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blast.png"
-dest_files=["res://.godot/imported/blast.png-ff02fd0ea4eb07fc3e73006be9760f6b.ctex"]
+source_file="res://assets/user_interface/abilities/shred.png"
+dest_files=["res://.godot/imported/shred.png-0ee67750b4125caa04c1b79effbc0026.ctex"]
 
 [params]
 

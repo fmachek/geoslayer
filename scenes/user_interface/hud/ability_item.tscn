@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://camk1jn3ffjai"]
 
-[ext_resource type="Texture2D" uid="uid://832r5don5a2m" path="res://assets/sprites/placeholder.png" id="1_n6tv8"]
+[ext_resource type="Texture2D" uid="uid://832r5don5a2m" path="res://assets/user_interface/placeholder.png" id="1_n6tv8"]
 [ext_resource type="Script" uid="uid://bnc716akpdygt" path="res://scripts/user_interface/hud/ability_item.gd" id="1_w81ed"]
 
 [node name="AbilityItem" type="TextureRect" unique_id=1268147562]

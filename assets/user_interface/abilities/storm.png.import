@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr06s62d4efh"
-path="res://.godot/imported/doubleshot.png-3b0950352a8e7fcba5001863e1fb4abf.ctex"
+uid="uid://b7namxcom13m"
+path="res://.godot/imported/storm.png-7a44a88eb32db792e5b1c0ddf9b5104d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/doubleshot.png"
-dest_files=["res://.godot/imported/doubleshot.png-3b0950352a8e7fcba5001863e1fb4abf.ctex"]
+source_file="res://assets/user_interface/abilities/storm.png"
+dest_files=["res://.godot/imported/storm.png-7a44a88eb32db792e5b1c0ddf9b5104d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbjhv02fhihtg"
-path="res://.godot/imported/shred.png-876acd1245abf208f45b7c6aca2bcc66.ctex"
+uid="uid://c8fex3euagbki"
+path="res://.godot/imported/wideshot.png-327b2a3f1ba4fbdc5f3c98b8052bb932.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/shred.png"
-dest_files=["res://.godot/imported/shred.png-876acd1245abf208f45b7c6aca2bcc66.ctex"]
+source_file="res://assets/user_interface/abilities/wideshot.png"
+dest_files=["res://.godot/imported/wideshot.png-327b2a3f1ba4fbdc5f3c98b8052bb932.ctex"]
 
 [params]
 
