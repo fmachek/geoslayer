@@ -34,7 +34,7 @@ func load_user() -> void:
 	if err != OK:
 		print("Config not found, creating new user.")
 		_load_user_level(1, 0, 100)
-		_load_stats(0, 0, 0)
+		_load_stats(0, 0, 0, 0)
 		user_stat_points = 0
 		save_user()
 		return
@@ -46,13 +46,14 @@ func load_user() -> void:
 		var current_xp: int = config.get_value(user, "CurrentXP")
 		var required_xp: int = config.get_value(user, "RequiredXP")
 		var health: int = config.get_value(user, "Health")
+		var armor: int = config.get_value(user, "Armor")
 		var damage: int = config.get_value(user, "Damage")
 		var speed: int = config.get_value(user, "Speed")
 		user_stat_points = config.get_value(user, "StatPoints")
 		print("Loaded user with level %d (XP: %d). Required XP: %d." % [level, current_xp, required_xp])
 		print("User stats: health (%d), damage (%d), speed (%d)" % [health, damage, speed])
 		_load_user_level(level, current_xp, required_xp)
-		_load_stats(health, damage, speed)
+		_load_stats(health, armor, damage, speed)
 
 
 ## Attempts to save the user to a config file at [member CONFIG_PATH].
@@ -109,9 +110,10 @@ func _load_user_level(current_level: int, xp: int, required_xp: int) -> void:
 	user_level.level_changed.connect(_on_user_level_changed)
 
 
-func _load_stats(health: int, damage: int, speed: int) -> void:
+func _load_stats(health: int, armor: int, damage: int, speed: int) -> void:
 	user_stats.clear()
 	user_stats.append(UserStat.new("Health", health))
+	user_stats.append(UserStat.new("Armor", armor))
 	user_stats.append(UserStat.new("Damage", damage))
 	user_stats.append(UserStat.new("Speed", speed))
 	for stat in user_stats:
