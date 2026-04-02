@@ -38,33 +38,14 @@ func _init() -> void:
 
 
 func _perform_ability() -> void:
-	_fire_projectile_cone(projectile_amount, spread_angle)
+	var projectiles: Array[Projectile] = ProjectileFunctions.fire_projectile_cone(
+			_PROJ_SCENE, projectile_amount, spread_angle,
+			character, base_damage, projectile_speed, projectile_radius)
+	for proj in projectiles:
+		proj.free_time = projectile_free_time
+		proj.hit_character.connect(_apply_speed_buff.unbind(1))
+		proj.hit_character.connect(_apply_armor_buff.unbind(1))
 	finished_casting.emit()
-
-
-func _fire_projectile_cone(amount: int, spread: float) -> void:
-	var target_pos: Vector2 = character.target_pos
-	var target_dir: Vector2 = character.global_position.direction_to(target_pos)
-	var target_angle: float = target_dir.angle()
-	
-	var start_angle: float = target_angle - spread / 2
-	for i in range(amount):
-		var angle: float = start_angle + i * (spread / (amount - 1))
-		_fire_projectile(angle)
-
-
-func _fire_projectile(angle: float) -> void:
-	var direction = Vector2.from_angle(angle)
-	var char_damage: int = character.damage.max_value_after_buffs
-	var damage: int = float(base_damage) * float(char_damage) / 100
-	var projectile_properties := ProjectileProperties.new(
-			character.draw_color, character.outline_color,
-			direction, projectile_speed, character, damage,
-			projectile_radius, character.global_position)
-	var proj := ProjectileFunctions.fire_projectile(_PROJ_SCENE, projectile_properties)
-	proj.free_time = projectile_free_time
-	proj.hit_character.connect(_apply_speed_buff.unbind(1))
-	proj.hit_character.connect(_apply_armor_buff.unbind(1))
 
 
 func _apply_speed_buff() -> void:
