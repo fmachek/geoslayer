@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmrr4xs6o4db"]
 
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_6wfmv"]
-[ext_resource type="Script" uid="uid://opepd1u80eyq" path="res://scripts/abilities/lifesteal.gd" id="2_2lnqy"]
+[ext_resource type="Script" uid="uid://opepd1u80eyq" path="res://scripts/abilities/player_abilities/lifesteal.gd" id="2_2lnqy"]
 
 [node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_6wfmv")]
 ability_script = ExtResource("2_2lnqy")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dwqtngf511cjj"]
 
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_o3sa0"]
-[ext_resource type="Script" uid="uid://dapxdowxj21wj" path="res://scripts/abilities/explosive.gd" id="2_ixppm"]
+[ext_resource type="Script" uid="uid://dapxdowxj21wj" path="res://scripts/abilities/player_abilities/explosive.gd" id="2_ixppm"]
 
 [node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_o3sa0")]
 ability_script = ExtResource("2_ixppm")

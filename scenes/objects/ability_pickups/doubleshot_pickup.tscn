@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cksx1tfrck0yj"]
 
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_lit0q"]
-[ext_resource type="Script" uid="uid://cnmv2x8gxqxjf" path="res://scripts/abilities/doubleshot.gd" id="2_t4wx3"]
+[ext_resource type="Script" uid="uid://cnmv2x8gxqxjf" path="res://scripts/abilities/player_abilities/doubleshot.gd" id="2_t4wx3"]
 
 [node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_lit0q")]
 ability_script = ExtResource("2_t4wx3")
