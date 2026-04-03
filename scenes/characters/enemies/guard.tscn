@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bv6ubx8u57k7s"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_4ue0f"]
+[ext_resource type="Script" uid="uid://cmctq7q1xxj2h" path="res://scripts/characters/enemies/guard.gd" id="2_ph836"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ph836"]
+radius = 32.0
+
+[node name="Guard" unique_id=1080282355 instance=ExtResource("1_4ue0f")]
+script = ExtResource("2_ph836")
+draw_color = Color(0.51978767, 0.7080906, 0.7548983, 1)
+outline_color = Color(0.3993815, 0.58442235, 0.62637174, 1)
+base_health = 200
+base_damage = 200
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_ph836")

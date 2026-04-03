@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://3bjnhhporurv"]
+
+[ext_resource type="Script" uid="uid://b0xjhexn4e714" path="res://scripts/objects/shields/shield.gd" id="1_pbl5b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqo7t"]
+radius = 82.0
+
+[node name="Shield" type="Node2D" unique_id=1376906853]
+z_index = -1
+script = ExtResource("1_pbl5b")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=986477616]
+collision_layer = 0
+collision_mask = 4
+priority = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1727049881]
+shape = SubResource("CircleShape2D_yqo7t")
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1752258470]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
