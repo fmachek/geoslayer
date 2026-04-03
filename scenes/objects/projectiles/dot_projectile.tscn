@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d3hbbtpoaqphm"]
+
+[ext_resource type="PackedScene" uid="uid://fa8fx68x0ycb" path="res://scenes/objects/projectiles/projectile.tscn" id="1_xwe4w"]
+[ext_resource type="Script" uid="uid://d13s2n4rnd882" path="res://scripts/objects/projectiles/dot_projectile.gd" id="2_nmju5"]
+[ext_resource type="Texture2D" uid="uid://douhc4tppplls" path="res://assets/sprites/objects/projectiles/particles/circle.png" id="3_ian1a"]
+
+[node name="DoTProjectile" unique_id=2135564719 instance=ExtResource("1_xwe4w")]
+script = ExtResource("2_nmju5")
+
+[node name="FlyingParticles" parent="." index="2" unique_id=492214561]
+texture = ExtResource("3_ian1a")
+scale_amount_min = 0.1
+scale_amount_max = 0.2
