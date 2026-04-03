@@ -7,6 +7,10 @@ extends Character
 ##
 ## This class uses [NavigationAgent2D] with RVO avoidance.
 
+## Emitted when the [member target] has been reached. That is usually
+## when the [NavigationAgent2D] navigation finishes.
+signal target_reached()
+
 ## [Character] being followed by the [CastingCharacter].
 var target: Character
 ## Array of abilities ready to be cast.
@@ -55,6 +59,7 @@ func _physics_process(delta: float) -> void:
 		
 		# Stop here if the navigation is finished
 		if nav_agent.is_navigation_finished():
+			target_reached.emit()
 			return
 		
 		# Calculate direction from the next path position
