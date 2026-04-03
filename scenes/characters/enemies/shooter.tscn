@@ -5,3 +5,4 @@
 
 [node name="Shooter" unique_id=1080282355 instance=ExtResource("1_g3e0r")]
 script = ExtResource("2_eql7k")
+base_damage = 35
