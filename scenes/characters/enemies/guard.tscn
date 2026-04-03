@@ -11,7 +11,11 @@ script = ExtResource("2_ph836")
 draw_color = Color(0.51978767, 0.7080906, 0.7548983, 1)
 outline_color = Color(0.3993815, 0.58442235, 0.62637174, 1)
 base_health = 200
-base_damage = 200
+base_damage = 130
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
 shape = SubResource("CircleShape2D_ph836")
+
+[node name="Armor" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="2" unique_id=2127940257]
+max_value = 30
+current_value = 30
