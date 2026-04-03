@@ -1,14 +1,13 @@
 class_name AimIndicator
 extends Node2D
-
 ## Represents a small indicator which rotates based on where
 ## the [PlayerCharacter] is currently aiming.
 
 var draw_color: Color ## Color of the [AimIndicator].
+var radius: int = 4 ## Radius of the [AimIndicator].
 
 
 func _draw():
-	var radius: int = 6
 	draw_circle(Vector2.ZERO, radius, draw_color, true, -1.0, true)
 
 
