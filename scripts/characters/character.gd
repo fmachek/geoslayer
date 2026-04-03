@@ -94,9 +94,15 @@ func _ready() -> void:
 
 ## Makes the [Character] take damage. Returns the damage taken,
 ## which can be different depending on the [Character]'s armor.
-func take_damage(damage: int) -> int:
-	var armor_amount: int = armor.max_value_after_buffs
-	var damage_reduction: int = armor_amount / 10
+## [param ignore_armor] can be set to [code]true[/code] if armor
+## is to be ignored.
+func take_damage(damage: int, ignore_armor: bool = false) -> int:
+	var damage_reduction: int
+	if ignore_armor:
+		damage_reduction = 0
+	else:
+		var armor_amount: int = armor.max_value_after_buffs
+		damage_reduction = armor_amount / 10
 	var damage_taken: int = damage - damage_reduction
 	if damage_taken < 0:
 		damage_taken = 0
