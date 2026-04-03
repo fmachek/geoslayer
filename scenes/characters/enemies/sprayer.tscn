@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c2dwt4l77qmhi"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_1don0"]
+[ext_resource type="Script" uid="uid://bsqxq24e23shh" path="res://scripts/characters/enemies/sprayer.gd" id="2_h6jli"]
+
+[node name="Sprayer" unique_id=1080282355 instance=ExtResource("1_1don0")]
+script = ExtResource("2_h6jli")
+draw_color = Color(0.23275638, 0.5906841, 0, 1)
+outline_color = Color(0.17682377, 0.46888387, 0, 1)
+base_health = 80
