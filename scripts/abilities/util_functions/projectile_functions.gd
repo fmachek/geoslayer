@@ -28,7 +28,7 @@ static func fire_projectile(projectile_scene: PackedScene, properties: Projectil
 ## [member Projectile.projectile_properties.source].
 ## If the projectile no longer has a source, it is added to the current world.[br][br]
 ## Returns the new [Projectile] fired.
-static func fire_projectile_from_character(projectile_scene: PackedScene, character: Character, speed: int, damage: int, radius: int) -> Projectile:
+static func fire_projectile_from_character(projectile_scene: PackedScene, character: Character, speed: float, damage: int, radius: int) -> Projectile:
 	var target_pos: Vector2 = character.target_pos
 	var player_pos: Vector2 = character.global_position
 	var direction: Vector2 = (target_pos - player_pos).normalized()
@@ -55,7 +55,7 @@ static func fire_projectile_from_character(projectile_scene: PackedScene, charac
 ## Fires multiple [Projectile]s in a cone with a given [param spread] in radians.
 ## The [param scene] must be a [Projectile] scene.[br][br]
 ## Returns an [Array] of the [Projectile]s fired.
-static func fire_projectile_cone(scene: PackedScene, amount: int, spread: float, caster: Character, base_damage: int, speed: int, radius: int) -> Array[Projectile]:
+static func fire_projectile_cone(scene: PackedScene, amount: int, spread: float, caster: Character, base_damage: int, speed: float, radius: int) -> Array[Projectile]:
 	var target_pos: Vector2 = caster.target_pos
 	var target_dir: Vector2 = caster.global_position.direction_to(target_pos)
 	var target_angle: float = target_dir.angle()
@@ -73,7 +73,7 @@ static func fire_projectile_cone(scene: PackedScene, amount: int, spread: float,
 ## Fires a [Projectile] at a given [param angle] in radians.
 ## The [param scene] must be a [Projectile] scene.[br][br]
 ## Returns the new [Projectile].
-static func fire_projectile_at_angle(scene: PackedScene, angle: float, caster: Character, base_damage: int, speed: int, radius: int) -> Projectile:
+static func fire_projectile_at_angle(scene: PackedScene, angle: float, caster: Character, base_damage: int, speed: float, radius: int) -> Projectile:
 	var direction = Vector2.from_angle(angle)
 	var caster_damage: int = caster.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(caster_damage) / 100

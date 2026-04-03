@@ -12,7 +12,7 @@ var outline_color: Color
 ## Direction in which the [Projectile] is traveling.
 var direction: Vector2
 ## Speed at which the [Projectile] is traveling.
-var speed: int
+var speed: float
 ## The node which is ignored during collisions (usually the caster).
 var source: Node2D
 ## Damage dealt by the [Projectile].
@@ -23,7 +23,7 @@ var radius: int
 var start_pos: Vector2
 
 
-func _init(draw_color: Color, outline_color: Color, direction: Vector2, speed: int, source: Node2D, damage: int, radius: int, start_pos: Vector2) -> void:
+func _init(draw_color: Color, outline_color: Color, direction: Vector2, speed: float, source: Node2D, damage: int, radius: int, start_pos: Vector2) -> void:
 	self.draw_color = draw_color
 	self.outline_color = outline_color
 	self.direction = direction
