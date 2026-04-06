@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cekb3j3jjxnfc"]
+
+[ext_resource type="Script" uid="uid://xe1wo5yo4h66" path="res://scripts/objects/attacks/swipe_attack.gd" id="1_5exwh"]
+
+[sub_resource type="Gradient" id="Gradient_5exwh"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="SwipeAttack" type="Node2D" unique_id=1954178952]
+script = ExtResource("1_5exwh")
+metadata/_custom_type_script = "uid://xe1wo5yo4h66"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=395522422]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=987379580]
+position = Vector2(25, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=312559651]
+position = Vector2(100, 0)
+amount = 50
+lifetime = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0.5, 0.5, 0.5, 0.5)
+color_ramp = SubResource("Gradient_5exwh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
