@@ -1,7 +1,7 @@
 class_name Doubleshot
 extends Ability
-
 ## Represents the Doubleshot ability which fires two projectiles next to each other.
+## The projectiles apply a slight knockback.
 
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
@@ -11,6 +11,8 @@ var projectile_speed: int = 3
 var base_damage: int = 15
 ## Radius of the [Projectile]s fired when cast.
 var projectile_radius: int = 8
+## Knockback applied to [Character]s hit by the [Projectile]s.
+var projectile_knockback: float = 400.0
 
 
 func _init() -> void:
@@ -50,4 +52,5 @@ func _spawn_projectile(position: Vector2, direction: Vector2) -> void:
 			direction, projectile_speed,
 			character, damage,
 			projectile_radius, position)
-	ProjectileFunctions.fire_projectile(_PROJ_SCENE, projectile_properties)
+	var proj := ProjectileFunctions.fire_projectile(_PROJ_SCENE, projectile_properties)
+	proj.knockback = projectile_knockback

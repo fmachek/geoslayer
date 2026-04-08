@@ -4,6 +4,7 @@ extends Ability
 ## Represents the Pierce ability, which fires a piercing,
 ## high-damage projectile with a unique look. The caster
 ## needs to aim for a bit before firing the projectile.
+## The projectile also applies a knockback.
 
 # This scene is different from the default Projectile scene used in abilities such as Shoot.
 const _PROJ_SCENE_PATH := "res://scenes/objects/projectiles/piercing_projectile.tscn"
@@ -15,6 +16,8 @@ var projectile_speed: int = 6
 var base_damage: int = 50
 ## Radius of the [Projectile] fired when cast.
 var projectile_radius: int = 10
+## Knockback applied to [Character]s hit by the [Projectile].
+var projectile_knockback: float = 1000.0
 
 ## The amount of time the cäster has to aim before firing the projectile.
 var aim_time: float = 0.5
@@ -60,8 +63,9 @@ func _apply_speed_debuff() -> void:
 func _finish_aiming() -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100
-	ProjectileFunctions.fire_projectile_from_character(
+	var proj := ProjectileFunctions.fire_projectile_from_character(
 			_PROJ_SCENE, character, projectile_speed,
 			damage, projectile_radius)
+	proj.knockback = projectile_knockback
 	character.hide_aim_line()
 	finished_casting.emit()

@@ -1,10 +1,10 @@
 class_name Flurry
 extends Ability
-
 ## Represents the Flurry ability which fires a flurry of projectiles.
 ## While casting, the caster is unable to cast other abilities.
 ## ability also has a random recoil (the projectiles fire in a
-## slightly offset direction).
+## slightly offset direction). Each of the projectiles also applies
+## a slight knockback.
 
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
@@ -21,6 +21,8 @@ var projectile_amount: int = 20
 var flurry_fire_time: float = 0.1
 ## Maximum projectile recoil angle in degrees.
 var recoil: int = 10
+## Knockback applied to [Character]s hit by the [Projectile]s.
+var projectile_knockback: float = 200.0
 
 # Amount of projectiles remaining during the cast.
 var _projectiles_remaining: int
@@ -74,7 +76,8 @@ func _shoot_projectile() -> void:
 				direction, projectile_speed, character,
 				damage, projectile_radius,
 				character.global_position)
-		ProjectileFunctions.fire_projectile(_PROJ_SCENE, projectile_properties)
+		var proj := ProjectileFunctions.fire_projectile(_PROJ_SCENE, projectile_properties)
+		proj.knockback = projectile_knockback
 	else:
 		_flurry_timer.stop()
 		finished_casting.emit()
