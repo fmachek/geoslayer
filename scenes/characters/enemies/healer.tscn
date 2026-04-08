@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ck0hcelmv6sco"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_70h6c"]
+[ext_resource type="Script" uid="uid://iqu027cfjib3" path="res://scripts/characters/enemies/healer.gd" id="2_fxpj1"]
+
+[node name="Healer" unique_id=1080282355 instance=ExtResource("1_70h6c")]
+script = ExtResource("2_fxpj1")
+draw_color = Color(0.89696807, 0.33077097, 0.5416623, 1)
+outline_color = Color(0.7682756, 0.21451125, 0.43678144, 1)
+base_health = 130

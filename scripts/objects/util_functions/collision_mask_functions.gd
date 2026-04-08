@@ -19,6 +19,25 @@ static func set_area_collision_mask(area: Area2D, source: Node2D) -> void:
 		set_mask_for_layers([1, 7, 10], area)
 
 
+## Sets the [Area2D] collision mask based on what type the
+## [param source] is. It is set to match the source's friendly types.
+## For example, for a [PlayerCharacter], this would be [PlayerCharacter] and [Minion].
+## Layer 1 is also always included. If [param source] is [code]null[/code],
+## the result is a mask matching all types.
+static func set_friendly_area_collision_mask(area: Area2D, source: Node2D) -> void:
+	if source:
+		if source is PlayerCharacter:
+			set_mask_for_layers([1, 7, 10], area)
+		elif source is Minion:
+			set_mask_for_layers([1, 7, 10], area)
+		elif source is Enemy:
+			set_mask_for_layers([1, 8], area)
+		elif source is Turret:
+			set_mask_for_layers([1, 8], area)
+	else:
+		set_mask_for_layers([1, 7, 8, 10], area)
+
+
 ## Sets the mask of an [param area] to [code]true[/code] for every
 ## layer in [param layers].
 static func set_mask_for_layers(layers: Array[int], area: Area2D) -> void:
