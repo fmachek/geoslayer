@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 
 # Moves on every physics frame.
 func _physics_process(delta) -> void:
+	super(delta)
 	get_input()
 	move_and_slide()
 
@@ -84,11 +85,11 @@ func load_unlocked_abilities() -> void:
 	unlocked_abilities.append(starter_ability)
 
 
-# Simple movement logic from Godot Docs
+# Input direction from Godot Docs
 # (https://docs.godotengine.org/en/stable/tutorials/2d/2d_movement.html)
 func get_input() -> void:
 	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed.max_value_after_buffs
+	velocity += input_direction * speed.max_value_after_buffs
 
 
 ## Equips an [Ability]. Abilities can be equipped in 2 slots. If slot 1 is already

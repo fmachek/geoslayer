@@ -1,7 +1,9 @@
 class_name Character
 extends CharacterBody2D
-
 ## Represents a character with stats such as health and damage.
+##
+## [Character]s have knockback implemented, however they don't move by default.
+## This class itself does not call [member move_and_slide].
 
 #region signals
 ## Emitted when health current value changes.
@@ -40,7 +42,12 @@ var is_casting: bool = false
 ## usually be the current mouse position. For [Enemy], this will usually be
 ## the [PlayerCharacter]'s position.
 var target_pos: Vector2
+## Tells if the [Character] is alive.
 var is_alive: bool = true
+# Knockback vector.
+var _knockback := Vector2.ZERO
+# Array of vectors which add up to the final knockback.
+var _knockback_vectors: Array[Vector2] = []
 #endregion
 
 #region @onready variables
@@ -62,6 +69,27 @@ var is_alive: bool = true
 # Moves the aim line, which is used to display aiming, on every frame.
 func _process(delta: float) -> void:
 	move_aim_line()
+
+
+func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
+	_calculate_knockback()
+	velocity += _knockback
+
+
+func _calculate_knockback() -> void:
+	_knockback = Vector2.ZERO
+	var new_array: Array[Vector2] = []
+	for vector in _knockback_vectors:
+		_knockback += Vector2(vector.x, vector.y)
+		vector *= 0.9
+		if vector.length() >= 40:
+			new_array.append(vector)
+	_knockback_vectors = new_array
+
+
+func apply_knockback(knockback: Vector2) -> void:
+	_knockback_vectors.append(knockback)
 
 
 # Draws the Character. It is different depending on the collision shape.

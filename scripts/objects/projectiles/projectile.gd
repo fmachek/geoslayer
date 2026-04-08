@@ -18,6 +18,8 @@ const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn
 var projectile_properties: ProjectileProperties: set = _set_properties
 ## Time until the [Projectile] disappears automatically.
 var free_time: float = 5.0: set = _set_free_time
+## Amount of knockback applied to [Character]s on impact.
+var knockback: float = 0.0
 
 var _can_explode: bool = true
 var _can_deal_damage: bool = true
@@ -58,6 +60,7 @@ func _draw_projectile_shape() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Character and _can_deal_damage:
 		hit_character.emit(body)
+		_apply_knockback(body)
 		_handle_character_collision(body)
 	else:
 		explode()
@@ -139,6 +142,11 @@ func _deal_damage(character: Character) -> void:
 	var damage: int = projectile_properties.damage
 	var damage_taken: int = character.take_damage(damage)
 	_spawn_damage_label(damage_taken, global_position)
+
+
+func _apply_knockback(character: Character) -> void:
+	if knockback > 0.0:
+		character.apply_knockback(knockback * projectile_properties.direction)
 
 
 # Spawns a label showing the damage dealt.

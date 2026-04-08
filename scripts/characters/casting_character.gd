@@ -52,6 +52,7 @@ func _ready() -> void:
 
 # Handles movement.
 func _physics_process(delta: float) -> void:
+	super(delta)
 	if target:
 		target_pos = target.global_position
 		# Set target position in navigation agent
@@ -60,6 +61,8 @@ func _physics_process(delta: float) -> void:
 		# Stop here if the navigation is finished
 		if nav_agent.is_navigation_finished():
 			target_reached.emit()
+			if _knockback != Vector2.ZERO:
+				move_and_slide()
 			return
 		
 		# Calculate direction from the next path position
@@ -69,6 +72,8 @@ func _physics_process(delta: float) -> void:
 		# Set the velocity in the navigation agent so it can calculate
 		# the safe velocity
 		nav_agent.set_velocity(direction * speed.max_value_after_buffs)
+	elif _knockback != Vector2.ZERO:
+		move_and_slide()
 
 
 func _load_ability(ability: Ability) -> void:
@@ -121,7 +126,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 		return
 	# Set the velocity, but only if the safe velocity isn't zero
 	if safe_velocity != Vector2.ZERO:
-		velocity = safe_velocity
+		velocity += safe_velocity
 	move_and_slide()
 
 
