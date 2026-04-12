@@ -47,13 +47,15 @@ func _ready() -> void:
 	super()
 	nav_agent.target_desired_distance = stop_distance
 	cast_cooldown_timer.wait_time = cast_cooldown
+	# Attempt to cast when stun ends
+	stun_ended.connect(cast_random_ability)
 	_load_abilities()
 
 
 # Handles movement.
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if target:
+	if target and not is_stunned:
 		target_pos = target.global_position
 		# Set target position in navigation agent
 		nav_agent.target_position = target_pos
@@ -100,6 +102,7 @@ func _remove_ability_from_castable(ability: Ability) -> void:
 ## Attempts to cast a random [Ability] from
 ## [member CastingCharacter.castable_abilities].
 func cast_random_ability() -> void:
+	if is_stunned: return # Is stunned - can't cast
 	if not target: return # No target to attack
 	if not cast_cooldown_timer.is_stopped(): return # Cast is on cooldown
 	if castable_abilities.is_empty(): return # No abilities to cast
@@ -121,6 +124,9 @@ func _scan_for_target() -> void:
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	# Skip if the character is stunned
+	if is_stunned:
+		return
 	# Skip if navigation is finished
 	if nav_agent.is_navigation_finished():
 		return

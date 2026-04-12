@@ -20,6 +20,10 @@ signal outline_color_changed(color: Color)
 signal started_casting()
 ## Emitted when the [Character] finishes casting an [Ability].
 signal finished_casting()
+## Emitted when the [Character] gets stunned.
+signal was_stunned()
+## Emitted when the [Character]'s stun ends.
+signal stun_ended()
 #endregion
 
 #region @export variables
@@ -44,10 +48,16 @@ var is_casting: bool = false
 var target_pos: Vector2
 ## Tells if the [Character] is alive.
 var is_alive: bool = true
+## Says if the [Character] is immune to stuns or not.
+var is_immune_to_stun: bool = false
+## Says if the [Character] is currently stunned or not.
+var is_stunned: bool = false
 # Knockback vector.
 var _knockback := Vector2.ZERO
 # Array of vectors which add up to the final knockback.
 var _knockback_vectors: Array[Vector2] = []
+# Array of timers, each representing one stun.
+var _stuns: Array[Timer] = []
 #endregion
 
 #region @onready variables
@@ -113,6 +123,8 @@ func _draw() -> void:
 func _ready() -> void:
 	health_changed.connect(check_for_death)
 	level.level_changed.connect(_on_level_changed) # Connect level up signal
+	was_stunned.connect(_begin_stun)
+	stun_ended.connect(_end_stun)
 	update_stats(level.current_level) # Update stats on spawn
 	health.current_value = health.max_value_after_buffs # Spawn with max health
 	generate_drop_pool()
@@ -329,3 +341,52 @@ func get_raycast_collision(global_target_pos: Vector2) -> Vector2:
 		return col_point
 	else:
 		return global_target_pos
+
+
+#region stun functions
+## Applies a [param duration] seconds long stun if the [Character]
+## is not immune to stuns.
+func stun(duration: float) -> void:
+	if is_immune_to_stun:
+		return
+	if duration < 0.1: # Minimum stun length is 0.1 seconds
+		duration = 0.1
+	var stun_timer: Timer = Timer.new()
+	stun_timer.name = "StunTimer"
+	stun_timer.wait_time = duration
+	stun_timer.timeout.connect(func(): _remove_stun(stun_timer))
+	_stuns.append(stun_timer)
+	add_child(stun_timer)
+	stun_timer.start()
+	was_stunned.emit()
+
+
+func _remove_stun(timer: Timer) -> void:
+	if timer in _stuns:
+		_stuns.erase(timer)
+		timer.queue_free()
+		_check_stun_status()
+
+
+func _check_stun_status():
+	if _stuns.is_empty():
+		stun_ended.emit()
+
+
+func _begin_stun() -> void:
+	is_stunned = true
+	_start_stun_particles()
+
+
+func _end_stun() -> void:
+	is_stunned = false
+	_stop_stun_particles()
+
+
+func _start_stun_particles() -> void:
+	%StunParticles.emitting = true
+
+
+func _stop_stun_particles() -> void:
+	%StunParticles.emitting = false
+#endregion

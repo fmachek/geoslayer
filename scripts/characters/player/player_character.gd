@@ -63,6 +63,8 @@ func _physics_process(delta) -> void:
 # (https://docs.godotengine.org/en/stable/tutorials/inputs/inputevent.html)
 # (partially)
 func _unhandled_input(event) -> void:
+	if is_stunned:
+		return
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if ability1:
@@ -88,6 +90,8 @@ func load_unlocked_abilities() -> void:
 # Input direction from Godot Docs
 # (https://docs.godotengine.org/en/stable/tutorials/2d/2d_movement.html)
 func get_input() -> void:
+	if is_stunned:
+		return
 	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * speed.max_value_after_buffs
 
