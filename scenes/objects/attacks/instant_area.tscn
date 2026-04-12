@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dific0paj8qro"]
+
+[node name="InstantArea" type="Node2D" unique_id=407616811]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=211498717]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1771397165]

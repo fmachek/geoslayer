@@ -1,16 +1,7 @@
-[gd_scene format=3 uid="uid://bxe5geybrnmo5"]
+[gd_scene format=3 uid="uid://k1c8303sxpgo"]
 
+[ext_resource type="PackedScene" uid="uid://dific0paj8qro" path="res://scenes/objects/attacks/instant_area.tscn" id="1_0ehvk"]
 [ext_resource type="Script" uid="uid://4elwa5xu778a" path="res://scripts/objects/attacks/area_heal.gd" id="1_3qkw6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3qkw6"]
-radius = 200.0
-
-[node name="AreaHeal" type="Node2D" unique_id=632626376]
+[node name="AreaHeal" unique_id=407616811 instance=ExtResource("1_0ehvk")]
 script = ExtResource("1_3qkw6")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1356281313]
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2056084980]
-shape = SubResource("CircleShape2D_3qkw6")
