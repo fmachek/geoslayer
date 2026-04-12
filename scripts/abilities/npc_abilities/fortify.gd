@@ -12,7 +12,7 @@ var shield_radius: float = 82.0
 
 
 func _init() -> void:
-	super(10.0, "Shields the caster from incoming attacks for %d seconds." % shield_duration)
+	super(15.0, "Shields the caster from incoming attacks for %d seconds." % shield_duration)
 
 
 func _perform_ability() -> void:

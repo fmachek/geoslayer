@@ -25,7 +25,7 @@ var secondary_angle: float = deg_to_rad(15)
 func _init() -> void:
 	var desc := "Fires one large projectile in the middle and
 			two smaller projectiles around it."
-	super._init(1.5, desc)
+	super._init(2, desc)
 
 
 func _perform_ability() -> void:
