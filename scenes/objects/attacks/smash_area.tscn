@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cut40es0u1b74"]
+
+[ext_resource type="PackedScene" uid="uid://dwuj7bsugpaxp" path="res://scenes/objects/attacks/instant_damage_area.tscn" id="1_pu5x4"]
+[ext_resource type="Script" uid="uid://box680g63m6o4" path="res://scripts/objects/attacks/smash_area.gd" id="2_p11yu"]
+[ext_resource type="Texture2D" uid="uid://bq8j8eqrfdvvf" path="res://assets/sprites/objects/attacks/smash.png" id="3_p11yu"]
+
+[node name="SmashArea" unique_id=407616811 instance=ExtResource("1_pu5x4")]
+script = ExtResource("2_p11yu")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1432310576]
+texture = ExtResource("3_p11yu")

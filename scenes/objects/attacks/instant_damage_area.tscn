@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dwuj7bsugpaxp"]
+
+[ext_resource type="PackedScene" uid="uid://dific0paj8qro" path="res://scenes/objects/attacks/instant_area.tscn" id="1_wdl4b"]
+[ext_resource type="Script" uid="uid://doy1ewqbrnock" path="res://scripts/objects/attacks/instant_damage_area.gd" id="2_kwdqp"]
+
+[node name="InstantDamageArea" unique_id=407616811 instance=ExtResource("1_wdl4b")]
+script = ExtResource("2_kwdqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=1432310576]
