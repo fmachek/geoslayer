@@ -28,6 +28,14 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "purple",
+"res://scenes/": "green",
+"res://scripts/": "blue"
+}
+
 [input]
 
 left={
