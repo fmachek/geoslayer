@@ -12,6 +12,25 @@ const _PARTICLES_SCENE = preload("res://scenes/particle_effects/xp_orb_particles
 ## Amount of XP given to the [PlayerCharacter] on pickup.
 @export var xp_amount: int = 30
 
+var _is_following_player: bool = false
+var _player: PlayerCharacter
+var _travel_speed: float = 8.0
+
+
+func _ready() -> void:
+	WorldManager.wave_ended.connect(_travel_to_player)
+
+
+func _physics_process(delta: float) -> void:
+	if _is_following_player:
+		if is_instance_valid(_player):
+			var dir: Vector2 = global_position.direction_to(_player.global_position)
+			global_position += _travel_speed * dir * delta
+			_travel_speed += delta * 200
+		else:
+			_is_following_player = false
+			_player = null
+
 
 func _draw():
 	var radius: int = $Area2D/CollisionShape2D.shape.radius
@@ -26,3 +45,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var xp_orb_particles: XPOrbParticles = _PARTICLES_SCENE.instantiate()
 		xp_orb_particles.load_from_orb(self)
 		queue_free()
+
+
+func _travel_to_player() -> void:
+	var player: PlayerCharacter = PlayerManager.current_player
+	if is_instance_valid(player):
+		_is_following_player = true
+		self._player = player
