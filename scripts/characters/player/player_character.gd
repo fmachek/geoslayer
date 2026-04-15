@@ -105,6 +105,8 @@ func equip_ability(ability: Ability) -> void:
 ## Replaces [Ability] in slot 1. If the new [Ability] is already in slot 2,
 ## the slots swap their abilities.
 func replace_ability1(ability: Ability) -> void:
+	if not can_unequip_ability(ability1):
+		return
 	if ability1 and ability2 and ability:
 		if ability2.ability_name == ability.ability_name:
 			swap_ability_slots()
@@ -123,6 +125,8 @@ func replace_ability1(ability: Ability) -> void:
 ## Replaces [Ability] in slot 2. If the new [Ability] is already in slot 1,
 ## the slots swap their abilities.
 func replace_ability2(ability: Ability) -> void:
+	if not can_unequip_ability(ability2):
+		return
 	if ability2 and ability1 and ability:
 		if ability1.ability_name == ability.ability_name:
 			# Replacing ability2 with an ability that is already in slot 1
@@ -141,11 +145,23 @@ func replace_ability2(ability: Ability) -> void:
 
 ## Swaps abilities in the 2 slots.
 func swap_ability_slots() -> void:
+	if not (can_unequip_ability(ability1) and can_unequip_ability(ability2)):
+		return
 	var ability1_temp: Ability = ability1
 	ability1 = ability2
 	ability2 = ability1_temp
 	ability1_changed.emit(ability1)
 	ability2_changed.emit(ability2)
+
+
+## Checks if an [param ability] can be unequipped.
+## It cannot be unequipped if it's currently casting or on cooldown.
+func can_unequip_ability(ability: Ability) -> bool:
+	if ability == null:
+		return true
+	if ability.is_cooldown or ability.is_casting:
+		return false
+	return true
 
 
 ## Attempts to unlock a new [Ability]. Returns [code]false[/code] if it is already
