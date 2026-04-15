@@ -22,8 +22,8 @@ func _draw():
 	draw_rect(rect, turret_outline_color, false, 4)
 
 
-# Plays the recoil visual effect.
-func _apply_recoil() -> void:
+## Plays the recoil visual effect.
+func apply_recoil() -> void:
 	if not _original_pos:
 		_original_pos = position
 	if _recoil_tween:
