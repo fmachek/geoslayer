@@ -19,7 +19,7 @@ signal required_xp_changed(new_xp: int)
 @export var current_xp: int = 0: set = set_current_xp
 ## Current level, increases when [member current_xp]
 ## reaches [member required_xp].
-@export var current_level: int = 1: set = set_current_xp
+@export var current_level: int = 1: set = set_current_level
 
 
 ## Adds [param xp] to [member current_xp]. Also handles cases
