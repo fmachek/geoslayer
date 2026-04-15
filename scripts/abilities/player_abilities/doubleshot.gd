@@ -16,10 +16,9 @@ var projectile_knockback: float = 400.0
 
 
 func _init() -> void:
-	super._init(0.75, "Shoots two projectiles.")
+	super(0.75, "Shoots two projectiles.")
 
 
-## Fires two [Projectile]s next to each other.
 func _perform_ability() -> void:
 	var target_pos: Vector2 = character.target_pos
 	var player_pos: Vector2 = character.global_position
@@ -43,7 +42,6 @@ func _perform_ability() -> void:
 	finished_casting.emit()
 
 
-## Fires one [Projectile] in a [param direction] from a given [param position].
 func _spawn_projectile(position: Vector2, direction: Vector2) -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100

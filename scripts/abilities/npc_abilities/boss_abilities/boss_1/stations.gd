@@ -9,7 +9,7 @@ const _STATION_DISTANCE: float = 500.0
 
 
 func _init() -> void:
-	super._init(45, "Spawns 4 healing stations which heal the caster.")
+	super(45, "Spawns 4 healing stations which heal the caster.")
 
 
 func _perform_ability() -> void:

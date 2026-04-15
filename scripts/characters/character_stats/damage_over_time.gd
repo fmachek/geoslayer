@@ -2,7 +2,7 @@ class_name DamageOverTime
 extends Node
 ## Deals damage continually to a [Character]'s health.
 ##
-## Must be instantiated and then [member apply_to] must be called
+## Must be instantiated and then [method apply_to] must be called
 ## so that the [DamageOverTime] node is added as a child of a
 ## [Character]'s [Health] node.
 

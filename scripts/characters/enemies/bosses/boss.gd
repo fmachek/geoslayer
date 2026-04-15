@@ -9,15 +9,18 @@ extends Enemy
 ## a third. The last phase begins when the [Boss] health drops by another third
 ## of the max health.[br][br]
 ##
-## Methods such as [member _start_phase_1] must be implemented
+## Methods such as [method _start_phase_1] must be implemented
 ## by each specific [Boss]. For example, a phase 2 method can add more abilities 
 ## to the [Boss]' kit, or make something special happen.
 
 var _current_phase: int = 1
 
 
+## Starts phase 1. Must be implemented by each specific [Boss].
 @abstract func _start_phase_1() -> void
+## Starts phase 2. Must be implemented by each specific [Boss].
 @abstract func _start_phase_2() -> void
+## Starts phase 3. Must be implemented by each specific [Boss].
 @abstract func _start_phase_3() -> void
 
 
@@ -27,13 +30,6 @@ func _ready() -> void:
 	_start_phase_1()
 
 
-func _on_health_changed(old_health: int, new_health: int) -> void:
-	if new_health <= (health.max_value / 3):
-		_switch_phase(3)
-	elif new_health <= (health.max_value / 3) * 2:
-		_switch_phase(2)
-
-
 func _switch_phase(new_phase: int) -> void:
 	if _current_phase != new_phase and new_phase > _current_phase:
 		_current_phase = new_phase
@@ -41,3 +37,10 @@ func _switch_phase(new_phase: int) -> void:
 			_start_phase_2()
 		elif _current_phase == 3:
 			_start_phase_3()
+
+
+func _on_health_changed(old_health: int, new_health: int) -> void:
+	if new_health <= (health.max_value / 3):
+		_switch_phase(3)
+	elif new_health <= (health.max_value / 3) * 2:
+		_switch_phase(2)

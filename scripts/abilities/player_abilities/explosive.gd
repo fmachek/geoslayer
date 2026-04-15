@@ -1,8 +1,7 @@
 class_name Explosive
 extends Ability
-
-## Represents the Explosive ability which fires a [Grenade] which deals damage and explodes
-## into more [GrenadeProjectile] projectiles on impact.
+## Represents the Explosive ability which fires a [Grenade] which deals damage
+## and explodes into more [GrenadeProjectile] projectiles on impact.
 
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/grenade.tscn")
 
@@ -15,10 +14,9 @@ var projectile_radius: int = 15
 
 
 func _init() -> void:
-	super._init(0.5, "Fires a grenade which explodes on impact.")
+	super(0.5, "Fires a grenade which explodes on impact.")
 
 
-## Fires one [Grenade].
 func _perform_ability() -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100

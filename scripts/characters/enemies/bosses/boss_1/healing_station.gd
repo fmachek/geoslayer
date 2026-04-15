@@ -15,8 +15,7 @@ const _HEAL_LABEL_SCENE := preload(
 
 ## The [Character] being healed.
 var healing_target: Character: set = _set_healing_character
-## Amount by which the [member healing_target]
-## is healed each tick.
+## Amount by which the [member healing_target] is healed on each tick.
 var heal_amount: int = 3
 var _is_healing: bool = false:
 	set(value):
@@ -28,11 +27,6 @@ var _is_healing: bool = false:
 
 @onready var _line: Line2D = $HealingLine
 @onready var _tick_timer: Timer = $HealTickTimer
-
-
-## Overridden empty method to ensure that the drop pool is empty.
-func generate_drop_pool() -> void:
-	pass
 
 
 func _ready() -> void:
@@ -54,6 +48,11 @@ func _draw() -> void:
 	super()
 	draw_line(Vector2(-15, 0), Vector2(15, 0), outline_color, 5)
 	draw_line(Vector2(0, -15), Vector2(0, 15), outline_color, 5)
+
+
+## Overridden empty method to ensure that the drop pool is empty.
+func generate_drop_pool() -> void:
+	pass
 
 
 func _start_healing() -> void:

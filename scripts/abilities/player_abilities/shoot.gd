@@ -1,6 +1,5 @@
 class_name Shoot
 extends Ability
-
 ## Represents the Shoot ability which fires a [Projectile] in a direction.
 ## The [Projectile] applies a slight knockback.
 
@@ -17,10 +16,9 @@ var projectile_knockback: float = 350.0
 
 
 func _init() -> void:
-	super._init(0.5, "Shoots a projectile.")
+	super(0.5, "Shoots a projectile.")
 
 
-## Fires a [Projectile] in a direction.
 func _perform_ability() -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100

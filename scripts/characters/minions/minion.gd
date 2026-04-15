@@ -4,14 +4,12 @@ extends CastingCharacter
 ##
 ## Minions attack the player's enemies and their health decays over time.
 
-## Percentage of health decay on every
-## [member Minion._health_decay_timer] tick.
+# Percentage of health decay on every tick.
 const _HEALTH_DECAY_PERCENTAGE: int = 20
-## Timer used to time health decay.
+# Timer used to time health decay.
 @onready var _health_decay_timer: Timer = $HealthDecayTimer
 
-
-## Player who spawned the [Minion].
+## [PlayerCharacter] who spawned the [Minion].
 var spawner: PlayerCharacter:
 	set(value):
 		spawner = value
@@ -31,6 +29,21 @@ func _ready() -> void:
 	update_stats(level.current_level)
 	health.current_value = health.max_value_after_buffs
 	queue_redraw()
+
+
+# Overridden function to ensure that Minions
+# drop nothing.
+func generate_drop_pool() -> void:
+	pass
+
+
+# Overridden function, updates stats to match the level.
+# Causes the Minions to scale with the spawner's level.
+func update_stats(current_level: int) -> void:
+	var new_health: int = base_health + (current_level - 1) * 2
+	health.max_value = new_health
+	var new_damage: int = base_damage + (current_level - 1) * 5
+	damage.max_value = new_damage
 
 
 # Finds the closest Enemy or Chest in an array of nodes.
@@ -83,18 +96,3 @@ func _update_color() -> void:
 # Causes the health to decay by a percentage.
 func _decay_health() -> void:
 	health.current_value -= health.max_value_after_buffs / _HEALTH_DECAY_PERCENTAGE
-
-
-# Overridden function, updates stats to match the level.
-# Causes the Minions to scale with the spawner's level.
-func update_stats(current_level: int) -> void:
-	var new_health: int = base_health + (current_level - 1) * 2
-	health.max_value = new_health
-	var new_damage: int = base_damage + (current_level - 1) * 5
-	damage.max_value = new_damage
-
-
-# Overridden function to ensure that Minions
-# drop nothing.
-func generate_drop_pool() -> void:
-	pass

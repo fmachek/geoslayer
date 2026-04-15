@@ -13,7 +13,7 @@ var laser_lifetime: float = 5.0
 
 
 func _init() -> void:
-	super._init(15, "Spawns 4 lasers which orbit around the caster.")
+	super(15, "Spawns 4 lasers which orbit around the caster.")
 
 
 func _perform_ability() -> void:

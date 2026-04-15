@@ -22,23 +22,20 @@ var speed_debuff_duration: float = 0.5
 
 
 func _init() -> void:
-	super._init(1, "Shoots a large projectile and applies
+	super(1, "Shoots a large projectile and applies
 			a short speed debuff and long knockback to the caster.")
 
 
-## Fires a large, slow and high-damage [Projectile].
-## Applies a speed debuff to the caster.
 func _perform_ability() -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100
 	var proj := ProjectileFunctions.fire_projectile_from_character(_PROJ_SCENE,
 			character, projectile_speed, damage, projectile_radius)
 	proj.knockback = projectile_knockback
-	_add_speed_debuff()
+	_apply_speed_debuff()
 	finished_casting.emit()
 
 
-## Applies a short speed debuff to the caster.
-func _add_speed_debuff() -> void:
+func _apply_speed_debuff() -> void:
 	var debuff := Buff.new(-speed_debuff, speed_debuff_duration)
 	debuff.apply_to_stat(character.speed)

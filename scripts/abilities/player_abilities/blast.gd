@@ -1,6 +1,5 @@
 class_name Blast
 extends Ability
-
 ## Represents the Blast ability which fires projectiles outward in all directions.
 ## Each of the projectiles applies a long knockback.
 
@@ -19,16 +18,14 @@ var projectile_knockback: float = 1200.0
 
 
 func _init() -> void:
-	super._init(2, "Shoots projectiles with long knockback in all directions.")
+	super(2, "Shoots projectiles with long knockback in all directions.")
 
 
-## Fires projectiles in all directions outward from the caster.
 func _perform_ability() -> void:
 	_spawn_projectiles(projectile_amount)
 	finished_casting.emit()
 
 
-## Fires [Projectile]s in all directions outward from the caster.
 func _spawn_projectiles(amount: int) -> void:
 	for i in range(amount):
 		# Calculate the angle for this specific projectile

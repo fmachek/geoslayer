@@ -25,6 +25,11 @@ var user_stat_points: int:
 var user_stats: Array[UserStat] = []
 
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	load_user()
+
+
 ## Attempts to load a user from the config file at [member CONFIG_PATH].
 ## If the load fails, a new user is created and then saved.
 func load_user() -> void:
@@ -95,11 +100,6 @@ func increase_stat(stat_name: String) -> void:
 		if stat.stat_name == stat_name:
 			user_stat_points -= 1
 			stat.stat_value += 1
-
-
-func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	load_user()
 
 
 func _load_user_level(current_level: int, xp: int, required_xp: int) -> void:

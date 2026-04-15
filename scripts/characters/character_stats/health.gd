@@ -1,10 +1,10 @@
 class_name Health
 extends CharacterStat
-
 ## Represents a character's HP. Contains regeneration logic.
 
 ## Heal amount each tick.
 @export var regen_amount: int = 2
+
 var _regen_tick_timer: Timer
 var _regen_start_timer: Timer
 

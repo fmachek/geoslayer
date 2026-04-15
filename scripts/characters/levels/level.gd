@@ -1,42 +1,30 @@
 class_name Level
 extends Node
-
 ## Represents a [Character]'s level.
 ##
-## When [member Level.current_xp] reaches [member Level.required_xp],
-## [member Lebel.current_level] increases by one (the [Character] levels up).
-## [member Level.current_xp] then resets back to 0.
+## When [member current_xp] reaches [member required_xp],
+## [member current_level] increases by one (the [Character] levels up).
+## [member current_xp] then resets back to 0.
 
-## Emitted when [member Level.current_level] changes.
+## Emitted when [member current_level] changes.
 signal level_changed(new_level: int)
-## Emitted when [member Level.current_xp] changes.
+## Emitted when [member current_xp] changes.
 signal current_xp_changed(new_xp: int)
-## Emitted when [member Level.required_xp] changes.
+## Emitted when [member required_xp] changes.
 signal required_xp_changed(new_xp: int)
 
 ## Amount of XP required to level up.
-@export var required_xp: int = 100:
-	set(value):
-		if value > 0:
-			required_xp = value
-			required_xp_changed.emit(value)
-@export var current_xp: int = 0:
-	set(value):
-		if value >= 0:
-			current_xp = value
-			current_xp_changed.emit(value)
-## Current level, increases when [member Level.current_xp]
-## reaches [member Level.required_xp].
-@export var current_level: int = 1:
-	set(value):
-		if value > 0:
-			current_level = value
-			level_changed.emit(value)
+@export var required_xp: int = 100: set = set_required_xp
+## Current XP.
+@export var current_xp: int = 0: set = set_current_xp
+## Current level, increases when [member current_xp]
+## reaches [member required_xp].
+@export var current_level: int = 1: set = set_current_xp
 
 
-## Adds [param xp] to [member Level.current_xp]. Also handles cases
-## where [param xp] is great enough to cause [member Level.current_xp] to reach
-## [member Level.required_xp] more than once.
+## Adds [param xp] to [member current_xp]. Also handles cases
+## where [param xp] is great enough to cause [member current_xp] to reach
+## [member required_xp] more than once.
 func add_xp(xp: int) -> void:
 	while (current_xp + xp) >= required_xp:
 		xp -= (required_xp - current_xp)
@@ -44,10 +32,34 @@ func add_xp(xp: int) -> void:
 	current_xp += xp
 
 
-## Resets [member Level.current_xp] to 0 and increases
-## [member Level.current_level] by 1. Also multiplies
-## [member Level.required_xp] by 1.05 to require more XP for higher levels.
+## Resets [member current_xp] to 0 and increases
+## [member current_level] by 1. Also multiplies
+## [member required_xp] by 1.05 to require more XP for higher levels.
 func level_up() -> void:
 	current_xp = 0
 	current_level += 1
 	required_xp *= 1.05 # Required XP increases with each new level
+
+
+## Sets [member required_xp] to [param value].
+## [param value] must be greater than 0.
+func set_required_xp(value: int) -> void:
+	if value > 0:
+		required_xp = value
+		required_xp_changed.emit(value)
+
+
+## Sets [member current_xp] to [param value].
+## [param value] must be greater than or equal to 0.
+func set_current_xp(value: int) -> void:
+	if value >= 0:
+		current_xp = value
+		current_xp_changed.emit(value)
+
+
+## Sets [member current_level] to [param value].
+## [param value] must be greater than 0.
+func set_current_level(value: int) -> void:
+	if value > 0:
+		current_level = value
+		level_changed.emit(value)

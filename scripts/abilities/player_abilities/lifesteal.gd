@@ -22,31 +22,25 @@ var _projectiles_remaining: int
 
 
 func _init() -> void:
-	var description := "Fires %d projectiles which heal the 
+	var description := "Fires %d projectiles which heal the
 			caster if they hit an enemy." % projectile_amount
-	super._init(1, description)
+	super(1, description)
 
 
 func _ready() -> void:
 	_create_fire_timer()
 
 
-func _create_fire_timer() -> void:
-	_fire_timer = Timer.new()
-	_fire_timer.wait_time = fire_time
-	_fire_timer.timeout.connect(_on_fire_timer_timeout)
-	add_child(_fire_timer)
-
-
-# Shoots a projectile on every fire timer timeout.
-func _on_fire_timer_timeout() -> void:
-	_fire_projectile()
-
-
 func _perform_ability() -> void:
 	_projectiles_remaining = projectile_amount
 	_fire_timer.start()
 	_fire_projectile()
+
+
+func _reset_ability() -> void:
+	if _fire_timer:
+		_fire_timer.stop()
+	_projectiles_remaining = projectile_amount
 
 
 # Fires a projectile if there are projectiles remaining. Otherwise
@@ -64,7 +58,13 @@ func _fire_projectile() -> void:
 		finished_casting.emit()
 
 
-func _reset_ability() -> void:
-	if _fire_timer:
-		_fire_timer.stop()
-	_projectiles_remaining = projectile_amount
+func _create_fire_timer() -> void:
+	_fire_timer = Timer.new()
+	_fire_timer.wait_time = fire_time
+	_fire_timer.timeout.connect(_on_fire_timer_timeout)
+	add_child(_fire_timer)
+
+
+# Shoots a projectile on every fire timer timeout.
+func _on_fire_timer_timeout() -> void:
+	_fire_projectile()

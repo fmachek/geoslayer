@@ -47,6 +47,11 @@ func _perform_ability() -> void:
 	_fire_at_angles()
 
 
+func _reset_ability() -> void:
+	if _fire_timer:
+		_fire_timer.stop()
+
+
 func _fire_projectile(angle: float) -> void:
 	var proj: DoTProjectile = ProjectileFunctions.fire_projectile_at_angle(
 			_PROJ_SCENE, angle, character, base_damage,
@@ -70,6 +75,16 @@ func _fire_at_angles() -> void:
 		_finish_firing()
 
 
+func _generate_angles() -> void:
+	var target_pos: Vector2 = character.target_pos
+	var target_dir: Vector2 = character.global_position.direction_to(target_pos)
+	var target_angle: float = target_dir.angle()
+	var start_angle: float = target_angle - spread / 2
+	_proj_angles.clear()
+	for i in range(projectile_amount):
+		_proj_angles.append(start_angle + i * (spread / projectile_amount))
+
+
 func _finish_firing() -> void:
 	_fire_timer.stop()
 	finished_casting.emit()
@@ -80,18 +95,3 @@ func _create_fire_timer() -> void:
 	_fire_timer.wait_time = fire_time
 	_fire_timer.timeout.connect(_fire_at_angles)
 	add_child(_fire_timer)
-
-
-func _reset_ability() -> void:
-	if _fire_timer:
-		_fire_timer.stop()
-
-
-func _generate_angles() -> void:
-	var target_pos: Vector2 = character.target_pos
-	var target_dir: Vector2 = character.global_position.direction_to(target_pos)
-	var target_angle: float = target_dir.angle()
-	var start_angle: float = target_angle - spread / 2
-	_proj_angles.clear()
-	for i in range(projectile_amount):
-		_proj_angles.append(start_angle + i * (spread / projectile_amount))

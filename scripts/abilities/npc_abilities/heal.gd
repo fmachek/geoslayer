@@ -13,7 +13,7 @@ var radius: float = 200.0
 
 
 func _init() -> void:
-	super(4, "")
+	super(4, "Heals friendly characters around the caster.")
 
 
 func _perform_ability() -> void:

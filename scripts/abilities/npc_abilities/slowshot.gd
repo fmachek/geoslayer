@@ -18,7 +18,6 @@ func _init() -> void:
 	super._init(0.5, "Fires a slowing projectile.")
 
 
-## Fires a [SlowingProjectile] in a direction.
 func _perform_ability() -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100

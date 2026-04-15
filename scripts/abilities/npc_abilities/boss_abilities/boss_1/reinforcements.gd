@@ -9,7 +9,7 @@ const _SLOWER_DISTANCE: float = 1000.0
 
 
 func _init() -> void:
-	super._init(30, "Spawns 4 Slowers.")
+	super(30, "Spawns 4 Slowers.")
 
 
 func _perform_ability() -> void:

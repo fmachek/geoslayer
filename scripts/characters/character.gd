@@ -3,7 +3,7 @@ extends CharacterBody2D
 ## Represents a character with stats such as health and damage.
 ##
 ## [Character]s have knockback implemented, however they don't move by default.
-## This class itself does not call [member move_and_slide].
+## This class itself does not call [method move_and_slide].
 
 #region signals
 ## Emitted when health current value changes.
@@ -31,9 +31,9 @@ signal stun_ended()
 @export var draw_color: Color = Color.LIME_GREEN
 ## Color of the outline of the circle representing the [Character].
 @export var outline_color: Color = Color.SEA_GREEN
-## Value used when scaling health with [member Character.level].
+## Value used when scaling health with [member level].
 @export var base_health: int = 100
-## Value used when scaling damage with [member Character.level].
+## Value used when scaling damage with [member level].
 @export var base_damage: int = 100
 #endregion
 
@@ -46,12 +46,13 @@ var is_casting: bool = false
 ## usually be the current mouse position. For [Enemy], this will usually be
 ## the [PlayerCharacter]'s position.
 var target_pos: Vector2
-## Tells if the [Character] is alive.
+## Says if the [Character] is alive or not.
 var is_alive: bool = true
 ## Says if the [Character] is immune to stuns or not.
 var is_immune_to_stun: bool = false
 ## Says if the [Character] is currently stunned or not.
 var is_stunned: bool = false
+
 # Knockback vector.
 var _knockback := Vector2.ZERO
 # Array of vectors which add up to the final knockback.
@@ -76,6 +77,18 @@ var _stuns: Array[Timer] = []
 #endregion
 
 
+func _ready() -> void:
+	health_changed.connect(check_for_death)
+	level.level_changed.connect(_on_level_changed) # Connect level up signal
+	was_stunned.connect(_begin_stun)
+	stun_ended.connect(_end_stun)
+	update_stats(level.current_level) # Update stats on spawn
+	health.current_value = health.max_value_after_buffs # Spawn with max health
+	generate_drop_pool()
+	$HealthBar.set_up() # Sets up the health bar which appears below the character
+	%AimLine.default_color = Color(outline_color, 0.3)
+
+
 # Moves the aim line, which is used to display aiming, on every frame.
 func _process(delta: float) -> void:
 	move_aim_line()
@@ -87,49 +100,28 @@ func _physics_process(delta: float) -> void:
 	velocity += _knockback
 
 
-func _calculate_knockback() -> void:
-	_knockback = Vector2.ZERO
-	var new_array: Array[Vector2] = []
-	for vector in _knockback_vectors:
-		_knockback += Vector2(vector.x, vector.y)
-		vector *= 0.9
-		if vector.length() >= 40:
-			new_array.append(vector)
-	_knockback_vectors = new_array
-
-
-func apply_knockback(knockback: Vector2) -> void:
-	_knockback_vectors.append(knockback)
-
-
 # Draws the Character. It is different depending on the collision shape.
 # In case of a PlayerCharacter for example, it is going to be a circle.
 # But other types of Character might require a rectangular shape.
 func _draw() -> void:
-	if $CollisionShape2D.shape is CircleShape2D:
-		var radius: int = $CollisionShape2D.shape.radius
+	var shape = $CollisionShape2D.shape
+	if shape is CircleShape2D:
+		var radius: int = shape.radius
 		draw_circle(Vector2.ZERO, radius, draw_color)
-		var outline_width: int = radius/8
+		var outline_width: int = radius / 8
 		draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
-	elif $CollisionShape2D.shape is RectangleShape2D:
-		var width: int = $CollisionShape2D.shape.size.x
-		var height: int = $CollisionShape2D.shape.size.y
-		var rect := Rect2(-width/2, -height/2, width, height)
+	elif shape is RectangleShape2D:
+		var width: int = shape.size.x
+		var height: int = shape.size.y
+		var rect := Rect2(-width / 2, -height / 2, width, height)
 		var outline_width: int = 4
 		draw_rect(rect, draw_color)
 		draw_rect(rect, outline_color, false, outline_width)
 
 
-func _ready() -> void:
-	health_changed.connect(check_for_death)
-	level.level_changed.connect(_on_level_changed) # Connect level up signal
-	was_stunned.connect(_begin_stun)
-	stun_ended.connect(_end_stun)
-	update_stats(level.current_level) # Update stats on spawn
-	health.current_value = health.max_value_after_buffs # Spawn with max health
-	generate_drop_pool()
-	$HealthBar.set_up() # Sets up the health bar which appears below the character
-	%AimLine.default_color = Color(outline_color, 0.3)
+## Applies a knockback to the [Character].
+func apply_knockback(knockback: Vector2) -> void:
+	_knockback_vectors.append(knockback)
 
 
 ## Makes the [Character] take damage. Returns the damage taken,
@@ -155,12 +147,23 @@ func heal(amount: int) -> void:
 	health.add_value(amount)
 
 
-## Emits the 'health_changed' signal. This propagates the signal for simplicity.
+func _calculate_knockback() -> void:
+	_knockback = Vector2.ZERO
+	var new_array: Array[Vector2] = []
+	for vector in _knockback_vectors:
+		_knockback += Vector2(vector.x, vector.y)
+		vector *= 0.9
+		if vector.length() >= 40:
+			new_array.append(vector)
+	_knockback_vectors = new_array
+
+
+## Emits [signal health_changed]. This propagates the signal for simplicity.
 func emit_health_change(old_health: int, new_health: int) -> void:
 	health_changed.emit(old_health, new_health)
 
 
-## Emits the 'max_health_changed' signal. This propagates the signal for simplicity.
+## Emits [signal max_health_changed]. This propagates the signal for simplicity.
 func emit_max_health_change(old_health: int, new_health: int) -> void:
 	max_health_changed.emit(old_health, new_health)
 
@@ -172,8 +175,8 @@ func check_for_death(old_health: int, new_health: int) -> void:
 
 
 ## Causes the [Character] to die. Drops items from the drop pool, spawns
-## death particles and then frees itself. [member Character.died] is emitted
-## at the very start of this function.
+## death particles and then frees itself. [signal died] is emitted
+## at the start of this function.
 func die() -> void:
 	is_alive = false
 	died.emit()
@@ -194,7 +197,7 @@ func _spawn_death_particles() -> void:
 
 
 ## Equips a new [Ability]. The [Ability] node is added as a
-## child of [member Character.abilities].
+## child of [member abilities].
 func equip_ability(ability: Ability) -> void:
 	if ability:
 		abilities.add_child(ability)
@@ -205,7 +208,7 @@ func equip_ability(ability: Ability) -> void:
 		ability.unequipping.connect(_on_ability_unequipping)
 
 
-## Iterates through [member Character.drop_pool] and generates a random 
+## Iterates through the [member drop_pool] and generates a random 
 ## number between 0 and 100 for each [Drop]. If that number is lower than
 ## or equal to [member Drop.chance], the item is dropped.
 func drop_items() -> void:
@@ -224,22 +227,23 @@ func generate_drop_pool() -> void:
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 
 
-## Drops an item. It it spawned within the bounds of the collision shape.
-## That depends on the shape which can be a circle or a rectangle.
+## Drops an item. It is spawned within the bounds of the collision shape.
+## Those depend on the shape which can be a circle or a rectangle.
 func drop_item(drop: Drop) -> void:
+	var shape = $CollisionShape2D.shape
 	var random_x: int
 	var random_y: int
-	if $CollisionShape2D.shape is CircleShape2D:
-		var radius: int = $CollisionShape2D.shape.radius
+	if shape is CircleShape2D:
+		var radius: int = shape.radius
 		random_x = randi_range(
 				global_position.x - radius,
 				global_position.x + radius)
 		random_y = randi_range(
 				global_position.y - radius,
 				global_position.y + radius)
-	elif $CollisionShape2D.shape is RectangleShape2D:
-		var size_x: int = $CollisionShape2D.shape.size.x
-		var size_y: int = $CollisionShape2D.shape.size.y
+	elif shape is RectangleShape2D:
+		var size_x: int = shape.size.x
+		var size_y: int = shape.size.y
 		random_x = randi_range(
 				global_position.x - size_x,
 				global_position.x + size_x)
@@ -255,7 +259,7 @@ func drop_item(drop: Drop) -> void:
 		parent.add_child(item)
 
 
-## Changes [member Character.draw_color] and [member Character.outline_color]
+## Changes [member draw_color] and [member outline_color]
 ## and queues redraw.
 func change_color(draw_color: Color, outline_color: Color) -> void:
 	self.draw_color = draw_color
@@ -265,11 +269,13 @@ func change_color(draw_color: Color, outline_color: Color) -> void:
 	queue_redraw()
 
 
+## Starts casting.
 func start_casting() -> void:
 	is_casting = true
 	started_casting.emit()
 
 
+## Finishes casting.
 func finish_casting() -> void:
 	is_casting = false
 	finished_casting.emit()
@@ -293,8 +299,8 @@ func _on_level_changed(new_level: int) -> void:
 
 
 ## Updates stats to scale with the current [Level].
-## [member Character.health] and [member Character.damage] increase by 25% of the base value
-## with every level.
+## [member health.max_value] and [member damage.max_value]
+## increase by 25% of the base value with every level.
 func update_stats(current_level: int) -> void:
 	var new_health: int = base_health + (current_level - 1) * 25
 	health.max_value = new_health
@@ -302,7 +308,7 @@ func update_stats(current_level: int) -> void:
 	damage.max_value = new_damage
 
 
-## Moves the aim line so that it aims at [member Character.target_pos].
+## Moves the aim line so that it aims at the [member target_pos].
 func move_aim_line() -> void:
 	if %AimLine.visible:
 		var direction_to_target: Vector2 = (target_pos - global_position).normalized()
@@ -312,12 +318,7 @@ func move_aim_line() -> void:
 		else:
 			start_point = Vector2.ZERO
 		var end_point: Vector2 = global_position + direction_to_target * 2000
-		%AimLine.points = PackedVector2Array(
-				[
-					Vector2(start_point),
-					to_local(end_point)
-				]
-		)
+		%AimLine.points = PackedVector2Array([Vector2(start_point), to_local(end_point)])
 
 
 func show_aim_line():

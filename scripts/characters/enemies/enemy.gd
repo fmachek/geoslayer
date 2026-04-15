@@ -1,6 +1,7 @@
 @abstract class_name Enemy
 extends CastingCharacter
-## Represents an enemy who follows the player around and casts abilities.
+## Represents an enemy who follows the player or their minions
+## around and casts abilities.
 
 
 # Finds the closest PlayerCharacter or Minion in an array of nodes.

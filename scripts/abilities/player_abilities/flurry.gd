@@ -2,7 +2,7 @@ class_name Flurry
 extends Ability
 ## Represents the Flurry ability which fires a flurry of projectiles.
 ## While casting, the caster is unable to cast other abilities.
-## ability also has a random recoil (the projectiles fire in a
+## The ability also has a random recoil (the projectiles fire in a
 ## slightly offset direction). Each of the projectiles also applies
 ## a slight knockback.
 
@@ -31,35 +31,26 @@ var _flurry_timer: Timer
 
 
 func _init() -> void:
-	super._init(4, "Fires a flurry of projectiles.")
+	super(4, "Fires a flurry of projectiles.")
 
 
 func _ready() -> void:
 	_create_flurry_timer()
 
 
-func _create_flurry_timer() -> void:
-	_flurry_timer = Timer.new()
-	_flurry_timer.wait_time = flurry_fire_time
-	_flurry_timer.timeout.connect(_on_flurry_timer_timeout)
-	add_child(_flurry_timer)
-
-
 func _perform_ability() -> void:
 	_projectiles_remaining = projectile_amount
 	_flurry_timer.start()
-	_shoot_projectile()
+	_fire_projectile()
 
 
-# Shoots a projectile on every flurry timer timeout.
-func _on_flurry_timer_timeout() -> void:
-	_shoot_projectile()
+func _reset_ability() -> void:
+	if _flurry_timer:
+		_flurry_timer.stop()
+	_projectiles_remaining = projectile_amount
 
 
-## Fires a single [Projectile] if there are projectiles remaining.
-## Every [Projectile] has a random offset applied to its direction to simulate recoil.
-## If there are no projectiles remaining, the flurry timer stops.
-func _shoot_projectile() -> void:
+func _fire_projectile() -> void:
 	if _projectiles_remaining > 0:
 		_projectiles_remaining -= 1
 		var target_pos: Vector2 = character.target_pos
@@ -83,10 +74,13 @@ func _shoot_projectile() -> void:
 		finished_casting.emit()
 
 
-## Overriden function used to reset the [Ability] to its default state. In this case,
-## [member Flurry._projectiles_remaining] must be reset to [member Flurry.projectile_amount].
-## The flurry timer is also stopped.
-func _reset_ability() -> void:
-	if _flurry_timer:
-		_flurry_timer.stop()
-	_projectiles_remaining = projectile_amount
+func _create_flurry_timer() -> void:
+	_flurry_timer = Timer.new()
+	_flurry_timer.wait_time = flurry_fire_time
+	_flurry_timer.timeout.connect(_on_flurry_timer_timeout)
+	add_child(_flurry_timer)
+
+
+# Fires a projectile on every flurry timer timeout.
+func _on_flurry_timer_timeout() -> void:
+	_fire_projectile()

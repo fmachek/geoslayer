@@ -1,9 +1,9 @@
 extends Node
 
-## This autoload handles the main things the game needs: switching between
-## the menus and the game, game pausing and world selection.
+## This autoload handles the main things the game needs, for example
+## switching between different menus and the game, pausing and more.
 
-## Emitted when the Main node is fully ready.
+## Emitted when the [Main] node is fully ready.
 signal loaded_main(main: Main)
 ## Emitted when the game is paused.
 signal paused_game()
@@ -12,7 +12,7 @@ signal resumed_game()
 ## Emitted when the game is won.
 signal won_game()
 
-## Main [Node2D] containing the in-game UI and world.
+## [Main] node containing the in-game UI and world.
 var main_node: Main
 ## The number of the world currently selected.
 var selected_world_number: int
@@ -47,8 +47,8 @@ func exit_game() -> void:
 	get_tree().quit()
 
 
-## Emits [member GameManager.loaded_main when 
-## [member GameManager.main_node] is ready and enables pausing.
+## Emits [member loaded_main] when [member main_node] is ready
+## and enables pausing.
 func _on_main_ready() -> void:
 	can_pause_game = true
 	loaded_main.emit(main_node)
@@ -66,36 +66,35 @@ func _unhandled_input(event) -> void:
 				pause_game()
 
 
+#region menu switching
 ## Switches to the main menu scene.
 func switch_to_menu() -> void:
-	resume_game()
-	can_pause_game = false
-	get_tree().change_scene_to_file("res://scenes/user_interface/main_menu/main_menu.tscn")
-	main_node = null
+	switch_to_ui_scene("res://scenes/user_interface/main_menu/main_menu.tscn")
 
 
 ## Switches to the world selection UI scene.
 func switch_to_world_selection() -> void:
-	resume_game()
-	can_pause_game = false
-	get_tree().change_scene_to_file("res://scenes/user_interface/main_menu/world_selection_ui.tscn")
-	main_node = null
+	switch_to_ui_scene("res://scenes/user_interface/main_menu/world_selection_ui.tscn")
 
 
 ## Switches to the win screen UI scene.
 func switch_to_win_screen() -> void:
-	resume_game()
-	can_pause_game = false
-	get_tree().change_scene_to_file("res://scenes/user_interface/win_screen/win_screen.tscn")
-	main_node = null
+	switch_to_ui_scene("res://scenes/user_interface/win_screen/win_screen.tscn")
 
 
 ## Switches to the permanent progression UI.
 func switch_to_progression() -> void:
+	switch_to_ui_scene("res://scenes/user_interface/progression/progression_ui.tscn")
+
+
+## Switches to a scene at a given [param path]. This assumes
+## the scene is a UI scene - it disables pausing.
+func switch_to_ui_scene(path: String) -> void:
 	resume_game()
 	can_pause_game = false
-	get_tree().change_scene_to_file("res://scenes/user_interface/progression/progression_ui.tscn")
+	get_tree().change_scene_to_file(path)
 	main_node = null
+#endregion
 
 
 ## Pauses the game if allowed.

@@ -21,10 +21,9 @@ var spread_angle: float = deg_to_rad(40)
 
 
 func _init() -> void:
-	super._init(1, "Shoots projectiles in a cone.")
+	super(1, "Shoots projectiles in a cone.")
 
 
-## Fires [Projectile]s in a cone.
 func _perform_ability() -> void:
 	var projectiles := ProjectileFunctions.fire_projectile_cone(
 			_PROJ_SCENE, projectile_amount, spread_angle,

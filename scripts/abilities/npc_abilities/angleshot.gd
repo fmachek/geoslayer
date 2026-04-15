@@ -24,17 +24,12 @@ func _init() -> void:
 func _perform_ability() -> void:
 	var dir_to_target: Vector2 = character.global_position.direction_to(character.target_pos)
 	var angle_to_target: float = dir_to_target.angle()
-	_fire_projectile_in_angle(angle_to_target + deg_to_rad(-angle))
-	_fire_projectile_in_angle(angle_to_target + deg_to_rad(angle))
+	_fire_projectile_at_angle(angle_to_target + deg_to_rad(-angle))
+	_fire_projectile_at_angle(angle_to_target + deg_to_rad(angle))
 	finished_casting.emit()
 
 
-func _fire_projectile_in_angle(angle: float) -> void:
-	var direction = Vector2.from_angle(angle)
-	var char_damage: int = character.damage.max_value_after_buffs
-	var damage: int = float(base_damage) * float(char_damage) / 100
-	var projectile_properties := ProjectileProperties.new(
-			character.draw_color, character.outline_color,
-			direction, projectile_speed, character, damage,
-			projectile_radius, character.global_position)
-	ProjectileFunctions.fire_projectile(_PROJ_SCENE, projectile_properties)
+func _fire_projectile_at_angle(angle: float) -> void:
+	ProjectileFunctions.fire_projectile_at_angle(
+		_PROJ_SCENE, angle, character, base_damage, projectile_speed,
+		projectile_radius)

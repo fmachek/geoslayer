@@ -1,6 +1,5 @@
 class_name PlayerCharacter
 extends Character
-
 ## Represents the player's character.
 ##
 ## A [PlayerCharacter] can have 2 abilities equipped. They also have perk points
@@ -15,7 +14,7 @@ signal ability1_changed(new_ability: Ability)
 signal ability2_changed(new_ability: Ability)
 ## Emitted when a new [Ability] is unlocked.
 signal new_ability_unlocked(ability: Ability)
-## Emitted when [member PlayerCharacter.perk_points_available] changes.
+## Emitted when [member perk_points_available] changes.
 signal perk_points_available_changed(new_amount: int)
 #endregion
 
@@ -49,7 +48,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	target_pos = get_global_mouse_position()
-	move_aim_indicator()
+	_move_aim_indicator()
 
 
 # Moves on every physics frame.
@@ -79,21 +78,9 @@ func generate_drop_pool() -> void:
 	pass
 
 
-## Adds [Shoot] to [member PlayerCharacter.unlocked_abilities].
-func load_unlocked_abilities() -> void:
-	if not unlocked_abilities.is_empty():
-		unlocked_abilities.clear()
-	var starter_ability: Ability = Shoot.new()
-	unlocked_abilities.append(starter_ability)
-
-
-# Input direction from Godot Docs
-# (https://docs.godotengine.org/en/stable/tutorials/2d/2d_movement.html)
-func get_input() -> void:
-	if is_stunned:
-		return
-	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	velocity += input_direction * speed.max_value_after_buffs
+## Adds perk points on every level up.
+func _on_level_changed(new_level: int) -> void:
+	add_perk_points(perk_points_per_level)
 
 
 ## Equips an [Ability]. Abilities can be equipped in 2 slots. If slot 1 is already
@@ -152,21 +139,13 @@ func replace_ability2(ability: Ability) -> void:
 	ability2_changed.emit(ability2)
 
 
-## Picks up an [XPOrb], increasing their [member Level.current_xp].
-func pick_up_xp_orb(orb: XPOrb) -> void:
-	var xp: int = orb.xp_amount
-	level.add_xp(xp)
-
-
-## Moves the aim indicator so that it aims at the current mouse position.
-func move_aim_indicator() -> void:
-	var aim_indicator: AimIndicator = $AimIndicator
-	if aim_indicator:
-		var mouse_pos: Vector2 = get_global_mouse_position()
-		var direction: Vector2 = (mouse_pos - global_position).normalized()
-		var radius: int = $CollisionShape2D.shape.radius
-		var offset: int = 12
-		aim_indicator.global_position = global_position + direction * (radius + offset)
+## Swaps abilities in the 2 slots.
+func swap_ability_slots() -> void:
+	var ability1_temp: Ability = ability1
+	ability1 = ability2
+	ability2 = ability1_temp
+	ability1_changed.emit(ability1)
+	ability2_changed.emit(ability2)
 
 
 ## Attempts to unlock a new [Ability]. Returns [code]false[/code] if it is already
@@ -182,21 +161,30 @@ func unlock_new_ability(ability: Ability) -> bool:
 	return true
 
 
-## Swaps abilities in the 2 slots.
-func swap_ability_slots() -> void:
-	var ability1_temp: Ability = ability1
-	ability1 = ability2
-	ability2 = ability1_temp
-	ability1_changed.emit(ability1)
-	ability2_changed.emit(ability2)
+## Adds [Shoot] to [member unlocked_abilities].
+func load_unlocked_abilities() -> void:
+	if not unlocked_abilities.is_empty():
+		unlocked_abilities.clear()
+	var starter_ability: Ability = Shoot.new()
+	unlocked_abilities.append(starter_ability)
 
 
-## Adds perk points on every level up.
-func _on_level_changed(new_level: int) -> void:
-	add_perk_points(perk_points_per_level)
+# Input direction from Godot Docs
+# (https://docs.godotengine.org/en/stable/tutorials/2d/2d_movement.html)
+func get_input() -> void:
+	if is_stunned:
+		return
+	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
+	velocity += input_direction * speed.max_value_after_buffs
 
 
-## Adds a given [param amount] to [member PlayerCharacter.perk_points_available].
+## Picks up an [XPOrb], increasing [member level.current_xp].
+func pick_up_xp_orb(orb: XPOrb) -> void:
+	var xp: int = orb.xp_amount
+	level.add_xp(xp)
+
+
+## Adds a given [param amount] to [member perk_points_available].
 func add_perk_points(amount: int) -> void:
 	if amount <= 0:
 		return
@@ -232,3 +220,13 @@ func _apply_user_stats() -> void:
 				if child.stat_name == stat_name:
 					child.max_value += child.perk_point_increase * stat_value
 					break
+
+
+func _move_aim_indicator() -> void:
+	var aim_indicator: AimIndicator = $AimIndicator
+	if aim_indicator:
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		var direction: Vector2 = (mouse_pos - global_position).normalized()
+		var radius: int = $CollisionShape2D.shape.radius
+		var offset: int = 12
+		aim_indicator.global_position = global_position + direction * (radius + offset)

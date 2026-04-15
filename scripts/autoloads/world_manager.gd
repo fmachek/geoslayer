@@ -1,7 +1,6 @@
 extends Node
-
 ## This autoload handles world loading and emits signals such
-## as wave_started so that nodes in the scene tree can easily
+## as [member wave_started] so that nodes in the scene tree can easily
 ## connect to them and detect important events.
 
 ## Emitted when a new wave starts in the world.
@@ -23,15 +22,15 @@ var current_world: World
 var _world_path: String = "res://scenes/worlds/world_%d.tscn"
 
 
-## Connects to [member GameManager.loaded_main] to ensure that
-## the world is loaded only when [Main] is ready.
+# Connects to loaded_main in GameManager to ensure that
+# the world is loaded only when Main is ready.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	GameManager.loaded_main.connect(_on_game_manager_loaded_main)
 
 
 ## Loads the given world and adds it as a child of [param main].
-## Also connectsthe wave manager's signals.
+## Also connects the wave manager's signals.
 func load_world(main: Main, world_number: int) -> void:
 	var world_scene_path: String = _world_path % world_number
 	var world_scene: PackedScene = load(world_scene_path)
@@ -60,5 +59,6 @@ func _on_spawn_wave_button_pressed() -> void:
 	current_world.start_wave()
 
 
+## Emits [signal boss_died].
 func handle_boss_death() -> void:
 	boss_died.emit()

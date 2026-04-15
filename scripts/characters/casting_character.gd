@@ -17,10 +17,11 @@ var target: Character
 var castable_abilities: Array[Ability] = []
 ## Cooldown used to space out individual [Ability] casts.
 var cast_cooldown: float = 2.0
-## Distance at which the [CastingCharacter] stops following [member CastingCharacter.target].
-var stop_distance: float = 180.0
 ## Minimum cooldown applied after every [Ability] cast, in seconds.
 var min_cast_cooldown: float = 1.0
+## Distance at which the [CastingCharacter] stops following its [member target].
+var stop_distance: float = 180.0
+
 ## [NavigationAgent2D] used for avoidance of other casting characters.
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 ## [Timer] used to time a casting cooldown.
@@ -78,29 +79,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 
-func _load_ability(ability: Ability) -> void:
-	equip_ability(ability)
-	_add_ability_to_castable(ability)
-	# Connect signals that manage castable
-	ability.casted.connect(_remove_ability_from_castable.bind(ability))
-	ability.finished_casting.connect(cast_random_ability)
-	ability.cooldown_ended.connect(_add_ability_to_castable.bind(ability))
-
-
-## Adds an [Ability] to [member CastingCharacter.castable_abilities].
-## Also attempts to cast a random [Ability].
-func _add_ability_to_castable(ability: Ability) -> void:
-	castable_abilities.append(ability)
-	cast_random_ability()
-
-
-## Removes an [Ability] from [member CastingCharacter.castable_abilities].
-func _remove_ability_from_castable(ability: Ability) -> void:
-	castable_abilities.erase(ability)
-
-
-## Attempts to cast a random [Ability] from
-## [member CastingCharacter.castable_abilities].
+## Attempts to cast a random [Ability] from [member castable_abilities].
 func cast_random_ability() -> void:
 	if is_stunned: return # Is stunned - can't cast
 	if not target: return # No target to attack
@@ -115,8 +94,26 @@ func cast_random_ability() -> void:
 		random_ability.cast()
 
 
-## Finds a new target in an array of nodes overlapping with
-## the [CastingCharacter]'s detection area.
+func _load_ability(ability: Ability) -> void:
+	equip_ability(ability)
+	_add_ability_to_castable(ability)
+	# Connect signals that manage castable
+	ability.casted.connect(_remove_ability_from_castable.bind(ability))
+	ability.finished_casting.connect(cast_random_ability)
+	ability.cooldown_ended.connect(_add_ability_to_castable.bind(ability))
+
+
+func _add_ability_to_castable(ability: Ability) -> void:
+	castable_abilities.append(ability)
+	cast_random_ability()
+
+
+func _remove_ability_from_castable(ability: Ability) -> void:
+	castable_abilities.erase(ability)
+
+
+# Finds a new target in an array of nodes overlapping with
+# the detection area.
 func _scan_for_target() -> void:
 	var char_area: Area2D = %CharacterDetectionArea
 	var bodies: Array[Node2D] = char_area.get_overlapping_bodies()
