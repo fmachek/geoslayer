@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ckj6jllhrbiol"]
+
+[ext_resource type="Script" uid="uid://sc0skw46wob" path="res://scripts/particle_effects/ability_pickup_particles.gd" id="1_uxs45"]
+
+[sub_resource type="Curve" id="Curve_aqkug"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_a7xkm"]
+offsets = PackedFloat32Array(0.53409094, 1)
+colors = PackedColorArray(1, 0, 1, 1, 1, 0, 1, 0)
+
+[node name="AbilityPickupParticles" type="CPUParticles2D" unique_id=1278312678]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 800.0
+initial_velocity_max = 1200.0
+orbit_velocity_min = 0.5
+orbit_velocity_max = 0.5
+angle_max = 180.0
+scale_amount_min = 20.0
+scale_amount_max = 30.0
+scale_amount_curve = SubResource("Curve_aqkug")
+color = Color(1, 0, 1, 1)
+color_ramp = SubResource("Gradient_a7xkm")
+script = ExtResource("1_uxs45")

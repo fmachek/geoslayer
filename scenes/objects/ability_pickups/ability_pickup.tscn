@@ -2,19 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bahcwihg0wroe" path="res://scripts/objects/ability_pickups/ability_pickup.gd" id="1_vn7f1"]
 
-[sub_resource type="Curve" id="Curve_vn7f1"]
-_limits = [-200.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 45.980255), 0.0, 0.0, 0, 0, Vector2(0.5, -200), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_aqkug"]
-_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_a7xkm"]
-offsets = PackedFloat32Array(0.53409094, 1)
-colors = PackedColorArray(1, 0, 1, 1, 1, 0, 1, 0)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lj3b"]
 size = Vector2(30, 30)
 
@@ -22,26 +9,6 @@ size = Vector2(30, 30)
 script = ExtResource("1_vn7f1")
 draw_color = Color(1, 0, 1, 1)
 outline_color = Color(0.73333335, 0, 0.73333335, 1)
-
-[node name="PickupParticles" type="CPUParticles2D" parent="." unique_id=1399215160]
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 800.0
-initial_velocity_max = 800.0
-orbit_velocity_min = 1.0
-orbit_velocity_max = 1.0
-linear_accel_min = 4.0
-linear_accel_max = 4.0
-linear_accel_curve = SubResource("Curve_vn7f1")
-scale_amount_min = 30.0
-scale_amount_max = 30.0
-scale_amount_curve = SubResource("Curve_aqkug")
-color = Color(1, 0, 1, 1)
-color_ramp = SubResource("Gradient_a7xkm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1034763640]
 collision_layer = 16

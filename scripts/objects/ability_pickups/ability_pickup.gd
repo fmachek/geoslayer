@@ -1,7 +1,9 @@
 class_name AbilityPickup
 extends Node2D
-
 ## Represents an object a [PlayerCharacter] can pick up to unlock an [Ability].
+
+const _PARTICLE_SCENE := preload(
+		"res://scenes/particle_effects/ability_pickup_particles.tscn")
 
 ## Emitted when the [AbilityPickup] is picked up by a [PlayerCharacter].
 signal picked_up()
@@ -62,8 +64,7 @@ func _unlock_ability(player: PlayerCharacter) -> void:
 	var ability: Ability = ability_script.new()
 	if ability:
 		if player.unlock_new_ability(ability):
-			$PickupParticles.emitting = true
-			# Plays only if the ability is actually unlocked
+			_spawn_particles()
 		else:
 			player.level.add_xp(fallback_xp) # Fallback XP reward if the player already has the ability
 		_play_tween()
@@ -84,3 +85,10 @@ func _spawn_label() -> void:
 	label.global_position = global_position - Vector2(label.size.x/2, 60)
 	picked_up.connect(label.fade_out)
 	get_parent().call_deferred("add_child", label)
+
+
+func _spawn_particles() -> void:
+	var particles: AbilityPickupParticles = _PARTICLE_SCENE.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	particles.play()
