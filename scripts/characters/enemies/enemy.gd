@@ -5,7 +5,7 @@ extends CastingCharacter
 
 
 # Finds the closest PlayerCharacter or Minion in an array of nodes.
-func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D:
+func _get_target_from_bodies(bodies: Array[Node2D]) -> Character:
 	var smallest_distance: float = 100000.0
 	var chosen_target: Node2D = null
 	for body: Node2D in bodies:

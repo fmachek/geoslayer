@@ -10,9 +10,11 @@ extends Character
 ## Emitted when the [member target] has been reached. That is usually
 ## when the [NavigationAgent2D] navigation finishes.
 signal target_reached()
+## Emitted when [member target] changes.
+signal target_changed(new_target: Character)
 
 ## [Character] being followed by the [CastingCharacter].
-var target: Character
+var target: Character: set = set_target
 ## Array of abilities ready to be cast.
 var castable_abilities: Array[Ability] = []
 ## Cooldown used to space out individual [Ability] casts.
@@ -41,7 +43,7 @@ var stop_distance: float = 180.0
 
 
 ## Finds a new target in an array of nodes.
-@abstract func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D
+@abstract func _get_target_from_bodies(bodies: Array[Node2D]) -> Character
 
 
 func _ready() -> void:
@@ -50,14 +52,19 @@ func _ready() -> void:
 	cast_cooldown_timer.wait_time = cast_cooldown
 	# Attempt to cast when stun ends
 	stun_ended.connect(cast_random_ability)
+	target_changed.connect(_reset_nav_agent)
 	_load_abilities()
 
 
 # Handles movement.
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if target and not is_stunned:
-		target_pos = target.global_position
+	if not is_stunned:
+		if is_instance_valid(target):
+			target_pos = target.global_position
+		elif _knockback != Vector2.ZERO:
+			move_and_slide()
+			return
 		# Set target position in navigation agent
 		nav_agent.target_position = target_pos
 		
@@ -94,6 +101,13 @@ func cast_random_ability() -> void:
 		random_ability.cast()
 
 
+## Sets [member target].
+func set_target(new_target: Character) -> void:
+	target = new_target
+	target_pos = global_position
+	target_changed.emit(new_target)
+
+
 func _load_ability(ability: Ability) -> void:
 	equip_ability(ability)
 	_add_ability_to_castable(ability)
@@ -112,12 +126,20 @@ func _remove_ability_from_castable(ability: Ability) -> void:
 	castable_abilities.erase(ability)
 
 
+func _reset_nav_agent() -> void:
+	if is_instance_valid(nav_agent):
+		nav_agent.target_position = global_position
+		nav_agent.set_velocity(Vector2.ZERO)
+
+
 # Finds a new target in an array of nodes overlapping with
 # the detection area.
 func _scan_for_target() -> void:
 	var char_area: Area2D = %CharacterDetectionArea
 	var bodies: Array[Node2D] = char_area.get_overlapping_bodies()
 	target = _get_target_from_bodies(bodies)
+	if not is_instance_valid(target):
+		_reset_nav_agent()
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:

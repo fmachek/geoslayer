@@ -6,6 +6,10 @@ extends CastingCharacter
 
 # Percentage of health decay on every tick.
 const _HEALTH_DECAY_PERCENTAGE: int = 20
+
+## Says if the [Minion] is following [member spawner] or not.
+var is_following_player: bool = true
+
 # Timer used to time health decay.
 @onready var _health_decay_timer: Timer = $HealthDecayTimer
 
@@ -28,7 +32,17 @@ func _ready() -> void:
 	level.current_level = spawner.level.current_level
 	update_stats(level.current_level)
 	health.current_value = health.max_value_after_buffs
+	target_changed.connect(_on_target_changed)
 	queue_redraw()
+
+
+func _physics_process(delta: float) -> void:
+	if is_following_player:
+		if is_instance_valid(spawner):
+			target_pos = spawner.global_position
+		else:
+			is_following_player = false
+	super(delta)
 
 
 # Overridden function to ensure that Minions
@@ -47,7 +61,7 @@ func update_stats(current_level: int) -> void:
 
 
 # Finds the closest Enemy or Chest in an array of nodes.
-func _get_target_from_bodies(bodies: Array[Node2D]) -> Node2D:
+func _get_target_from_bodies(bodies: Array[Node2D]) -> Character:
 	var smallest_distance: float = 100000.0
 	var chosen_target: Node2D = null
 	for body: Node2D in bodies:
@@ -96,3 +110,7 @@ func _update_color() -> void:
 # Causes the health to decay by a percentage.
 func _decay_health() -> void:
 	health.current_value -= health.max_value_after_buffs / _HEALTH_DECAY_PERCENTAGE
+
+
+func _on_target_changed(new_target: Character) -> void:
+	is_following_player = (new_target == null)
