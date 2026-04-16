@@ -39,8 +39,9 @@ func spawn_character(current_wave: int) -> void:
 
 # Checks if the new wave is in the spawn_waves array.
 # If it is, then a character shold be spawned.
+# The array being empty is also considered as "spawn every wave".
 func _on_wave_changed(wave: int) -> void:
-	if wave in spawn_waves:
+	if wave in spawn_waves or spawn_waves.is_empty():
 		spawn_character(wave)
 
 
