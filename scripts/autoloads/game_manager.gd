@@ -74,7 +74,7 @@ func switch_to_menu() -> void:
 
 ## Switches to the world selection UI scene.
 func switch_to_world_selection() -> void:
-	switch_to_ui_scene("res://scenes/user_interface/main_menu/world_selection_ui.tscn")
+	switch_to_ui_scene("res://scenes/user_interface/world_selection/world_selection_ui.tscn")
 
 
 ## Switches to the win screen UI scene.

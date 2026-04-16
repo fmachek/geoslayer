@@ -90,7 +90,7 @@ theme_override_constants/separation = 80
 
 [node name="LeftContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1929627055]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1865738111]
@@ -101,6 +101,7 @@ text = "Current world selected"
 
 [node name="SelectedWorldPanel" type="Panel" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1765578081]
 unique_name_in_owner = true
+clip_contents = true
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -117,25 +118,6 @@ text = "N"
 label_settings = SubResource("LabelSettings_41qj7")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1542767275]
-layout_mode = 2
-
-[node name="EnemiesLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer/InfoContainer" unique_id=507973985]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 16
-text = "Enemies: Shooter, Spammer, Tank"
-horizontal_alignment = 1
-
-[node name="BossesLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer/InfoContainer" unique_id=1469671179]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 16
-text = "Bosses: Placeholder, Placeholder"
-horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=2008140232]
 layout_mode = 2
