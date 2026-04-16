@@ -9,6 +9,8 @@ const _STAT_ROW_SCENE := preload(
 @onready var menu_button: Button = %BackToMenuButton
 @onready var stat_row_container: VBoxContainer = %StatRowContainer
 @onready var stat_points_label: Label = %StatPointsLabel
+@onready var next_world_unlock: HBoxContainer = %NextWorldUnlock
+@onready var world_unlock_label: Label = %WorldUnlockLabel
 
 
 func _ready() -> void:
@@ -17,6 +19,7 @@ func _ready() -> void:
 	_load_level()
 	_load_user_stats()
 	_update_stat_points_label(UserManager.user_stat_points)
+	_update_next_world_unlock()
 
 
 func _load_level() -> void:
@@ -44,3 +47,12 @@ func _load_stat(stat: UserStat) -> void:
 
 func _update_stat_points_label(amount: int) -> void:
 	stat_points_label.text = "Stat points available: %d" % amount
+
+
+func _update_next_world_unlock() -> void:
+	var next_unlock: int = WorldManager.get_next_world_unlock()
+	if next_unlock == -1: # No more worlds to unlock
+		next_world_unlock.hide()
+	else:
+		var req_level: int = WorldManager.get_world_required_level(next_unlock)
+		world_unlock_label.text = "World %d at Level %d" % [next_unlock, req_level]

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://hfgq5uu4vabl" path="res://assets/user_interface/textures/xp_orb_sprite.png" id="2_2xkh7"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_d8fo5"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_2xkh7"]
+[ext_resource type="Texture2D" uid="uid://bxd516lq4j480" path="res://assets/user_interface/misc/unlocked.png" id="3_cehwu"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_cehwu"]
 
 [sub_resource type="Gradient" id="Gradient_cehwu"]
@@ -98,6 +99,7 @@ text = "Progression"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=314024853]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -120,6 +122,7 @@ unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 18
@@ -128,62 +131,107 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_pu3ai")
 step = 1.0
 value = 50.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1380296653]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=717309355]
 layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
+theme_override_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2015614897]
+[node name="PermanentStatsContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2015614897]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_uai83")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=339027747]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer" unique_id=339027747]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=38554565]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer" unique_id=38554565]
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 20
 
-[node name="TextContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1467979852]
+[node name="TextContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer" unique_id=1467979852]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=173739619]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=173739619]
 layout_mode = 2
 theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
 text = "Permanent stats"
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=1343479519]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=1343479519]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "These are upgrades which are applied to your stats when you enter the game."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="StatPointsLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1045699514]
+[node name="StatPointsLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer" unique_id=1045699514]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "Stat points available:"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="StatRowContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=40928685]
+[node name="StatRowContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer" unique_id=40928685]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="UnlocksContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=496904546]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uai83")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer" unique_id=285296896]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer" unique_id=326998726]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NextWorldUnlock" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/VBoxContainer" unique_id=1972698535]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/VBoxContainer/NextWorldUnlock" unique_id=374610032]
+layout_mode = 2
+texture = ExtResource("3_cehwu")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/VBoxContainer/NextWorldUnlock" unique_id=1232843729]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/VBoxContainer/NextWorldUnlock/VBoxContainer" unique_id=1573495438]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+text = "Next world unlock:"
+
+[node name="WorldUnlockLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/VBoxContainer/NextWorldUnlock/VBoxContainer" unique_id=1152460682]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "World N at Level N"
 
 [node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2115773021]
 unique_name_in_owner = true

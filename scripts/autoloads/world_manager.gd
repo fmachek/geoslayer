@@ -87,3 +87,16 @@ func get_world_required_level(number: int) -> int:
 	if not number in world_required_levels.keys():
 		return 0
 	return world_required_levels[number]
+
+
+## Finds the next world to be unlocked. Assumes that the world numbers in
+## [member world_required_levels] are in such an order that every next world
+## requires a higher level. Returns -1 if there is no world to unlock.
+## Otherwise returns the world number, for example 1 for world 1.
+func get_next_world_unlock() -> int:
+	var user_level: int = UserManager.user_level.current_level
+	for world_number in world_required_levels.keys():
+		var req: int = world_required_levels[world_number]
+		if user_level < req:
+			return world_number
+	return -1
