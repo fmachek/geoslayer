@@ -5,6 +5,12 @@
 [ext_resource type="StyleBox" uid="uid://vktcx58ov2p5" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_pressed.tres" id="2_s03fu"]
 [ext_resource type="StyleBox" uid="uid://c6y1h4eipw4fm" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_hover.tres" id="3_ghl0j"]
 [ext_resource type="StyleBox" uid="uid://crohalqwxxov1" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_disabled.tres" id="4_rsocg"]
+[ext_resource type="Texture2D" uid="uid://d2wgmsf530hmy" path="res://assets/user_interface/misc/locked.png" id="6_s03fu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghl0j"]
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
 
 [node name="WorldSelectionButton" type="Button" unique_id=215859266]
 custom_minimum_size = Vector2(100, 100)
@@ -25,3 +31,31 @@ theme_override_styles/disabled_mirrored = ExtResource("4_rsocg")
 theme_override_styles/focus = ExtResource("3_ghl0j")
 text = "?"
 script = ExtResource("1_kchnc")
+
+[node name="LockedIndicator" type="Control" parent="." unique_id=238774865]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="LockedIndicator" unique_id=1913230791]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ghl0j")
+
+[node name="LockedIcon" type="TextureRect" parent="LockedIndicator" unique_id=1066895887]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_s03fu")

@@ -21,6 +21,13 @@ var current_world: World
 ## Path to the [World] scene, where '%d' must be replaced with an integer.
 var _world_path: String = "res://scenes/worlds/world_%d.tscn"
 
+## Dictionary of user levels required to enter each world.
+var world_required_levels: Dictionary[int, int] = {
+	1: 1,
+	2: 5,
+	3: 10
+}
+
 
 # Connects to loaded_main in GameManager to ensure that
 # the world is loaded only when Main is ready.
@@ -62,3 +69,21 @@ func _on_spawn_wave_button_pressed() -> void:
 ## Emits [signal boss_died].
 func handle_boss_death() -> void:
 	boss_died.emit()
+
+
+## Checks if a world with a given [param number] is unlocked.
+## [param number] is the world number (for example world 1).
+func is_world_unlocked(number: int) -> bool:
+	if not number in world_required_levels.keys():
+		return true
+	var required_level: int = world_required_levels[number]
+	var user_level: int = UserManager.user_level.current_level
+	return user_level >= required_level
+
+
+## Returns the level required to enter a world with a given [param number].
+## [param number] is the world number (for example world 1).
+func get_world_required_level(number: int) -> int:
+	if not number in world_required_levels.keys():
+		return 0
+	return world_required_levels[number]
