@@ -30,4 +30,4 @@ func _on_player_spawned(player: PlayerCharacter) -> void:
 	player.perk_points_available_changed.connect(update_perk_points_label)
 
 func update_perk_points_label(points: int) -> void:
-	%PerkPointsLabel.text = "Perk Points: %d" % points
+	%StatPointsLabel.text = "Stat Points: %d" % points
