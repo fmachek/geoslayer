@@ -34,34 +34,81 @@ func _ready() -> void:
 
 ## Attempts to load a user from the config file at [member CONFIG_PATH].
 ## If the load fails, a new user is created and then saved.
+## Partial loads are also handled. If a value is missing, it is set to
+## the default value.
 func load_user() -> void:
 	var config := ConfigFile.new()
 	
 	var err = config.load(CONFIG_PATH)
 	if err != OK:
 		print("Config not found, creating new user.")
-		_load_user_level(1, 0, 100)
-		_load_stats(0, 0, 0, 0)
-		user_stat_points = 0
-		save_user()
+		create_new_user()
 		return
 	
 	var sections: PackedStringArray = config.get_sections()
 	if not sections.is_empty():
+		var is_load_incomplete: bool = false
 		var user = sections[0]
-		var level: int = config.get_value(user, "Level")
-		var current_xp: int = config.get_value(user, "CurrentXP")
-		var required_xp: int = config.get_value(user, "RequiredXP")
-		var health: int = config.get_value(user, "Health")
-		var armor: int = config.get_value(user, "Armor")
-		var damage: int = config.get_value(user, "Damage")
-		var speed: int = config.get_value(user, "Speed")
-		user_stat_points = config.get_value(user, "StatPoints")
+		
+		var level = config.get_value(user, "Level")
+		if level is not int:
+			level = 1
+			is_load_incomplete = true
+		
+		var current_xp = config.get_value(user, "CurrentXP")
+		if current_xp is not int:
+			current_xp = 0
+			is_load_incomplete = true
+		
+		var required_xp = config.get_value(user, "RequiredXP")
+		if required_xp is not int:
+			required_xp = 100
+			is_load_incomplete = true
+		
+		var health = config.get_value(user, "Health")
+		if health is not int:
+			health = 0
+			is_load_incomplete = true
+		
+		var armor = config.get_value(user, "Armor")
+		if armor is not int:
+			armor = 0
+			is_load_incomplete = true
+		
+		var damage = config.get_value(user, "Damage")
+		if damage is not int:
+			damage = 0
+			is_load_incomplete = true
+		
+		var speed = config.get_value(user, "Speed")
+		if speed is not int:
+			speed = 0
+			is_load_incomplete = true
+		
+		var stat_points = config.get_value(user, "StatPoints")
+		if stat_points is not int:
+			stat_points = 0
+			is_load_incomplete = true
+		user_stat_points = stat_points
+		
 		print("Loaded user with level %d (XP: %d). Required XP: %d." % [level, current_xp, required_xp])
 		print("User stats: health (%d), damage (%d), speed (%d)" % [health, damage, speed])
 		_load_user_level(level, current_xp, required_xp)
 		_load_stats(health, armor, damage, speed)
 		was_load_successful = true
+		
+		if is_load_incomplete:
+			save_user()
+	else:
+		create_new_user()
+
+
+## Creates a new user with default values.
+func create_new_user() -> void:
+	_load_user_level(1, 0, 100)
+	_load_stats(0, 0, 0, 0)
+	user_stat_points = 0
+	save_user()
 
 
 ## Attempts to save the user to a config file at [member CONFIG_PATH].
