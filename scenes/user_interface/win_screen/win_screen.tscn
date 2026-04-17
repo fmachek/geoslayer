@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bdilgwqtqc44e" path="res://scripts/characters/levels/level.gd" id="2_7ip05"]
 [ext_resource type="Script" uid="uid://c63qsw8tg3y26" path="res://scripts/user_interface/win_screen/player_level_container.gd" id="2_22730"]
 [ext_resource type="Texture2D" uid="uid://hfgq5uu4vabl" path="res://assets/user_interface/textures/xp_orb_sprite.png" id="2_h5p5c"]
+[ext_resource type="Texture2D" uid="uid://db5pth6l5jday" path="res://assets/user_interface/textures/background_tile.png" id="2_r6n0o"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="4_nl1kk"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="5_h5p5c"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="6_r6n0o"]
@@ -29,14 +30,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nf2rp")
 
-[node name="BackgroundRect" type="ColorRect" parent="." unique_id=361006508]
+[node name="BGTextureRect" type="TextureRect" parent="." unique_id=612916594]
+modulate = Color(0.5609549, 0.5609549, 0.5609549, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.41960785, 0.52156866, 1)
+texture = ExtResource("2_r6n0o")
+stretch_mode = 1
 
 [node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1057797905]
 position = Vector2(576, 680)

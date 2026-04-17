@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bar5hckyiodd1" path="res://scripts/user_interface/world_selection/world_selection_ui.gd" id="1_41qj7"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="1_wi1en"]
-[ext_resource type="Texture2D" uid="uid://hfgq5uu4vabl" path="res://assets/user_interface/textures/xp_orb_sprite.png" id="2_0fdx1"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_41qj7"]
+[ext_resource type="Texture2D" uid="uid://db5pth6l5jday" path="res://assets/user_interface/textures/background_tile.png" id="2_t77po"]
 [ext_resource type="StyleBox" uid="uid://c2vtf7qlhecwb" path="res://assets/user_interface/styles/world_selection/selected_world_panel.tres" id="2_xxlyo"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_xxlyo"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_0fdx1"]
 
-[sub_resource type="Gradient" id="Gradient_wi1en"]
+[sub_resource type="Gradient" id="Gradient_t77po"]
 offsets = PackedFloat32Array(0.17218544, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -27,49 +27,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_41qj7")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=278398267]
+[node name="BGTextureRect" type="TextureRect" parent="." unique_id=144937535]
+modulate = Color(0.5609549, 0.5609549, 0.5609549, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.42140755, 0.51970077, 1)
+texture = ExtResource("2_t77po")
+stretch_mode = 1
 
-[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1742195572]
-position = Vector2(1180, 323)
+[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1099198104]
+position = Vector2(576, 680)
 amount = 5
-lifetime = 5.0
+lifetime = 2.0
 preprocess = 15.0
 emission_shape = 3
-emission_rect_extents = Vector2(0, 324)
-direction = Vector2(-1, 0)
+emission_rect_extents = Vector2(576, 0)
+direction = Vector2(0, -1)
 spread = 0.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 scale_amount_min = 20.0
 scale_amount_max = 40.0
-color = Color(0, 0.3372549, 0.42352942, 1)
-color_ramp = SubResource("Gradient_wi1en")
-
-[node name="OrbParticles" type="CPUParticles2D" parent="." unique_id=277871211]
-position = Vector2(1180, 323)
-amount = 10
-texture = ExtResource("2_0fdx1")
-lifetime = 5.0
-preprocess = 15.0
-emission_shape = 3
-emission_rect_extents = Vector2(0, 324)
-direction = Vector2(-1, 0)
-spread = 0.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-scale_amount_min = 0.03
-scale_amount_max = 0.05
-color = Color(1, 0, 1, 1)
-color_ramp = SubResource("Gradient_wi1en")
+color = Color(1.2995303e-06, 0.3387098, 0.4232913, 1)
+color_ramp = SubResource("Gradient_t77po")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2024073401]
 layout_mode = 1
