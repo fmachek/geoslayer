@@ -23,6 +23,8 @@ var user_stat_points: int:
 		user_stat_points_changed.emit(value)
 ## Array of permanent stat upgrades.
 var user_stats: Array[UserStat] = []
+## Says whether the user load was successful or not.
+var was_load_successful: bool = false
 
 
 func _ready() -> void:
@@ -59,6 +61,7 @@ func load_user() -> void:
 		print("User stats: health (%d), damage (%d), speed (%d)" % [health, damage, speed])
 		_load_user_level(level, current_xp, required_xp)
 		_load_stats(health, armor, damage, speed)
+		was_load_successful = true
 
 
 ## Attempts to save the user to a config file at [member CONFIG_PATH].

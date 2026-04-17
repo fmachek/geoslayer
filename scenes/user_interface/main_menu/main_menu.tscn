@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_w5fdl"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_01m43"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_tlslw"]
+[ext_resource type="PackedScene" uid="uid://dxm50rafjxaq8" path="res://scenes/user_interface/main_menu/save_info_container.tscn" id="7_01m43"]
 
 [sub_resource type="Gradient" id="Gradient_bv0at"]
 offsets = PackedFloat32Array(0.7317881, 1)
@@ -193,3 +194,9 @@ theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
 theme_override_styles/focus = ExtResource("3_01m43")
 text = "Exit"
 alignment = 0
+
+[node name="SaveInfoContainer" parent="." unique_id=921888963 instance=ExtResource("7_01m43")]
+visible = false
+layout_mode = 1
+offset_left = -300.0
+offset_top = -90.0
