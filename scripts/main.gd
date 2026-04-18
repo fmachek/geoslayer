@@ -5,6 +5,7 @@ var death_cam_tween: Tween
 @onready var death_cam: Camera2D = $DeathCamera
 
 func _ready() -> void:
+	Chest.clear_ability_pool()
 	PlayerManager.player_died.connect(_on_player_died)
 
 func _on_player_died(player: PlayerCharacter) -> void:

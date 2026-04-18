@@ -14,6 +14,11 @@ extends Character
 static var ability_drop_pool: Array[Drop] = []
 
 
+## Clears [member ability_drop_pool].
+static func clear_ability_pool() -> void:
+	ability_drop_pool.clear()
+
+
 func _ready() -> void:
 	super()
 	# Ensures that an ability is dropped on death
