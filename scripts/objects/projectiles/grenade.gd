@@ -42,8 +42,8 @@ func _spawn_projectile(direction: Vector2) -> void:
 	var source: Node2D = null
 	if is_instance_valid(projectile_properties.source):
 		source = projectile_properties.source
-	var damage: int = projectile_properties.damage * 0.75
-	var radius: int = projectile_properties.radius * 0.75
+	var damage: int = projectile_properties.damage * 0.5
+	var radius: int = projectile_properties.radius * 0.5
 	var proj_props := ProjectileProperties.new(projectile_properties.draw_color, projectile_properties.outline_color, direction, projectile_properties.speed, source, damage, radius, global_position)
 	var proj: GrenadeProjectile = ProjectileFunctions.fire_projectile(_proj_scene, proj_props)
 	proj.set_explosion_body(_explosion_body)

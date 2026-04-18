@@ -11,7 +11,7 @@ const _PROJ_SCENE := preload(_PROJ_SCENE_PATH)
 ## Travel speed of the [PiercingProjectile] fired when cast.
 var projectile_speed: int = 6
 ## Base damage of the [PiercingProjectile] fired when cast.
-var base_damage: int = 50
+var base_damage: int = 60
 ## Radius of the [PiercingProjectile] fired when cast.
 var projectile_radius: int = 10
 ## Knockback applied to [Character]s hit by the [PiercingProjectile].

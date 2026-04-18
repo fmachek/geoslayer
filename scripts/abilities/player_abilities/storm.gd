@@ -13,7 +13,7 @@ var zone_duration: float = 10.0
 ## Used to set [member DamagingZone.time_per_tick].
 var zone_tick_time: float = 1.0
 ## Used to set [member DamagingZone.base_damage].
-var zone_base_damage: int = 7
+var zone_base_damage: int = 15
 ## Used to set [member DamagingZone.radius].
 var zone_radius: int = 250
 ## Amount by which the caster's speed is decreased when casting.

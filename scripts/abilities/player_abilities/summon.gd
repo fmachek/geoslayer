@@ -22,7 +22,7 @@ const _CAST_PART_SCENE := preload(
 ## Amount of minions spawned.
 var minion_amount: int = 5: set = set_minion_amount
 ## Minions' distance from the cast target position.
-var minion_distance: float = 60.0
+var minion_distance: float = 100.0
 
 var _cast_timer: Timer
 var _cast_time: float = 0.75

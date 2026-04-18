@@ -9,7 +9,7 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/dot_projectile.tscn")
 
 ## Base speed of the [DoTProjectile]s before a speed decrease is applied.
-var projectile_speed: float = 3
+var projectile_speed: float = 2
 ## Base damage of the [DoTProjectile]s.
 var base_damage: int = 5
 ## Radius of the [DoTProjectile]s.
@@ -33,7 +33,7 @@ var _proj_speed_decrease: float
 
 
 func _init() -> void:
-	super(2, "Fires projectiles which deal damage over time.")
+	super(5, "Fires projectiles which deal damage over time.")
 
 
 func _ready() -> void:

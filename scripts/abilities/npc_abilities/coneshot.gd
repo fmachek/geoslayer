@@ -10,9 +10,9 @@ var projectile_speed: int = 4
 ## Speed of the smaller [Projectile]s.
 var secondary_projectile_speed: int = 3
 ## Base damage of the middle [Projectile].
-var base_damage: int = 20
+var base_damage: int = 15
 ## Base damage of the smaller [Projectile]s.
-var secondary_base_damage: int = 10
+var secondary_base_damage: int = 8
 ## Radius of the middle [Projectile].
 var projectile_radius: int = 10
 ## Radius of the smaller [Projectile]s.

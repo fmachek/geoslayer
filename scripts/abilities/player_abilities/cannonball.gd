@@ -9,7 +9,7 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 ## Travel speed of the [Projectile] fired when cast.
 var projectile_speed: int = 2
 ## Base damage of the [Projectile] fired when cast.
-var base_damage: int = 40
+var base_damage: int = 50
 ## Radius of the [Projectile] fired when cast.
 var projectile_radius: int = 20
 ## Knockback applied to [Character]s hit by the [Projectile].

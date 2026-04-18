@@ -8,13 +8,13 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/grenade.tscn")
 ## Travel speed of the [Projectile] fired when cast.
 var projectile_speed: int = 3
 ## Base damage of the [Projectile] fired when cast.
-var base_damage: int = 15
+var base_damage: int = 20
 ## Radius of the [Projectile] fired when cast.
 var projectile_radius: int = 15
 
 
 func _init() -> void:
-	super(0.5, "Fires a grenade which explodes on impact.")
+	super(0.75, "Fires a grenade which explodes on impact.")
 
 
 func _perform_ability() -> void:

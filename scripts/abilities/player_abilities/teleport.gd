@@ -13,12 +13,12 @@ const _CAST_PART_SCENE := preload(
 		"res://scenes/particle_effects/teleport_cast_particles.tscn")
 
 var _cast_timer: Timer
-var _cast_time: float = 0.75
+var _cast_time: float = 0.4
 var _teleport_pos: Vector2
 
 
 func _init() -> void:
-	super(5, "Teleports the caster to the position they're aiming at.")
+	super(3, "Teleports the caster to the position they're aiming at.")
 
 
 func _ready() -> void:

@@ -16,7 +16,7 @@ var base_damage: int = 7
 var projectile_radius: int = 5
 
 ## Amount of projectiles fired on each cast.
-var projectile_amount: int = 20
+var projectile_amount: int = 10
 ## Time between the firing of individual projectiles.
 var flurry_fire_time: float = 0.1
 ## Maximum projectile recoil angle in degrees.
@@ -31,7 +31,7 @@ var _flurry_timer: Timer
 
 
 func _init() -> void:
-	super(4, "Fires a flurry of projectiles.")
+	super(3, "Fires a flurry of projectiles.")
 
 
 func _ready() -> void:

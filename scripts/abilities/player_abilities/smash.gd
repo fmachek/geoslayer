@@ -6,9 +6,9 @@ extends Ability
 var _AREA_SCENE := preload("res://scenes/objects/attacks/smash_area.tscn")
 
 ## Base damage dealt by the [SmashArea].
-var base_damage: int = 30
+var base_damage: int = 50
 ## Radius of the [SmashArea].
-var radius: float = 150.0
+var radius: float = 200.0
 ## Duration of the stun applied by the [SmashArea].
 var stun_duration: float = 2.0
 ## Amount of knockback applied by the [SmashArea].
@@ -16,7 +16,7 @@ var knockback: float = 500.0
 
 
 func _init() -> void:
-	super(5, "Stuns, deals damage to and knocks nearby enemies back.")
+	super(4.0, "Stuns, deals damage to and knocks nearby enemies back.")
 
 
 func _perform_ability() -> void:
