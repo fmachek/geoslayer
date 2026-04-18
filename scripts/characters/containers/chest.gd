@@ -13,6 +13,9 @@ extends Character
 ## Array of [Drop] instances with [Ability] scene paths.
 static var ability_drop_pool: Array[Drop] = []
 
+## Amount of loops when dropping [XPOrb]s.
+var xp_amount: int = 1
+
 
 ## Clears [member ability_drop_pool].
 static func clear_ability_pool() -> void:
@@ -47,7 +50,7 @@ func generate_drop_pool():
 			Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 50))
 	drop_pool.append(
 			Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 50))
-	for i in range(5):
+	for i in range(xp_amount):
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
