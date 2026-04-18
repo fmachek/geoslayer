@@ -4,7 +4,7 @@ extends Node2D
 var player_spawn_pos: Vector2
 @onready var wave_manager: WaveManager = $WaveManager
 
-var chest_scene: PackedScene = preload("res://scenes/characters/containers/chest.tscn")
+@export var chest_scene: PackedScene = preload("res://scenes/characters/containers/chest.tscn")
 var unopened_chests: Array = []
 
 func _ready() -> void:
