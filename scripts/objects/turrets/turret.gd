@@ -75,3 +75,8 @@ func shoot() -> void:
 	var projectile := ProjectileFunctions.fire_projectile(_PROJ_SCENE, proj_props)
 	projectile.knockback = projectile_knockback
 	_shoot_particles.emitting = true
+
+
+## Multiplies [member damage] by [code]1.2[/code].
+func increase_damage() -> void:
+	damage *= 1.2
