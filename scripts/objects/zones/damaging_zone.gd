@@ -27,6 +27,8 @@ func _ready() -> void:
 	caster_changed.connect(_on_caster_changed)
 	_update_tick_timer()
 	CollisionMaskFunctions.set_area_collision_mask(_area, caster)
+	if is_instance_valid(caster):
+		_load_caster_variables(caster)
 
 
 func _handle_body_entered(body: Node2D) -> void:
