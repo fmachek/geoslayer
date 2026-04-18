@@ -1,30 +1,25 @@
 # project01
-This is my Godot project I started to learn how to develop games in Godot better. Specifically, I wanted to structure my project better, use signals more, and overall just learn new things.
+This is my Godot project I started to learn how to develop games in Godot better. I also wanted some practice.
+
+The project uses Godot 4.6.
 
 ## What is this game about?
 
-I don't have all features planned and I come up with a lot of stuff on the go. But to summarize: it's a 2D game with simple graphics where enemies come in waves. You use your 2 abilities to defeat them. Level up, grow stronger, and unlock new abilities. Upgrade your stats permanently to increase your power forever.
+I'm making a 2D game with simple graphics where enemies come in waves and you must survive. You use your 2 abilities to defeat incoming enemies. Beat the boss who spawns at the end to win.
 
-## What have I made so far?
-1. Characters
-2. Stat system (HP etc)
-3. Ability system
-4. Levels and XP
-5. Simple main menu
-6. Enemy waves
-7. Implemented pathfinding with avoidance
-8. World selection
-9. Perk points
-10. First boss
-11. Win screen
-12. Permanent progression (stat upgrades), saving and loading
+Unlock abilities from chests you get for surviving waves, pick and choose which ones you want to use. Currently there are 15 player abilities in total.
+
+You get XP by defeating enemies or opening chests. When you level up, you gain a few stat points you can use to upgrade your stats. When you win the game by defeating the boss and you exit the arena, the XP you earned is converted into permanent XP. When you level up permanently, you also gain stat points similar to stat points you earned in-game and you can use them to upgrade your stats permanently.
+
+Your permament level is important when entering other worlds. Every world other than World 1 and World 0 (a testing world) will have a level requirement.
 
 ### Abilities
-There are currently 12 abilities unlockable by the player. Other abilities can only be used by NPCs.
+There are currently 15 abilities unlockable by the player. Other abilities can only be used by NPCs.
+
 1. **Shoot**: basic starter ability, fires a projectile
 2. **Doubleshot**: fires two projectiles in parallel
-3. **Cannonball**: fires a large and high-damage, but slow projectile
-4. **Blast**: fires projectiles in all directions
+3. **Cannonball**: fires a large and high-damage, but slow projectile, it also applies a huge knockback
+4. **Blast**: fires projectiles with huge knockback in all directions
 5. **Flurry**: fires multiple projectiles in quick succession
 6. **Wideshot**: fires multiple projectiles in a cone
 7. **Pierce**: fires a high-damage fast piercing projectile, but requires a cast
@@ -33,16 +28,15 @@ There are currently 12 abilities unlockable by the player. Other abilities can o
 10. **Summon**: spawns multiple minions who fight alongside the player
 11. **Storm**: spawns an area which damages and slows enemies down while they're standing in it
 12. **Lifesteal**: fires 3 projectiles which heal the caster for a portion of the damage dealt
+13. **Shred**: similar to Wideshot but close range and applies an armor and speed buff to the caster if the projectiles hit a target
+14. **Swipe**: performs a swipe melee attack
+15. **Smash**: stuns and knocks enemies around the caster back
 
-## Screenshots of the current state
-
+## Screenshots
 
 <table>
     <tr>
         <img src="./assets/screenshots/in_game_1.png" alt="In-game screenshot 1">
-    </tr>
-    <tr>
-        <img src="./assets/screenshots/in_game_2.png" alt="In-game screenshot 2">
     </tr>
     <tr>
         <td><img src="./assets/screenshots/main_menu.png" alt="Main menu"></td>
