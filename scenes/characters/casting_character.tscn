@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://4x1o35rrk4rx" path="res://scenes/characters/character.tscn" id="1_04xvn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_blu3w"]
-radius = 1024.0
+radius = 2000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwhyh"]
 radius = 28.0
@@ -33,7 +33,7 @@ shape = SubResource("CircleShape2D_blu3w")
 [node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
 shape = SubResource("CircleShape2D_nwhyh")
 
-[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="2" unique_id=1314298599]
+[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
 max_value = 150
 current_value = 150
 
