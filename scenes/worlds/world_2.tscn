@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cf883c61vdyvw" path="res://scenes/worlds/world.tscn" id="1_dl5br"]
 [ext_resource type="PackedScene" uid="uid://n5x4nh7rhf5q" path="res://scenes/objects/turrets/turret.tscn" id="2_1t1ea"]
 [ext_resource type="PackedScene" uid="uid://ciiqysfpsk8jr" path="res://scenes/characters/containers/blue_chest.tscn" id="2_53un6"]
+[ext_resource type="PackedScene" uid="uid://daeym0kowe61" path="res://scenes/objects/teleporters/teleporter.tscn" id="4_a325k"]
+[ext_resource type="PackedScene" uid="uid://n31q7q20tlxf" path="res://scenes/objects/teleporters/teleporter_couple_manager.tscn" id="5_e55p6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dl5br"]
 vertices = PackedVector2Array(630, 630, -630, 630, -630, -630, 630, -630)
@@ -60,6 +62,26 @@ projectile_speed = 3
 projectile_radius = 12
 shoot_time = 0.5
 projectile_knockback = 500.0
+
+[node name="TeleporterCoupleManager1" parent="." index="9" unique_id=798777720 node_paths=PackedStringArray("teleporter_1", "teleporter_2") instance=ExtResource("5_e55p6")]
+teleporter_1 = NodePath("Teleporter")
+teleporter_2 = NodePath("Teleporter2")
+
+[node name="Teleporter" parent="TeleporterCoupleManager1" index="1" unique_id=2040348464 instance=ExtResource("4_a325k")]
+position = Vector2(512, 512)
+
+[node name="Teleporter2" parent="TeleporterCoupleManager1" index="2" unique_id=25684778 instance=ExtResource("4_a325k")]
+position = Vector2(-512, -512)
+
+[node name="TeleporterCoupleManager2" parent="." index="10" unique_id=1630919832 node_paths=PackedStringArray("teleporter_1", "teleporter_2") instance=ExtResource("5_e55p6")]
+teleporter_1 = NodePath("Teleporter")
+teleporter_2 = NodePath("Teleporter2")
+
+[node name="Teleporter" parent="TeleporterCoupleManager2" index="1" unique_id=443848584 instance=ExtResource("4_a325k")]
+position = Vector2(512, -512)
+
+[node name="Teleporter2" parent="TeleporterCoupleManager2" index="2" unique_id=1566308748 instance=ExtResource("4_a325k")]
+position = Vector2(-512, 512)
 
 [connection signal="current_wave_changed" from="WaveManager" to="Turret" method="increase_damage" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret2" method="increase_damage" unbinds=1]
