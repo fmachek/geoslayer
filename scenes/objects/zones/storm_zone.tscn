@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://wbg3yojtrqh5"]
+
+[ext_resource type="PackedScene" uid="uid://dwpyf1gkq7myw" path="res://scenes/objects/zones/damaging_zone.tscn" id="1_01oop"]
+[ext_resource type="Script" uid="uid://1lpg0lwfkt5i" path="res://scripts/objects/zones/storm_zone.gd" id="2_1kd3h"]
+
+[node name="StormZone" unique_id=391910855 instance=ExtResource("1_01oop")]
+script = ExtResource("2_1kd3h")

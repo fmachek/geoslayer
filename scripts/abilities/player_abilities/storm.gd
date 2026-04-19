@@ -1,25 +1,25 @@
 class_name Storm
 extends Ability
-## Summons a [DamagingZone] which deals damage to enemies standing inside of it
+## Summons a [StormZone] which deals damage to enemies standing inside of it
 ## and slows them down.
 
 const _ZONE_SCENE := preload(
-		"res://scenes/objects/zones/damaging_zone.tscn")
+		"res://scenes/objects/zones/storm_zone.tscn")
 const _PARTICLE_SCENE := preload(
 		"res://scenes/particle_effects/zones/zone_spawning_particles.tscn")
 
-## Time until the [DamagingZone] disappears, in seconds.
+## Time until the [StormZone] disappears, in seconds.
 var zone_duration: float = 10.0
-## Used to set [member DamagingZone.time_per_tick].
+## Used to set [member StormZone.time_per_tick].
 var zone_tick_time: float = 1.0
-## Used to set [member DamagingZone.base_damage].
+## Used to set [member StormZone.base_damage].
 var zone_base_damage: int = 15
-## Used to set [member DamagingZone.radius].
+## Used to set [member StormZone.radius].
 var zone_radius: int = 250
 ## Amount by which the caster's speed is decreased when casting.
 var speed_debuff_amount: int = 200
 
-# Position where the [DamagingZone] is being spawned.
+# Position where the StormZone is being spawned.
 var _zone_pos: Vector2
 # Time the ability takes to cast.
 var _cast_time: float = 1.0
