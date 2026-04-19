@@ -1,7 +1,6 @@
 class_name PiercingProjectile
 extends Projectile
-
-## Represents a projectile which pierces through targets of type [Character].
+## Represents a projectile which pierces through [Character]s.
 
 # Used to track collisions to prevent multiple collisions with one target.
 var _collisions: Array[Character] = []
@@ -11,21 +10,21 @@ var _collisions: Array[Character] = []
 # because while it has a circular collision shape, the drawn shape is
 # a pointy bullet.
 func _draw_projectile_shape() -> void:
-	var radius: int = _col_shape.shape.radius
-	var outline_width: int = radius/8
+	var radius: float = _col_shape.shape.radius
+	var outline_width: float = radius / 8
 	
-	var rect := Rect2(Vector2(-radius, -radius), Vector2(radius*2, radius*2))
+	var rect := Rect2(Vector2(-radius, -radius), Vector2(radius * 2, radius * 2))
 	draw_rect(rect, projectile_properties.draw_color, true)
 	var pointy_part_points := [
 			Vector2(radius, -radius),
 			Vector2(radius, radius),
-			Vector2(radius*4, 0)
+			Vector2(radius * 4, 0)
 	]
 	draw_colored_polygon(pointy_part_points, projectile_properties.draw_color)
 	var outline_points := [
 			Vector2(-radius, -radius),
 			Vector2(radius, -radius),
-			Vector2(radius*4, 0),
+			Vector2(radius * 4, 0),
 			Vector2(radius, radius),
 			Vector2(-radius, radius),
 			Vector2(-radius, -radius)

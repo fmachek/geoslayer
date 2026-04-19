@@ -1,6 +1,5 @@
 class_name CharacterSpawner
 extends Node2D
-
 ## Represents a spawner which spawns characters on certain waves.
 
 #region @export variables
@@ -19,14 +18,13 @@ extends Node2D
 
 
 func _draw() -> void:
-	var radius: int = $Area2D/CollisionShape2D.shape.radius
+	var radius: float = $Area2D/CollisionShape2D.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: int = radius/8
+	var outline_width: float = radius / 8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
-## Spawns a [Character] instantiated from
-## [member CharacterSpawner.character_scene].
+## Spawns a [Character] instantiated from [member character_scene].
 func spawn_character(current_wave: int) -> void:
 	var character: Character = character_scene.instantiate()
 	character.global_position = global_position

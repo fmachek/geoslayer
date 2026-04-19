@@ -1,8 +1,11 @@
 class_name BuffObject
 extends Node2D
-
 ## Represents an object which buffs a [PlayerCharacter]'s [CharacterStat]
 ## on pickup.
+
+# Used to instantiate BuffPickupLabel.
+const _PICKUP_LABEL_SCENE := preload(
+		"res://scenes/user_interface/world_labels/buff_pickup_label.tscn")
 
 ## Fill color of the shape.
 @export var draw_color: Color = Color.GRAY
@@ -21,8 +24,6 @@ extends Node2D
 var _was_picked_up := false
 # Used to tween scale on pickup.
 var _scale_tween: Tween
-# Used to instantiate BuffPickupLabel.
-var _pickup_label_scene := preload("res://scenes/user_interface/world_labels/buff_pickup_label.tscn")
 
 
 func _process(delta: float) -> void:
@@ -31,9 +32,10 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
-	var width: int = col_shape.shape.size.x
-	var height: int = col_shape.shape.size.y
-	var rect := Rect2(-width/2, -height/2, width, height)
+	var shape = col_shape.shape
+	var width: float = shape.size.x
+	var height: float = shape.size.y
+	var rect := Rect2(-width / 2, -height / 2, width, height)
 	draw_rect(rect, draw_color)
 	draw_rect(rect, outline_color, false, 4)
 
@@ -63,7 +65,7 @@ func _play_scale_tween() -> void:
 
 
 func _spawn_pickup_label(buff: Buff) -> void:
-	var buff_pickup_label: BuffPickupLabel = _pickup_label_scene.instantiate()
+	var buff_pickup_label: BuffPickupLabel = _PICKUP_LABEL_SCENE.instantiate()
 	get_parent().add_child(buff_pickup_label)
 	buff_pickup_label.global_position = global_position
 	buff_pickup_label.load_buff(buff)

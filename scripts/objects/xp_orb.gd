@@ -1,6 +1,5 @@
 class_name XPOrb
 extends Node2D
-
 ## Represents an XP orb which gives XP to a player on pickup.
 
 const _PARTICLES_SCENE = preload("res://scenes/particle_effects/xp_orb_particles.tscn")

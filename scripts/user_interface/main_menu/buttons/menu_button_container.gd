@@ -1,5 +1,7 @@
 class_name MenuButtonContainer
 extends VBoxContainer
+## Represents a button container in the main menu. It connects its buttons'
+## pressed signal to various methods.
 
 @onready var play_button: Button = $PlayButton
 @onready var shop_button: Button = $ShopButton

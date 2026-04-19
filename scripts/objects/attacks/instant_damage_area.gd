@@ -26,6 +26,10 @@ func _perform(body: Node2D) -> void:
 		_spawn_damage_label(damage_taken, body.global_position)
 
 
+func _update_area_mask(source: Node2D) -> void:
+	CollisionMaskFunctions.set_area_collision_mask(_area, source)
+
+
 func _update_sprite() -> void:
 	var texture_size: Vector2 = _sprite.texture.get_size()
 	var texture_width: float = texture_size.x
@@ -34,10 +38,6 @@ func _update_sprite() -> void:
 	_sprite.flip_h = (randi_range(0, 1) == 1)
 	_sprite.flip_v = (randi_range(0, 1) == 1)
 	_sprite.modulate = Color(draw_color, 1.0)
-
-
-func _update_area_mask(source: Node2D) -> void:
-	CollisionMaskFunctions.set_area_collision_mask(_area, source)
 
 
 func _spawn_damage_label(amount: int, pos: Vector2) -> void:

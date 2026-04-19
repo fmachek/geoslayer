@@ -1,7 +1,7 @@
 class_name WinGameButton
 extends Button
-## Represents a button which shows up when [member WorldManager.boss_died]
-## is emitted and triggers [member GameManager.win_game] when pressed.
+## Represents a button which shows up when [signal WorldManager.boss_died]
+## is emitted and triggers [method GameManager.win_game] when pressed.
 
 
 func _ready() -> void:

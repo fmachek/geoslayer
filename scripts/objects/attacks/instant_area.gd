@@ -54,17 +54,17 @@ func _physics_process(delta: float) -> void:
 		_handle_bodies()
 
 
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, radius, draw_color)
+	var outline_width: float = radius / 24
+	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
+
+
 func _handle_bodies() -> void:
 	var bodies: Array[Node2D] = _area.get_overlapping_bodies()
 	for body in bodies:
 		_perform(body)
 		handled_body.emit(body)
-
-
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: float = radius / 24
-	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
 func _fade_out() -> void:
@@ -73,13 +73,6 @@ func _fade_out() -> void:
 	_fade_tween = create_tween()
 	_fade_tween.tween_property(self, "modulate:a", 0, 0.25)
 	_fade_tween.tween_callback(queue_free)
-
-
-func _set_radius(value: float) -> void:
-	if value < 0:
-		value = 0
-	radius = value
-	radius_changed.emit(value)
 
 
 func _update_shape_radius(new_radius: float) -> void:
@@ -91,3 +84,10 @@ func _update_shape_radius(new_radius: float) -> void:
 		else:
 			_col_shape.shape = CircleShape2D.new()
 			_col_shape.shape.radius = new_radius
+
+
+func _set_radius(value: float) -> void:
+	if value < 0:
+		value = 0
+	radius = value
+	radius_changed.emit(value)

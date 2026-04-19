@@ -1,39 +1,43 @@
 class_name HealthBar
 extends ProgressBar
+## Represents a health bar used by [Character]s and such.
 
-@onready var health_label: Label = $HealthLabel
-@onready var character: Character = $".."
-@onready var visibility_timer: Timer = $VisibilityTimer
+var _character: Character
+var _fade_out_tween: Tween
 
-var fade_out_tween: Tween
+@onready var _health_label: Label = $HealthLabel
+@onready var _visibility_timer: Timer = $VisibilityTimer
 
-func set_up() -> void:
-	character.health_changed.connect(update_label)
-	character.health_changed.connect(show_self)
-	character.max_health_changed.connect(update_label)
 
-func update_label(old_health, new_health) -> void:
-	var label: Label = $HealthLabel
-	
-	var max_health = character.health.max_value_after_buffs
-	var health = character.health.current_value
-	
-	label.text = str(health) + "/" + str(max_health)
-	
+## Sets the [HealthBar] up to display a [param character]'s health.
+func set_up(character: Character) -> void:
+	self._character = character
+	_character.health_changed.connect(_update_label.unbind(2))
+	_character.health_changed.connect(_show_self.unbind(2))
+	_character.max_health_changed.connect(_update_label)
+
+
+func _update_label() -> void:
+	var health: Health = _character.health
+	var max_health: int = health.max_value_after_buffs
+	var current_health: int = health.current_value
+	_health_label.text = "%d/%d" % [current_health, max_health]
 	max_value = max_health
-	value = health
+	value = current_health
+
 
 func _on_visibility_timer_timeout() -> void:
-	if fade_out_tween:
-		fade_out_tween.kill()
-	self.modulate.a = 1
-	fade_out_tween = create_tween()
-	fade_out_tween.tween_property(self, "modulate:a", 0, 0.25)
-	fade_out_tween.tween_callback(hide)
+	if _fade_out_tween:
+		_fade_out_tween.kill()
+	modulate.a = 1
+	_fade_out_tween = create_tween()
+	_fade_out_tween.tween_property(self, "modulate:a", 0, 0.25)
+	_fade_out_tween.tween_callback(hide)
 
-func show_self(old_value, new_value) -> void:
-	if fade_out_tween:
-		fade_out_tween.kill()
-	self.modulate.a = 1
+
+func _show_self() -> void:
+	if _fade_out_tween:
+		_fade_out_tween.kill()
+	modulate.a = 1
 	show()
-	visibility_timer.start()
+	_visibility_timer.start()

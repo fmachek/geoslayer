@@ -6,11 +6,11 @@ extends Node2D
 ## there is something blocking it, for example a wall, the
 ## [Laser] ends at the point where the collision occurs.
 
-## Fill color of the [Laser].
-@export var draw_color: Color
-
 const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn"
 const _damage_label_scene := preload(_LABEL_PATH)
+
+## Fill color of the [Laser].
+@export var draw_color: Color = Color(1.0, 0.0, 0.0, 1.0)
 
 ## Length of the [Laser].
 var laser_length: float = 2000.0
@@ -35,12 +35,6 @@ var _fade_tween: Tween
 @onready var _damage_timer: Timer = $DamageTimer
 
 
-## Causes the [Laser] to fade out and free itself.
-func disappear() -> void:
-	_can_deal_damage = false
-	_fade_out()
-
-
 func _ready() -> void:
 	var shape := RectangleShape2D.new()
 	shape.size.x = laser_length
@@ -53,6 +47,22 @@ func _physics_process(delta: float) -> void:
 	_update_shape()
 
 
+func _draw() -> void:
+	var laser_shape: RectangleShape2D = _col_shape.shape
+	var size_x: float = laser_shape.size.x
+	var size_y: float = laser_shape.size.y
+	var rect_pos := Vector2(0, -size_y / 2)
+	var rect_size := Vector2(size_x, size_y)
+	var rect := Rect2(rect_pos, rect_size)
+	draw_rect(rect, draw_color)
+
+
+## Causes the [Laser] to fade out and free itself.
+func disappear() -> void:
+	_can_deal_damage = false
+	_fade_out()
+
+
 func _update_shape() -> void:
 	var collision_point: Vector2 = _get_collision_with_wall(_target_pos)
 	var size_x: float = collision_point.x
@@ -62,16 +72,6 @@ func _update_shape() -> void:
 	
 	_col_shape.position = Vector2(size_x / 2, 0)
 	queue_redraw()
-
-
-func _draw() -> void:
-	var laser_shape: RectangleShape2D = _col_shape.shape
-	var size_x: float = laser_shape.size.x
-	var size_y: float = laser_shape.size.y
-	var rect_pos := Vector2(0, - size_y / 2)
-	var rect_size := Vector2(size_x, size_y)
-	var rect := Rect2(rect_pos, rect_size)
-	draw_rect(rect, draw_color)
 
 
 func _get_collision_with_wall(target_pos: Vector2) -> Vector2:

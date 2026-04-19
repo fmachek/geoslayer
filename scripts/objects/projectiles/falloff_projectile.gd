@@ -7,6 +7,7 @@ var min_damage: int = 2
 ## Used when calculating damage reduction every physics frame.
 var damage_reduction_multiplier: float = 30.0
 var _damage_reduction_buildup: float = 0.0
+var _dmg_threshold: int = 1
 
 
 func _physics_process(delta: float) -> void:
@@ -16,8 +17,7 @@ func _physics_process(delta: float) -> void:
 
 func _reduce_damage(delta: float) -> void:
 	_damage_reduction_buildup += delta * damage_reduction_multiplier
-	var dmg_threshold: int = 1
-	if _damage_reduction_buildup >= dmg_threshold:
-		if projectile_properties.damage - dmg_threshold > min_damage:
-			_damage_reduction_buildup -= dmg_threshold
-			projectile_properties.damage -= dmg_threshold
+	if _damage_reduction_buildup >= _dmg_threshold:
+		if projectile_properties.damage - _dmg_threshold > min_damage:
+			_damage_reduction_buildup -= _dmg_threshold
+			projectile_properties.damage -= _dmg_threshold

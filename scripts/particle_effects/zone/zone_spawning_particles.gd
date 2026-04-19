@@ -2,8 +2,8 @@ class_name ZoneSpawningParticles
 extends Node2D
 ## Represents a node which plays [Zone] spawning visual effects.
 ##
-## Contains two [CPUParticles2D] nodes: [member ZoneSpawningParticles.casting_particles]
-## and [member ZoneSpawningParticles.cast_finish_particles]. The first is used
+## Contains two [CPUParticles2D] nodes: [member casting_particles]
+## and [member cast_finish_particles]. The first is used
 ## when the [Zone] is being spawned by an [Ability]. The second is used when
 ## the [Ability] cast finishes. After these two effects are played, the
 ## node is freed.
@@ -24,9 +24,9 @@ func _ready() -> void:
 	_update_particle_radius()
 
 
-## Updates [member ZoneSpawningParticles.particle_color] to match
+## Updates [member particle_color] to match
 ## the [param ability] caster's draw color. Also connects to
-## [member Ability.finished_casting] and [member Ability.character.tree_exiting].
+## [signal Ability.finished_casting] and [signal Ability.character.tree_exiting].
 ## That ensures that the cast finish particles can be shown and that the casting
 ## particles disappear if the caster exits the tree while casting.
 func connect_to_ability(ability: Ability) -> void:
@@ -50,7 +50,7 @@ func _on_caster_tree_exiting() -> void:
 	casting_particles.finished.connect(queue_free)
 
 
-# Update radius of the casting particles emission shape.
+# Updates radius of the casting particles emission shape.
 func _update_particle_radius() -> void:
 	if casting_particles:
 		casting_particles.emission_ring_inner_radius = radius / 2

@@ -1,5 +1,8 @@
 class_name WinScreen
 extends Control
+## Represents UI which appears when the player wins the game. It plays
+## a visual effect where XP orbs transfer from the player's achieved level
+## to their permanent XP.
 
 const _ORB_SPRITE_SCENE := preload(
 		"res://scenes/user_interface/win_screen/xp_orb_sprite.tscn")

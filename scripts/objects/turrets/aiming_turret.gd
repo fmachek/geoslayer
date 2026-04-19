@@ -1,6 +1,5 @@
 class_name AimingTurret
 extends Turret
-
 ## Represents a type of turret which aims at the player.
 
 var _is_aiming: bool = false

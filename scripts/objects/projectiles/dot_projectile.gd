@@ -14,13 +14,13 @@ func _handle_character_collision(character: Character) -> void:
 	explode()
 
 
+func _update_particle_size(projectile_radius: float) -> void:
+	var particles: CPUParticles2D = %FlyingParticles
+	particles.scale_amount_min = projectile_radius / 500
+	particles.scale_amount_max = particles.scale_amount_min * 2
+
+
 func _apply_dot(target: Character) -> void:
-	if not dot:
+	if not is_instance_valid(dot):
 		return
 	dot.apply_to(target)
-
-
-func _update_particle_size(projectile_radius: int) -> void:
-	var particles: CPUParticles2D = %FlyingParticles
-	particles.scale_amount_min = float(projectile_radius) / 500
-	particles.scale_amount_max = particles.scale_amount_min * 2

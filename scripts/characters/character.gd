@@ -87,7 +87,7 @@ func _ready() -> void:
 	update_stats(level.current_level) # Update stats on spawn
 	health.current_value = health.max_value_after_buffs # Spawn with max health
 	generate_drop_pool()
-	$HealthBar.set_up() # Sets up the health bar which appears below the character
+	$HealthBar.set_up(self) # Sets up the health bar which appears below the character
 	%AimLine.default_color = Color(outline_color, 0.3)
 
 

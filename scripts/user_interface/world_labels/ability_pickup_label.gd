@@ -1,11 +1,15 @@
 class_name AbilityPickupLabel
 extends Label
+## Represents a label used to display the name of the
+## [Ability] unlocked by an [AbilityPickup].
 
-var fade_tween: Tween
+var _fade_tween: Tween
 
+
+## Fades out and then calls [method queue_free].
 func fade_out():
-	if fade_tween:
-		fade_tween.kill()
-	fade_tween = create_tween()
-	fade_tween.tween_property(self, "modulate:a", 0, 1)
-	fade_tween.tween_callback(queue_free)
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(self, "modulate:a", 0, 1)
+	_fade_tween.tween_callback(queue_free)

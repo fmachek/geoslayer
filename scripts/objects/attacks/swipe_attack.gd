@@ -104,6 +104,19 @@ func _draw() -> void:
 	draw_rect(rect, draw_color)
 
 
+## Starts the swipe attack with its center being at the
+## [param target_angle] in radians and it taking [param swipe_time]
+## seconds to reach the destination angle.
+func swipe(target_angle: float, swipe_time: float) -> void:
+	if _is_swiping:
+		return
+	_is_swiping = true
+	_start_angle = target_angle + swipe_angle / 2
+	_end_angle = target_angle - swipe_angle / 2
+	self.swipe_time = swipe_time
+	global_rotation = _start_angle
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Character:
 		var damage_taken: int = body.take_damage(final_damage)
@@ -122,19 +135,6 @@ func _remove_particles() -> void:
 	_particles.reparent(WorldManager.current_world)
 	_particles.emitting = false
 	_particles.finished.connect(_particles.queue_free)
-
-
-## Starts the swipe attack with its center being at the
-## [param target_angle] in radians and it taking [param swipe_time]
-## seconds to reach the destination angle.
-func swipe(target_angle: float, swipe_time: float) -> void:
-	if _is_swiping:
-		return
-	_is_swiping = true
-	_start_angle = target_angle + swipe_angle / 2
-	_end_angle = target_angle - swipe_angle / 2
-	self.swipe_time = swipe_time
-	global_rotation = _start_angle
 
 
 #region node updates

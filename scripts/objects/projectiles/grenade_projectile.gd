@@ -1,9 +1,8 @@
 class_name GrenadeProjectile
 extends Projectile
-
 ## Represents a projectile spawned by a [Grenade] after exploding.
 
-# Node which caused the explosion of the [Grenade].
+## Node which caused the explosion of the [Grenade].
 var _explosion_body: Node2D = null
 
 
@@ -19,6 +18,7 @@ func _explode_on_character(character: Character) -> void:
 	_deal_damage(character)
 	explode()
 
-## Sets [member GrenadeProjectile._explosion_body].
+
+## Sets [member _explosion_body].
 func set_explosion_body(body: Node2D) -> void:
 	_explosion_body = body

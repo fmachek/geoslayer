@@ -5,19 +5,22 @@ extends Node2D
 const _PARTICLE_SCENE := preload(
 		"res://scenes/particle_effects/ability_pickup_particles.tscn")
 
-## Emitted when the [AbilityPickup] is picked up by a [PlayerCharacter].
+## Emitted when picked up by a [PlayerCharacter].
 signal picked_up()
 
+const _LABEL_SCENE := preload(
+		"res://scenes/user_interface/world_labels/ability_pickup_label.tscn")
+	
 ## Fill color of the shape.
 @export var draw_color := Color.GRAY
 ## Outline color of the shape.
 @export var outline_color := Color.DIM_GRAY
-## [Ability] script used to instantiate the new unlocked [Ability].
+## Script used to instantiate the new unlocked [Ability].
 @export var ability_script: Resource
 ## Speed at which the [AbilityPickup] is rotating on every frame.
 @export var rot_speed: float = 3.0
-## Amount of XP given to the [PlayerCharacter] on pick up if they already have the [Ability]
-## unlocked.
+## Amount of XP given to the [PlayerCharacter] on pick up if they
+## have unlocked the [Ability] already.
 @export var fallback_xp: int = 50
 # Ability name which is the same as the name of the Ability script.
 var _ability_name: String
@@ -25,8 +28,6 @@ var _ability_name: String
 var _was_picked_up := false
 # Used to tween scale and transparency.
 var _tween: Tween
-# Scene used to instantiate AbilityPickupLabel.
-var _label_scene: PackedScene = preload("res://scenes/user_interface/world_labels/ability_pickup_label.tscn")
 
 
 func _ready() -> void:
@@ -36,16 +37,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_rotation += rot_speed*delta
+	global_rotation += rot_speed * delta
 
 
 # Draws a square shape.
 func _draw() -> void:
 	var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
-	var width = col_shape.shape.size.x
-	var height = col_shape.shape.size.y
-	var rect := Rect2(-width/2, -height/2, width, height)
-	var outline_width: int = 4
+	var shape = col_shape.shape
+	var width: float = shape.size.x
+	var height: float = shape.size.y
+	var rect := Rect2(-width / 2, -height / 2, width, height)
+	var outline_width: float = 4.0
 	draw_rect(rect, draw_color)
 	draw_rect(rect, outline_color, false, outline_width)
 
@@ -66,23 +68,25 @@ func _unlock_ability(player: PlayerCharacter) -> void:
 		if player.unlock_new_ability(ability):
 			_spawn_particles()
 		else:
-			player.level.add_xp(fallback_xp) # Fallback XP reward if the player already has the ability
+			 # Fallback XP reward if the player already has the ability
+			player.level.add_xp(fallback_xp)
 		_play_tween()
 
 
 # Plays a scale and transparency tween and when the tween finishes, the
 # AbilityPickup is freed.
 func _play_tween() -> void:
+	var tween_time: float = 0.25
 	_tween = create_tween()
-	_tween.tween_property(self, "scale", Vector2.ZERO, 0.25)
-	_tween.parallel().tween_property(self, "modulate:a", 0, 0.25)
+	_tween.tween_property(self, "scale", Vector2.ZERO, tween_time)
+	_tween.parallel().tween_property(self, "modulate:a", 0, tween_time)
 	_tween.tween_callback(queue_free)
 
 
 func _spawn_label() -> void:
-	var label: AbilityPickupLabel = _label_scene.instantiate()
+	var label: AbilityPickupLabel = _LABEL_SCENE.instantiate()
 	label.text = _ability_name
-	label.global_position = global_position - Vector2(label.size.x/2, 60)
+	label.global_position = global_position - Vector2(label.size.x / 2, 60)
 	picked_up.connect(label.fade_out)
 	get_parent().call_deferred("add_child", label)
 

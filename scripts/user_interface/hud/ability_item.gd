@@ -1,55 +1,65 @@
 class_name AbilityItem
 extends TextureRect
+## Represents an equipped [Ability] in the HUD. Can cast the [Ability]
+## when pressed.
 
-var cooldown_tween: Tween
-var ability_cooldown: float
-var current_ability: Ability
-
+## Emitted when pressed.
 signal cast()
 
-@onready var cooldown_rect = $CooldownRect
+## Ability currently being displayed.
+var current_ability: Ability
+var _cooldown_tween: Tween
 
-func play_cooldown_tween():
-	if not current_ability:
-		return
-	cooldown_rect.size.y = size.y
-	if cooldown_tween:
-		cooldown_tween.kill()
-	cooldown_tween = get_tree().create_tween()
-	cooldown_tween.tween_property(cooldown_rect, "size:y", 0, ability_cooldown)
+@onready var _cooldown_rect = $CooldownRect
 
+
+## Loads a given [param ability].
 func load_ability(ability: Ability):
 	if not ability:
 		hide()
-		stop_cooldown_tween()
+		_stop_cooldown_tween()
 		return
 	else:
 		show()
 	if current_ability:
-		disconnect_ability_signals()
+		_disconnect_ability_signals()
 	current_ability = ability
-	ability_cooldown = current_ability.cooldown
-	connect_ability_signals()
-	stop_cooldown_tween()
+	_connect_ability_signals()
+	_stop_cooldown_tween()
 	texture = ability.texture
 
-func stop_cooldown_tween():
-	if cooldown_tween:
-		cooldown_tween.kill()
-	cooldown_rect.size.y = 0
+
+func _play_cooldown_tween():
+	if not current_ability:
+		return
+	_cooldown_rect.size.y = size.y
+	if _cooldown_tween:
+		_cooldown_tween.kill()
+	_cooldown_tween = get_tree().create_tween()
+	_cooldown_tween.tween_property(_cooldown_rect, "size:y", 0, current_ability.cooldown)
+
+
+func _stop_cooldown_tween():
+	if _cooldown_tween:
+		_cooldown_tween.kill()
+	_cooldown_rect.size.y = 0
+
 
 func _on_ability_cooldown_ended():
-	stop_cooldown_tween()
+	_stop_cooldown_tween()
 
-func connect_ability_signals():
-	current_ability.casted.connect(play_cooldown_tween)
+
+func _connect_ability_signals():
+	current_ability.casted.connect(_play_cooldown_tween)
 	current_ability.cooldown_ended.connect(_on_ability_cooldown_ended)
 	cast.connect(current_ability.cast)
 
-func disconnect_ability_signals():
-	current_ability.casted.disconnect(play_cooldown_tween)
+
+func _disconnect_ability_signals():
+	current_ability.casted.disconnect(_play_cooldown_tween)
 	current_ability.cooldown_ended.disconnect(_on_ability_cooldown_ended)
 	cast.disconnect(current_ability.cast)
+
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

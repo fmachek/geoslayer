@@ -1,6 +1,5 @@
 class_name ProjectileProperties
 extends RefCounted
-
 ## This class contains properties which all [Projectile] objects require.
 ##
 ## All of the properties are set when instantiating the class via the constructor.
@@ -23,7 +22,8 @@ var radius: int
 var start_pos: Vector2
 
 
-func _init(draw_color: Color, outline_color: Color, direction: Vector2, speed: float, source: Node2D, damage: int, radius: int, start_pos: Vector2) -> void:
+func _init(draw_color: Color, outline_color: Color, direction: Vector2,
+		speed: float, source: Node2D, damage: int, radius: int, start_pos: Vector2) -> void:
 	self.draw_color = draw_color
 	self.outline_color = outline_color
 	self.direction = direction

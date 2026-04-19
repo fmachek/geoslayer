@@ -18,12 +18,12 @@ func _handle_character_collision(character: Character) -> void:
 	explode()
 
 
-func _apply_speed_debuff(character: Character) -> void:
-	var debuff: Buff = Buff.new(-speed_debuff, speed_debuff_duration)
-	debuff.apply_to_stat(character.speed)
-
-
-func _update_particle_size(projectile_radius: int) -> void:
+func _update_particle_size(projectile_radius: float) -> void:
 	var particles: CPUParticles2D = %FlyingParticles
 	particles.scale_amount_min = float(projectile_radius) / 20
 	particles.scale_amount_max = particles.scale_amount_min * 2
+
+
+func _apply_speed_debuff(character: Character) -> void:
+	var debuff: Buff = Buff.new(-speed_debuff, speed_debuff_duration)
+	debuff.apply_to_stat(character.speed)

@@ -1,6 +1,5 @@
 class_name Muzzle
 extends Node2D
-
 ## Represents a turret's muzzle.
 ##
 ## Plays a recoil visual effect when the [Turret] shoots.
@@ -12,12 +11,18 @@ var _original_pos: Vector2
 
 
 func _draw():
+	var parent = get_parent()
+	if parent is not Turret:
+		return
+	
 	var col_shape: CollisionShape2D = $Area2D/CollisionShape2D
-	var width: int = col_shape.shape.size.x
-	var height: int = col_shape.shape.size.y
-	var rect := Rect2(-width/2, -height/2, width, height)
-	var turret_draw_color: Color = get_parent().draw_color
-	var turret_outline_color: Color = get_parent().outline_color
+	var shape = col_shape.shape
+	var width: int = shape.size.x
+	var height: int = shape.size.y
+	var rect := Rect2(-width / 2, -height / 2, width, height)
+	
+	var turret_draw_color: Color = parent.draw_color
+	var turret_outline_color: Color = parent.outline_color
 	draw_rect(rect, turret_draw_color)
 	draw_rect(rect, turret_outline_color, false, 4)
 

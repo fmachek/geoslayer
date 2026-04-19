@@ -1,5 +1,7 @@
 class_name PauseInterface
 extends Control
+## Represents an UI overlay which shows up when the game is paused.
+
 
 func _ready() -> void:
 	GameManager.paused_game.connect(_on_paused_game)
@@ -11,8 +13,10 @@ func _ready() -> void:
 	%ExitButton.pressed.connect(GameManager.exit_game)
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
+
 func _on_paused_game():
 	show()
+
 
 func _on_resumed_game():
 	hide()

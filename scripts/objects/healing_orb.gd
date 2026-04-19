@@ -1,6 +1,5 @@
 class_name HealingOrb
 extends Node2D
-
 ## Represents a healing orb which heals the player to full HP on pickup.
 
 ## Fill color of the [HealingOrb] shape.
@@ -10,9 +9,9 @@ extends Node2D
 
 
 func _draw():
-	var radius: int = $Area2D/CollisionShape2D.shape.radius
+	var radius: float = $Area2D/CollisionShape2D.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: int = radius/8
+	var outline_width: float = radius / 8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
