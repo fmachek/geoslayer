@@ -43,7 +43,8 @@ func _load_caster_variables(new_caster: Character) -> void:
 # Checks for overlapping bodies on each tick and deals damage to them.
 # Checks for character types to prevent friendly fire.
 func _on_damage_tick_timer_timeout() -> void:
-	$TickParticles.emitting = true
+	if should_emit_tick_particles:
+		$TickParticles.emitting = true
 	var bodies: Array[Node2D] = _char_detection_area.get_overlapping_bodies()
 	for body: Node2D in bodies:
 		if body is not Character:

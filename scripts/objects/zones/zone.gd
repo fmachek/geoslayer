@@ -17,7 +17,9 @@ var caster: Character: set = _set_caster
 ## Time until the [Zone] becomes inactive and disappears, in seconds.
 var life_time: float = 10.0: set = _set_life_time
 ## Radius of the [Zone] shape.
-var radius: int = 200: set = _set_radius
+var radius: float = 200: set = _set_radius
+## Says if the tick particles should be emitted.
+var should_emit_tick_particles: bool = true
 
 # False when the Zone is disappearing.
 var _is_active: bool = true: set = _set_is_active
@@ -59,7 +61,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: int = radius/24
+	var outline_width: float = radius / 24
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
@@ -100,6 +102,7 @@ func _handle_radius_change() -> void:
 		ring_particles.emission_ring_radius = radius + 10
 	if _char_detection_area:
 		_char_detection_area.get_node("CollisionShape2D").shape.radius = radius
+	queue_redraw()
 
 
 func _handle_life_time_change() -> void:
@@ -136,8 +139,8 @@ func _set_is_active(value: bool) -> void:
 		became_inactive.emit()
 
 
-func _set_radius(value: int) -> void:
-	if value <= 0:
+func _set_radius(value: float) -> void:
+	if radius < 0:
 		return
 	radius = value
 	_handle_radius_change()
