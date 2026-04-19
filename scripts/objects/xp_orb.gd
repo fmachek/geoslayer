@@ -5,12 +5,13 @@ extends Node2D
 
 const _PARTICLES_SCENE = preload("res://scenes/particle_effects/xp_orb_particles.tscn")
 
+## Amount of XP given to the [PlayerCharacter] on pickup.
+static var xp_amount: int = 30
+
 ## Fill color of the [XPOrb] shape.
 @export var draw_color: Color = Color(1.0, 0.0, 1.0, 1.0)
 ## Outline color of the [XPOrb] shape.
 @export var outline_color: Color = Color(0.732, 0.0, 0.732, 1.0)
-## Amount of XP given to the [PlayerCharacter] on pickup.
-@export var xp_amount: int = 30
 
 var _is_following_player: bool = false
 var _player: PlayerCharacter

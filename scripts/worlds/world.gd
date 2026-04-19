@@ -5,11 +5,14 @@ var player_spawn_pos: Vector2
 @onready var wave_manager: WaveManager = $WaveManager
 
 @export var chest_scene: PackedScene = preload("res://scenes/characters/containers/chest.tscn")
+## Amount of XP granted by each [XPOrb] dropped in the [World].
+@export var xp_per_orb: int = 30
 var unopened_chests: Array = []
 
 func _ready() -> void:
 	wave_manager.wave_ended.connect(_handle_wave_end)
 	player_spawn_pos = %PlayerSpawnPoint.global_position
+	XPOrb.xp_amount = xp_per_orb
 	call_deferred("spawn_player")
 
 func spawn_player():
