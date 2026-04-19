@@ -26,6 +26,7 @@ var _current_phase: int = 1
 
 func _ready() -> void:
 	super()
+	is_immune_to_knockback = true
 	health_changed.connect(_on_health_changed)
 	_start_phase_1()
 

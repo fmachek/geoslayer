@@ -50,6 +50,8 @@ var target_pos: Vector2
 var is_alive: bool = true
 ## Says if the [Character] is immune to stuns or not.
 var is_immune_to_stun: bool = false
+## Says if the [Character] is immune to knockback or not.
+var is_immune_to_knockback: bool = false
 ## Says if the [Character] is currently stunned or not.
 var is_stunned: bool = false
 
@@ -119,9 +121,11 @@ func _draw() -> void:
 		draw_rect(rect, outline_color, false, outline_width)
 
 
-## Applies a knockback to the [Character].
+## Applies a knockback to the [Character] if it isn't immune to it
+## ([member is_immune_to_knockback]).
 func apply_knockback(knockback: Vector2) -> void:
-	_knockback_vectors.append(knockback)
+	if not is_immune_to_knockback:
+		_knockback_vectors.append(knockback)
 
 
 ## Makes the [Character] take damage. Returns the damage taken,
