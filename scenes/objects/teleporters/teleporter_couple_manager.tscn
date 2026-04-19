@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://n31q7q20tlxf"]
+
+[ext_resource type="Script" uid="uid://f1eurbakh0b7" path="res://scripts/objects/teleporters/teleporter_couple_manager.gd" id="1_qbjr5"]
+
+[node name="TeleporterCoupleManager" type="Node2D" unique_id=798777720]
+script = ExtResource("1_qbjr5")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=2047344413]
