@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dxlse7od3hh2q"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_ycna6"]
+[ext_resource type="Script" uid="uid://bsju1kg53jdro" path="res://scripts/characters/enemies/mage.gd" id="2_vrtod"]
+
+[node name="Mage" unique_id=1080282355 instance=ExtResource("1_ycna6")]
+script = ExtResource("2_vrtod")
+zone_final_radius = 300.0
+zone_life_time = 15.0
+zone_base_damage = 30
+zone_tick_time = 0.5
+draw_color = Color(0.65115297, 0.30963436, 1, 1)
+outline_color = Color(0.5955765, 0.004212596, 0.9855687, 1)
+base_health = 130

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://chonhmdikfvhw"]
+
+[ext_resource type="PackedScene" uid="uid://dwpyf1gkq7myw" path="res://scenes/objects/zones/damaging_zone.tscn" id="1_tuirw"]
+[ext_resource type="Script" uid="uid://ie3p1b8t1iuq" path="res://scripts/objects/zones/growing_damaging_zone.gd" id="2_a8fh4"]
+
+[node name="GrowingDamagingZone" unique_id=391910855 instance=ExtResource("1_tuirw")]
+script = ExtResource("2_a8fh4")
+
+[node name="RingParticles" parent="." index="1" unique_id=203274882]
+emitting = false
+
+[node name="TickParticles" parent="." index="2" unique_id=939319148]
+amount = 1
