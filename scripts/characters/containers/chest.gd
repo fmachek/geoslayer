@@ -51,9 +51,8 @@ func generate_drop_pool():
 	drop_pool.append(
 			Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 50))
 	for i in range(xp_amount):
-		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 100))
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
-		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 25))
+		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 	drop_pool.append(Drop.new("res://scenes/objects/healing_orb.tscn", 100))
 
 

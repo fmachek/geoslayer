@@ -16,7 +16,7 @@ const _HEAL_LABEL_SCENE := preload(
 ## The [Character] being healed.
 var healing_target: Character: set = _set_healing_character
 ## Amount by which the [member healing_target] is healed on each tick.
-var heal_amount: int = 3
+var heal_amount: int = 10
 var _is_healing: bool = false:
 	set(value):
 		_is_healing = value

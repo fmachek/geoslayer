@@ -7,7 +7,7 @@ extends Ability
 const _AREA_HEAL_SCENE := preload("res://scenes/objects/attacks/area_heal.tscn")
 
 ## Amount of healing done by the [AreaHeal].
-var base_heal_amount: int = 30
+var base_heal_amount: int = 75
 ## [AreaHeal] radius.
 var radius: float = 200.0
 

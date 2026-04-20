@@ -7,4 +7,4 @@
 script = ExtResource("2_fxpj1")
 draw_color = Color(0.89696807, 0.33077097, 0.5416623, 1)
 outline_color = Color(0.7682756, 0.21451125, 0.43678144, 1)
-base_damage = 35
+base_damage = 50
