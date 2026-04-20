@@ -302,13 +302,11 @@ func _on_level_changed(new_level: int) -> void:
 	update_stats(new_level)
 
 
-## Updates stats to scale with the current [Level].
-## [member health.max_value] and [member damage.max_value]
-## increase by 25% of the base value with every level.
+## Updates health and damage to scale with the current [Level].
 func update_stats(current_level: int) -> void:
-	var new_health: int = base_health + (current_level - 1) * 25
+	var new_health: int = ceil(float(base_health) * pow(1.25, current_level - 1))
 	health.max_value = new_health
-	var new_damage: int = base_damage + (current_level - 1) * 25
+	var new_damage: int = ceil(float(base_damage) * pow(1.2, current_level - 1))
 	damage.max_value = new_damage
 
 
