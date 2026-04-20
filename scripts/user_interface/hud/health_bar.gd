@@ -12,9 +12,11 @@ var _fade_out_tween: Tween
 ## Sets the [HealthBar] up to display a [param character]'s health.
 func set_up(character: Character) -> void:
 	self._character = character
+	_update_label()
 	_character.health_changed.connect(_update_label.unbind(2))
 	_character.health_changed.connect(_show_self.unbind(2))
-	_character.max_health_changed.connect(_update_label)
+	_character.max_health_changed.connect(_update_label.unbind(2))
+	_character.max_health_changed.connect(_show_self.unbind(2))
 
 
 func _update_label() -> void:
