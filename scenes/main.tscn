@@ -24,6 +24,11 @@ bg_color = Color(0, 0, 0, 0.32941177)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkv2x"]
 bg_color = Color(0.73333335, 0, 0.73333335, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_muem4"]
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Main" type="Node2D" unique_id=1258532985]
 script = ExtResource("1_tipki")
 
@@ -209,6 +214,22 @@ layout_mode = 2
 [node name="AbilitiesTab" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=667711675 instance=ExtResource("14_jbj1t")]
 visible = false
 layout_mode = 2
+
+[node name="BossDefeatedContainer" type="MarginContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=758602313]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/margin_bottom = 200
+
+[node name="BossDefeatedLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BossDefeatedContainer" unique_id=2054573362]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Boss defeated!"
+label_settings = SubResource("LabelSettings_muem4")
+horizontal_alignment = 1
 
 [node name="DeathUserInterface" parent="CanvasLayer" unique_id=1370909485 instance=ExtResource("15_jbj1t")]
 visible = false
