@@ -32,9 +32,11 @@ func _perform_ability() -> void:
 	var target_pos: Vector2 = character.target_pos
 	var target_dir: Vector2 = character.global_position.direction_to(target_pos)
 	var target_angle: float = target_dir.angle()
+	var char_damage: int = character.damage.max_value_after_buffs
+	var damage: int = float(base_damage) * float(char_damage) / 100
 	ProjectileFunctions.fire_projectile_from_character(
 			_PROJ_SCENE, character, projectile_speed,
-			base_damage, projectile_radius)
+			damage, projectile_radius)
 	var angle_1: float = target_angle + secondary_angle
 	var angle_2: float = target_angle - secondary_angle
 	_fire_secondary_projectile(angle_1)
