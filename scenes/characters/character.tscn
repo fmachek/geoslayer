@@ -44,7 +44,7 @@ script = ExtResource("2_2qjml")
 stat_name = "Speed"
 max_value = 300
 current_value = 300
-perk_point_increase = 10
+perk_point_increase = 2
 metadata/_custom_type_script = "uid://bawkqpf2atlge"
 
 [node name="Damage" type="Node" parent="CharacterStats" unique_id=286315709]
