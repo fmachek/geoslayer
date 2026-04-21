@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dyj8r3e5mxvj"]
+
+[ext_resource type="PackedScene" uid="uid://b1uydiw1trpr4" path="res://scenes/objects/buff_objects/buff_object.tscn" id="1_2xhfe"]
+
+[node name="DamageBuffObject" unique_id=1545253351 instance=ExtResource("1_2xhfe")]
+draw_color = Color(0.968106, 0.51133597, 0, 1)
+outline_color = Color(0.7362136, 0.38156575, 3.85046e-07, 1)
+buff_amount = 30
+buff_duration = 30
+target_stat_name = "damage"

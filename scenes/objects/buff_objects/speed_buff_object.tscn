@@ -5,6 +5,6 @@
 [node name="SpeedBuffObject" unique_id=1545253351 instance=ExtResource("1_lxwv3")]
 draw_color = Color(1, 0.8156863, 0, 1)
 outline_color = Color(0.6784314, 0.5529412, 0, 1)
-buff_amount = 200
-buff_duration = 5
+buff_amount = 50
+buff_duration = 30
 target_stat_name = "speed"
