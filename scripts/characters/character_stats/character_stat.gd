@@ -31,6 +31,8 @@ signal added_buff(buff: Buff)
 @export var current_value: int: set = _change_current_value
 ## Value by which the stat increases when a perk point is applied.
 @export var perk_point_increase: int = 5
+## Says whether the stat is percentage based or not.
+@export var is_percentage_based: bool = false
 #endregion
 
 ## The modified maximum value after buffs and debuffs are applied. It is the main value

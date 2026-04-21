@@ -53,6 +53,7 @@ stat_name = "Damage"
 max_value = 100
 current_value = 100
 perk_point_increase = 2
+is_percentage_based = true
 metadata/_custom_type_script = "uid://bawkqpf2atlge"
 
 [node name="Abilities" type="Node" parent="." unique_id=1813596891]

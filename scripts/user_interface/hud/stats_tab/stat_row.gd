@@ -47,6 +47,8 @@ func check_perk_points(points: int) -> void:
 func update_stat_value_label(stat: CharacterStat) -> void:
 	var label = _value_label
 	label.text = str(stat.max_value_after_buffs)
+	if stat.is_percentage_based:
+		label.text += "%"
 	if stat.max_value_after_buffs > stat.max_value:
 		label.label_settings.font_color = Color.GREEN
 	elif stat.max_value_after_buffs < stat.max_value:
