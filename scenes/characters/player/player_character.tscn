@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4x1o35rrk4rx" path="res://scenes/characters/character.tscn" id="1_ajk8a"]
 [ext_resource type="Script" uid="uid://rfmwennhnvgx" path="res://scripts/characters/player/player_character.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://c2nuw2jcv286h" path="res://scripts/characters/player/player_camera.gd" id="3_xusps"]
 [ext_resource type="Script" uid="uid://b8eqnowv1p6o8" path="res://scripts/characters/player/aim_indicator.gd" id="5_ecrnf"]
 
 [node name="PlayerCharacter" unique_id=1080282355 instance=ExtResource("1_ajk8a")]
@@ -10,7 +11,8 @@ script = ExtResource("1_g2els")
 draw_color = Color(0, 0.6862745, 0.8392157, 1)
 outline_color = Color(0, 0.4745098, 0.58431375, 1)
 
-[node name="Camera2D" type="Camera2D" parent="." index="0" unique_id=10897090]
+[node name="PlayerCamera" type="Camera2D" parent="." index="0" unique_id=10897090]
+script = ExtResource("3_xusps")
 
 [node name="AimIndicator" type="Node2D" parent="." index="5" unique_id=45608173]
 unique_name_in_owner = true
