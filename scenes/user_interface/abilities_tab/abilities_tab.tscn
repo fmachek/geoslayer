@@ -25,6 +25,7 @@ corner_radius_bottom_left = 10
 custom_minimum_size = Vector2(300, 400)
 size_flags_horizontal = 8
 size_flags_vertical = 4
+mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
 script = ExtResource("1_q5rh2")
 
