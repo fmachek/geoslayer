@@ -11,13 +11,19 @@ static var xp_amount: int = 30
 @export var draw_color: Color = Color(1.0, 0.0, 1.0, 1.0)
 ## Outline color of the [XPOrb] shape.
 @export var outline_color: Color = Color(0.732, 0.0, 0.732, 1.0)
+@export var min_radius: float = 6
+@export var max_radius: float = 8
 
 var _is_following_player: bool = false
 var _player: PlayerCharacter
 var _travel_speed: float = 8.0
 
+@onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
+
 
 func _ready() -> void:
+	_col_shape.shape = CircleShape2D.new()
+	_randomize_radius()
 	_travel_to_player()
 
 
@@ -33,9 +39,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _draw():
-	var radius: int = $Area2D/CollisionShape2D.shape.radius
+	var radius: float = _col_shape.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: int = radius/8
+	var outline_width: float = radius / 8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
@@ -52,3 +58,8 @@ func _travel_to_player() -> void:
 	if is_instance_valid(player):
 		_is_following_player = true
 		self._player = player
+
+
+func _randomize_radius() -> void:
+	var shape = _col_shape.shape
+	shape.radius = randf_range(min_radius, max_radius)
