@@ -18,7 +18,7 @@ var _travel_speed: float = 8.0
 
 
 func _ready() -> void:
-	WorldManager.wave_ended.connect(_travel_to_player)
+	_travel_to_player()
 
 
 func _physics_process(delta: float) -> void:
