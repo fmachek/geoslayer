@@ -1,6 +1,6 @@
 extends Node
 ## This autoload handles world loading and emits signals such
-## as [member wave_started] so that nodes in the scene tree can easily
+## as [signal wave_started] so that nodes in the scene tree can easily
 ## connect to them and detect important events.
 
 ## Emitted when a new wave starts in the world.
@@ -18,19 +18,19 @@ signal boss_died()
 
 ## The [World] currently loaded.
 var current_world: World
-## Path to the [World] scene, where '%d' must be replaced with an integer.
-var _world_path: String = "res://scenes/worlds/world_%d.tscn"
-
 ## Dictionary of user levels required to enter each world.
 var world_required_levels: Dictionary[int, int] = {
 	1: 1,
 	2: 5,
 	3: 10
 }
+## Array of numbers of worlds which are hidden (they aren't loaded
+## in the world selection UI).
+var hidden_worlds: Array[int] = [2]
+
+var _world_path: String = "res://scenes/worlds/world_%d.tscn"
 
 
-# Connects to loaded_main in GameManager to ensure that
-# the world is loaded only when Main is ready.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	GameManager.loaded_main.connect(_on_game_manager_loaded_main)

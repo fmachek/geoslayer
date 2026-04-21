@@ -42,7 +42,8 @@ func _load_all_worlds() -> void:
 	while true:
 		var world_scene_path: String = _get_world_scene_path(i)
 		if ResourceLoader.exists(world_scene_path):
-			_load_world(i)
+			if not i in WorldManager.hidden_worlds:
+				_load_world(i)
 		else:
 			break
 		i += 1
