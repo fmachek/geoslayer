@@ -9,10 +9,12 @@ const _SHIELD_SCENE := preload("res://scenes/objects/shields/shield.tscn")
 var shield_duration: float = 5.0
 ## Radius of the [Shield].
 var shield_radius: float = 82.0
+## Durability of the [Shield].
+var shield_durability: int = 150
 
 
 func _init() -> void:
-	super(15.0, "Shields the caster from incoming attacks for %d seconds." % shield_duration)
+	super(7.5, "Shields the caster from enemy projectiles for %d seconds." % shield_duration)
 
 
 func _perform_ability() -> void:
@@ -24,4 +26,5 @@ func _spawn_shield() -> void:
 	var shield: Shield = _SHIELD_SCENE.instantiate()
 	shield.expiration_time = shield_duration
 	shield.radius = shield_radius
+	shield.durability = shield_durability
 	character.add_child(shield)
