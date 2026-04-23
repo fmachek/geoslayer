@@ -6,12 +6,20 @@ extends TextureRect
 ## Emitted when pressed.
 signal cast()
 
+## Texture representing the input which triggers the ability cast.
+@export var input_texture: Texture2D
+
 ## Ability currently being displayed.
 var current_ability: Ability
 var _cooldown_tween: Tween
 
 @onready var _cooldown_rect = $CooldownRect
 @onready var _cooldown_label: Label = %CooldownLabel
+@onready var _input_texture_rect: TextureRect = %InputTextureRect
+
+
+func _ready() -> void:
+	_input_texture_rect.texture = input_texture
 
 
 ## Loads a given [param ability].

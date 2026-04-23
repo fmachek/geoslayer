@@ -9,8 +9,10 @@
 [ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="10_gqmmt"]
 [ext_resource type="Script" uid="uid://bnn62akiljt6e" path="res://scripts/user_interface/hud/win_game_button.gd" id="10_muem4"]
 [ext_resource type="Script" uid="uid://bme6txd5w6mac" path="res://scripts/user_interface/ability_unlock_popup.gd" id="10_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://dv5mm807qrxhx" path="res://assets/user_interface/input/mouse_left.png" id="11_0ld40"]
 [ext_resource type="StyleBox" uid="uid://btot0y1uy4bm4" path="res://assets/user_interface/styles/regular_button/regular_button_pressed.tres" id="11_yc10j"]
 [ext_resource type="Script" uid="uid://b1bksppmpw8b6" path="res://scripts/user_interface/hud/level_hud.gd" id="12_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://dpl18l74nkq6v" path="res://assets/user_interface/input/mouse_right.png" id="12_gqmmt"]
 [ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="12_jscy8"]
 [ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="13_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://yyko5br814tu" path="res://scenes/user_interface/abilities_tab/abilities_tab.tscn" id="14_jbj1t"]
@@ -152,10 +154,12 @@ alignment = 1
 [node name="AbilityItem1" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=1510360324 instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 layout_mode = 2
+input_texture = ExtResource("11_0ld40")
 
 [node name="AbilityItem2" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/AbilityItemContainer" unique_id=729255619 instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
 layout_mode = 2
+input_texture = ExtResource("12_gqmmt")
 
 [node name="LevelHUD" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=193371173]
 layout_mode = 2
