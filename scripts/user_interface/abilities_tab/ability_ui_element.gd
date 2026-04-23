@@ -23,7 +23,8 @@ var displaying_slot: int = 0
 @onready var _equipped_label: Label = %EquippedLabel
 @onready var _cd_label: Label = %CooldownLabel
 @onready var _desc_label: Label = %DescriptionLabel
-@onready var _texture_rect: TextureRect = $TextureRect
+@onready var _texture_rect: TextureRect = %AbilityTextureRect
+@onready var _highlight_panel: Panel = %HighlightPanel
 
 
 func _ready() -> void:
@@ -69,11 +70,13 @@ func _change_slot(new_slot: int):
 	displaying_slot = new_slot
 	if new_slot == 0:
 		_equipped_label.hide()
+		_highlight_panel.hide()
 		_equip_button_1.disabled = false
 		_equip_button_2.disabled = false
 	else:
 		_equipped_label.text = "Equipped in slot %d" % new_slot
 		_equipped_label.show()
+		_highlight_panel.show()
 		if new_slot == 1:
 			_equip_button_1.disabled = true
 			_equip_button_2.disabled = false
