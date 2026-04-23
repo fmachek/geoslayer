@@ -113,8 +113,8 @@ func _handle_life_time_change() -> void:
 func _update_particle_colors() -> void:
 	var ring_particles: CPUParticles2D = $RingParticles
 	var tick_particles: CPUParticles2D = $TickParticles
-	ring_particles.color = draw_color
-	tick_particles.color = draw_color
+	ring_particles.color = Color(draw_color, 1)
+	tick_particles.color = Color(draw_color, 1)
 
 
 #region setters
