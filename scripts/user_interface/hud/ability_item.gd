@@ -11,6 +11,7 @@ var current_ability: Ability
 var _cooldown_tween: Tween
 
 @onready var _cooldown_rect = $CooldownRect
+@onready var _cooldown_label: Label = %CooldownLabel
 
 
 ## Loads a given [param ability].
@@ -27,6 +28,7 @@ func load_ability(ability: Ability):
 	_connect_ability_signals()
 	_stop_cooldown_tween()
 	texture = ability.texture
+	_cooldown_label.text = str(ability.cooldown) + "s"
 
 
 func _play_cooldown_tween():
