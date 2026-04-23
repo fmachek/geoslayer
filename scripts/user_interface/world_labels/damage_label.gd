@@ -28,13 +28,13 @@ func _load_label_type(type: Character.DamageType, char: Character) -> void:
 	_load_label_settings()
 	match type:
 		Character.DamageType.NORMAL:
-			if char is PlayerCharacter:
+			if char is PlayerCharacter or char is Minion:
 				label_settings.font_color = Color.RED
 			else:
 				label_settings.font_color = Color.WHITE
 		Character.DamageType.DOT:
 			label_settings.font_size = 16
-			if char is PlayerCharacter:
+			if char is PlayerCharacter or char is Minion:
 				label_settings.font_color = Color.RED
 			else:
 				label_settings.font_color = Color.WHITE
