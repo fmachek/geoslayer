@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfc8fq2b7kwge"]
 
-[ext_resource type="Script" uid="uid://byrnpe82kfn7x" path="res://scripts/objects/character_spawner.gd" id="1_ym4pf"]
+[ext_resource type="Script" uid="uid://byrnpe82kfn7x" path="res://scripts/objects/spawners/character_spawner.gd" id="1_ym4pf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ym4pf"]
 radius = 42.0

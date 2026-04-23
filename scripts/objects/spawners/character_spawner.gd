@@ -22,21 +22,20 @@ signal spawning_character(char: Character)
 
 func _draw() -> void:
 	var radius: float = $Area2D/CollisionShape2D.shape.radius
-	draw_circle(Vector2.ZERO, radius, draw_color)
 	var outline_width: float = radius / 8
+	draw_circle(Vector2.ZERO, radius - outline_width / 2, draw_color)
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
 ## Spawns a [Character] instantiated from [member character_scene].
-func spawn_character(current_wave: int) -> void:
+func spawn_character(current_wave: int) -> Character:
 	var character: Character = character_scene.instantiate()
 	spawning_character.emit(character)
 	character.global_position = global_position
 	get_parent().add_child(character)
 	call_deferred("_change_character_level", character, current_wave)
 	call_deferred("_fill_character_health", character)
-	if character is Boss:
-		character.died.connect(WorldManager.handle_boss_death)
+	return character
 
 
 # Checks if the new wave is in the spawn_waves array.
