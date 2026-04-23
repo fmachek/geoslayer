@@ -3,16 +3,10 @@ extends CharacterStat
 ## Represents a character's HP. Contains regeneration logic.
 
 ## Heal amount each tick.
-@export var regen_amount: int = 2
+var regen_amount: int
 
-var _regen_tick_timer: Timer
-var _regen_start_timer: Timer
-
-
-func _ready() -> void:
-	super()
-	_regen_tick_timer = $RegenTickTimer
-	_regen_start_timer = $RegenStartTimer
+@onready var _regen_tick_timer: Timer = $RegenTickTimer
+@onready var _regen_start_timer: Timer = $RegenStartTimer
 
 
 # Reacts to current_value changes. If damage was taken,
@@ -46,3 +40,7 @@ func _on_max_value_after_buffs_changed(old_value: int, new_value: int) -> void:
 			_regen_start_timer.stop()
 		if is_instance_valid(_regen_tick_timer):
 			_regen_tick_timer.start()
+
+
+func _update_regen_amount(max_health: int) -> void:
+	regen_amount = max_health / 50

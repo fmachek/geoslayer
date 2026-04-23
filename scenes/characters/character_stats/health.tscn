@@ -10,10 +10,11 @@ metadata/_custom_type_script = "uid://bawkqpf2atlge"
 wait_time = 0.5
 
 [node name="RegenStartTimer" type="Timer" parent="." unique_id=2119095592]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [connection signal="current_value_changed" from="." to="." method="_on_current_value_changed"]
 [connection signal="max_value_after_buffs_changed" from="." to="." method="_on_max_value_after_buffs_changed"]
+[connection signal="max_value_after_buffs_changed" from="." to="." method="_update_regen_amount" unbinds=1]
 [connection signal="timeout" from="RegenTickTimer" to="." method="_on_regen_tick_timer_timeout"]
 [connection signal="timeout" from="RegenStartTimer" to="." method="_on_regen_start_timer_timeout"]
