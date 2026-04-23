@@ -2,6 +2,9 @@ class_name CharacterSpawner
 extends Node2D
 ## Represents a spawner which spawns characters on certain waves.
 
+## Emitted when a [Character] is being spawned.
+signal spawning_character(char: Character)
+
 #region @export variables
 ## Scene of the [Character] being spawned.
 @export var character_scene := preload("res://scenes/characters/character.tscn")
@@ -27,6 +30,7 @@ func _draw() -> void:
 ## Spawns a [Character] instantiated from [member character_scene].
 func spawn_character(current_wave: int) -> void:
 	var character: Character = character_scene.instantiate()
+	spawning_character.emit(character)
 	character.global_position = global_position
 	get_parent().add_child(character)
 	call_deferred("_change_character_level", character, current_wave)

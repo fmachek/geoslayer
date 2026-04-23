@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bke57kxcnjnho"]
 
 [ext_resource type="Script" uid="uid://b0iyx6c1ldl2p" path="res://scripts/main.gd" id="1_tipki"]
-[ext_resource type="Script" uid="uid://dimjwrpgg0w1t" path="res://scripts/user_interface/hud/wave_info/wave_time_label.gd" id="3_85g3d"]
 [ext_resource type="Script" uid="uid://c3y5sbyxtgd61" path="res://scripts/user_interface/hud/start_wave_button.gd" id="3_tipki"]
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
@@ -245,13 +244,6 @@ size_flags_vertical = 0
 theme_override_constants/outline_size = 8
 text = "Next wave: N"
 script = ExtResource("16_0ld40")
-
-[node name="WaveTimeLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/WaveInfoContainer" unique_id=550450244]
-layout_mode = 2
-theme_override_constants/outline_size = 8
-text = "Wave ends in N seconds"
-horizontal_alignment = 1
-script = ExtResource("3_85g3d")
 
 [node name="DeathUserInterface" parent="CanvasLayer" unique_id=1370909485 instance=ExtResource("15_jbj1t")]
 visible = false
