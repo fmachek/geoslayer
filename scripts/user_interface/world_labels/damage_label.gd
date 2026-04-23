@@ -1,6 +1,6 @@
 class_name DamageLabel
 extends Label
-## Represents a label displaying the amount of damage dealt.
+## Represents a label displaying the amount of damage dealt, or heal amount.
 
 var _tween: Tween
 
@@ -15,8 +15,36 @@ func play_tween() -> void:
 	_tween.tween_callback(queue_free)
 
 
-## Sets the label's text to match [param damage] and
-## moves to [param pos].
-func load_damage(damage: int, pos: Vector2):
-	text = str(damage)
+## Loads the label. It will display the given [param amount] and it will move to
+## a given [param pos]. The [param type] and [param char] determines
+## what the label looks like, mainly the font color, but also size.
+func load_label(amount: int, pos: Vector2, type: Character.DamageType, char: Character) -> void:
+	text = str(amount)
 	global_position = pos
+	_load_label_type(type, char)
+
+
+func _load_label_type(type: Character.DamageType, char: Character) -> void:
+	_load_label_settings()
+	match type:
+		Character.DamageType.NORMAL:
+			if char is PlayerCharacter:
+				label_settings.font_color = Color.RED
+			else:
+				label_settings.font_color = Color.WHITE
+		Character.DamageType.DOT:
+			label_settings.font_size = 16
+			if char is PlayerCharacter:
+				label_settings.font_color = Color.RED
+			else:
+				label_settings.font_color = Color.WHITE
+		Character.DamageType.HEAL:
+			label_settings.font_color = Color.GREEN
+
+
+func _load_label_settings() -> void:
+	var settings := LabelSettings.new()
+	settings.font_size = 22
+	settings.outline_size = 8
+	settings.outline_color = Color.BLACK
+	label_settings = settings

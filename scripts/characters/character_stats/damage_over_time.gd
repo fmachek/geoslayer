@@ -9,9 +9,6 @@ extends Node
 ## Emitted when [member tick_time] changes.
 signal tick_time_changed(new_time: float)
 
-const _LABEL_PATH := "res://scenes/user_interface/world_labels/dot_damage_label.tscn"
-const _DMG_LABEL_SCENE := preload(_LABEL_PATH)
-
 ## Damage dealt on every tick.
 var damage_per_tick: int = 5: set = _set_damage_per_tick
 ## Time between damage ticks in seconds.
@@ -46,16 +43,7 @@ func apply_to(target: Character) -> void:
 func _deal_damage() -> void:
 	if _target_health and _ticks_remaining > 0:
 		_ticks_remaining -= 1
-		var damage_taken: int = _target_character.take_damage(damage_per_tick, true)
-		_spawn_damage_label(damage_taken, _target_character.global_position)
-
-
-func _spawn_damage_label(damage: int, pos: Vector2) -> void:
-	var damage_label: DamageLabel = _DMG_LABEL_SCENE.instantiate()
-	WorldManager.current_world.add_child(damage_label)
-	var offset := Vector2(randi_range(-20, 20), randi_range(-20, 20))
-	damage_label.load_damage(damage, pos + offset)
-	damage_label.play_tween()
+		_target_character.take_damage(damage_per_tick, Character.DamageType.DOT, true)
 
 
 func _create_tick_timer() -> void:

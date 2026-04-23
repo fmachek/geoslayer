@@ -5,7 +5,7 @@ extends Node2D
 ##
 ## The action is performed automatically when entering the scene tree,
 ## however it always skips one physics frame, because on the first frame,
-## [member Area2D.get_overlapping_bodies] returns an empty [Array].
+## [method Area2D.get_overlapping_bodies] returns an empty [Array].
 ## The [Array] needs to update first so that it can be used
 ## when doing something to the [Character]s standing inside the [Area2D].
 

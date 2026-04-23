@@ -10,9 +10,6 @@ signal started_healing()
 ## Emitted when the [HealingStation] stops healing its target.
 signal stopped_healing()
 
-const _HEAL_LABEL_SCENE := preload(
-		"res://scenes/user_interface/world_labels/heal_label.tscn")
-
 ## The [Character] being healed.
 var healing_target: Character: set = _set_healing_character
 ## Amount by which the [member healing_target] is healed on each tick.
@@ -73,15 +70,6 @@ func _on_target_died() -> void:
 
 func _on_heal_tick_timer_timeout() -> void:
 	healing_target.heal(heal_amount)
-	var label_offset := Vector2(randi_range(-20, 20), randi_range(-20, 20))
-	_spawn_heal_label(heal_amount, healing_target.global_position + label_offset)
-
-
-func _spawn_heal_label(amount: int, pos: Vector2) -> void:
-	var heal_label: DamageLabel = _HEAL_LABEL_SCENE.instantiate()
-	get_parent().add_child(heal_label)
-	heal_label.load_damage(amount, pos)
-	heal_label.play_tween()
 
 
 func _set_healing_character(char: Character) -> void:

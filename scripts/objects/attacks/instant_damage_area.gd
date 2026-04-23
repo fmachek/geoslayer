@@ -6,9 +6,6 @@ extends InstantArea
 ## It has a [Sprite2D] which is randomly flipped horizontally and vertically
 ## and it scales to display the [InstantDamageArea]'s size properly.
 
-const _DMG_LABEL_SCENE := preload(
-		"res://scenes/user_interface/world_labels/damage_label.tscn")
-
 ## Amount of damage dealt to [Character]s.
 var damage: int
 
@@ -22,8 +19,7 @@ func _ready() -> void:
 
 func _perform(body: Node2D) -> void:
 	if body is Character:
-		var damage_taken: int = body.take_damage(damage)
-		_spawn_damage_label(damage_taken, body.global_position)
+		body.take_damage(damage)
 
 
 func _update_area_mask(source: Node2D) -> void:
@@ -38,10 +34,3 @@ func _update_sprite() -> void:
 	_sprite.flip_h = (randi_range(0, 1) == 1)
 	_sprite.flip_v = (randi_range(0, 1) == 1)
 	_sprite.modulate = Color(draw_color, 1.0)
-
-
-func _spawn_damage_label(amount: int, pos: Vector2) -> void:
-	var dmg_label: DamageLabel = _DMG_LABEL_SCENE.instantiate()
-	get_parent().add_child(dmg_label)
-	dmg_label.load_damage(amount, pos)
-	dmg_label.play_tween()

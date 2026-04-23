@@ -32,9 +32,6 @@ signal draw_color_changed(new_color: Color)
 ## Emitted when the swipe finishes (it reaches its destination angle).
 signal finished()
 
-const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn"
-const _DMG_LABEL_SCENE := preload(_LABEL_PATH)
-
 #region regular variables
 ## Source of the [SwipeAttack], for example a [Character] who cast
 ## an [Ability] which instantiated the [SwipeAttack].
@@ -119,16 +116,7 @@ func swipe(target_angle: float, swipe_time: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Character:
-		var damage_taken: int = body.take_damage(final_damage)
-		var offset := Vector2(randi_range(-20, 20), randi_range(-20, 20))
-		_spawn_damage_label(damage_taken, body.global_position + offset)
-
-
-func _spawn_damage_label(damage: int, pos: Vector2) -> void:
-	var damage_label: DamageLabel = _DMG_LABEL_SCENE.instantiate()
-	get_parent().add_child(damage_label)
-	damage_label.load_damage(damage, pos)
-	damage_label.play_tween()
+		body.take_damage(final_damage)
 
 
 func _remove_particles() -> void:

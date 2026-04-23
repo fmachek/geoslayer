@@ -48,4 +48,4 @@ func _change_character_level(character: Character, level: int) -> void:
 
 
 func _fill_character_health(character: Character) -> void:
-	character.heal(character.health.max_value_after_buffs)
+	character.heal(character.health.max_value_after_buffs, false)

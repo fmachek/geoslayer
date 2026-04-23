@@ -9,8 +9,6 @@ signal hit_character(char: Character)
 
 const _PARTICLES_PATH := "res://scenes/particle_effects/projectile_particles.tscn"
 const _PARTICLES_SCENE := preload(_PARTICLES_PATH)
-const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn"
-const _LABEL_SCENE := preload(_LABEL_PATH)
 
 ## Contains all important properties the [Projectile] requires,
 ## such as the damage or radius.
@@ -141,21 +139,12 @@ func _handle_character_collision(character: Character) -> void:
 # Deals damage to a Character.
 func _deal_damage(character: Character) -> void:
 	var damage: int = projectile_properties.damage
-	var damage_taken: int = character.take_damage(damage)
-	_spawn_damage_label(damage_taken, global_position)
+	character.take_damage(damage)
 
 
 func _apply_knockback(character: Character) -> void:
 	if knockback > 0.0:
 		character.apply_knockback(knockback * projectile_properties.direction)
-
-
-# Spawns a label showing the damage dealt.
-func _spawn_damage_label(damage: int, pos: Vector2) -> void:
-	var damage_label: DamageLabel = _LABEL_SCENE.instantiate()
-	get_parent().add_child(damage_label)
-	damage_label.load_damage(damage, pos)
-	damage_label.play_tween()
 
 
 func _update_collision_mask() -> void:

@@ -17,6 +17,5 @@ func _draw():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is PlayerCharacter:
-		var health: Health = body.health
-		health.add_value(health.max_value_after_buffs)
+		body.heal(body.health.max_value_after_buffs)
 		queue_free()

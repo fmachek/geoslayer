@@ -26,6 +26,17 @@ signal was_stunned()
 signal stun_ended()
 #endregion
 
+## Represents a damage type, for example normal damage, or damage dealt
+## by a DoT effect, but also healing.
+enum DamageType {
+	NORMAL,
+	DOT,
+	HEAL
+}
+
+const _DMG_LABEL_SCENE := preload(
+		"res://scenes/user_interface/world_labels/damage_label.tscn")
+
 #region @export variables
 ## The fill color of the circle representing the [Character].
 @export var draw_color: Color = Color.LIME_GREEN
@@ -130,9 +141,11 @@ func apply_knockback(knockback: Vector2) -> void:
 
 ## Makes the [Character] take damage. Returns the damage taken,
 ## which can be different depending on the [Character]'s armor.
+## The [param type] says which kind of damage the [Character] is taking,
+## for example a Damage Over Time (DOT) effect, or just normal.
 ## [param ignore_armor] can be set to [code]true[/code] if armor
 ## is to be ignored.
-func take_damage(damage: int, ignore_armor: bool = false) -> int:
+func take_damage(damage: int, type: DamageType = DamageType.NORMAL, ignore_armor: bool = false) -> int:
 	var damage_reduction: int
 	if ignore_armor:
 		damage_reduction = 0
@@ -143,12 +156,27 @@ func take_damage(damage: int, ignore_armor: bool = false) -> int:
 	if damage_taken < 0:
 		damage_taken = 0
 	health.add_value(-damage_taken)
+	spawn_damage_label(damage, type)
 	return damage_taken
 
 
+## Spawns a damage label which displays an [param amount].
+## The [param dmg_type] determines what the label looks like.
+func spawn_damage_label(amount: int, dmg_type: DamageType) -> void:
+	var offset_x: int = randi_range(-20, 20)
+	var offset_y: int = randi_range(-20, 20)
+	var label_pos := global_position + Vector2(offset_x, offset_y)
+	var label: DamageLabel = _DMG_LABEL_SCENE.instantiate()
+	WorldManager.current_world.add_child(label)
+	label.load_label(amount, label_pos, dmg_type, self)
+	label.play_tween()
+
+
 ## Heals the [Character] (its health increases).
-func heal(amount: int) -> void:
+func heal(amount: int, show_label: bool = true) -> void:
 	health.add_value(amount)
+	if show_label:
+		spawn_damage_label(amount, DamageType.HEAL)
 
 
 func _calculate_knockback() -> void:

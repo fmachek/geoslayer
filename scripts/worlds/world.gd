@@ -7,7 +7,7 @@ extends Node2D
 ## another unopened [Chest] will spawn. That essentially works as a queue for [Chest]s.
 
 ## Scene of the [Chest] dropped when a wave ends.
-@export var chest_scene: PackedScene = preload(
+@export var chest_scene: PackedScene = load(
 		"res://scenes/characters/containers/chest.tscn")
 ## Amount of XP granted by each [XPOrb] dropped in the [World].
 @export var xp_per_orb: int = 30

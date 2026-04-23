@@ -6,9 +6,6 @@ extends Node2D
 ## there is something blocking it, for example a wall, the
 ## [Laser] ends at the point where the collision occurs.
 
-const _LABEL_PATH := "res://scenes/user_interface/world_labels/damage_label.tscn"
-const _damage_label_scene := preload(_LABEL_PATH)
-
 ## Fill color of the [Laser].
 @export var draw_color: Color = Color(1.0, 0.0, 0.0, 1.0)
 
@@ -94,16 +91,7 @@ func _on_damage_timer_timeout() -> void:
 	var bodies: Array[Node2D] = area.get_overlapping_bodies()
 	for body: Node2D in bodies:
 		if body is Character:
-			var damage_taken: int = body.take_damage(damage)
-			_spawn_damage_label(damage_taken, body.global_position)
-
-
-func _spawn_damage_label(damage: int, pos: Vector2) -> void:
-	var damage_label: DamageLabel = _damage_label_scene.instantiate()
-	WorldManager.current_world.add_child(damage_label)
-	var random_offset := Vector2(randf_range(-5, 5), randf_range(-5, 5))
-	damage_label.load_damage(damage, pos + random_offset)
-	damage_label.play_tween()
+			body.take_damage(damage)
 
 
 func _on_start_timer_timeout() -> void:

@@ -2,9 +2,6 @@ class_name DamagingZone
 extends Zone
 ## Represents a [Zone] which damages [Character]s inside of it.
 
-const _DMG_LABEL_SCENE := preload(
-		"res://scenes/user_interface/world_labels/damage_label.tscn")
-
 ## Base damage dealt by the [DamagingZone].
 var base_damage: int = 7
 ## Damage dealt by the [DamagingZone] every tick.
@@ -59,16 +56,7 @@ func _apply_additional_effects(character: Character) -> void:
 
 # Deals damage to a character and spawns a label.
 func _deal_damage(character: Character) -> void:
-	var damage_taken: int = character.take_damage(damage_per_tick)
-	_spawn_damage_label(damage_taken, character.global_position)
-
-
-# Spawns a label showing the damage dealt.
-func _spawn_damage_label(damage: int, pos: Vector2) -> void:
-	var damage_label: DamageLabel = _DMG_LABEL_SCENE.instantiate()
-	get_parent().add_child(damage_label)
-	damage_label.load_damage(damage, pos)
-	damage_label.play_tween()
+	character.take_damage(damage_per_tick)
 
 
 # Updates the wait time of the tick timer to match time_per_tick.
