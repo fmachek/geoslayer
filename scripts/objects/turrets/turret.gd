@@ -29,6 +29,9 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 @export var projectile_knockback: float = 0.0
 #endregion
 
+## Says if the [Turret] can start shooting or not.
+var can_start_shooting: bool = true
+
 #region @onready variables
 @onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var _muzzle: Node2D = $Muzzle
@@ -40,6 +43,7 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 func _ready() -> void:
 	WorldManager.wave_started.connect(start_shooting)
 	WorldManager.wave_ended.connect(stop_shooting)
+	WorldManager.final_wave_started.connect(disable)
 	_shoot_particles.color = draw_color
 	_shoot_timer.wait_time = shoot_time
 
@@ -53,8 +57,15 @@ func _draw() -> void:
 	draw_rect(rect, outline_color, false, 4)
 
 
+## Becomes unable to start shooting.
+func disable() -> void:
+	can_start_shooting = false
+
+
 ## Makes the [Turret] start shooting. Emits [signal started_shooting].
 func start_shooting() -> void:
+	if not can_start_shooting:
+		return
 	_shoot_timer.start()
 	started_shooting.emit()
 

@@ -9,6 +9,8 @@ signal wave_started()
 signal wave_ended()
 ## Emitted when the current wave changes.
 signal wave_changed(wave: int)
+## Emitted when the final wave starts.
+signal final_wave_started()
 ## Emitted when the final wave finishes.
 signal final_wave_finished()
 ## Emitted when boss death in [member current_world] is handled.
@@ -50,6 +52,8 @@ func load_world(main: Main, world_number: int) -> void:
 				func(wave: int): wave_changed.emit(wave))
 		current_world.wave_manager.final_wave_finished.connect(
 				func(): final_wave_finished.emit())
+		current_world.wave_manager.final_wave_started.connect(
+				func(): final_wave_started.emit())
 
 
 ## Loads a world in [param main] when it is ready.

@@ -8,6 +8,8 @@ signal current_wave_changed(wave: int)
 signal wave_started()
 ## Emitted when a wave ends.
 signal wave_ended()
+## Emitted when the final wave starts.
+signal final_wave_started()
 ## Emitted when the final wave ends.
 signal final_wave_finished()
 
@@ -25,6 +27,8 @@ func start_wave() -> void:
 	if current_wave == max_waves:
 		return
 	current_wave += 1
+	if current_wave == max_waves:
+		final_wave_started.emit()
 	wave_started.emit()
 	
 	print("Wave %d started!" % current_wave)
