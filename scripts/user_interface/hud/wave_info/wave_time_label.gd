@@ -5,6 +5,7 @@ extends Label
 
 
 func _ready() -> void:
+	hide()
 	WorldManager.time_until_wave_end_changed.connect(_on_wave_time_changed)
 	WorldManager.wave_ended.connect(hide)
 	WorldManager.wave_started.connect(show)
