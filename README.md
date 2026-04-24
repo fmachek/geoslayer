@@ -1,11 +1,11 @@
-# project01
-This is my Godot project I started to learn how to develop games in Godot better. I also wanted some practice.
+# Geoslayer
+This is my project I started to learn how to develop games in Godot better. I also wanted some practice.
 
 The project uses Godot 4.6.
 
-## What is this game about?
+## What is Geoslayer about?
 
-I'm making a 2D game with simple graphics where enemies come in waves and you must survive. You use your 2 abilities to defeat incoming enemies. Beat the boss who spawns at the end to win.
+Geoslayer is a 2D wave-based survival game with simple graphics. You use your 2 abilities to defeat incoming enemies. Beat the boss who spawns at the end to win.
 
 Unlock abilities from chests you get for surviving waves, pick and choose which ones you want to use. Currently there are 15 player abilities in total.
 
@@ -30,20 +30,8 @@ There are currently 15 abilities unlockable by the player. Other abilities can o
 12. **Lifesteal**: fires 3 projectiles which heal the caster for a portion of the damage dealt
 13. **Shred**: similar to Wideshot but close range and applies an armor and speed buff to the caster if the projectiles hit a target
 14. **Swipe**: performs a swipe melee attack
-15. **Smash**: stuns and knocks enemies around the caster back
+15. **Smash**: deals damage to, stuns and knocks enemies around the caster back
 
-## Screenshots
+## Screenshot
 
-<table>
-    <tr>
-        <img src="./assets/screenshots/in_game_1.png" alt="In-game screenshot 1">
-    </tr>
-    <tr>
-        <td><img src="./assets/screenshots/main_menu.png" alt="Main menu"></td>
-        <td><img src="./assets/screenshots/world_selection.png" alt="World selection"></td>
-    </tr>
-    <tr>
-        <td><img src="./assets/screenshots/win_screen.png" alt="Win screen"></td>
-        <td><img src="./assets/screenshots/progression.png" alt="Progression"></td>
-    </tr>
-</table>
+<img src="./assets/screenshots/in_game.png" alt="In-game screenshot">
