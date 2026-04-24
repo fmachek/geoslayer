@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://cwjp3a61svi3j" path="res://scenes/user_interface/hud/stats_tab/stats_tab.tscn" id="8_jkv2x"]
-[ext_resource type="Script" uid="uid://fgq6y65w1341" path="res://scripts/user_interface/abilities_tab/abilities_tab_open_button.gd" id="10_choun"]
 [ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="10_gqmmt"]
 [ext_resource type="Script" uid="uid://bnn62akiljt6e" path="res://scripts/user_interface/hud/win_game_button.gd" id="10_muem4"]
 [ext_resource type="Script" uid="uid://bme6txd5w6mac" path="res://scripts/user_interface/ability_unlock_popup.gd" id="10_ya4ey"]
@@ -15,11 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://dpl18l74nkq6v" path="res://assets/user_interface/input/mouse_right.png" id="12_gqmmt"]
 [ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="12_jscy8"]
 [ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="13_pm3ni"]
-[ext_resource type="PackedScene" uid="uid://yyko5br814tu" path="res://scenes/user_interface/abilities_tab/abilities_tab.tscn" id="14_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://yyko5br814tu" path="res://scenes/user_interface/large_tab_container/abilities_tab/abilities_tab.tscn" id="14_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://b1qcqh81a03yg" path="res://scenes/user_interface/death_ui/death_user_interface.tscn" id="15_jbj1t"]
+[ext_resource type="Script" uid="uid://3fxl4uoqbqr0" path="res://scripts/user_interface/large_tab_container/large_tab_container.gd" id="15_jscy8"]
 [ext_resource type="Script" uid="uid://3ne1dmv1jst4" path="res://scripts/user_interface/hud/wave_info/next_wave_label.gd" id="16_0ld40"]
 [ext_resource type="Script" uid="uid://bg7c0avopq04p" path="res://scripts/user_interface/hud/wave_info/current_wave_label.gd" id="16_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_ui/pause_interface.tscn" id="16_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://blrpytnhphj5t" path="res://scenes/user_interface/large_tab_container/enemies_tab/enemies_tab.tscn" id="17_yc10j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(0, 0, 0, 0.32941177)
@@ -184,7 +185,16 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jkv2x")
 step = 1.0
 value = 50.0
 
-[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1054323433]
+[node name="StatsTab" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=764354913 instance=ExtResource("8_jkv2x")]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1920361094]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="AbilitiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/ButtonContainer" unique_id=1054323433]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -203,12 +213,45 @@ theme_override_styles/disabled = ExtResource("13_pm3ni")
 theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
 theme_override_styles/focus = ExtResource("12_jscy8")
 text = "Abilities"
-script = ExtResource("10_choun")
 
-[node name="StatsTab" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=764354913 instance=ExtResource("8_jkv2x")]
+[node name="EnemiesTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/ButtonContainer" unique_id=2138611527]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_styles/normal = ExtResource("10_gqmmt")
+theme_override_styles/normal_mirrored = ExtResource("10_gqmmt")
+theme_override_styles/pressed = ExtResource("11_yc10j")
+theme_override_styles/pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/hover = ExtResource("12_jscy8")
+theme_override_styles/hover_mirrored = ExtResource("12_jscy8")
+theme_override_styles/hover_pressed = ExtResource("11_yc10j")
+theme_override_styles/hover_pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/disabled = ExtResource("13_pm3ni")
+theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
+theme_override_styles/focus = ExtResource("12_jscy8")
+text = "Enemies"
 
-[node name="AbilitiesTab" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=667711675 instance=ExtResource("14_jbj1t")]
+[node name="LargeTabContainer" type="MarginContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=879558325]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+script = ExtResource("15_jscy8")
+
+[node name="AbilitiesTab" parent="CanvasLayer/UserInterface/MarginContainer/LargeTabContainer" unique_id=667711675 instance=ExtResource("14_jbj1t")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="EnemiesTab" parent="CanvasLayer/UserInterface/MarginContainer/LargeTabContainer" unique_id=1396725101 instance=ExtResource("17_yc10j")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -258,6 +301,3 @@ offset_left = 0.0
 offset_right = 0.0
 
 [connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/AbilitiesTab" method="_on_abilities_tab_open_button_pressed"]
-[connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/AbilitiesTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/AbilitiesTabOpenButton" method="_on_abilities_tab_hidden"]

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://lt1ja8r5q3mg"]
+
+[ext_resource type="Script" uid="uid://bjpd2tgqixeo6" path="res://scripts/user_interface/large_tab_container/enemies_tab/enemy_section.gd" id="1_ta3ad"]
+[ext_resource type="Texture2D" uid="uid://dltt8wevksmwj" path="res://assets/user_interface/enemies/shooter.png" id="1_tkm6b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ta3ad"]
+line_spacing = -2.0
+font_size = 10
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EnemySection" type="HBoxContainer" unique_id=1327630306]
+theme_override_constants/separation = 10
+script = ExtResource("1_ta3ad")
+
+[node name="EnemyIcon" type="TextureRect" parent="." unique_id=1976971320]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_tkm6b")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1262741838]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=24228707]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "Shooter"
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=1945425323]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+text = "Fires one projectile directly at its target and sometimes two smaller projectiles in different directions."
+label_settings = SubResource("LabelSettings_ta3ad")
+autowrap_mode = 2

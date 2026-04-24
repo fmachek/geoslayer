@@ -11,6 +11,10 @@ extends Node2D
 		"res://scenes/characters/containers/chest.tscn")
 ## Amount of XP granted by each [XPOrb] dropped in the [World].
 @export var xp_per_orb: int = 30
+## Array of names of enemies who spawn in the [World]. This isn't loaded
+## automatically and must be set via the inspector. It is used for
+## loading information about enemies in the [EnemiesTab].
+@export var enemy_names: Array[String] = []
 
 var _player_spawn_pos: Vector2
 var _unopened_chests: Array = []

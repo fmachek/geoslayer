@@ -11,7 +11,7 @@ signal unequip_slot2_pressed()
 signal unequip_all_pressed()
 
 const _ABILITY_ELEMENT_SCENE := preload(
-		"res://scenes/user_interface/abilities_tab/ability_ui_element.tscn")
+		"res://scenes/user_interface/large_tab_container/abilities_tab/ability_ui_element.tscn")
 ## A reference to the [PlayerCharacter].
 var player: PlayerCharacter
 @onready var _ability_container: VBoxContainer = %AbilityContainer
@@ -56,10 +56,6 @@ func _on_unequip_slot_2_button_pressed() -> void:
 
 func _on_unequip_all_button_pressed() -> void:
 	unequip_all_pressed.emit()
-
-
-func _on_abilities_tab_open_button_pressed() -> void:
-	show()
 
 
 func _on_close_button_pressed() -> void:

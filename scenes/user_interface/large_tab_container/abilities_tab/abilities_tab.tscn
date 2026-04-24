@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://yyko5br814tu"]
 
-[ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/abilities_tab/abilities_tab.gd" id="1_q5rh2"]
+[ext_resource type="Script" uid="uid://dtust5niugnyc" path="res://scripts/user_interface/large_tab_container/abilities_tab/abilities_tab.gd" id="1_q5rh2"]
+[ext_resource type="StyleBox" uid="uid://dmqcp4i440trr" path="res://assets/user_interface/styles/panels/regular_panel.tres" id="1_u20yl"]
 [ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="2_u20yl"]
 [ext_resource type="StyleBox" uid="uid://btot0y1uy4bm4" path="res://assets/user_interface/styles/regular_button/regular_button_pressed.tres" id="3_xrc3s"]
 [ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="4_te8my"]
 [ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="5_5332j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
-bg_color = Color(0, 0, 0, 0.32941177)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqmmt"]
 
@@ -26,7 +24,7 @@ custom_minimum_size = Vector2(300, 400)
 size_flags_horizontal = 8
 size_flags_vertical = 4
 mouse_force_pass_scroll_events = false
-theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
+theme_override_styles/panel = ExtResource("1_u20yl")
 script = ExtResource("1_q5rh2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=190630423]

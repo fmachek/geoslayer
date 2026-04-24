@@ -15,6 +15,8 @@ signal final_wave_started()
 signal final_wave_finished()
 ## Emitted when boss death in [member current_world] is handled.
 signal boss_died()
+## Emitted when [member current_world] is ready.
+signal world_loaded(world: World)
 
 ## The [World] currently loaded.
 var current_world: World
@@ -43,6 +45,7 @@ func load_world(main: Main, world_number: int) -> void:
 	var world_scene: PackedScene = load(world_scene_path)
 	if world_scene:
 		current_world = world_scene.instantiate()
+		current_world.ready.connect(func(): world_loaded.emit(current_world))
 		main.add_child(current_world)
 		current_world.wave_manager.wave_started.connect(
 				func(): wave_started.emit())
