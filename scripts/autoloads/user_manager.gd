@@ -8,7 +8,7 @@ extends Node
 signal user_stat_points_changed(new_points: int)
 
 ## The file path at which the user config is saved.
-const CONFIG_PATH := "user://project01_user.cfg"
+const CONFIG_PATH := "user://geoslayer_user.cfg"
 ## Amount of stat points given to the user on every level up.
 const STAT_POINTS_PER_LEVEL: int = 5
 
