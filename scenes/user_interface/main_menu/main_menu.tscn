@@ -73,7 +73,7 @@ theme_override_constants/separation = 50
 layout_mode = 2
 theme_override_constants/outline_size = 24
 theme_override_font_sizes/font_size = 64
-text = "project01"
+text = "Geoslayer"
 
 [node name="ButtonContainer" type="VBoxContainer" parent="HBoxContainer/LeftMarginContainer/VBoxContainer" unique_id=1748120606]
 layout_mode = 2

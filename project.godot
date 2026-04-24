@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="project01"
+config/name="Geoslayer"
+config/version="0.1.0"
 run/main_scene="uid://d1hbgw27crue0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
