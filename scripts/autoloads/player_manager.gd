@@ -39,6 +39,13 @@ func apply_perk_point(stat: CharacterStat) -> void:
 		current_player.apply_perk_point(stat)
 
 
+## Attempts to apply an [param amount] of perk points to a
+## [param stat].
+func apply_perk_point_stack(stat: CharacterStat, amount: int) -> void:
+	for i in range(amount):
+		apply_perk_point(stat)
+
+
 # Connects current player's important signals to functions inside this script.
 func _connect_player_signals() -> void:
 	current_player.died.connect(_on_player_died)

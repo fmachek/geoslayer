@@ -5,19 +5,26 @@ extends HBoxContainer
 
 ## Emitted when the increase button is pressed.
 signal pressed_stat_increase(player_stat: CharacterStat)
+## Emitted when the stack increase button is pressed.
+signal pressed_stat_stack_increase(player_stat: CharacterStat, amount: int)
 
 ## The [CharacterStat] represented by the [StatRow].
 var stat: CharacterStat
+## Amount of perk points applied when the stack increase button is pressed.
+var stack_increase: int = 5
 
 @onready var _name_label: Label = %StatNameLabel
 @onready var _value_label: Label = %StatValueLabel
 @onready var _increase_button: Button = %StatIncreaseButton
+@onready var _stack_increase_button: Button = %StatStackIncreaseButton
 
 
 func _ready() -> void:
 	_set_label_settings()
 	pressed_stat_increase.connect(PlayerManager.apply_perk_point)
+	pressed_stat_stack_increase.connect(PlayerManager.apply_perk_point_stack)
 	PlayerManager.perk_points_changed.connect(check_perk_points)
+	_stack_increase_button.get_node("HBoxContainer/AmountLabel").text = str(stack_increase)
 
 
 ## Loads a given [param stat].
@@ -30,15 +37,20 @@ func load_stat(stat: CharacterStat) -> void:
 	check_perk_points(PlayerManager.current_player.perk_points_available)
 
 
-## Disables/enables the increase button based on the amount of [param points].
-## Also updates the cursor.
+## Disables/enables the increase buttons based on the amount of [param points].
+## Also updates the cursor shown when hovering over them.
 func check_perk_points(points: int) -> void:
-	if points > 0:
-		_increase_button.disabled = false
-		_increase_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	_update_increase_button(_increase_button, points, 1)
+	_update_increase_button(_stack_increase_button, points, stack_increase)
+
+
+func _update_increase_button(button: Button, points: int, req_points: int) -> void:
+	if points >= req_points:
+		button.disabled = false
+		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	else:
-		_increase_button.disabled = true
-		_increase_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+		button.disabled = true
+		button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
 ## Updates the value label to match the [param stat].
@@ -59,6 +71,10 @@ func update_stat_value_label(stat: CharacterStat) -> void:
 
 func _on_stat_increase_button_pressed() -> void:
 	pressed_stat_increase.emit(stat)
+
+
+func _on_stat_stack_increase_button_pressed() -> void:
+	pressed_stat_stack_increase.emit(stat, stack_increase)
 
 
 func _set_label_settings() -> void:
