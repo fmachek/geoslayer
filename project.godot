@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Geoslayer"
-config/version="0.1.0"
+config/version="0.1.1"
 run/main_scene="uid://d1hbgw27crue0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0.4745098, 0.58431375, 1)
