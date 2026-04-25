@@ -5,10 +5,11 @@
 
 [node name="Mage" unique_id=1080282355 instance=ExtResource("1_ycna6")]
 script = ExtResource("2_vrtod")
-zone_final_radius = 300.0
-zone_life_time = 15.0
-zone_base_damage = 30
-zone_tick_time = 0.5
+zone_final_radius = 500.0
+zone_life_time = 5.0
+zone_base_damage = 10
+zone_tick_time = 0.1
 draw_color = Color(0.65115297, 0.30963436, 1, 1)
 outline_color = Color(0.5955765, 0.004212596, 0.9855687, 1)
-base_health = 130
+base_health = 150
+base_damage = 120

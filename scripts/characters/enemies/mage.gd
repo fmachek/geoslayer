@@ -7,13 +7,13 @@ const _ZONE_SCENE := preload(
 		"res://scenes/objects/zones/growing_damaging_zone.tscn")
 
 ## Final radius of the [GrowingDamagingZone].
-@export var zone_final_radius: float = 300.0
+@export var zone_final_radius: float = 500.0
 ## Lifetime of the [GrowingDamagingZone].
-@export var zone_life_time: float = 15.0
+@export var zone_life_time: float = 5.0
 ## Base damage dealt by the [GrowingDamagingZone].
-@export var zone_base_damage: int = 30
+@export var zone_base_damage: int = 10
 ## Time between [GrowingDamagingZone] damage ticks.
-@export var zone_tick_time: float = 0.5
+@export var zone_tick_time: float = 0.1
 
 
 func _ready() -> void:
