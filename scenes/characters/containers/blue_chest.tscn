@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://ciiqysfpsk8jr"]
-
-[ext_resource type="PackedScene" uid="uid://dvf4lqlur725" path="res://scenes/characters/containers/chest.tscn" id="1_h0yr8"]
-
-[node name="BlueChest" unique_id=1080282355 instance=ExtResource("1_h0yr8")]
-draw_color = Color(0.38431373, 0.61960787, 0.7490196, 1)
-outline_color = Color(0.2387777, 0.43082216, 0.5343745, 1)
-base_health = 150

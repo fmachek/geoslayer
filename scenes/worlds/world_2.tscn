@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cf883c61vdyvw" path="res://scenes/worlds/world.tscn" id="1_dl5br"]
 [ext_resource type="PackedScene" uid="uid://n5x4nh7rhf5q" path="res://scenes/objects/turrets/turret.tscn" id="2_1t1ea"]
-[ext_resource type="PackedScene" uid="uid://ciiqysfpsk8jr" path="res://scenes/characters/containers/blue_chest.tscn" id="2_53un6"]
+[ext_resource type="PackedScene" uid="uid://ciiqysfpsk8jr" path="res://scenes/characters/containers/magical_chest.tscn" id="2_53un6"]
 [ext_resource type="PackedScene" uid="uid://daeym0kowe61" path="res://scenes/objects/teleporters/teleporter.tscn" id="4_a325k"]
 [ext_resource type="PackedScene" uid="uid://n31q7q20tlxf" path="res://scenes/objects/teleporters/teleporter_couple_manager.tscn" id="5_e55p6"]
 [ext_resource type="PackedScene" uid="uid://dfc8fq2b7kwge" path="res://scenes/objects/spawners/character_spawner.tscn" id="6_grnpe"]
