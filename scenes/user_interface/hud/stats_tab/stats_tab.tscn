@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://6vw25iml7gif" path="res://scripts/user_interface/hud/stats_tab/stats_tab.gd" id="1_76cvo"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76cvo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up5kp"]
+bg_color = Color(0, 0, 0, 0.58431375)
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkvu0"]
+bg_color = Color(0, 0, 0, 0.32941177)
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4i4k"]
+
 [node name="StatsTab" type="MarginContainer" unique_id=764354913]
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -47,3 +59,26 @@ horizontal_alignment = 1
 [node name="StatRowContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2081742495]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="." unique_id=1906011157]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_76cvo")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_76cvo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_up5kp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_up5kp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rkvu0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_rkvu0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_up5kp")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_up5kp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m4i4k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_m4i4k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rkvu0")
+text = "X"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

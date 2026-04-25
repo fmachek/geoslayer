@@ -38,3 +38,7 @@ func _on_player_spawned(player: PlayerCharacter) -> void:
 
 func _update_perk_points_label(points: int) -> void:
 	_points_label.text = "Stat Points: %d" % points
+
+
+func _on_close_button_pressed() -> void:
+	hide()
