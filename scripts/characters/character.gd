@@ -156,7 +156,7 @@ func take_damage(damage: int, type: DamageType = DamageType.NORMAL, ignore_armor
 	if damage_taken < 0:
 		damage_taken = 0
 	health.add_value(-damage_taken)
-	spawn_damage_label(damage, type)
+	spawn_damage_label(damage_taken, type)
 	return damage_taken
 
 
