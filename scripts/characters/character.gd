@@ -46,6 +46,8 @@ const _DMG_LABEL_SCENE := preload(
 @export var base_health: int = 100
 ## Value used when scaling damage with [member level].
 @export var base_damage: int = 100
+## Reduces knockback applied via [method apply_knockback].
+@export var knockback_resistance: int = 0
 #endregion
 
 #region regular variables
@@ -136,7 +138,15 @@ func _draw() -> void:
 ## ([member is_immune_to_knockback]).
 func apply_knockback(knockback: Vector2) -> void:
 	if not is_immune_to_knockback:
-		_knockback_vectors.append(knockback)
+		var knockback_value: float = knockback.length()
+		var reduced_knockback: float = knockback_value - knockback_resistance
+		if reduced_knockback < 0:
+			return # Knockback resistance is large enough to block the knockback entirely
+		else:
+			var multiplier: float = reduced_knockback / knockback_value
+			knockback *= multiplier
+		if knockback != Vector2.ZERO:
+			_knockback_vectors.append(knockback)
 
 
 ## Makes the [Character] take damage. Returns the damage taken,
