@@ -10,6 +10,8 @@ extends Node
 ##var speed_buff: Buff = Buff.new(10, 5) # parameters: amount, seconds
 ##speed_buff.apply_to_stat(character.speed) # parameter: CharacterStat
 ## [/codeblock]
+##
+## If [member duration] is set to 0, the [Buff] won't expire.
 
 ## Emitted when the buff/debuff effect takes effect.
 ## The [Buff] itself is passed as a parameter.
@@ -28,7 +30,8 @@ var duration: float
 var _duration_timer: Timer
 
 
-## Sets the [param amount] and [param duration].
+## Sets the [param amount] and [param duration]. If [param duration]
+## is 0, the buff won't expire.
 func _init(amount: int, duration: float) -> void:
 	self.amount = amount
 	self.duration = duration
@@ -44,8 +47,9 @@ func apply_to_stat(stat: CharacterStat) -> void:
 
 
 func _begin() -> void:
-	_create_duration_timer()
-	_duration_timer.start()
+	if duration > 0:
+		_create_duration_timer()
+		_duration_timer.start()
 	began.emit(self)
 
 
