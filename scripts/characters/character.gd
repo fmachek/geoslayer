@@ -139,6 +139,8 @@ func _draw() -> void:
 func apply_knockback(knockback: Vector2) -> void:
 	if not is_immune_to_knockback:
 		var knockback_value: float = knockback.length()
+		if knockback_value == 0:
+			return
 		var reduced_knockback: float = knockback_value - knockback_resistance
 		if reduced_knockback < 0:
 			return # Knockback resistance is large enough to block the knockback entirely
