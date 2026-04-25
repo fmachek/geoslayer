@@ -16,6 +16,8 @@ signal cooldown_started()
 signal cooldown_ended()
 ## Emitted when the [Ability] is being unequipped by the [Character].
 signal unequipping(ability: Ability)
+## Emitted when interrupted.
+signal was_interrupted()
 #endregion
 
 #region variables
@@ -63,7 +65,19 @@ func cast() -> void:
 		casted.emit()
 		cooldown_timer.start()
 		cooldown_started.emit()
+		_connect_interrupt()
 		_perform_ability()
+
+
+## Interrupts the [Ability], emitting [signal finished_casting] and
+## resetting it. Specific abilities or nodes spawned by them must react
+## to the [signal was_interrupted] signal if they perform an action
+## that takes some time to cast. For example: if [Storm] is interrupted,
+## the [ZoneSpawningParticles] should disappear.
+func interrupt() -> void:
+	was_interrupted.emit()
+	finished_casting.emit()
+	_reset_ability()
 
 
 ## Returns the [Ability] name as a [String]. The name is derived from the script name.
@@ -96,6 +110,18 @@ func _alert_unequip() -> void:
 ## the default amount if it is unequipped mid-cast.
 func _reset_ability() -> void:
 	pass
+
+
+func _connect_interrupt() -> void:
+	character.was_stunned.connect(interrupt)
+	unequipping.connect(_disconnect_interrupt)
+	finished_casting.connect(_disconnect_interrupt)
+
+
+func _disconnect_interrupt() -> void:
+	character.was_stunned.disconnect(interrupt)
+	unequipping.disconnect(_disconnect_interrupt)
+	finished_casting.disconnect(_disconnect_interrupt)
 
 
 func _reset_base() -> void:

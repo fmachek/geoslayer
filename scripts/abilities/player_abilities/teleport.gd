@@ -29,6 +29,11 @@ func _perform_ability() -> void:
 	_start_casting()
 
 
+func _reset_ability() -> void:
+	if _cast_timer:
+		_cast_timer.stop()
+
+
 func _teleport_caster(pos: Vector2) -> void:
 	_spawn_teleport_cast_particles()
 	character.global_position = pos

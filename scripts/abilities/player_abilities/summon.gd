@@ -45,6 +45,11 @@ func _perform_ability() -> void:
 	_start_casting()
 
 
+func _reset_ability() -> void:
+	if _cast_timer:
+		_cast_timer.stop()
+
+
 # Gets the raycast collision point if there is one, spawns
 # particles and applies a speed debuff.
 func _start_casting() -> void:

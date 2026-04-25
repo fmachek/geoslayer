@@ -12,6 +12,7 @@ extends Node2D
 var particle_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 ## Radius of the [Zone] being spawned.
 var radius: int = 200: set = _set_radius
+var _were_interrupted: bool = false
 ## Particles displayed while the [Zone] is being spawned.
 @onready var casting_particles: CPUParticles2D = $ZoneCastingParticles
 ## Particles displayed when [Zone] appears.
@@ -28,24 +29,27 @@ func _ready() -> void:
 ## the [param ability] caster's draw color. Also connects to
 ## [signal Ability.finished_casting] and [signal Ability.character.tree_exiting].
 ## That ensures that the cast finish particles can be shown and that the casting
-## particles disappear if the caster exits the tree while casting.
+## particles disappear if the caster exits the tree while casting. Also connects
+## [signal Ability.was_interrupted] so that the particles disappear when
+## the ability is interrupted.
 func connect_to_ability(ability: Ability) -> void:
 	particle_color = ability.character.draw_color
 	ability.finished_casting.connect(_on_ability_finished_casting)
-	ability.character.tree_exiting.connect(_on_caster_tree_exiting)
+	ability.character.tree_exiting.connect(_on_interrupt)
+	ability.was_interrupted.connect(_on_interrupt)
 
 
 # Stop casting particles and show finish particles.
 # After the finish particles are done, queue free.
 func _on_ability_finished_casting() -> void:
-	casting_particles.emitting = false
-	cast_finish_particles.emitting = true
-	cast_finish_particles.finished.connect(queue_free)
+	if not _were_interrupted:
+		casting_particles.emitting = false
+		cast_finish_particles.emitting = true
+		cast_finish_particles.finished.connect(queue_free)
 
 
-# Stops the casting particles and then queues free when
-# the caster exits the tree while casting.
-func _on_caster_tree_exiting() -> void:
+func _on_interrupt() -> void:
+	_were_interrupted = true
 	casting_particles.emitting = false
 	casting_particles.finished.connect(queue_free)
 

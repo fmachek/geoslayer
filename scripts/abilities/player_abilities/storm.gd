@@ -42,6 +42,11 @@ func _perform_ability() -> void:
 	_start_casting()
 
 
+func _reset_ability() -> void:
+	if _cast_timer:
+		_cast_timer.stop()
+
+
 func _start_casting() -> void:
 	_cast_timer.start()
 

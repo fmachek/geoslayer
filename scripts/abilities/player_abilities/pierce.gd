@@ -62,3 +62,9 @@ func _create_aim_timer() -> void:
 	aim_timer.one_shot = true
 	aim_timer.timeout.connect(_finish_aiming)
 	add_child(aim_timer)
+
+
+func _reset_ability() -> void:
+	if aim_timer:
+		aim_timer.stop()
+	character.hide_aim_line()
