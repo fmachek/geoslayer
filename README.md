@@ -16,21 +16,23 @@ Your permament level is important when entering other worlds. Every world other 
 ### Abilities
 There are currently 15 abilities unlockable by the player. Other abilities can only be used by NPCs.
 
-1. **Shoot**: basic starter ability, fires a projectile
-2. **Doubleshot**: fires two projectiles in parallel
-3. **Cannonball**: fires a large and high-damage, but slow projectile, it also applies a huge knockback
-4. **Blast**: fires projectiles with huge knockback in all directions
-5. **Flurry**: fires multiple projectiles in quick succession
-6. **Wideshot**: fires multiple projectiles in a cone
-7. **Pierce**: fires a high-damage fast piercing projectile, but requires a cast
-8. **Explosive**: fires a projectile which explodes into more smaller projectiles on impact
-9. **Teleport**: teleports the caster
-10. **Summon**: spawns multiple minions who fight alongside the player
-11. **Storm**: spawns an area which damages and slows enemies down while they're standing in it
-12. **Lifesteal**: fires 3 projectiles which heal the caster for a portion of the damage dealt
-13. **Shred**: similar to Wideshot but close range and applies an armor and speed buff to the caster if the projectiles hit a target
-14. **Swipe**: performs a swipe melee attack
-15. **Smash**: deals damage to, stuns and knocks enemies around the caster back
+| Ability name | Ability description |
+| ------------ | ------------------- |
+| Shoot        | basic starter ability, fires a projectile |
+| Doubleshot   | fires two projectiles in parallel |
+| Cannonball   | fires a large and high-damage, but slow projectile, it also applies a huge knockback |
+| Blast        | fires projectiles with huge knockback in all directions |
+| Flurry       | fires multiple projectiles in quick succession |
+| Wideshot     | fires multiple projectiles in a cone |
+| Pierce       | fires a high-damage fast piercing projectile, but requires a cast |
+| Explosive    | fires a projectile which explodes into more smaller projectiles on impact |
+| Teleport     | teleports the caster |
+| Summon       | spawns multiple minions who fight alongside the player |
+| Storm        | spawns an area which damages and slows enemies down while they're standing in it |
+| Lifesteal    | fires 3 projectiles which heal the caster for a portion of the damage dealt |
+| Shred        | similar to Wideshot but close range and applies an armor and speed buff to the caster if the projectiles hit a target |
+| Swipe        | performs a swipe melee attack |
+| Smash        | deals damage to, stuns and knocks enemies around the caster back |
 
 ## Screenshot
 
