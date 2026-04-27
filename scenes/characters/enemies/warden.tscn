@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cjsfjayvlvt4m"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_py5sx"]
+[ext_resource type="Script" uid="uid://bxfsa7ohvps7b" path="res://scripts/characters/enemies/warden.gd" id="2_wigwm"]
+[ext_resource type="Texture2D" uid="uid://6qf0y7cpvtdy" path="res://assets/sprites/characters/particles/sword.png" id="3_mtu2x"]
+[ext_resource type="Texture2D" uid="uid://cgdlnpkt1oa8q" path="res://assets/sprites/characters/particles/heart.png" id="4_q7puk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtu2x"]
+radius = 400.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wigwm"]
+radius = 42.0
+
+[sub_resource type="Gradient" id="Gradient_q7puk"]
+offsets = PackedFloat32Array(0, 0.32994923, 0.66497463, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Warden" unique_id=1080282355 instance=ExtResource("1_py5sx")]
+script = ExtResource("2_wigwm")
+draw_color = Color(0.42847714, 0.8038078, 0.8696842, 1)
+outline_color = Color(0.31398138, 0.6922131, 0.757147, 1)
+base_health = 300
+base_damage = 120
+knockback_resistance = 1000
+
+[node name="BuffArea" type="Area2D" parent="." index="2" unique_id=597588783]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuffArea" index="0" unique_id=663703153]
+shape = SubResource("CircleShape2D_mtu2x")
+
+[node name="CollisionShape2D" parent="." index="3" unique_id=295435238]
+shape = SubResource("CircleShape2D_wigwm")
+
+[node name="Armor" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="2" unique_id=2127940257]
+max_value = 50
+current_value = 50
+
+[node name="HealthBar" parent="." index="6" unique_id=385742775]
+offset_top = 49.0
+offset_bottom = 69.0
+
+[node name="BuffTimer" type="Timer" parent="." index="9" unique_id=1777266836]
+wait_time = 2.0
+
+[node name="SwordParticles" type="CPUParticles2D" parent="." index="11" unique_id=537267957]
+emitting = false
+amount = 5
+texture = ExtResource("3_mtu2x")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -200)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_q7puk")
+
+[node name="HeartParticles" type="CPUParticles2D" parent="." index="12" unique_id=132571528]
+emitting = false
+amount = 5
+texture = ExtResource("4_q7puk")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -200)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+color_ramp = SubResource("Gradient_q7puk")
+
+[connection signal="timeout" from="BuffTimer" to="." method="_on_buff_timer_timeout"]
