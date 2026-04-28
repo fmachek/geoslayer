@@ -5,7 +5,12 @@ extends DamagingZone
 ## Speed debuff applied to the [Character] hit.
 var speed_debuff: int = 100
 ## Duration of the speed debuff applied to the [Character] hit, in seconds.
-var speed_debuff_duration: float = time_per_tick
+var speed_debuff_duration: float
+
+
+func _ready() -> void:
+	super()
+	speed_debuff_duration = time_per_tick
 
 
 func _apply_additional_effects(character: Character) -> void:
