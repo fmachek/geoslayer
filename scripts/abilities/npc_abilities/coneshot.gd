@@ -6,9 +6,9 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 ## Speed of the middle [Projectile].
-var projectile_speed: int = 4
+var projectile_speed: float = 3.5
 ## Speed of the smaller [Projectile]s.
-var secondary_projectile_speed: int = 3
+var secondary_projectile_speed: float = 2.5
 ## Base damage of the middle [Projectile].
 var base_damage: int = 15
 ## Base damage of the smaller [Projectile]s.
