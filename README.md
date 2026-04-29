@@ -1,7 +1,7 @@
 # Geoslayer
-This is my project I started to learn how to develop games in Godot better. I also wanted some practice.
+This is my project I started to learn how to develop games in Godot Engine better. I also wanted some practice.
 
-The project uses Godot 4.6.
+The project uses Godot Engine 4.6.
 
 ## What is Geoslayer about?
 
