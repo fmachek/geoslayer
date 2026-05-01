@@ -39,13 +39,9 @@ const _DMG_LABEL_SCENE := preload(
 
 #region @export variables
 ## The fill color of the circle representing the [Character].
-@export var draw_color: Color = Color.LIME_GREEN:
-		set = set_draw_color,
-		get = get_draw_color
+@export var draw_color: Color = Color.LIME_GREEN: set = set_draw_color
 ## Color of the outline of the circle representing the [Character].
-@export var outline_color: Color = Color.SEA_GREEN:
-	set = set_outline_color,
-	get = get_outline_color
+@export var outline_color: Color = Color.SEA_GREEN: set = set_outline_color
 ## Value used when scaling health with [member level].
 @export var base_health: int = 100
 ## Value used when scaling damage with [member level].
@@ -197,20 +193,10 @@ func spawn_damage_label(amount: int, dmg_type: DamageType) -> void:
 	label.play_tween()
 
 
-## Returns [member draw_color], however always with an alpha of 1.
-func get_draw_color() -> Color:
-	return Color(draw_color, 1)
-
-
 ## Sets [member draw_color] to [param color].
 func set_draw_color(color: Color) -> void:
 	draw_color = color
 	draw_color_changed.emit(color)
-
-
-## Returns [member outline_color], however always with an alpha of 1.
-func get_outline_color() -> Color:
-	return Color(outline_color, 1)
 
 
 ## Sets [member outline_color] to [param color].
