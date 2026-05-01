@@ -84,5 +84,6 @@ position = Vector2(-207, -335)
 [node name="AbilityPickup14" parent="." index="19" unique_id=1558125964 instance=ExtResource("20_wb0r4")]
 position = Vector2(207, -335)
 
+[connection signal="alert_next_wave" from="WaveManager" to="CharacterSpawner" method="_on_wave_manager_alert_next_wave"]
 [connection signal="current_wave_changed" from="WaveManager" to="CharacterSpawner" method="_on_wave_changed"]
 [connection signal="spawning_character" from="CharacterSpawner" to="WaveManager" method="register_enemy"]
