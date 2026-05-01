@@ -76,8 +76,6 @@ var _knockback_vectors: Array[Vector2] = []
 var _stuns: Array[Timer] = []
 # Used for fading in when spawning.
 var _fade_tween: Tween
-# Used to queue redraw every frame while fading in.
-var _fading_in: bool = false
 #endregion
 
 #region @onready variables
@@ -113,8 +111,6 @@ func _ready() -> void:
 
 # Moves the aim line, which is used to display aiming, on every frame.
 func _process(delta: float) -> void:
-	if _fading_in:
-		queue_redraw()
 	move_aim_line()
 
 
@@ -453,15 +449,9 @@ func _stop_stun_particles() -> void:
 
 
 func _fade_in() -> void:
-	_fading_in = true
 	if _fade_tween:
 		_fade_tween.kill()
 	_fade_tween = create_tween()
 	var fade_time: float = 0.5
-	draw_color.a = 0
-	outline_color.a = 0
-	_fade_tween.tween_property(self, "draw_color:a", 1, fade_time)
-	_fade_tween.set_parallel(true)
-	_fade_tween.tween_property(self, "outline_color:a", 1, fade_time)
-	_fade_tween.set_parallel(false)
-	_fade_tween.tween_callback(func(): _fading_in = false)
+	self_modulate.a = 0.0
+	_fade_tween.tween_property(self, "self_modulate:a", 1.0, fade_time)
