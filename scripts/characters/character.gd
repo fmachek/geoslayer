@@ -39,9 +39,9 @@ const _DMG_LABEL_SCENE := preload(
 
 #region @export variables
 ## The fill color of the circle representing the [Character].
-@export var draw_color: Color = Color.LIME_GREEN
+@export var draw_color: Color = Color.LIME_GREEN: set = set_draw_color
 ## Color of the outline of the circle representing the [Character].
-@export var outline_color: Color = Color.SEA_GREEN
+@export var outline_color: Color = Color.SEA_GREEN: set = set_outline_color
 ## Value used when scaling health with [member level].
 @export var base_health: int = 100
 ## Value used when scaling damage with [member level].
@@ -74,6 +74,10 @@ var _knockback := Vector2.ZERO
 var _knockback_vectors: Array[Vector2] = []
 # Array of timers, each representing one stun.
 var _stuns: Array[Timer] = []
+# Used for fading in when spawning.
+var _fade_tween: Tween
+# Used to queue redraw every frame while fading in.
+var _fading_in: bool = false
 #endregion
 
 #region @onready variables
@@ -97,15 +101,20 @@ func _ready() -> void:
 	level.level_changed.connect(_on_level_changed) # Connect level up signal
 	was_stunned.connect(_begin_stun)
 	stun_ended.connect(_end_stun)
+	draw_color_changed.connect(queue_redraw)
+	outline_color_changed.connect(queue_redraw)
 	update_stats(level.current_level) # Update stats on spawn
 	health.current_value = health.max_value_after_buffs # Spawn with max health
 	generate_drop_pool()
 	$HealthBar.set_up(self) # Sets up the health bar which appears below the character
 	%AimLine.default_color = Color(outline_color, 0.3)
+	_fade_in()
 
 
 # Moves the aim line, which is used to display aiming, on every frame.
 func _process(delta: float) -> void:
+	if _fading_in:
+		queue_redraw()
 	move_aim_line()
 
 
@@ -182,6 +191,18 @@ func spawn_damage_label(amount: int, dmg_type: DamageType) -> void:
 	WorldManager.current_world.add_child(label)
 	label.load_label(amount, label_pos, dmg_type, self)
 	label.play_tween()
+
+
+## Sets [member draw_color] to [param color].
+func set_draw_color(color: Color) -> void:
+	draw_color = color
+	draw_color_changed.emit(color)
+
+
+## Sets [member outline_color] to [param color].
+func set_outline_color(color: Color) -> void:
+	outline_color = color
+	outline_color_changed.emit(color)
 
 
 ## Heals the [Character] (its health increases).
@@ -303,14 +324,10 @@ func drop_item(drop: Drop) -> void:
 		parent.add_child(item)
 
 
-## Changes [member draw_color] and [member outline_color]
-## and queues redraw.
+## Changes [member draw_color] and [member outline_color].
 func change_color(draw_color: Color, outline_color: Color) -> void:
 	self.draw_color = draw_color
 	self.outline_color = outline_color
-	draw_color_changed.emit(draw_color)
-	outline_color_changed.emit(outline_color)
-	queue_redraw()
 
 
 ## Starts casting.
@@ -433,3 +450,18 @@ func _start_stun_particles() -> void:
 func _stop_stun_particles() -> void:
 	%StunParticles.emitting = false
 #endregion
+
+
+func _fade_in() -> void:
+	_fading_in = true
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween()
+	var fade_time: float = 0.5
+	draw_color.a = 0
+	outline_color.a = 0
+	_fade_tween.tween_property(self, "draw_color:a", 1, fade_time)
+	_fade_tween.set_parallel(true)
+	_fade_tween.tween_property(self, "outline_color:a", 1, fade_time)
+	_fade_tween.set_parallel(false)
+	_fade_tween.tween_callback(func(): _fading_in = false)
