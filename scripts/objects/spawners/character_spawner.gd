@@ -88,7 +88,7 @@ func _on_wave_manager_alert_next_wave(next_wave: int, exceeds_max: bool) -> void
 
 func _turn_highlight_on() -> void:
 	_is_highlighted = true
-	current_outline_color = Color(Color.WHITE, 0.75)
+	current_outline_color = Color("19001eff")
 	_start_spawner_particles()
 	queue_redraw()
 
