@@ -19,20 +19,26 @@ signal spawning_character(char: Character)
 @export var spawn_waves: PackedInt32Array
 #endregion
 
-
 var current_draw_color: Color
 var current_outline_color: Color
 var _is_highlighted: bool = false
 
+@onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var _spawn_particles: CPUParticles2D = $SpawnParticles
+@onready var _spawner_particles: CPUParticles2D = $SpawnerParticles
+
 
 func _ready() -> void:
 	current_draw_color = draw_color
+	_update_spawner_particles_shape()
 	if not _is_highlighted:
 		current_outline_color = outline_color
+	else:
+		_start_spawner_particles()
 
 
 func _draw() -> void:
-	var radius: float = $Area2D/CollisionShape2D.shape.radius
+	var radius: float = _col_shape.shape.radius
 	var outline_width: float = radius / 8
 	draw_circle(Vector2.ZERO, radius - outline_width / 2, current_draw_color)
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, current_outline_color, outline_width, true)
@@ -45,6 +51,7 @@ func spawn_character(current_wave: int) -> Character:
 	character.global_position = global_position
 	character.ready.connect(func(): _on_character_ready(character, current_wave))
 	get_parent().add_child(character)
+	_emit_spawn_particles()
 	return character
 
 
@@ -82,10 +89,30 @@ func _on_wave_manager_alert_next_wave(next_wave: int, exceeds_max: bool) -> void
 func _turn_highlight_on() -> void:
 	_is_highlighted = true
 	current_outline_color = Color(Color.WHITE, 0.75)
+	_start_spawner_particles()
 	queue_redraw()
 
 
 func _turn_highlight_off() -> void:
 	_is_highlighted = false
 	current_outline_color = outline_color
+	_stop_spawner_particles()
 	queue_redraw()
+
+
+func _emit_spawn_particles() -> void:
+	_spawn_particles.emitting = true
+
+
+func _start_spawner_particles() -> void:
+	if is_instance_valid(_spawner_particles):
+		_spawner_particles.emitting = true
+
+
+func _stop_spawner_particles() -> void:
+	if is_instance_valid(_spawner_particles):
+		_spawner_particles.emitting = false
+
+
+func _update_spawner_particles_shape() -> void:
+	_spawner_particles.emission_sphere_radius = _col_shape.shape.radius

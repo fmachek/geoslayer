@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dpmmudikjykw5"]
+
+[sub_resource type="Curve" id="Curve_0y4mx"]
+_limits = [-1.0, 1.0, -1.0, 1.0]
+_data = [Vector2(0.004484296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.752809), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vfakr"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7dahm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="SpawnParticles" type="CPUParticles2D" unique_id=432015199]
+z_index = 2
+amount = 10
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 42.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+orbit_velocity_curve = SubResource("Curve_0y4mx")
+linear_accel_curve = SubResource("Curve_vfakr")
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_7dahm")
+color = Color(0.09869445, 2.1706968e-05, 0.118752666, 1)
+
+[connection signal="finished" from="." to="." method="_on_finished"]
