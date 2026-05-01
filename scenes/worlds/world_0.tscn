@@ -56,6 +56,8 @@ position = Vector2(-335, 305)
 [node name="CharacterSpawner" parent="." index="11" unique_id=1925204194 instance=ExtResource("8_csmx3")]
 position = Vector2(0, 320)
 character_scene = ExtResource("9_2msne")
+draw_color = Color(0.80784315, 0.47058824, 0, 0.2509804)
+outline_color = Color(0.58431375, 0.33333334, 0, 0.2509804)
 spawn_waves = PackedInt32Array()
 
 [node name="AbilityPickup7" parent="." index="12" unique_id=873466514 instance=ExtResource("13_gvw4d")]

@@ -61,61 +61,85 @@ shoot_time = 4.0
 [node name="ShooterSpawner1" parent="." index="11" unique_id=1925204194 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, -576)
 character_scene = ExtResource("3_tekg8")
+draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
+outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1, 2, 3, 5, 6, 8, 9)
 
 [node name="ShooterSpawner2" parent="." index="12" unique_id=129974174 instance=ExtResource("2_xijrn")]
 position = Vector2(-448, -576)
 character_scene = ExtResource("3_tekg8")
+draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
+outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1, 2, 5, 6)
 
 [node name="ShooterSpawner3" parent="." index="13" unique_id=766354797 instance=ExtResource("2_xijrn")]
 position = Vector2(-320, -576)
 character_scene = ExtResource("3_tekg8")
+draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
+outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1)
 
 [node name="ShooterSpawner4" parent="." index="14" unique_id=1846356043 instance=ExtResource("2_xijrn")]
 position = Vector2(320, 576)
 character_scene = ExtResource("3_tekg8")
+draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
+outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1)
 
 [node name="ShooterSpawner5" parent="." index="15" unique_id=1341252714 instance=ExtResource("2_xijrn")]
 position = Vector2(448, 576)
 character_scene = ExtResource("3_tekg8")
+draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
+outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1, 2, 3, 5, 6)
 
 [node name="ShooterSpawner6" parent="." index="16" unique_id=170046639 instance=ExtResource("2_xijrn")]
 position = Vector2(576, 576)
 character_scene = ExtResource("3_tekg8")
+draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
+outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1, 2, 3, 5, 6, 9)
 
 [node name="SprayerSpawner1" parent="." index="17" unique_id=344662685 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, 384)
 character_scene = ExtResource("6_d46pn")
+draw_color = Color(0.23209421, 0.5917481, 0, 0.25)
+outline_color = Color(0.17558163, 0.47079715, 0, 0.25)
 spawn_waves = PackedInt32Array(2, 4, 5, 8)
 
 [node name="SprayerSpawner2" parent="." index="18" unique_id=621635799 instance=ExtResource("2_xijrn")]
 position = Vector2(576, -384)
 character_scene = ExtResource("6_d46pn")
+draw_color = Color(0.23209421, 0.5917481, 0, 0.25)
+outline_color = Color(0.17558163, 0.47079715, 0, 0.25)
 spawn_waves = PackedInt32Array(2, 4, 5)
 
 [node name="GuardSpawner1" parent="." index="19" unique_id=1395826033 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, -192)
 character_scene = ExtResource("7_l4b44")
+draw_color = Color(0.5220287, 0.70975083, 0.7528677, 0.25)
+outline_color = Color(0.40018785, 0.5847179, 0.62782896, 0.25)
 spawn_waves = PackedInt32Array(3, 4, 7, 9)
 
 [node name="GuardSpawner2" parent="." index="20" unique_id=1250536240 instance=ExtResource("2_xijrn")]
 position = Vector2(576, 192)
 character_scene = ExtResource("7_l4b44")
+draw_color = Color(0.5220287, 0.70975083, 0.7528677, 0.25)
+outline_color = Color(0.40018785, 0.5847179, 0.62782896, 0.25)
 spawn_waves = PackedInt32Array(3, 4, 5, 7, 8)
 
 [node name="HealerSpawner1" parent="." index="21" unique_id=1697371194 instance=ExtResource("2_xijrn")]
 position = Vector2(-64, 576)
 character_scene = ExtResource("8_hbdd5")
+draw_color = Color(0.89827347, 0.33003333, 0.54102784, 0.25)
+outline_color = Color(0.76862043, 0.21508199, 0.4353445, 0.25)
 spawn_waves = PackedInt32Array(6, 7, 8, 9)
 
 [node name="HealerSpawner2" parent="." index="22" unique_id=1378939897 instance=ExtResource("2_xijrn")]
 position = Vector2(64, 576)
 character_scene = ExtResource("8_hbdd5")
+draw_color = Color(0.89827347, 0.33003333, 0.54102784, 0.25)
+outline_color = Color(0.76862043, 0.21508199, 0.4353445, 0.25)
 spawn_waves = PackedInt32Array(6, 7, 8, 9)
 
 [node name="BossSpawner" parent="." index="23" unique_id=2074916919 instance=ExtResource("9_s0mag")]
