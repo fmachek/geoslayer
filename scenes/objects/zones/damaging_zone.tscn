@@ -24,7 +24,11 @@ radial_accel_min = 100.0
 radial_accel_max = 100.0
 scale_amount_min = 10.0
 scale_amount_max = 20.0
+color = Color(0.15294118, 0.45882353, 0.8901961, 1)
 color_ramp = SubResource("Gradient_chu66")
+
+[node name="TickParticles" parent="." index="2" unique_id=939319148]
+color = Color(0.15294118, 0.45882353, 0.8901961, 1)
 
 [node name="DamageTickTimer" type="Timer" parent="." index="4" unique_id=1096925631]
 autostart = true

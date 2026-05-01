@@ -32,7 +32,7 @@ orbit_velocity_max = 0.2
 angle_max = 180.0
 scale_amount_min = 15.0
 scale_amount_max = 25.0
-color = Color(0, 0.6862745, 0.8392157, 1)
+color = Color(0.15294118, 0.45882353, 0.8901961, 1)
 color_ramp = SubResource("Gradient_chu66")
 
 [node name="TickParticles" type="CPUParticles2D" parent="." unique_id=939319148]
@@ -49,7 +49,7 @@ initial_velocity_max = 800.0
 angle_max = 180.0
 scale_amount_min = 20.0
 scale_amount_max = 30.0
-color = Color(0, 0.6862745, 0.8392157, 1)
+color = Color(0.15294118, 0.45882353, 0.8901961, 1)
 color_ramp = SubResource("Gradient_chu66")
 
 [node name="LifeTimeTimer" type="Timer" parent="." unique_id=2138797326]

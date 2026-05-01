@@ -4,7 +4,7 @@
 
 [node name="Laser" type="Node2D" unique_id=407778691]
 script = ExtResource("1_w584r")
-draw_color = Color(0, 0.6862745, 0.8392157, 1)
+draw_color = Color(0.15294118, 0.45882353, 0.8901961, 1)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1371159915]
 collision_layer = 0

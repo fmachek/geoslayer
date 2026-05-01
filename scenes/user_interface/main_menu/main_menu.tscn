@@ -47,7 +47,7 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 scale_amount_min = 20.0
 scale_amount_max = 40.0
-color = Color(1.2995303e-06, 0.3387098, 0.4232913, 1)
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
 color_ramp = SubResource("Gradient_01m43")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=15512468]

@@ -8,8 +8,8 @@
 [node name="PlayerCharacter" unique_id=1080282355 instance=ExtResource("1_ajk8a")]
 collision_layer = 514
 script = ExtResource("1_g2els")
-draw_color = Color(0, 0.6862745, 0.8392157, 1)
-outline_color = Color(0, 0.4745098, 0.58431375, 1)
+draw_color = Color(0.15294118, 0.45882353, 0.8901961, 1)
+outline_color = Color(0.07800531, 0.33537042, 0.6872531, 1)
 
 [node name="PlayerCamera" type="Camera2D" parent="." index="0" unique_id=10897090]
 script = ExtResource("3_xusps")
