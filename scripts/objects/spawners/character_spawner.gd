@@ -43,10 +43,14 @@ func spawn_character(current_wave: int) -> Character:
 	var character: Character = character_scene.instantiate()
 	spawning_character.emit(character)
 	character.global_position = global_position
+	character.ready.connect(func(): _on_character_ready(character, current_wave))
 	get_parent().add_child(character)
-	call_deferred("_change_character_level", character, current_wave)
-	call_deferred("_fill_character_health", character)
 	return character
+
+
+func _on_character_ready(char: Character, wave: int) -> void:
+	_change_character_level(char, wave)
+	_fill_character_health(char)
 
 
 # Checks if the new wave is in the spawn_waves array.
