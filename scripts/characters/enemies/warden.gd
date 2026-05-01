@@ -19,9 +19,9 @@ func _ready() -> void:
 	var shape = _buff_area.get_node("CollisionShape2D").shape
 	var emission_radius: float = shape.radius
 	_sword_particles.emission_sphere_radius = emission_radius
-	_sword_particles.color = draw_color
+	_sword_particles.color = Color(draw_color, 1)
 	_heart_particles.emission_sphere_radius = emission_radius
-	_heart_particles.color = draw_color
+	_heart_particles.color = Color(draw_color, 1)
 	_buff_timer.start()
 
 
