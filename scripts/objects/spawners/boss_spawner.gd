@@ -11,6 +11,7 @@ var _info_label_tween: Tween
 
 
 func _ready() -> void:
+	super()
 	spawning_character.connect(_hide_info_label.unbind(1))
 	spawning_character.connect(_stop_showing_label.unbind(1))
 

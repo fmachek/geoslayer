@@ -12,6 +12,8 @@ signal wave_ended()
 signal final_wave_started()
 ## Emitted when the final wave ends.
 signal final_wave_finished()
+## Emitted after entering the scene tree and when starting a new wave.
+signal alert_next_wave(next_wave: int, exceeds_max: bool)
 
 ## Total amount of waves.
 @export var max_waves: int = 5
@@ -22,6 +24,10 @@ var current_wave: int = 0: set = set_current_wave
 var enemies: Array[Enemy] = []
 
 
+func _ready() -> void:
+	alert_next_wave.emit(current_wave + 1, false)
+
+
 ## Starts a wave.
 func start_wave() -> void:
 	if current_wave == max_waves:
@@ -30,6 +36,11 @@ func start_wave() -> void:
 	if current_wave == max_waves:
 		final_wave_started.emit()
 	wave_started.emit()
+	var next_wave: int = current_wave + 1
+	var exceeds_max: bool = false
+	if next_wave > max_waves:
+		exceeds_max = true
+	alert_next_wave.emit(next_wave, exceeds_max)
 	
 	print("Wave %d started!" % current_wave)
 

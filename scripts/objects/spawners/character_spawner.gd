@@ -8,9 +8,9 @@ signal spawning_character(char: Character)
 #region @export variables
 ## Scene of the [Character] being spawned.
 @export var character_scene := preload("res://scenes/characters/character.tscn")
-## Fill color of the [CharacterSpawner] shape.
+## Default fill color of the [CharacterSpawner] shape.
 @export var draw_color := Color(0.447, 0.447, 0.447, 1.0)
-## Outline color of the [CharacterSpawner] shape.
+## Default outline color of the [CharacterSpawner] shape.
 @export var outline_color := Color(0.352, 0.352, 0.352, 1.0)
 ## Used by the [CharacterSpawner] to determine whether a [Character] should
 ## be spawned on specific waves. For example, if the array contains
@@ -20,11 +20,22 @@ signal spawning_character(char: Character)
 #endregion
 
 
+var current_draw_color: Color
+var current_outline_color: Color
+var _is_highlighted: bool = false
+
+
+func _ready() -> void:
+	current_draw_color = draw_color
+	if not _is_highlighted:
+		current_outline_color = outline_color
+
+
 func _draw() -> void:
 	var radius: float = $Area2D/CollisionShape2D.shape.radius
 	var outline_width: float = radius / 8
-	draw_circle(Vector2.ZERO, radius - outline_width / 2, draw_color)
-	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
+	draw_circle(Vector2.ZERO, radius - outline_width / 2, current_draw_color)
+	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, current_outline_color, outline_width, true)
 
 
 ## Spawns a [Character] instantiated from [member character_scene].
@@ -52,3 +63,25 @@ func _change_character_level(character: Character, level: int) -> void:
 
 func _fill_character_health(character: Character) -> void:
 	character.heal(character.health.max_value_after_buffs, false)
+
+
+func _on_wave_manager_alert_next_wave(next_wave: int, exceeds_max: bool) -> void:
+	if exceeds_max:
+		_turn_highlight_off()
+		return
+	if next_wave in spawn_waves or spawn_waves.is_empty():
+		_turn_highlight_on()
+	else:
+		_turn_highlight_off()
+
+
+func _turn_highlight_on() -> void:
+	_is_highlighted = true
+	current_outline_color = Color(Color.WHITE, 0.75)
+	queue_redraw()
+
+
+func _turn_highlight_off() -> void:
+	_is_highlighted = false
+	current_outline_color = outline_color
+	queue_redraw()
