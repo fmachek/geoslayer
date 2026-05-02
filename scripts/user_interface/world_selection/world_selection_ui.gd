@@ -65,8 +65,8 @@ func _play_world_number_label_tween():
 		_world_number_label_tween.kill()
 	_world_number_label_tween = get_tree().create_tween()
 	var label: Label = _selected_world_panel.get_node("WorldNumberLabel")
-	label.label_settings.font_size = 92
-	_world_number_label_tween.tween_property(label, "label_settings:font_size", 64, 0.25)
+	label.scale = Vector2(1.5, 1.5)
+	_world_number_label_tween.tween_property(label, "scale", Vector2.ONE, 0.25)
 
 
 func _get_world_scene_path(number: int) -> String:

@@ -12,11 +12,6 @@
 offsets = PackedFloat32Array(0.17218544, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_41qj7"]
-font_size = 64
-outline_size = 24
-outline_color = Color(0, 0, 0, 1)
-
 [node name="WorldSelectionUI" type="Control" unique_id=382332760]
 process_mode = 3
 layout_mode = 3
@@ -93,13 +88,21 @@ theme_override_styles/panel = ExtResource("2_xxlyo")
 
 [node name="WorldNumberLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftContainer/SelectedWorldPanel" unique_id=220363631]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -44.0
+offset_right = 25.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 64
 text = "N"
-label_settings = SubResource("LabelSettings_41qj7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
