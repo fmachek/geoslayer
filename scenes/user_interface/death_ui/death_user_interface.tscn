@@ -101,5 +101,9 @@ theme_override_styles/disabled_mirrored = ExtResource("5_7ifyo")
 theme_override_styles/focus = ExtResource("4_2qkag")
 text = "Back to menu"
 
+[node name="ClickEnableTimer" type="Timer" parent="." unique_id=1593262894]
+wait_time = 0.5
+
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="timeout" from="ClickEnableTimer" to="." method="_on_click_enable_timer_timeout"]
