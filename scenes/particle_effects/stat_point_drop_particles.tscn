@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://4varj0v1d4mm"]
+
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="1_ire37"]
+
+[sub_resource type="Curve" id="Curve_fi4ra"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7517241, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="StatPointDropParticles" type="CPUParticles2D" unique_id=1559658901]
+z_index = 2
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 400.0
+orbit_velocity_min = 2.0
+orbit_velocity_max = 2.0
+angle_max = 360.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_fi4ra")
+color = Color(1, 0, 1, 1)
+script = ExtResource("1_ire37")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

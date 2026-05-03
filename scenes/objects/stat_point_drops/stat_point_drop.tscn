@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cen1aasepgsyg"]
+
+[ext_resource type="Script" uid="uid://bscbwwduthfl4" path="res://scripts/objects/stat_point_drops/stat_point_drop.gd" id="1_1coky"]
+[ext_resource type="Script" uid="uid://i2sg5sv8uyrc" path="res://scripts/objects/stat_point_drops/stat_point_drop_body.gd" id="2_tt66h"]
+
+[node name="StatPointDrop" type="Node2D" unique_id=2053437211]
+script = ExtResource("1_1coky")
+
+[node name="Body" type="Node2D" parent="." unique_id=284799204]
+script = ExtResource("2_tt66h")
+draw_color = Color(1, 0, 1, 1)
+outline_color = Color(0.73333335, 0, 0.73333335, 1)
+
+[node name="Area2D" type="Area2D" parent="Body" unique_id=858029825]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area2D" unique_id=1396106637]
+polygon = PackedVector2Array(0, -17.32, -15, 8.66, 15, 8.66)
+
+[node name="PermanentStatPointLabel" type="Label" parent="." unique_id=557761731]
+z_index = 2
+offset_left = -37.0
+offset_top = -64.0
+offset_right = 37.0
+offset_bottom = -27.0
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "Permanent
+Stat Point"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Body/Area2D" to="." method="_on_area_2d_body_entered"]

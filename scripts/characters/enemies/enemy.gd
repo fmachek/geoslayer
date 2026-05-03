@@ -4,6 +4,18 @@ extends CastingCharacter
 ## around and casts abilities.
 
 
+## Generates the drop pool. Adds a [StatPointDrop] in addition to the
+## base drop pool. The chance of a [StatPointDrop] dropping scales
+## with [member level.current_level].
+func generate_drop_pool() -> void:
+	super()
+	var level: int = level.current_level
+	var stat_drop_chance: float = (float(level) - 1) / 2
+	drop_pool.append(Drop.new(
+			"res://scenes/objects/stat_point_drops/stat_point_drop.tscn",
+			stat_drop_chance))
+
+
 # Finds the closest PlayerCharacter or Minion in an array of nodes.
 func _get_target_from_bodies(bodies: Array[Node2D]) -> Character:
 	var smallest_distance: float = 100000.0

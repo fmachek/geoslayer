@@ -152,6 +152,12 @@ func increase_stat(stat_name: String) -> void:
 			stat.stat_value += 1
 
 
+## Gives a single stat point to the user and saves the data.
+func add_stat_point() -> void:
+	user_stat_points += 1
+	save_user()
+
+
 func _load_user_level(current_level: int, xp: int, required_xp: int) -> void:
 	user_level = Level.new()
 	user_level.current_level = current_level
