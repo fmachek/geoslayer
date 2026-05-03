@@ -7,7 +7,6 @@ var _label_opacity_tween: Tween
 
 @onready var ability_item_1: AbilityItem = %AbilityItem1
 @onready var ability_item_2: AbilityItem = %AbilityItem2
-@onready var _boss_defeated_container: MarginContainer = %BossDefeatedContainer
 @onready var _boss_defeated_label: Label = %BossDefeatedLabel
 
 
@@ -41,17 +40,17 @@ func _on_ability2_changed(new_ability: Ability):
 
 
 func _show_boss_defeated_label() -> void:
-	_boss_defeated_container.show()
+	_boss_defeated_label.show()
 	_play_boss_defeated_label_tween()
 
 
 func _play_boss_defeated_label_tween() -> void:
 	if _label_size_tween:
 		_label_size_tween.kill()
-	_boss_defeated_label.label_settings.font_size = 48
+	_boss_defeated_label.scale = Vector2(2, 2)
 	_label_size_tween = create_tween()
 	_label_size_tween.tween_property(
-			_boss_defeated_label, "label_settings:font_size", 32, 0.25
+			_boss_defeated_label, "scale", Vector2.ONE, 0.25
 	)
 	_label_size_tween.tween_callback(_boss_defeated_label_fade_out).set_delay(3.0)
 
@@ -64,4 +63,4 @@ func _boss_defeated_label_fade_out() -> void:
 	_label_opacity_tween.tween_property(
 			_boss_defeated_label, "modulate:a", 0, 0.5
 	)
-	_label_opacity_tween.tween_callback(_boss_defeated_container.hide)
+	_label_opacity_tween.tween_callback(_boss_defeated_label.hide)
