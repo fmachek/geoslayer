@@ -13,7 +13,10 @@ You get XP by defeating enemies or opening chests. When you level up, you gain a
 
 Your permament level is important when entering other worlds. Every world other than World 1 and World 0 (a testing world) will have a level requirement.
 
-### Abilities
+### Gameplay showcase
+![Gameplay](./assets/screenshots/gameplay.gif)
+
+## Abilities
 There are currently 15 abilities unlockable by the player. Other abilities can only be used by NPCs.
 
 | Ability name | Ability description |
@@ -33,7 +36,3 @@ There are currently 15 abilities unlockable by the player. Other abilities can o
 | Shred        | similar to Wideshot but close range and applies an armor and speed buff to the caster if the projectiles hit a target |
 | Swipe        | performs a swipe melee attack |
 | Smash        | deals damage to, stuns and knocks enemies around the caster back |
-
-## Screenshot
-
-<img src="./assets/screenshots/in_game.png" alt="In-game screenshot">
