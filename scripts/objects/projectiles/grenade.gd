@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _handle_character_collision(character: Character) -> void:
-	_can_deal_damage = false
+	can_deal_damage = false
 	_explosion_body = character
 	_deal_damage(character)
 	explode()

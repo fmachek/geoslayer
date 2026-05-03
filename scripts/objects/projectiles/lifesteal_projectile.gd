@@ -5,7 +5,7 @@ extends Projectile
 
 
 func _handle_character_collision(character: Character) -> void:
-	_can_deal_damage = false
+	can_deal_damage = false
 	_deal_damage(character)
 	var source: Node2D = projectile_properties.source
 	if is_instance_valid(source):

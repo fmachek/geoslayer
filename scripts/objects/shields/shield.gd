@@ -68,7 +68,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if parent is Projectile:
 		var projectile: Projectile = parent
-		if _is_enemy_projectile(projectile):
+		if _is_enemy_projectile(projectile) and projectile.can_deal_damage:
 			var damage: int = projectile.projectile_properties.damage
 			projectile.explode()
 			durability -= damage

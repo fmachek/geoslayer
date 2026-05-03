@@ -14,7 +14,7 @@ func _handle_character_collision(character: Character) -> void:
 
 ## Deals damage to a [param character] and explodes.
 func _explode_on_character(character: Character) -> void:
-	_can_deal_damage = false
+	can_deal_damage = false
 	_deal_damage(character)
 	explode()
 

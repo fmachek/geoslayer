@@ -17,9 +17,10 @@ var projectile_properties: ProjectileProperties
 var free_time: float = 5.0: set = _set_free_time
 ## Amount of knockback applied to [Character]s on impact.
 var knockback: float = 0.0
-
-var _can_explode: bool = true
-var _can_deal_damage: bool = true
+## Says whether the [Projectile] can still explode or not.
+var can_explode: bool = true
+## Says whether the [Projectile] can still deal damage or not.
+var can_deal_damage: bool = true
 
 @onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var _free_timer: Timer = $FreeTimer
@@ -38,7 +39,7 @@ func _ready() -> void:
 
 # Moves on every physics frame.
 func _physics_process(delta: float) -> void:
-	if _can_explode and projectile_properties:
+	if can_explode and projectile_properties:
 		var speed: float = projectile_properties.speed
 		var dir: Vector2 = projectile_properties.direction
 		global_position += speed * dir * delta * 200
@@ -47,16 +48,16 @@ func _physics_process(delta: float) -> void:
 
 # Draws the shape, in this case a circle.
 func _draw() -> void:
-	if _can_explode:
+	if can_explode:
 		_draw_projectile_shape()
 
 
 ## Causes the [Projectile] to explode, emitting particles.
 ## The [Projectile] is freed when the particles finish emitting.
 func explode() -> void:
-	if _can_explode:
-		_can_explode = false
-		_can_deal_damage = false
+	if can_explode:
+		can_explode = false
+		can_deal_damage = false
 		queue_redraw() # The projectile needs to disappear
 		var explosion_particles: ProjectileParticles = _PARTICLES_SCENE.instantiate()
 		explosion_particles.load_from_projectile(self)
@@ -66,9 +67,9 @@ func explode() -> void:
 
 ## Causes the [Projectile] to disappear
 func disappear() -> void:
-	_can_deal_damage = false
-	if _can_explode:
-		_can_explode = false
+	can_deal_damage = false
+	if can_explode:
+		can_explode = false
 		queue_redraw() # The projectile needs to disappear
 		%FlyingParticles.emitting = false
 
@@ -99,7 +100,7 @@ func _draw_projectile_shape() -> void:
 
 # Handles collisions.
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Character and _can_deal_damage:
+	if body is Character and can_deal_damage:
 		hit_character.emit(body)
 		_apply_knockback(body)
 		_handle_character_collision(body)
@@ -131,7 +132,7 @@ func _on_flying_particles_finished() -> void:
 # This can be implemented by each specific projectile. Handles what
 # happens on collision with a Character.
 func _handle_character_collision(character: Character) -> void:
-	_can_deal_damage = false
+	can_deal_damage = false
 	_deal_damage(character)
 	explode()
 
