@@ -12,7 +12,7 @@ var speed_debuff_duration: float = 0.75
 
 
 func _handle_character_collision(character: Character) -> void:
-	_can_deal_damage = false
+	can_deal_damage = false
 	_deal_damage(character)
 	_apply_speed_debuff(character)
 	explode()
