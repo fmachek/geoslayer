@@ -47,17 +47,12 @@ func _draw() -> void:
 ## Spawns a [Character] instantiated from [member character_scene].
 func spawn_character(current_wave: int) -> Character:
 	var character: Character = character_scene.instantiate()
+	character.initial_level = current_wave
 	spawning_character.emit(character)
 	character.global_position = global_position
-	character.ready.connect(func(): _on_character_ready(character, current_wave))
 	get_parent().add_child(character)
 	_emit_spawn_particles()
 	return character
-
-
-func _on_character_ready(char: Character, wave: int) -> void:
-	_change_character_level(char, wave)
-	_fill_character_health(char)
 
 
 # Checks if the new wave is in the spawn_waves array.
@@ -66,10 +61,6 @@ func _on_character_ready(char: Character, wave: int) -> void:
 func _on_wave_changed(wave: int) -> void:
 	if wave in spawn_waves or spawn_waves.is_empty():
 		spawn_character(wave)
-
-
-func _change_character_level(character: Character, level: int) -> void:
-	character.level.current_level = level
 
 
 func _fill_character_health(character: Character) -> void:

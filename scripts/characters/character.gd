@@ -67,6 +67,9 @@ var is_immune_to_stun: bool = false
 var is_immune_to_knockback: bool = false
 ## Says if the [Character] is currently stunned or not.
 var is_stunned: bool = false
+## Variable used to say what level the [Character] spawns with.
+## It is used to allow setting the level before [member level] is ready.
+var initial_level: int = 1
 
 # Knockback vector.
 var _knockback := Vector2.ZERO
@@ -95,15 +98,19 @@ var _fade_tween: Tween
 
 
 func _ready() -> void:
+	level.current_level = initial_level
+	
 	health_changed.connect(check_for_death)
 	level.level_changed.connect(_on_level_changed) # Connect level up signal
 	was_stunned.connect(_begin_stun)
 	stun_ended.connect(_end_stun)
 	draw_color_changed.connect(queue_redraw)
 	outline_color_changed.connect(queue_redraw)
-	update_stats(level.current_level) # Update stats on spawn
-	health.current_value = health.max_value_after_buffs # Spawn with max health
+	
+	update_stats (level.current_level) # Update stats on spawn
+	_fill_health() # Spawn with max health
 	generate_drop_pool()
+	
 	$HealthBar.set_up(self) # Sets up the health bar which appears below the character
 	%AimLine.default_color = Color(outline_color, 0.3)
 	_fade_in()
@@ -361,6 +368,10 @@ func update_stats(current_level: int) -> void:
 	health.max_value = new_health
 	var new_damage: int = ceil(float(base_damage) * pow(1.2, current_level - 1))
 	damage.max_value = new_damage
+
+
+func _fill_health() -> void:
+	health.current_value = health.max_value_after_buffs
 
 
 ## Moves the aim line so that it aims at the [member target_pos].

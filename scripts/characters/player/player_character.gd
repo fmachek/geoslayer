@@ -42,7 +42,7 @@ func _ready() -> void:
 	equip_ability(unlocked_abilities[0]) # Equip first unlocked ability on spawn
 	target_pos = get_global_mouse_position()
 	_apply_user_stats()
-	health.current_value = health.max_value
+	_fill_health()
 
 
 func _process(delta: float) -> void:
