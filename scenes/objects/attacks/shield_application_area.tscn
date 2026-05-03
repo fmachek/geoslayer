@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://qf1fclmxudog"]
+
+[ext_resource type="PackedScene" uid="uid://dific0paj8qro" path="res://scenes/objects/attacks/instant_area.tscn" id="1_ftnt6"]
+[ext_resource type="Script" uid="uid://duedw4cxa4m8e" path="res://scripts/objects/attacks/shield_application_area.gd" id="2_w0g22"]
+[ext_resource type="Texture2D" uid="uid://dhwrs5v8cnkdc" path="res://assets/sprites/characters/particles/shield.png" id="2_x6n17"]
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="4_xr3uj"]
+
+[sub_resource type="Gradient" id="Gradient_w0g22"]
+offsets = PackedFloat32Array(0, 0.32994923, 0.66497463, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ShieldApplicationArea" unique_id=407616811 instance=ExtResource("1_ftnt6")]
+script = ExtResource("2_w0g22")
+fade_time = 1.0
+
+[node name="ShieldParticles" type="CPUParticles2D" parent="." index="1" unique_id=1493531299]
+emitting = false
+amount = 1
+texture = ExtResource("2_x6n17")
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+local_coords = true
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_w0g22")
+script = ExtResource("4_xr3uj")

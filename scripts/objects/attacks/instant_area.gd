@@ -14,15 +14,17 @@ signal radius_changed(new_radius: float)
 ## Emitted when a detected body has been handled.
 signal handled_body(body: Node2D)
 
+## Fill color of the [InstantArea].
+@export var draw_color: Color = Color(0.0, 0.735, 0.0, 0.3)
+## Outline color of the [InstantArea].
+@export var outline_color: Color = Color(0.0, 0.582, 0.0, 0.3)
+## Time until the [InstantArea] fades out and disappears.
+@export var fade_time: float = 0.25
 ## Source of the [InstantArea], for example a [Character] who cast an ability
 ## which spawned it.
 var source: Node2D = null
 ## Radius of the [InstantArea].
 var radius: float = 120.0: set = _set_radius
-## Fill color of the [InstantArea].
-var draw_color: Color = Color(0.0, 0.735, 0.0, 0.3)
-## Outline color of the [InstantArea].
-var outline_color: Color = Color(0.0, 0.582, 0.0, 0.3)
 
 var _fade_tween: Tween
 var _current_physics_frame: int = 0
@@ -71,7 +73,7 @@ func _fade_out() -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 	_fade_tween = create_tween()
-	_fade_tween.tween_property(self, "modulate:a", 0, 0.25)
+	_fade_tween.tween_property(self, "modulate:a", 0, fade_time)
 	_fade_tween.tween_callback(queue_free)
 
 

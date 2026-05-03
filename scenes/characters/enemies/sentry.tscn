@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://yo8qxcxf6oo3"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_8fc0q"]
+[ext_resource type="Script" uid="uid://bmycjm54larpy" path="res://scripts/characters/enemies/sentry.gd" id="2_s6v1f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6v1f"]
+radius = 38.0
+
+[node name="Sentry" unique_id=1080282355 instance=ExtResource("1_8fc0q")]
+script = ExtResource("2_s6v1f")
+draw_color = Color(0.44498768, 0.5424314, 0.9590569, 1)
+outline_color = Color(0.281193, 0.35660335, 0.8730979, 1)
+base_health = 200
+knockback_resistance = 600
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_s6v1f")
+
+[node name="Armor" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="2" unique_id=2127940257]
+max_value = 50
+current_value = 50
