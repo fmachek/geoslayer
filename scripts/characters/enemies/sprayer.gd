@@ -42,6 +42,7 @@ func _load_abilities() -> void:
 
 ## Explodes into many [DoTProjectile]s and dies.
 func explode() -> void:
+	drop_pool.clear()
 	var angle: float = 0.0
 	for i in range(proj_amount):
 		angle = i * (TAU / proj_amount)
