@@ -17,11 +17,11 @@ func _ready() -> void:
 	PlayerManager.player_spawned.connect(_on_player_spawned)
 
 
-## Sets the [LevelHUD] up so that it displays a [param player]'s
+## Sets the [LevelHUD] up so that it displays the [param new_player]'s
 ## [Level].
-func load_player(player: PlayerCharacter):
-	self.player = player
-	var level: Level = player.level
+func load_player(new_player: PlayerCharacter):
+	self.player = new_player
+	var level: Level = new_player.level
 
 	_update_required_xp(level.required_xp)
 	_update_current_xp(level.current_xp)
@@ -48,8 +48,8 @@ func _update_required_xp(new_xp: int):
 	_progress_bar.max_value = new_xp
 
 
-func _on_player_spawned(player: PlayerCharacter):
-	load_player(player)
+func _on_player_spawned(new_player: PlayerCharacter):
+	load_player(new_player)
 
 
 func _play_level_up_tween():

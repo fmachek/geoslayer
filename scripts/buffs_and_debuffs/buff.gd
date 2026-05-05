@@ -30,11 +30,11 @@ var duration: float
 var _duration_timer: Timer
 
 
-## Sets the [param amount] and [param duration]. If [param duration]
+## Sets the [param stat_amount] and [param buff_duration]. If [param buff_duration]
 ## is 0, the buff won't expire.
-func _init(amount: int, duration: float) -> void:
-	self.amount = amount
-	self.duration = duration
+func _init(stat_amount: int, buff_duration: float) -> void:
+	self.amount = stat_amount
+	self.duration = buff_duration
 
 
 ## Adds the [Buff] to a given [param stat].

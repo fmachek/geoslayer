@@ -25,7 +25,6 @@ func _perform_ability() -> void:
 	
 	# Calculates the angle to the target position, derived from the direction.
 	var direction_to_target: Vector2 = (target_pos - player_pos).normalized()
-	var angle_to_target: float = direction_to_target.angle()
 	
 	# Distance from the caster's position to the projectiles (half the radius).
 	# It is also half the distance between thtwo projectiles.

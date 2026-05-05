@@ -25,6 +25,11 @@ WorldManager="*uid://bsml1uo2h07sk"
 GameManager="*uid://d0c3pd5wo3gu2"
 UserManager="*uid://da7wyp7qrn6f8"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+gdscript/warnings/narrowing_conversion=0
+
 [display]
 
 window/size/mode=4

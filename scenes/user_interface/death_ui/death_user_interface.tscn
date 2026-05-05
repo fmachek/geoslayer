@@ -103,6 +103,7 @@ text = "Back to menu"
 
 [node name="ClickEnableTimer" type="Timer" parent="." unique_id=1593262894]
 wait_time = 0.5
+one_shot = true
 
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

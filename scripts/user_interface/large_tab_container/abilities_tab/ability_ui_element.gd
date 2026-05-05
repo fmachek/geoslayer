@@ -31,16 +31,16 @@ func _ready() -> void:
 	_connect_equip_events()
 
 
-## Loads a [param player]'s unlocked [param ability].
-func load_ability(ability: Ability, player: PlayerCharacter):
+## Loads a [param player_char]'s unlocked [param ability].
+func load_ability(ability: Ability, player_char: PlayerCharacter):
 	ability_name = ability.get_ability_name()
-	self.player = player
+	self.player = player_char
 	_name_label.text = ability_name
 	_texture_rect.texture = ability.texture
 	_desc_label.text = ability.description
 	_update_cooldown_label(ability.cooldown)
-	player.ability1_changed.connect(_on_player_ability1_changed)
-	player.ability2_changed.connect(_on_player_ability2_changed)
+	player_char.ability1_changed.connect(_on_player_ability1_changed)
+	player_char.ability2_changed.connect(_on_player_ability2_changed)
 	_perform_first_slot_check()
 
 

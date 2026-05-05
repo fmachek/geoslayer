@@ -9,8 +9,8 @@ extends CastingCharacter
 ## with [member level.current_level].
 func generate_drop_pool() -> void:
 	super()
-	var level: int = level.current_level
-	var stat_drop_chance: float = (float(level) - 1) / 2
+	var enemy_level: int = level.current_level
+	var stat_drop_chance: float = (float(enemy_level) - 1) / 2
 	drop_pool.append(Drop.new(
 			"res://scenes/objects/stat_point_drops/stat_point_drop.tscn",
 			stat_drop_chance))
@@ -44,10 +44,10 @@ func _on_character_detection_area_body_entered(body: Node2D) -> void:
 					target.global_position)
 			if distance_to_body < distance_to_target:
 				target = body
-				cast_random_ability()
+				call_deferred("cast_random_ability")
 		else:
 			target = body
-			cast_random_ability()
+			call_deferred("cast_random_ability")
 
 
 # Detects the target leaving the enemy's range.

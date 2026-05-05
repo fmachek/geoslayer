@@ -17,7 +17,8 @@ var _proj_scene := load("res://scenes/objects/projectiles/grenade_projectile.tsc
 func _ready() -> void:
 	super()
 	# Smaller projectiles are spawned after exploding
-	exploded.connect(_spawn_projectiles)
+	# Call deferred to fix errors
+	exploded.connect(func(): call_deferred("_spawn_projectiles"))
 
 
 func _handle_character_collision(character: Character) -> void:

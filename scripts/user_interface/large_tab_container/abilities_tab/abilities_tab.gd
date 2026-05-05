@@ -19,7 +19,7 @@ var player: PlayerCharacter
 
 func _ready() -> void:
 	PlayerManager.player_spawned.connect(_on_player_spawned)
-	PlayerManager.player_died.connect(_on_player_died)
+	PlayerManager.player_died.connect(_on_player_died.unbind(1))
 	unequip_slot1_pressed.connect(PlayerManager._on_UI_unequip_slot1_pressed)
 	unequip_slot2_pressed.connect(PlayerManager._on_UI_unequip_slot2_pressed)
 	unequip_all_pressed.connect(PlayerManager._on_UI_unequip_all_pressed)
@@ -40,9 +40,9 @@ func load_unlocked_ability(ability: Ability):
 	ability_ui_element.load_ability(ability, player)
 
 
-func _on_player_spawned(player: PlayerCharacter):
-	self.player = player
-	player.new_ability_unlocked.connect(load_unlocked_ability)
+func _on_player_spawned(new_player: PlayerCharacter):
+	self.player = new_player
+	new_player.new_ability_unlocked.connect(load_unlocked_ability)
 	load_unlocked_abilities()
 
 
@@ -62,6 +62,6 @@ func _on_close_button_pressed() -> void:
 	hide()
 
 
-func _on_player_died(player: PlayerCharacter):
+func _on_player_died():
 	for element in _ability_container.get_children():
 		element.queue_free()

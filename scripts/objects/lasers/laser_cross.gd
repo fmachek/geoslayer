@@ -30,7 +30,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_free_timer_timeout() -> void:
-	var children = get_children()
 	var lasers: Array[Laser] = _get_lasers()
 	for laser in lasers:
 		laser.disappear()

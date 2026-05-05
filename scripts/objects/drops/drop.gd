@@ -12,6 +12,6 @@ var chance: float
 
 
 ## Sets [member item_scene_path] and [member chance].
-func _init(item_scene_path: String, chance: float):
-	self.item_scene_path = item_scene_path
-	self.chance = chance
+func _init(scene_path: String, drop_chance: float):
+	self.item_scene_path = scene_path
+	self.chance = drop_chance

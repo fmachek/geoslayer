@@ -42,4 +42,6 @@ func _show_self() -> void:
 		_fade_out_tween.kill()
 	modulate.a = 1
 	show()
-	_visibility_timer.start()
+	if is_instance_valid(_visibility_timer):
+		if _visibility_timer.is_inside_tree():
+			_visibility_timer.start()

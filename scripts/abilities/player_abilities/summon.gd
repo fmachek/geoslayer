@@ -32,8 +32,8 @@ var _speed_debuff: int = 200
 
 
 func _init() -> void:
-	var description: String = "Summons %d minions." % minion_amount
-	super(8, description)
+	var desc: String = "Summons %d minions." % minion_amount
+	super(8, desc)
 	minion_amount_changed.connect(_update_description)
 
 
@@ -134,8 +134,8 @@ func set_minion_amount(amount: int) -> void:
 	minion_amount_changed.emit(amount)
 
 
-func _update_description(minion_amount: int) -> void:
-	self.description = "Summons %d minions." % minion_amount
+func _update_description(minions: int) -> void:
+	self.description = "Summons %d minions." % minions
 
 
 func _create_cast_timer() -> void:

@@ -163,7 +163,7 @@ func _load_user_level(current_level: int, xp: int, required_xp: int) -> void:
 	user_level.current_level = current_level
 	user_level.current_xp = xp
 	user_level.required_xp = required_xp
-	user_level.level_changed.connect(_on_user_level_changed)
+	user_level.level_changed.connect(_on_user_level_changed.unbind(1))
 
 
 func _load_stats(health: int, armor: int, damage: int, speed: int) -> void:
@@ -183,5 +183,5 @@ func _update_user_level_before_change() -> void:
 	user_level_before_change.required_xp = user_level.required_xp
 
 
-func _on_user_level_changed(new_level: int) -> void:
+func _on_user_level_changed() -> void:
 	user_stat_points += STAT_POINTS_PER_LEVEL

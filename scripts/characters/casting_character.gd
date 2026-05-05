@@ -52,7 +52,7 @@ func _ready() -> void:
 	cast_cooldown_timer.wait_time = cast_cooldown
 	# Attempt to cast when stun ends
 	stun_ended.connect(cast_random_ability)
-	target_changed.connect(_reset_nav_agent)
+	target_changed.connect(_reset_nav_agent.unbind(1))
 	_load_abilities()
 
 

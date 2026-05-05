@@ -40,7 +40,7 @@ func _ready() -> void:
 	_update_shape()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_update_shape()
 
 
@@ -81,9 +81,9 @@ func _get_collision_with_wall(target_pos: Vector2) -> Vector2:
 	return target_pos
 
 
-func _update_collision_mask(source: Node2D) -> void:
+func _update_collision_mask(area_source: Node2D) -> void:
 	var area: Area2D = $Area2D
-	CollisionMaskFunctions.set_area_collision_mask(area, source)
+	CollisionMaskFunctions.set_area_collision_mask(area, area_source)
 
 
 func _on_damage_timer_timeout() -> void:

@@ -34,7 +34,7 @@ func _ready() -> void:
 		_start_healing()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if _is_healing:
 		var p1 := Vector2(0, 0)
 		var p2 := to_local(healing_target.global_position)
@@ -72,7 +72,7 @@ func _on_heal_tick_timer_timeout() -> void:
 	healing_target.heal(heal_amount)
 
 
-func _set_healing_character(char: Character) -> void:
-	healing_target = char
-	if char:
+func _set_healing_character(target: Character) -> void:
+	healing_target = target
+	if target:
 		healing_target.died.connect(_on_target_died)

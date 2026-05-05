@@ -23,11 +23,11 @@ func _ready() -> void:
 	_texture_rect.texture = texture
 
 
-## Loads information about an [Enemy] with a given [param enemy_name].
-func load_enemy(enemy_name: String, description: String) -> void:
-	self.enemy_name = enemy_name
-	self.description = description
-	self.texture_path = TextureManager.get_enemy_icon_path(enemy_name)
+## Loads information about an [Enemy] with a given [param new_enemy_name].
+func load_enemy(new_enemy_name: String, new_enemy_description: String) -> void:
+	self.enemy_name = new_enemy_name
+	self.description = new_enemy_description
+	self.texture_path = TextureManager.get_enemy_icon_path(new_enemy_name)
 
 
 ## Loads information about [Shooter].

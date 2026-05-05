@@ -49,7 +49,7 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	var shape = $Area2D/CollisionShape2D.shape
+	var shape = _col_shape.shape
 	var width: float = shape.size.x
 	var height: float = shape.size.y
 	var rect := Rect2(-width / 2, -height / 2, width, height)

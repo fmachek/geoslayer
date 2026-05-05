@@ -37,7 +37,7 @@ var _performed: bool = false
 @abstract func _perform(body: Node2D) -> void
 
 
-@abstract func _update_area_mask(source: Node2D) -> void
+@abstract func _update_area_mask(area_source: Node2D) -> void
 
 
 func _ready() -> void:
@@ -47,7 +47,7 @@ func _ready() -> void:
 	_fade_out()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if _performed:
 		return
 	_current_physics_frame += 1

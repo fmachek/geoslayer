@@ -58,7 +58,7 @@ func destroy() -> void:
 		return
 	is_active = false
 	_expiration_timer.stop()
-	_stop_monitoring()
+	call_deferred("_stop_monitoring")
 	_fade_out()
 
 

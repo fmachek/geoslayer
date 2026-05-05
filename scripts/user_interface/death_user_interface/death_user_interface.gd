@@ -10,10 +10,10 @@ extends Control
 
 
 func _ready() -> void:
-	PlayerManager.player_died.connect(_on_player_died)
+	PlayerManager.player_died.connect(_on_player_died.unbind(1))
 
 
-func _on_player_died(player: PlayerCharacter) -> void:
+func _on_player_died() -> void:
 	show()
 	_enable_timer.start()
 

@@ -22,9 +22,9 @@ var _projectiles_remaining: int
 
 
 func _init() -> void:
-	var description := "Fires %d projectiles which heal the
+	var desc := "Fires %d projectiles which heal the
 			caster if they hit an enemy." % projectile_amount
-	super(1, description)
+	super(1, desc)
 
 
 func _ready() -> void:

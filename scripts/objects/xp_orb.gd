@@ -22,9 +22,7 @@ var _travel_speed: float = 8.0
 
 
 func _ready() -> void:
-	_col_shape.shape = CircleShape2D.new()
-	_randomize_radius()
-	_travel_to_player()
+	call_deferred("_initialize")
 
 
 func _physics_process(delta: float) -> void:
@@ -43,6 +41,13 @@ func _draw():
 	draw_circle(Vector2.ZERO, radius, draw_color)
 	var outline_width: float = radius / 8
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
+
+
+func _initialize() -> void:
+	_col_shape.shape = CircleShape2D.new()
+	_randomize_radius()
+	_travel_to_player()
+	queue_redraw()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

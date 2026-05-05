@@ -102,15 +102,15 @@ func _draw() -> void:
 
 
 ## Starts the swipe attack with its center being at the
-## [param target_angle] in radians and it taking [param swipe_time]
+## [param target_angle] in radians and it taking [param swipe_time_sec]
 ## seconds to reach the destination angle.
-func swipe(target_angle: float, swipe_time: float) -> void:
+func swipe(target_angle: float, swipe_time_sec: float) -> void:
 	if _is_swiping:
 		return
 	_is_swiping = true
 	_start_angle = target_angle + swipe_angle / 2
 	_end_angle = target_angle - swipe_angle / 2
-	self.swipe_time = swipe_time
+	self.swipe_time = swipe_time_sec
 	global_rotation = _start_angle
 
 

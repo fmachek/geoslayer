@@ -67,10 +67,10 @@ func _draw() -> void:
 
 # Updates draw colors to match the caster's colors, but they're
 # more transparent.
-func _load_caster_colors(draw_color: Color, outline_color: Color) -> void:
+func _load_caster_colors(new_draw_color: Color, new_outline_color: Color) -> void:
 	var alpha: float = 0.3
-	self.draw_color = Color(draw_color, alpha)
-	self.outline_color = Color(outline_color, alpha)
+	self.draw_color = Color(new_draw_color, alpha)
+	self.outline_color = Color(new_outline_color, alpha)
 
 
 # The zone becomes inactive and starts the fade out effect.

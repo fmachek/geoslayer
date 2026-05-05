@@ -69,7 +69,8 @@ func unregister_enemy(enemy: Enemy) -> void:
 	if not enemy in enemies:
 		return
 	enemies.erase(enemy)
-	enemy.died.disconnect(unregister_enemy)
+	if enemy.died.is_connected(unregister_enemy):
+		enemy.died.disconnect(unregister_enemy)
 	_check_enemy_amount()
 
 

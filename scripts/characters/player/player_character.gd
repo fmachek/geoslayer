@@ -79,7 +79,7 @@ func generate_drop_pool() -> void:
 
 
 ## Adds perk points on every level up.
-func _on_level_changed(new_level: int) -> void:
+func _on_level_changed(_new_level: int) -> void:
 	add_perk_points(perk_points_per_level)
 
 

@@ -23,18 +23,18 @@ func _ready() -> void:
 		_load_caster_variables(caster)
 
 
-func _handle_body_entered(body: Node2D) -> void:
+func _handle_body_entered(_body: Node2D) -> void:
 	pass
 
 
-func _handle_body_exited(body: Node2D) -> void:
+func _handle_body_exited(_body: Node2D) -> void:
 	pass
 
 
 ## Calculates [member damage_per_tick] based on
 ## [param new_caster]'s damage and [member base_damage].
 func _load_caster_variables(new_caster: Character) -> void:
-	damage_per_tick = (float(caster.damage.max_value_after_buffs) / 100) * float(base_damage)
+	damage_per_tick = (float(new_caster.damage.max_value_after_buffs) / 100) * float(base_damage)
 
 
 # Checks for overlapping bodies on each tick and deals damage to them.

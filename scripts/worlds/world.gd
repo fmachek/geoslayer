@@ -64,4 +64,4 @@ func _on_chest_opened(chest: Chest) -> void:
 func _handle_wave_end() -> void:
 	if wave_manager.current_wave == wave_manager.max_waves:
 		return
-	spawn_chest()
+	call_deferred("spawn_chest")

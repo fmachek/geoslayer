@@ -22,13 +22,14 @@ var radius: int
 var start_pos: Vector2
 
 
-func _init(draw_color: Color, outline_color: Color, direction: Vector2,
-		speed: float, source: Node2D, damage: int, radius: int, start_pos: Vector2) -> void:
-	self.draw_color = draw_color
-	self.outline_color = outline_color
-	self.direction = direction
-	self.speed = speed
-	self.source = source
-	self.damage = damage
-	self.radius = radius
-	self.start_pos = start_pos
+func _init(proj_draw_color: Color, proj_outline_color: Color, proj_direction: Vector2,
+		proj_speed: float, proj_source: Node2D, proj_damage: int, proj_radius: int,
+		proj_start_pos: Vector2) -> void:
+	self.draw_color = proj_draw_color
+	self.outline_color = proj_outline_color
+	self.direction = proj_direction
+	self.speed = proj_speed
+	self.source = proj_source
+	self.damage = proj_damage
+	self.radius = proj_radius
+	self.start_pos = proj_start_pos

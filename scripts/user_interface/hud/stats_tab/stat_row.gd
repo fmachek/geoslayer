@@ -27,13 +27,13 @@ func _ready() -> void:
 	_stack_increase_button.get_node("HBoxContainer/AmountLabel").text = str(stack_increase)
 
 
-## Loads a given [param stat].
-func load_stat(stat: CharacterStat) -> void:
-	self.stat = stat
-	_name_label.text = stat.stat_name
-	update_stat_value_label(stat)
-	stat.max_value_after_buffs_changed.connect(
-			func(old_value, new_value): update_stat_value_label(stat))
+## Loads a given [param new_stat].
+func load_stat(new_stat: CharacterStat) -> void:
+	self.stat = new_stat
+	_name_label.text = new_stat.stat_name
+	update_stat_value_label(new_stat)
+	var upd = func(): update_stat_value_label(new_stat)
+	new_stat.max_value_after_buffs_changed.connect(upd.unbind(2))
 	check_perk_points(PlayerManager.current_player.perk_points_available)
 
 
@@ -53,17 +53,17 @@ func _update_increase_button(button: Button, points: int, req_points: int) -> vo
 		button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
-## Updates the value label to match the [param stat].
+## Updates the value label to match the [param new_stat].
 ## Changes the color of the label font based on whether
-## the [param stat] is overall buffed or debuffed.
-func update_stat_value_label(stat: CharacterStat) -> void:
+## the [param new_stat] is overall buffed or debuffed.
+func update_stat_value_label(new_stat: CharacterStat) -> void:
 	var label = _value_label
-	label.text = str(stat.max_value_after_buffs)
-	if stat.is_percentage_based:
+	label.text = str(new_stat.max_value_after_buffs)
+	if new_stat.is_percentage_based:
 		label.text += "%"
-	if stat.max_value_after_buffs > stat.max_value:
+	if new_stat.max_value_after_buffs > new_stat.max_value:
 		label.label_settings.font_color = Color.GREEN
-	elif stat.max_value_after_buffs < stat.max_value:
+	elif new_stat.max_value_after_buffs < new_stat.max_value:
 		label.label_settings.font_color = Color.RED
 	else:
 		label.label_settings.font_color = Color.WHITE

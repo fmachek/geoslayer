@@ -22,8 +22,8 @@ func _perform(body: Node2D) -> void:
 		body.take_damage(damage)
 
 
-func _update_area_mask(source: Node2D) -> void:
-	CollisionMaskFunctions.set_area_collision_mask(_area, source)
+func _update_area_mask(area_source: Node2D) -> void:
+	CollisionMaskFunctions.set_area_collision_mask(_area, area_source)
 
 
 func _update_sprite() -> void:

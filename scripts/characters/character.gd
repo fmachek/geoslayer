@@ -117,11 +117,11 @@ func _ready() -> void:
 
 
 # Moves the aim line, which is used to display aiming, on every frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	move_aim_line()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	_calculate_knockback()
 	velocity += _knockback
@@ -169,14 +169,14 @@ func apply_knockback(knockback: Vector2) -> void:
 ## for example a Damage Over Time (DOT) effect, or just normal.
 ## [param ignore_armor] can be set to [code]true[/code] if armor
 ## is to be ignored.
-func take_damage(damage: int, type: DamageType = DamageType.NORMAL, ignore_armor: bool = false) -> int:
+func take_damage(amount: int, type: DamageType = DamageType.NORMAL, ignore_armor: bool = false) -> int:
 	var damage_reduction: int
 	if ignore_armor:
 		damage_reduction = 0
 	else:
 		var armor_amount: int = armor.max_value_after_buffs
 		damage_reduction = armor_amount / 10
-	var damage_taken: int = damage - damage_reduction
+	var damage_taken: int = amount - damage_reduction
 	if damage_taken < 0:
 		damage_taken = 0
 	health.add_value(-damage_taken)
@@ -237,7 +237,7 @@ func emit_max_health_change(old_health: int, new_health: int) -> void:
 
 
 ## Checks if the [Character] should die on every health change.
-func check_for_death(old_health: int, new_health: int) -> void:
+func check_for_death(_old_health: int, new_health: int) -> void:
 	if new_health == 0:
 		die()
 
@@ -322,13 +322,13 @@ func drop_item(drop: Drop) -> void:
 	item.global_position = Vector2(random_x, random_y)
 	var parent = get_parent()
 	if is_instance_valid(parent):
-		parent.add_child(item)
+		parent.call_deferred("add_child", item)
 
 
 ## Changes [member draw_color] and [member outline_color].
-func change_color(draw_color: Color, outline_color: Color) -> void:
-	self.draw_color = draw_color
-	self.outline_color = outline_color
+func change_color(new_draw_color: Color, new_outline_color: Color) -> void:
+	self.draw_color = new_draw_color
+	self.outline_color = new_outline_color
 
 
 ## Starts casting.

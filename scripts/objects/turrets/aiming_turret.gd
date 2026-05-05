@@ -13,7 +13,7 @@ func _ready() -> void:
 	stopped_shooting.connect(func(): _is_aiming = false)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _is_aiming and _aim_target:
 		look_at(_aim_target.global_position)
 		rotation += deg_to_rad(90) # Offset because look_at uses +X axis

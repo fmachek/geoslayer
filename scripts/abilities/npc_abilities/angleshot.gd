@@ -29,7 +29,7 @@ func _perform_ability() -> void:
 	finished_casting.emit()
 
 
-func _fire_projectile_at_angle(angle: float) -> void:
+func _fire_projectile_at_angle(proj_angle: float) -> void:
 	ProjectileFunctions.fire_projectile_at_angle(
-		_PROJ_SCENE, angle, character, base_damage, projectile_speed,
+		_PROJ_SCENE, proj_angle, character, base_damage, projectile_speed,
 		projectile_radius)

@@ -33,13 +33,14 @@ func _ready() -> void:
 
 # Draws a simple chest shape.
 func _draw():
-	var width: int = $CollisionShape2D.shape.size.x
-	var height: int = $CollisionShape2D.shape.size.y
-	var line_width: int = 4
-	var rect := Rect2(-width/2, -height/2, width, height)
+	var shape = $CollisionShape2D.shape
+	var width: float = shape.size.x
+	var height: float = shape.size.y
+	var line_width: float = 4.0
+	var rect := Rect2(-width / 2, -height / 2, width, height)
 	draw_rect(rect, draw_color)
 	draw_rect(rect, outline_color, false, line_width)
-	draw_line(Vector2(-width/2, -4), Vector2(width/2, -4), outline_color, line_width)
+	draw_line(Vector2(-width / 2, -4), Vector2(width / 2, -4), outline_color, line_width)
 	draw_circle(Vector2(0, -4), 6, outline_color, true)
 
 

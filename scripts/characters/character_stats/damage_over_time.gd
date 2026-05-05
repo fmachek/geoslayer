@@ -22,10 +22,10 @@ var _target_health: Health
 var _target_character: Character
 
 
-func _init(damage: int, tick_time: float, tick_amount: int) -> void:
+func _init(damage: int, tick_time_sec: float, total_ticks: int) -> void:
 	damage_per_tick = damage
-	self.tick_time = tick_time
-	self.tick_amount = tick_amount
+	self.tick_time = tick_time_sec
+	self.tick_amount = total_ticks
 
 
 func _ready() -> void:

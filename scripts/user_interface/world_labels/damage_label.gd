@@ -16,25 +16,25 @@ func play_tween() -> void:
 
 
 ## Loads the label. It will display the given [param amount] and it will move to
-## a given [param pos]. The [param type] and [param char] determines
+## a given [param pos]. The [param type] and [param player_char] determines
 ## what the label looks like, mainly the font color, but also size.
-func load_label(amount: int, pos: Vector2, type: Character.DamageType, char: Character) -> void:
+func load_label(amount: int, pos: Vector2, type: Character.DamageType, player_char: Character) -> void:
 	text = str(amount)
 	global_position = pos
-	_load_label_type(type, char)
+	_load_label_type(type, player_char)
 
 
-func _load_label_type(type: Character.DamageType, char: Character) -> void:
+func _load_label_type(type: Character.DamageType, character: Character) -> void:
 	_load_label_settings()
 	match type:
 		Character.DamageType.NORMAL:
-			if char is PlayerCharacter or char is Minion:
+			if character is PlayerCharacter or character is Minion:
 				label_settings.font_color = Color.RED
 			else:
 				label_settings.font_color = Color.WHITE
 		Character.DamageType.DOT:
 			label_settings.font_size = 16
-			if char is PlayerCharacter or char is Minion:
+			if character is PlayerCharacter or character is Minion:
 				label_settings.font_color = Color.RED
 			else:
 				label_settings.font_color = Color.WHITE

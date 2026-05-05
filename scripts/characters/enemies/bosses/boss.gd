@@ -40,7 +40,7 @@ func _switch_phase(new_phase: int) -> void:
 			_start_phase_3()
 
 
-func _on_health_changed(old_health: int, new_health: int) -> void:
+func _on_health_changed(_old_health: int, new_health: int) -> void:
 	if new_health <= (health.max_value / 3):
 		_switch_phase(3)
 	elif new_health <= (health.max_value / 3) * 2:

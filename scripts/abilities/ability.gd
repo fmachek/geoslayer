@@ -45,12 +45,12 @@ var is_casting: bool = false
 @abstract func _perform_ability() -> void
 
 
-func _init(cooldown: float, description: String) -> void:
+func _init(cd: float, desc: String) -> void:
 	ability_name = get_ability_name()
-	self.cooldown = cooldown
+	self.cooldown = cd
 	var texture_path = TextureManager.get_ability_icon_path(get_ability_name())
 	self.texture = load(texture_path)
-	self.description = description
+	self.description = desc
 	tree_exiting.connect(_alert_unequip)
 	finished_casting.connect(_on_finished_casting)
 
@@ -86,14 +86,14 @@ func get_ability_name() -> String:
 	var script: Script = get_script()
 	if script:
 		var script_path: String = script.resource_path.get_file()
-		var ability_name: String = script_path.get_basename().capitalize()
-		return ability_name
+		var script_name: String = script_path.get_basename().capitalize()
+		return script_name
 	return "Unknown"
 
 
 ## Changes [member character]. Also creates the cooldown timer.
-func change_character(character: Character) -> void:
-	self.character = character
+func change_character(new_character: Character) -> void:
+	self.character = new_character
 	_create_cooldown_timer()
 
 
