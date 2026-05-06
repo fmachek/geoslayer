@@ -418,11 +418,11 @@ func stun(duration: float) -> void:
 		duration = 0.1
 	var stun_timer: Timer = Timer.new()
 	stun_timer.name = "StunTimer"
+	stun_timer.autostart = true
 	stun_timer.wait_time = duration
 	stun_timer.timeout.connect(func(): _remove_stun(stun_timer))
 	_stuns.append(stun_timer)
 	add_child(stun_timer)
-	stun_timer.start()
 	was_stunned.emit()
 
 
