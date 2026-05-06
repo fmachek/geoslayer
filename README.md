@@ -39,3 +39,6 @@ Earlier worlds have a more limited drop pool of abilities. For example, World 1 
 | Storm        | Spawns an area which damages and slows enemies down while they're standing in it | Magical |
 | Summon       | Spawns multiple minions who fight alongside the player | Magical |
 | Teleport     | Teleports the caster | Magical |
+
+## Credits
+* Kenney (some assets): https://kenney.nl/
