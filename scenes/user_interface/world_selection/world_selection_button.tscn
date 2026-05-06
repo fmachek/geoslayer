@@ -69,6 +69,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_s03fu")
+expand_mode = 2
 
 [node name="HighlightPanel" type="Panel" parent="." unique_id=610687095]
 visible = false

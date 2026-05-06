@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://db5pth6l5jday" path="res://assets/user_interface/textures/background_tile.png" id="2_cehwu"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_d8fo5"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_2xkh7"]
+[ext_resource type="Texture2D" uid="uid://cvknunjfhq8fx" path="res://assets/user_interface/misc/arrow_up.png" id="3_5u1a8"]
 [ext_resource type="Texture2D" uid="uid://bxd516lq4j480" path="res://assets/user_interface/misc/unlocked.png" id="3_cehwu"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_cehwu"]
+[ext_resource type="Texture2D" uid="uid://bx3ny53bt2m3d" path="res://assets/user_interface/misc/fight_fist.png" id="5_uai83"]
 
 [sub_resource type="Gradient" id="Gradient_cehwu"]
 offsets = PackedFloat32Array(0.17218544, 1)
@@ -74,13 +76,27 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1279370458]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1538903072]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1178024065]
+layout_mode = 2
+texture = ExtResource("3_5u1a8")
+expand_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1279370458]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "Progression"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=827496379]
+layout_mode = 2
+texture = ExtResource("3_5u1a8")
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=314024853]
 custom_minimum_size = Vector2(800, 0)
@@ -95,6 +111,7 @@ layout_mode = 2
 [node name="PlayerLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/LevelContainer" unique_id=857602341]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
@@ -139,12 +156,26 @@ theme_override_constants/separation = 20
 [node name="TextContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer" unique_id=1467979852]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=173739619]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=7304583]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=132569299]
+layout_mode = 2
+texture = ExtResource("5_uai83")
+expand_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=173739619]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 text = "Permanent stats"
 horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=927146079]
+layout_mode = 2
+texture = ExtResource("5_uai83")
+expand_mode = 2
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=1343479519]
 custom_minimum_size = Vector2(280, 0)
