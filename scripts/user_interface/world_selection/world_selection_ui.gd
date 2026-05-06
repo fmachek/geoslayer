@@ -32,6 +32,14 @@ func _ready() -> void:
 	_load_all_worlds()
 
 
+# Input handling from Godot Docs
+# (https://docs.godotengine.org/en/stable/tutorials/inputs/inputevent.html)
+func _unhandled_input(event) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			GameManager.switch_to_menu()
+
+
 ## Selects a new world with a given [param world_number].
 ## If [param play_tween] is [code]true[/code], a visual effect is played.
 func select_new_world(world_number: int, play_tween: bool) -> void:

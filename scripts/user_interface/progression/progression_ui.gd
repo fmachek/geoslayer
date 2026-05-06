@@ -24,6 +24,14 @@ func _ready() -> void:
 	_update_next_world_unlock()
 
 
+# Input handling from Godot Docs
+# (https://docs.godotengine.org/en/stable/tutorials/inputs/inputevent.html)
+func _unhandled_input(event) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			GameManager.switch_to_menu()
+
+
 func _load_level() -> void:
 	var user_level: Level = UserManager.user_level
 	var current_level: int = user_level.current_level
