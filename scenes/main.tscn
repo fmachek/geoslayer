@@ -28,6 +28,16 @@ font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
 bg_color = Color(0, 0, 0, 0.32941177)
 
@@ -140,6 +150,16 @@ theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
 theme_override_styles/focus = ExtResource("12_jscy8")
 text = "Start next wave"
 script = ExtResource("3_tipki")
+
+[node name="HighlightPanel" type="Panel" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/StartWaveButton" unique_id=1296092197]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jscy8")
 
 [node name="WinGameButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=328132651]
 visible = false
