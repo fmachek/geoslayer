@@ -4,12 +4,18 @@ extends Control
 
 ## Emitted when the "Enter world" button is pressed.
 signal enter_world_pressed(world_number: int)
+## Emitted when [member selected_world_number] changes.
+signal selected_world_number_changed(new_number: int)
 
 const _BUTTON_SCENE := preload(
 		"res://scenes/user_interface/world_selection/world_selection_button.tscn")
 
 ## The world number currently selected.
-var selected_world_number: int = -1
+var selected_world_number: int = -1:
+	set(value):
+		selected_world_number = value
+		selected_world_number_changed.emit(value)
+
 var _world_number_label_tween: Tween
 
 @onready var _world_button_container: HFlowContainer = %WorldButtonContainer
@@ -53,6 +59,8 @@ func _load_world(world_number: int) -> void:
 	var button: WorldSelectionButton = _BUTTON_SCENE.instantiate()
 	button.change_world_number(world_number)
 	button.pressed.connect(select_new_world.bind(world_number, true))
+	selected_world_number_changed.connect(button.check_new_number)
+	button.call_deferred("check_new_number", selected_world_number)
 	_world_button_container.add_child(button)
 
 

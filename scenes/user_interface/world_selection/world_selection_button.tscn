@@ -12,6 +12,16 @@ bg_color = Color(0, 0, 0, 0.5)
 corner_radius_top_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s03fu"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
+
 [node name="WorldSelectionButton" type="Button" unique_id=215859266]
 custom_minimum_size = Vector2(100, 100)
 mouse_default_cursor_shape = 2
@@ -59,3 +69,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_s03fu")
+
+[node name="HighlightPanel" type="Panel" parent="." unique_id=610687095]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s03fu")

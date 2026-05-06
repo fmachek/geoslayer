@@ -8,6 +8,7 @@ extends Button
 @export var world_number: int
 
 @onready var _locked_indicator: Control = $LockedIndicator
+@onready var _highlight_panel: Panel = $HighlightPanel
 
 
 func _ready() -> void:
@@ -41,3 +42,20 @@ func set_to_unlocked() -> void:
 	disabled = false
 	tooltip_text = ""
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+
+## Checks if [param new_world_number] matches [member world_number].
+## If it does, the button is highlighted, otherwise the highlight is hidden.
+func check_new_number(new_world_number: int) -> void:
+	if new_world_number == world_number:
+		_turn_highlight_on()
+	else:
+		_turn_highlight_off()
+
+
+func _turn_highlight_on() -> void:
+	_highlight_panel.show()
+
+
+func _turn_highlight_off() -> void:
+	_highlight_panel.hide()
