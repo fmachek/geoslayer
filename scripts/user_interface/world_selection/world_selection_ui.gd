@@ -28,7 +28,7 @@ func _ready() -> void:
 	_enter_world_button.pressed.connect(_on_enter_world_button_pressed)
 	_menu_button.pressed.connect(GameManager.switch_to_menu)
 	enter_world_pressed.connect(GameManager.select_world)
-	select_new_world(1, false)
+	_update_from_config()
 	_load_all_worlds()
 
 
@@ -41,6 +41,14 @@ func select_new_world(world_number: int, play_tween: bool) -> void:
 	_selected_world_panel.get_node("WorldNumberLabel").text = str(world_number)
 	if play_tween:
 		_play_world_number_label_tween()
+
+
+func _update_from_config() -> void:
+	var chosen_world_cfg: int = ConfigManager.chosen_world
+	if chosen_world_cfg != null:
+		select_new_world(chosen_world_cfg, false)
+	else:
+		select_new_world(1, false)
 
 
 func _load_all_worlds() -> void:
@@ -66,6 +74,7 @@ func _load_world(world_number: int) -> void:
 
 func _on_enter_world_button_pressed() -> void:
 	enter_world_pressed.emit(selected_world_number)
+	ConfigManager.update_chosen_world(selected_world_number)
 
 
 func _play_world_number_label_tween():
