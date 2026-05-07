@@ -16,6 +16,8 @@ signal ability2_changed(new_ability: Ability)
 signal new_ability_unlocked(ability: Ability)
 ## Emitted when [member perk_points_available] changes.
 signal perk_points_available_changed(new_amount: int)
+## Emitted when the player gains new perk points.
+signal gained_perk_points(amount: int)
 #endregion
 
 #region variables
@@ -29,8 +31,11 @@ var unlocked_abilities: Array[Ability] = []
 var perk_points_available: int = 5:
 	set(value):
 		if value >= 0:
+			var old_value: int = perk_points_available
 			perk_points_available = value
 			perk_points_available_changed.emit(value)
+			if old_value < value:
+				gained_perk_points.emit(value - old_value)
 ## Amount of perk points the player gains with every level up.
 var perk_points_per_level: int = 5
 #endregion
