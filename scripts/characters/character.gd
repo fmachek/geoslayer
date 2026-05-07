@@ -107,7 +107,7 @@ func _ready() -> void:
 	draw_color_changed.connect(queue_redraw)
 	outline_color_changed.connect(queue_redraw)
 	
-	update_stats (level.current_level) # Update stats on spawn
+	update_stats(level.current_level) # Update stats on spawn
 	_fill_health() # Spawn with max health
 	generate_drop_pool()
 	
@@ -364,7 +364,7 @@ func _on_level_changed(new_level: int) -> void:
 func update_stats(current_level: int) -> void:
 	var new_health: int = ceil(float(base_health) * pow(1.25, current_level - 1))
 	health.max_value = new_health
-	var new_damage: int = ceil(float(base_damage) * pow(1.2, current_level - 1))
+	var new_damage: int = ceil(float(base_damage) * pow(1.15, current_level - 1))
 	damage.max_value = new_damage
 
 
