@@ -376,3 +376,6 @@ offset_right = 0.0
 [connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_hidden"]
 [connection signal="pressed_increase" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_pressed_increase"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_open_button_pressed"]
+[connection signal="hidden" from="CanvasLayer/PauseInterface" to="CanvasLayer/UserInterface" method="_on_pause_interface_hidden"]
+[connection signal="showed" from="CanvasLayer/PauseInterface" to="CanvasLayer/UserInterface" method="_on_pause_interface_showed"]
+[connection signal="visibility_changed" from="CanvasLayer/PauseInterface" to="CanvasLayer/UserInterface" method="_on_pause_interface_visibility_changed"]
