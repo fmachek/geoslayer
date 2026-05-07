@@ -28,7 +28,7 @@ var world_required_levels: Dictionary[int, int] = {
 }
 ## Array of numbers of worlds which are hidden (they aren't loaded
 ## in the world selection UI).
-var hidden_worlds: Array[int] = [2]
+var hidden_worlds: Array[int] = []
 
 var _world_path: String = "res://scenes/worlds/world_%d.tscn"
 
