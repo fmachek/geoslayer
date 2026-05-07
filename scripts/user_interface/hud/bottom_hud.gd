@@ -1,8 +1,8 @@
 class_name BottomHUD
 extends MarginContainer
 
-@onready var stats_tab: StatsTab = $StatsTab
-@onready var stats_tab_open_button: Button = $StatsTabOpenButton
+@onready var stats_tab: StatsTab = %StatsTab
+@onready var stats_tab_open_button: Button = %StatsTabOpenButton
 
 
 func _on_stats_tab_open_button_pressed() -> void:

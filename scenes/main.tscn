@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://yyko5br814tu" path="res://scenes/user_interface/large_tab_container/abilities_tab/abilities_tab.tscn" id="14_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://b1qcqh81a03yg" path="res://scenes/user_interface/death_ui/death_user_interface.tscn" id="15_jbj1t"]
 [ext_resource type="Script" uid="uid://3fxl4uoqbqr0" path="res://scripts/user_interface/large_tab_container/large_tab_container.gd" id="15_jscy8"]
+[ext_resource type="Texture2D" uid="uid://bvjdd5vlwtb4h" path="res://assets/user_interface/misc/arrow_down.png" id="15_pm3ni"]
+[ext_resource type="Script" uid="uid://b1fmi2gqvgupb" path="res://scripts/user_interface/hud/stats_tab/stat_point_reminder.gd" id="15_y6deb"]
 [ext_resource type="Script" uid="uid://3ne1dmv1jst4" path="res://scripts/user_interface/hud/wave_info/next_wave_label.gd" id="16_0ld40"]
 [ext_resource type="Script" uid="uid://bg7c0avopq04p" path="res://scripts/user_interface/hud/wave_info/current_wave_label.gd" id="16_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_ui/pause_interface.tscn" id="16_jbj1t"]
@@ -220,8 +222,58 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jkv2x")
 step = 1.0
 value = 50.0
 
-[node name="StatsTab" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=764354913 instance=ExtResource("8_jkv2x")]
+[node name="StatsTabContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1303122785]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Reminder" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer" unique_id=1777683397]
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("15_y6deb")
+
+[node name="Arrow" type="TextureRect" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" unique_id=587078010]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_pm3ni")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" unique_id=1011356760]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "You have unspent stat points!"
+autowrap_mode = 2
+
+[node name="StatsTab" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer" unique_id=764354913 instance=ExtResource("8_jkv2x")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatsTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer" unique_id=1551702910]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_styles/normal = ExtResource("10_gqmmt")
+theme_override_styles/normal_mirrored = ExtResource("10_gqmmt")
+theme_override_styles/pressed = ExtResource("11_yc10j")
+theme_override_styles/pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/hover = ExtResource("12_jscy8")
+theme_override_styles/hover_mirrored = ExtResource("12_jscy8")
+theme_override_styles/hover_pressed = ExtResource("11_yc10j")
+theme_override_styles/hover_pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/disabled = ExtResource("13_pm3ni")
+theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
+theme_override_styles/focus = ExtResource("12_jscy8")
+text = "Show stats"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1920361094]
 layout_mode = 2
@@ -269,27 +321,6 @@ theme_override_styles/disabled = ExtResource("13_pm3ni")
 theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
 theme_override_styles/focus = ExtResource("12_jscy8")
 text = "Enemies"
-
-[node name="StatsTabOpenButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1551702910]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 8
-theme_override_styles/normal = ExtResource("10_gqmmt")
-theme_override_styles/normal_mirrored = ExtResource("10_gqmmt")
-theme_override_styles/pressed = ExtResource("11_yc10j")
-theme_override_styles/pressed_mirrored = ExtResource("11_yc10j")
-theme_override_styles/hover = ExtResource("12_jscy8")
-theme_override_styles/hover_mirrored = ExtResource("12_jscy8")
-theme_override_styles/hover_pressed = ExtResource("11_yc10j")
-theme_override_styles/hover_pressed_mirrored = ExtResource("11_yc10j")
-theme_override_styles/disabled = ExtResource("13_pm3ni")
-theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
-theme_override_styles/focus = ExtResource("12_jscy8")
-text = "Show stats"
 
 [node name="LargeTabContainer" type="MarginContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=879558325]
 custom_minimum_size = Vector2(300, 400)
@@ -341,5 +372,7 @@ offset_left = 0.0
 offset_right = 0.0
 
 [connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
-[connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_hidden"]
-[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_open_button_pressed"]
+[connection signal="gained_stat_points" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_gained_stat_points"]
+[connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_hidden"]
+[connection signal="pressed_increase" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_pressed_increase"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_open_button_pressed"]
