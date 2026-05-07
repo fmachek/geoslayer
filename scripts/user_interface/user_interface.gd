@@ -64,11 +64,3 @@ func _boss_defeated_label_fade_out() -> void:
 			_boss_defeated_label, "modulate:a", 0, 0.5
 	)
 	_label_opacity_tween.tween_callback(_boss_defeated_label.hide)
-
-
-func _on_pause_interface_hidden() -> void:
-	show()
-
-
-func _on_pause_interface_showed() -> void:
-	hide()

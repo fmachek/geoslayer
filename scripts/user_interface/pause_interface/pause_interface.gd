@@ -2,9 +2,6 @@ class_name PauseInterface
 extends Control
 ## Represents an UI overlay which shows up when the game is paused.
 
-## Emitted when shown through [method _on_paused_game].
-signal showed()
-
 
 func _ready() -> void:
 	GameManager.paused_game.connect(_on_paused_game)
@@ -19,7 +16,6 @@ func _ready() -> void:
 
 func _on_paused_game():
 	show()
-	showed.emit()
 
 
 func _on_resumed_game():
