@@ -4,7 +4,7 @@ extends Character
 ##
 ## It can drop many XP orbs, temporary buffs and always drops
 ## a [HealingOrb] which heals the player to maximum health. It also drops
-## exactly one random [Ability].
+## one random [AbilityPickup].
 ##
 ## This class uses [member drop_pool] which is inherited from [Character],
 ## but it also uses a separate [member ability_drop_pool] which ensures
@@ -15,6 +15,7 @@ static var ability_drop_pool: Array[Drop] = []
 
 ## Amount of loops when dropping [XPOrb]s.
 var xp_amount: int = 1
+@onready var _col_shape: CollisionShape2D = get_node("CollisionShape2D")
 
 
 ## Clears [member ability_drop_pool].
@@ -27,21 +28,22 @@ func _ready() -> void:
 	# Ensures that an ability is dropped on death
 	died.connect(drop_ability)
 	is_immune_to_stun = true
+	$InfoLabel.label_settings.font_color = draw_color
 	if ability_drop_pool.is_empty():
 		generate_ability_drop_pool()
 
 
 # Draws a simple chest shape.
 func _draw():
-	var shape = $CollisionShape2D.shape
+	var shape = _col_shape.shape
 	var width: float = shape.size.x
 	var height: float = shape.size.y
-	var line_width: float = 4.0
+	var line_width: float = 6.0
 	var rect := Rect2(-width / 2, -height / 2, width, height)
 	draw_rect(rect, draw_color)
 	draw_rect(rect, outline_color, false, line_width)
 	draw_line(Vector2(-width / 2, -4), Vector2(width / 2, -4), outline_color, line_width)
-	draw_circle(Vector2(0, -4), 6, outline_color, true)
+	draw_circle(Vector2(0, -4), 8, outline_color, true)
 
 
 ## Generates the drop pool. By default, a [Chest] can drop temporary buffs,
