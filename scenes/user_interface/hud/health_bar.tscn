@@ -10,7 +10,7 @@ bg_color = Color(0, 1, 0, 0.38431373)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sk73o"]
 font_size = 12
-outline_size = 8
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="HealthBar" type="ProgressBar" unique_id=385742775]
