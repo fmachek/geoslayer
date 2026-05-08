@@ -24,7 +24,7 @@ func _draw():
 	var turret_draw_color: Color = parent.draw_color
 	var turret_outline_color: Color = parent.outline_color
 	draw_rect(rect, turret_draw_color)
-	draw_rect(rect, turret_outline_color, false, 4)
+	draw_rect(rect, turret_outline_color, false, 6)
 
 
 ## Plays the recoil visual effect.

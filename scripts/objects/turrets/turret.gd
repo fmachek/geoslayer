@@ -54,7 +54,7 @@ func _draw() -> void:
 	var height: float = shape.size.y
 	var rect := Rect2(-width / 2, -height / 2, width, height)
 	draw_rect(rect, draw_color)
-	draw_rect(rect, outline_color, false, 4)
+	draw_rect(rect, outline_color, false, 6)
 
 
 ## Becomes unable to start shooting.
