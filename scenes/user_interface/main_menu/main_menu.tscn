@@ -183,7 +183,6 @@ text = "Exit"
 alignment = 0
 
 [node name="SaveInfoContainer" parent="." unique_id=921888963 instance=ExtResource("7_01m43")]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_top = 0.0

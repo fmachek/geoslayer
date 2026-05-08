@@ -3,8 +3,8 @@ extends MarginContainer
 ## Represents an UI element which informs the player about the
 ## outcome of player saving.
 ##
-## [member UserManager.was_load_successful] is checked on ready and
-## a label says whether the save was successful or not. The [SaveInfoContainer]
+## [member UserManager.load_status] is checked on ready and
+## a label displays information about it. The [SaveInfoContainer]
 ## slides in, stays for a bit, and slides back out.[br][br]
 ##
 ## However, the [SaveInfoContainer] only does this for the first instance that
@@ -28,11 +28,14 @@ func _ready() -> void:
 		return
 	was_shown = true
 	
-	_origin = global_position
-	var loaded: bool = UserManager.was_load_successful
-	if loaded:
+	var load_status: UserManager.LoadStatus = UserManager.load_status
+	if load_status == UserManager.LoadStatus.NOT_FOUND:
+		_handle_save_not_found()
+	elif load_status == UserManager.LoadStatus.SUCCESS:
 		_handle_save_success()
-	else:
+	elif load_status == UserManager.LoadStatus.INCOMPLETE:
+		_handle_save_incomplete()
+	elif load_status == UserManager.LoadStatus.FAIL:
 		_handle_save_failure()
 
 
@@ -58,15 +61,28 @@ func _slide(target_pos: Vector2) -> void:
 
 
 func _handle_save_success() -> void:
-	_handle_save("Player loaded successfully.")
+	_handle_save("Player data loaded successfully.")
 
 
 func _handle_save_failure() -> void:
-	_handle_save("Failed to load player.")
+	_handle_save("Failed to load player data.")
+
+
+func _handle_save_not_found() -> void:
+	_handle_save("Player save not found. Creating new save.")
+
+
+func _handle_save_incomplete() -> void:
+	_handle_save("Player save was incomplete.")
 
 
 func _handle_save(message: String) -> void:
 	_label.text = message
 	show()
+	call_deferred("_trigger_slide")
+
+
+func _trigger_slide() -> void:
+	_origin = global_position
 	slide_in()
 	get_tree().create_timer(_stay_time).timeout.connect(slide_out)

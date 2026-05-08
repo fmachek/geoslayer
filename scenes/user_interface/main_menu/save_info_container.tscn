@@ -4,15 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dktmr2bfufa2i" path="res://assets/user_interface/misc/save.png" id="2_s5giu"]
 
 [node name="SaveInfoContainer" type="MarginContainer" unique_id=921888963]
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -300.0
+offset_bottom = 90.0
 grow_horizontal = 0
-grow_vertical = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20

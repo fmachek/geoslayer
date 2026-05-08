@@ -7,6 +7,13 @@ extends Node
 ## Emitted when [member user_stat_points] changes.
 signal user_stat_points_changed(new_points: int)
 
+enum LoadStatus {
+	NOT_FOUND,
+	SUCCESS,
+	INCOMPLETE,
+	FAIL
+}
+
 ## The file path at which the user config is saved.
 const CONFIG_PATH := "user://user.cfg"
 ## Amount of stat points given to the user on every level up.
@@ -24,7 +31,7 @@ var user_stat_points: int:
 ## Array of permanent stat upgrades.
 var user_stats: Array[UserStat] = []
 ## Says whether the user load was successful or not.
-var was_load_successful: bool = false
+var load_status: LoadStatus = LoadStatus.NOT_FOUND
 
 
 func _ready() -> void:
@@ -41,6 +48,7 @@ func load_user() -> void:
 	
 	var err = config.load(CONFIG_PATH)
 	if err != OK:
+		load_status = LoadStatus.NOT_FOUND
 		print("Config not found, creating new user.")
 		create_new_user()
 		return
@@ -95,11 +103,14 @@ func load_user() -> void:
 		print("User stats: health (%d), damage (%d), speed (%d)" % [health, damage, speed])
 		_load_user_level(level, current_xp, required_xp)
 		_load_stats(health, armor, damage, speed)
-		was_load_successful = true
 		
 		if is_load_incomplete:
+			load_status = LoadStatus.INCOMPLETE
 			save_user()
+		else:
+			load_status = LoadStatus.SUCCESS
 	else:
+		load_status = LoadStatus.FAIL
 		create_new_user()
 
 
