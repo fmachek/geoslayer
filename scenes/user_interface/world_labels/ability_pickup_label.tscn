@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://6t6b3gyovkon" path="res://scripts/user_interface/world_labels/ability_pickup_label.gd" id="1_ks0at"]
 
 [node name="AbilityPickupLabel" type="Label" unique_id=220541199]
-z_index = 3
+z_index = 14
 z_as_relative = false
 anchors_preset = -1
 anchor_left = 0.078

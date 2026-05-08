@@ -9,7 +9,7 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="DamageLabel" type="Label" unique_id=343786946]
-z_index = 2
+z_index = 14
 text = "10"
 label_settings = SubResource("LabelSettings_7khib")
 script = ExtResource("1_15yql")

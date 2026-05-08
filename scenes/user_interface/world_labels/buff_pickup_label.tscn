@@ -7,7 +7,7 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BuffPickupLabel" type="Label" unique_id=343786946]
-z_index = 2
+z_index = 14
 text = "+10 Max HP for 5 seconds!"
 label_settings = SubResource("LabelSettings_tvc37")
 script = ExtResource("1_tvc37")

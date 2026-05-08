@@ -13,7 +13,7 @@ size = Vector2(28, 28)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Turret" type="Node2D" unique_id=1882429743]
-z_index = 1
+z_index = 2
 script = ExtResource("1_qhbyq")
 draw_color = Color(0.6117647, 0.09803922, 0.09803922, 1)
 outline_color = Color(0.3752164, 0.043487653, 0.04358112, 1)

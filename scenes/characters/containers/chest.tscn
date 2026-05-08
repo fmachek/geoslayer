@@ -14,6 +14,7 @@ outline_color = Color(0, 0, 0, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Chest" unique_id=1080282355 instance=ExtResource("1_bik2x")]
+z_index = 5
 collision_layer = 1026
 script = ExtResource("2_j56lw")
 draw_color = Color(0.87615037, 0.7196684, 7.70092e-07, 1)
@@ -23,6 +24,7 @@ outline_color = Color(0.6552603, 0.53839445, 0, 1)
 shape = SubResource("RectangleShape2D_bik2x")
 
 [node name="HealthBar" parent="." index="3" unique_id=385742775]
+z_index = 14
 offset_left = -39.0
 offset_top = 43.0
 offset_right = 39.0
@@ -30,6 +32,8 @@ offset_bottom = 63.0
 
 [node name="InfoLabel" type="Label" parent="." index="4" unique_id=543637955]
 visible = false
+z_index = 13
+z_as_relative = false
 offset_left = -80.0
 offset_top = -68.0
 offset_right = 80.0

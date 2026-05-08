@@ -15,7 +15,7 @@ offsets = PackedFloat32Array(0, 0.5183246, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Character" type="CharacterBody2D" unique_id=1080282355]
-z_index = 1
+z_index = 10
 collision_layer = 2
 script = ExtResource("1_2qjml")
 
@@ -60,7 +60,7 @@ metadata/_custom_type_script = "uid://bawkqpf2atlge"
 
 [node name="HealthBar" parent="." unique_id=385742775 instance=ExtResource("3_ma1fs")]
 visible = false
-z_index = 2
+z_index = 15
 z_as_relative = false
 offset_left = -30.0
 offset_top = 39.0

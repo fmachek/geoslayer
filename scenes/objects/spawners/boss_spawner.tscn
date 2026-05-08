@@ -18,7 +18,8 @@ shape = SubResource("CircleShape2D_w0vom")
 
 [node name="InfoLabel" type="Label" parent="." index="2" unique_id=1054536755]
 modulate = Color(1, 1, 1, 0)
-z_index = 2
+z_index = 14
+z_as_relative = false
 offset_left = -95.0
 offset_top = 48.0
 offset_right = 95.0

@@ -15,7 +15,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="SpawnParticles" type="CPUParticles2D" unique_id=432015199]
-z_index = 2
+z_index = 11
 amount = 10
 lifetime = 0.5
 emission_shape = 1
