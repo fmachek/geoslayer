@@ -5,3 +5,9 @@
 
 [node name="StormZone" unique_id=391910855 instance=ExtResource("1_01oop")]
 script = ExtResource("2_1kd3h")
+
+[node name="RingParticles" parent="." index="1" unique_id=203274882]
+color = Color(1, 1, 1, 1)
+
+[node name="TickParticles" parent="." index="2" unique_id=939319148]
+color = Color(1, 1, 1, 1)

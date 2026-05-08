@@ -5,5 +5,7 @@
 
 [node name="InstantDamageArea" unique_id=407616811 instance=ExtResource("1_wdl4b")]
 script = ExtResource("2_kwdqp")
+draw_color = Color(1, 1, 1, 0.2509804)
+outline_color = Color(0.74509805, 0.74509805, 0.74509805, 0.2509804)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=1432310576]

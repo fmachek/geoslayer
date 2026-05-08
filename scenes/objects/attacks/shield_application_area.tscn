@@ -11,6 +11,8 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="ShieldApplicationArea" unique_id=407616811 instance=ExtResource("1_ftnt6")]
 script = ExtResource("2_w0g22")
+draw_color = Color(1, 1, 1, 0.25)
+outline_color = Color(0.7457984, 0.7457984, 0.7457984, 0.25)
 fade_time = 1.0
 
 [node name="ShieldParticles" type="CPUParticles2D" parent="." index="1" unique_id=1493531299]

@@ -24,7 +24,6 @@ orbit_velocity_max = 1.25
 scale_amount_min = 15.0
 scale_amount_max = 25.0
 scale_amount_curve = SubResource("Curve_x8goq")
-color = Color(0.66245234, 0.66245234, 0.6624523, 1)
 script = ExtResource("1_01pyd")
 
 [connection signal="finished" from="." to="." method="_on_finished"]
