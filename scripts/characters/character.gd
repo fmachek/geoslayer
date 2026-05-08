@@ -311,11 +311,11 @@ func drop_item(drop: Drop) -> void:
 		var size_x: int = shape.size.x
 		var size_y: int = shape.size.y
 		random_x = randi_range(
-				global_position.x - size_x,
-				global_position.x + size_x)
+				global_position.x - size_x / 2,
+				global_position.x + size_x / 2)
 		random_y = randi_range(
-				global_position.y - size_y,
-				global_position.y + size_y)
+				global_position.y - size_y / 2,
+				global_position.y + size_y / 2)
 	else:
 		return
 	var item = load(drop.item_scene_path).instantiate()
