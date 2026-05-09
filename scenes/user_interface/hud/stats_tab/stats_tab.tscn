@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://6vw25iml7gif" path="res://scripts/user_interface/hud/stats_tab/stats_tab.gd" id="1_76cvo"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_76cvo"]
+font_size = 12
+font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76cvo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up5kp"]
@@ -51,9 +57,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 0
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 12
 text = "Stat Points: 0"
+label_settings = SubResource("LabelSettings_76cvo")
 horizontal_alignment = 1
 
 [node name="StatRowContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2081742495]

@@ -47,6 +47,10 @@ func _on_player_spawned(player: PlayerCharacter) -> void:
 
 func _update_perk_points_label(points: int) -> void:
 	_points_label.text = "Stat Points: %d" % points
+	if points > 0:
+		_points_label.label_settings.font_color = Color("00ff00")
+	else:
+		_points_label.label_settings.font_color = Color("c0c0c0")
 
 
 func _on_close_button_pressed() -> void:

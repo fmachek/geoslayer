@@ -24,6 +24,11 @@ bg_color = Color(0.73333335, 0, 0.73333335, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uai83"]
 bg_color = Color(0, 0, 0, 0.32941177)
 
+[sub_resource type="LabelSettings" id="LabelSettings_uai83"]
+font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="ProgressionUI" type="Control" unique_id=627696896]
 layout_mode = 3
 anchors_preset = 15
@@ -196,7 +201,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
 text = "These are upgrades which are applied to your stats when you enter a world."
 horizontal_alignment = 1
@@ -207,7 +212,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
 text = "You gain 5 stat points every time you level up. Enemies also sometimes drop them."
 horizontal_alignment = 1
@@ -226,6 +231,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 16
 text = "Stat points available:"
+label_settings = SubResource("LabelSettings_uai83")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -269,7 +275,7 @@ alignment = 1
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/UnlockRowContainer/NextWorldUnlock/VBoxContainer" unique_id=1573495438]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
 text = "Next world unlock:"
 

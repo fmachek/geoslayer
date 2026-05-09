@@ -57,6 +57,10 @@ func _load_stat(stat: UserStat) -> void:
 
 func _update_stat_points_label(amount: int) -> void:
 	_stat_points_label.text = "Stat points available: %d" % amount
+	if amount > 0:
+		_stat_points_label.label_settings.font_color = Color("00ff00")
+	else:
+		_stat_points_label.label_settings.font_color = Color("c0c0c0")
 
 
 func _update_next_world_unlock() -> void:
