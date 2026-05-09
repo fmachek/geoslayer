@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dapsd6cf8c83i"]
+
+[ext_resource type="Texture2D" uid="uid://dhwrs5v8cnkdc" path="res://assets/sprites/characters/particles/shield.png" id="1_hmy0u"]
+[ext_resource type="Script" uid="uid://bbx1xnlmrieg1" path="res://scripts/particle_effects/shred/shred_buff_particles.gd" id="1_krly1"]
+[ext_resource type="Texture2D" uid="uid://cvknunjfhq8fx" path="res://assets/user_interface/misc/arrow_up.png" id="3_krly1"]
+
+[sub_resource type="Gradient" id="Gradient_0mveq"]
+offsets = PackedFloat32Array(0, 0.32994923, 0.66497463, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ShredBuffParticles" type="Node2D" unique_id=1798866168]
+script = ExtResource("1_krly1")
+
+[node name="ShieldParticles" type="CPUParticles2D" parent="." unique_id=285611274]
+emitting = false
+amount = 1
+texture = ExtResource("1_hmy0u")
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 48.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+color = Color(1, 1, 1, 0.5)
+color_ramp = SubResource("Gradient_0mveq")
+
+[node name="SpeedParticles" type="CPUParticles2D" parent="." unique_id=983818546]
+emitting = false
+amount = 1
+texture = ExtResource("3_krly1")
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 48.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.15
+scale_amount_max = 0.2
+color = Color(1, 1, 1, 0.5)
+color_ramp = SubResource("Gradient_0mveq")

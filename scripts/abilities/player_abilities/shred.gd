@@ -6,6 +6,9 @@ extends Ability
 
 const _PROJ_SCENE := preload(
 		"res://scenes/objects/projectiles/falloff_projectile.tscn")
+const _BUFF_PARTICLES_SCENE := preload(
+	"res://scenes/particle_effects/shred/shred_buff_particles.tscn"
+)
 
 ## Travel speed of the [FalloffProjectile]s fired when cast.
 var projectile_speed: int = 4
@@ -45,6 +48,7 @@ func _perform_ability() -> void:
 		proj.free_time = projectile_free_time
 		proj.hit_character.connect(_apply_speed_buff.unbind(1))
 		proj.hit_character.connect(_apply_armor_buff.unbind(1))
+		proj.hit_character.connect(_emit_buff_particles.unbind(1))
 	finished_casting.emit()
 
 
@@ -56,3 +60,9 @@ func _apply_speed_buff() -> void:
 func _apply_armor_buff() -> void:
 	var buff := Buff.new(armor_buff, armor_buff_duration)
 	buff.apply_to_stat(character.armor)
+
+
+func _emit_buff_particles() -> void:
+	var particles: ShredBuffParticles = _BUFF_PARTICLES_SCENE.instantiate()
+	character.add_child(particles)
+	particles.global_position = character.global_position
