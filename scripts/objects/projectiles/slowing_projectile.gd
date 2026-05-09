@@ -5,7 +5,7 @@ extends Projectile
 
 ## Amount by which the speed of the [Character] who gets
 ## hit is reduced.
-var speed_debuff: int = 100
+var speed_debuff: int = 30
 ## Duration for which the speed of the [Character] who gets
 ## hit is reduced.
 var speed_debuff_duration: float = 0.75

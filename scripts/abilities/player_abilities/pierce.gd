@@ -22,7 +22,7 @@ var aim_time: float = 0.5
 ## Timer used to time the aiming.
 var aim_timer: Timer
 ## Amount by which the caster's speed is debuffed on ability cast.
-var aim_speed_debuff: int = 250
+var aim_speed_debuff: int = 50
 
 
 func _init() -> void:

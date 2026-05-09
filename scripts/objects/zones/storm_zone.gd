@@ -3,7 +3,7 @@ extends DamagingZone
 ## Represents a zone which damages and slows [Character]s standing in it down.
 
 ## Speed debuff applied to the [Character] hit.
-var speed_debuff: int = 100
+var speed_debuff: int = 30
 ## Duration of the speed debuff applied to the [Character] hit, in seconds.
 var speed_debuff_duration: float
 

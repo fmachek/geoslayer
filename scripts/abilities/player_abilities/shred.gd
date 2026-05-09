@@ -24,7 +24,7 @@ var projectile_amount: int = 4
 ## Angle of the cone spread in radians.
 var spread_angle: float = deg_to_rad(20)
 ## Speed buff amount applied to [member character].
-var speed_buff: int = 30
+var speed_buff: int = 10
 ## Duration of speed buff applied to [member character].
 var speed_buff_duration: float = 1.0
 ## Armor buff amount applied to [member character].

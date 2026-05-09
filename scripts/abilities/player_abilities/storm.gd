@@ -17,7 +17,7 @@ var zone_base_damage: int = 15
 ## Used to set [member StormZone.radius].
 var zone_radius: int = 250
 ## Amount by which the caster's speed is decreased when casting.
-var speed_debuff_amount: int = 200
+var speed_debuff_amount: int = 50
 
 # Position where the StormZone is being spawned.
 var _zone_pos: Vector2

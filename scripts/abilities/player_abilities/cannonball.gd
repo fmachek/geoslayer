@@ -16,7 +16,7 @@ var projectile_radius: int = 20
 var projectile_knockback: float = 1500.0
 
 ## The amount by which the caster's speed is debuffed on cast.
-var speed_debuff: int = 100
+var speed_debuff: int = 30
 ## The duration of the speed debuff on cast in seconds.
 var speed_debuff_duration: float = 0.5
 
