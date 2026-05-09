@@ -51,6 +51,7 @@ folder_colors={
 [gui]
 
 timers/tooltip_delay_sec=0.25
+theme/custom_font="uid://de86cf3q2w0rt"
 
 [input]
 
