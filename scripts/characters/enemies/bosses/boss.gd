@@ -31,6 +31,28 @@ func _ready() -> void:
 	_start_phase_1()
 
 
+func _draw() -> void:
+	_draw_spikes()
+	super()
+
+
+func _draw_spikes() -> void:
+	var spike_amount: int = 10
+	for i in range(spike_amount):
+		var rot: float = (TAU / spike_amount) * i
+		
+		var radius: float = get_node("CollisionShape2D").shape.radius
+		var poly_center := Vector2(radius - 5.0, 0).rotated(rot)
+		var top := poly_center + (Vector2(20, 0).rotated(rot))
+		var left := poly_center + Vector2.from_angle(rot + deg_to_rad(-90)) * 20
+		var right := poly_center + Vector2.from_angle(rot + deg_to_rad(90)) * 20
+		var points := [left, top, right]
+		
+		draw_colored_polygon(points, draw_color)
+		points.append(left)
+		draw_polyline(points, outline_color, 4)
+
+
 func _switch_phase(new_phase: int) -> void:
 	if _current_phase != new_phase and new_phase > _current_phase:
 		_current_phase = new_phase
