@@ -16,6 +16,13 @@ extends Boss
 ## by the player nor are they used by other characters.
 
 
+func generate_drop_pool() -> void:
+	drop_pool.append(Drop.new(
+			"res://scenes/objects/stat_point_drops/stat_point_drop.tscn", 100))
+	drop_pool.append(Drop.new(
+			"res://scenes/objects/stat_point_drops/stat_point_drop.tscn", 25))
+
+
 func _load_abilities() -> void:
 	var storm := Storm.new()
 	storm.zone_radius = 350
