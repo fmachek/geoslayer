@@ -18,7 +18,7 @@ config/custom_user_dir_name="Geoslayer"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="uid://cb0ny7skf011h"
+config/icon="uid://bxv58y5fxhxyu"
 
 [autoload]
 
