@@ -2,9 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://4x1o35rrk4rx" path="res://scenes/characters/character.tscn" id="1_03y0k"]
 [ext_resource type="Script" uid="uid://d3onm2ar6sf51" path="res://scripts/characters/enemies/bosses/boss_1/healing_station.gd" id="2_opmd2"]
+[ext_resource type="Texture2D" uid="uid://b68xd0f5nfff2" path="res://assets/user_interface/misc/plus_sign.png" id="3_opmd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vuhn8"]
 size = Vector2(48, 48)
+
+[sub_resource type="Gradient" id="Gradient_ukrg5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="HealingStation" unique_id=1080282355 instance=ExtResource("1_03y0k")]
 collision_layer = 138
@@ -24,5 +28,20 @@ default_color = Color(0, 0.7623703, 0, 1)
 
 [node name="HealTickTimer" type="Timer" parent="." index="7" unique_id=541012116]
 wait_time = 0.25
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="9" unique_id=1905794633]
+texture_filter = 1
+amount = 6
+texture = ExtResource("3_opmd2")
+emission_shape = 3
+emission_rect_extents = Vector2(25, 25)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+scale_amount_max = 1.5
+color = Color(0, 0.7607843, 0, 1)
+color_ramp = SubResource("Gradient_ukrg5")
 
 [connection signal="timeout" from="HealTickTimer" to="." method="_on_heal_tick_timer_timeout"]
