@@ -20,7 +20,7 @@ theme_override_constants/outline_size = 8
 text = "Damage"
 
 [node name="StatValueContainer" type="MarginContainer" parent="." unique_id=663191942]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 
 [node name="StatValueLabel" type="Label" parent="StatValueContainer" unique_id=1397334825]

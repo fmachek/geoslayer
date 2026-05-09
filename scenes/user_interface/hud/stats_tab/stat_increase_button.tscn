@@ -22,7 +22,7 @@ theme_override_styles/disabled_mirrored = ExtResource("4_utcp2")
 theme_override_styles/focus = ExtResource("3_c6xsg")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1397322242]
-texture_filter = 1
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

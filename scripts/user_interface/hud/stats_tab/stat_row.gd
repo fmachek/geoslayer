@@ -24,7 +24,7 @@ func _ready() -> void:
 	pressed_stat_increase.connect(PlayerManager.apply_perk_point)
 	pressed_stat_stack_increase.connect(PlayerManager.apply_perk_point_stack)
 	PlayerManager.perk_points_changed.connect(check_perk_points)
-	_stack_increase_button.get_node("HBoxContainer/AmountLabel").text = str(stack_increase)
+	_stack_increase_button.get_node("AmountLabel").text = str(stack_increase)
 
 
 ## Loads a given [param new_stat].
