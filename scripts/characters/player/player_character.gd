@@ -196,7 +196,7 @@ func get_input() -> void:
 	if is_stunned:
 		return
 	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
-	velocity += input_direction * speed.max_value_after_buffs
+	velocity += input_direction * 300 * float(speed.max_value_after_buffs) / 100
 
 
 ## Picks up an [XPOrb], increasing [member level.current_xp].

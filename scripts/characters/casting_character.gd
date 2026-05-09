@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		
 		# Set the velocity in the navigation agent so it can calculate
 		# the safe velocity
-		nav_agent.set_velocity(direction * speed.max_value_after_buffs)
+		nav_agent.set_velocity(direction * 300 * float(speed.max_value_after_buffs) / 100)
 	elif _knockback != Vector2.ZERO:
 		move_and_slide()
 
