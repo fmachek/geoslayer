@@ -42,3 +42,4 @@ Earlier worlds have a more limited drop pool of abilities. For example, World 1 
 
 ## Credits
 * Kenney (some assets): https://kenney.nl/
+* Sora (font): https://fonts.google.com/specimen/Sora
