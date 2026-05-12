@@ -63,9 +63,9 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, radius, draw_color)
 	var outline_width: float = radius / 24
-	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
+	draw_circle(Vector2.ZERO, radius - outline_width / 2, draw_color, true, -1.0, true)
+	draw_arc(Vector2.ZERO, radius, 0, TAU, radius / 2, outline_color, outline_width, true)
 
 
 # Updates draw colors to match the caster's colors, but they're
