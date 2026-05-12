@@ -34,8 +34,8 @@ var _reg_projectiles_remaining: int
 
 
 func _init() -> void:
-	var description := "Fires a stunning projectile followed by two regular ones."
-	super(3.0, description)
+	var desc := "Fires a stunning projectile followed by two regular ones."
+	super(3.0, desc)
 
 
 func _ready() -> void:

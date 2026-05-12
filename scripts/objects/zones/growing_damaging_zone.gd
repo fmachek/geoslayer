@@ -8,13 +8,15 @@ var final_radius: float
 var _radius_tween: Tween
 
 
+func _init() -> void:
+	is_bound_to_caster = false
+
+
 func _ready() -> void:
 	super()
 	final_radius = radius
 	radius = 0.0
 	should_emit_tick_particles = false
-	if caster.tree_exiting.is_connected(_become_inactive):
-		caster.tree_exiting.disconnect(_become_inactive)
 	_start_growing()
 
 

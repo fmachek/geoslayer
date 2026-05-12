@@ -7,7 +7,6 @@ var _original_arrow_pos: Vector2
 var _arrow_tween: Tween
 
 @onready var _arrow: TextureRect = get_node("Arrow")
-@onready var _label: Label = get_node("Label")
 
 
 func _ready() -> void:

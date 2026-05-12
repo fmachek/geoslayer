@@ -48,8 +48,7 @@ func spawn_chest() -> void:
 	chest.xp_amount = wave_manager.current_wave * 3
 	chest.died.connect(_on_chest_opened.bind(chest))
 	if _unopened_chests.is_empty():
-		add_child(chest)
-		chest.global_position = _chest_spawn_point.global_position
+		_add_chest_to_world(chest)
 	_unopened_chests.append(chest)
 
 
@@ -57,8 +56,12 @@ func _on_chest_opened(chest: Chest) -> void:
 	_unopened_chests.erase(chest)
 	if not _unopened_chests.is_empty(): # Spawn another chest
 		var new_chest: Chest = _unopened_chests[0]
-		add_child(new_chest)
-		new_chest.global_position = _chest_spawn_point.global_position
+		call_deferred("_add_chest_to_world", new_chest)
+
+
+func _add_chest_to_world(chest: Chest) -> void:
+	add_child(chest)
+	chest.global_position = _chest_spawn_point.global_position
 
 
 func _handle_wave_end() -> void:

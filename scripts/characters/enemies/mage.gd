@@ -37,4 +37,7 @@ func spawn_growing_zone():
 	zone.time_per_tick = zone_tick_time
 	zone.life_time = zone_life_time
 	zone.global_position = global_position
-	get_parent().add_child(zone)
+	
+	var parent = get_parent()
+	if is_instance_valid(parent):
+		parent.call_deferred("add_child", zone)

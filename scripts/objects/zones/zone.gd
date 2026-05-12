@@ -20,6 +20,9 @@ var life_time: float = 10.0: set = _set_life_time
 var radius: float = 200: set = _set_radius
 ## Says if the tick particles should be emitted.
 var should_emit_tick_particles: bool = true
+## Says if the [Zone] should disappear when the [member caster]
+## exits the tree.
+var is_bound_to_caster: bool = true
 
 # False when the Zone is disappearing.
 var _is_active: bool = true: set = _set_is_active
@@ -122,7 +125,8 @@ func _set_caster(new_caster: Character) -> void:
 	caster = new_caster
 	_load_caster_variables(caster)
 	_load_caster_colors(caster.draw_color, caster.outline_color)
-	caster.tree_exiting.connect(_become_inactive)
+	if is_bound_to_caster:
+		caster.tree_exiting.connect(_become_inactive)
 	caster_changed.emit(caster)
 
 

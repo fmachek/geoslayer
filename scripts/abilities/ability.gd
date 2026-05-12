@@ -114,13 +114,13 @@ func _reset_ability() -> void:
 
 func _connect_interrupt() -> void:
 	character.was_stunned.connect(interrupt)
-	unequipping.connect(_disconnect_interrupt)
+	unequipping.connect(_disconnect_interrupt.unbind(1))
 	finished_casting.connect(_disconnect_interrupt)
 
 
 func _disconnect_interrupt() -> void:
 	character.was_stunned.disconnect(interrupt)
-	unequipping.disconnect(_disconnect_interrupt)
+	unequipping.disconnect(_disconnect_interrupt.unbind(1))
 	finished_casting.disconnect(_disconnect_interrupt)
 
 
