@@ -6,10 +6,11 @@
 [node name="GrowingDamagingZone" unique_id=391910855 instance=ExtResource("1_tuirw")]
 script = ExtResource("2_a8fh4")
 
+[node name="CharacterDetectionArea" parent="." index="0" unique_id=1287240121]
+input_pickable = false
+
 [node name="RingParticles" parent="." index="1" unique_id=203274882]
 emitting = false
-color = Color(1, 1, 1, 1)
 
 [node name="TickParticles" parent="." index="2" unique_id=939319148]
 amount = 1
-color = Color(1, 1, 1, 1)

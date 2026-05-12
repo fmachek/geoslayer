@@ -10,13 +10,13 @@ var _radius_tween: Tween
 
 func _init() -> void:
 	is_bound_to_caster = false
+	should_emit_tick_particles = false
 
 
 func _ready() -> void:
 	super()
 	final_radius = radius
 	radius = 0.0
-	should_emit_tick_particles = false
 	_start_growing()
 
 

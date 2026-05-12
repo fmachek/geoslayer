@@ -17,10 +17,11 @@ func _ready() -> void:
 	super()
 	became_inactive.connect(func(): _damage_tick_timer.stop())
 	caster_changed.connect(_on_caster_changed)
-	_update_tick_timer()
 	CollisionMaskFunctions.set_area_collision_mask(_area, caster)
 	if is_instance_valid(caster):
 		_load_caster_variables(caster)
+	_update_tick_timer()
+	_damage_tick_timer.start()
 
 
 func _handle_body_entered(_body: Node2D) -> void:

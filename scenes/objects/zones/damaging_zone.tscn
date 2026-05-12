@@ -27,6 +27,5 @@ scale_amount_max = 20.0
 color_ramp = SubResource("Gradient_chu66")
 
 [node name="DamageTickTimer" type="Timer" parent="." index="4" unique_id=1096925631]
-autostart = true
 
 [connection signal="timeout" from="DamageTickTimer" to="." method="_on_damage_tick_timer_timeout"]
