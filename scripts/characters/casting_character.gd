@@ -53,6 +53,8 @@ func _ready() -> void:
 	# Attempt to cast when stun ends
 	stun_ended.connect(cast_random_ability)
 	target_changed.connect(_reset_nav_agent.unbind(1))
+	speed.max_value_after_buffs_changed.connect(_update_agent_speed)
+	_update_agent_speed(0, speed.max_value_after_buffs)
 	_load_abilities()
 
 
@@ -153,6 +155,10 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	if safe_velocity != Vector2.ZERO:
 		velocity += safe_velocity
 	move_and_slide()
+
+
+func _update_agent_speed(_old_max: int, new_max: int) -> void:
+	nav_agent.max_speed = new_max * 2
 
 
 func _on_cast_cooldown_timer_timeout() -> void:
