@@ -31,6 +31,7 @@ func _ready() -> void:
 	_health_decay_timer.timeout.connect(_decay_health)
 	level.current_level = spawner.level.current_level
 	update_stats(level.current_level)
+	_update_spawner_damage()
 	health.current_value = health.max_value_after_buffs
 	target_changed.connect(_on_target_changed)
 	queue_redraw()
@@ -51,13 +52,16 @@ func generate_drop_pool() -> void:
 	pass
 
 
-# Overridden function, updates stats to match the level.
-# Causes the Minions to scale with the spawner's level.
 func update_stats(current_level: int) -> void:
 	var new_health: int = base_health + (current_level - 1) * 2
 	health.max_value = new_health
-	var new_damage: int = base_damage + (current_level - 1) * 5
-	damage.max_value = new_damage
+
+
+func _update_spawner_damage() -> void:
+	if not is_instance_valid(spawner):
+		return
+	var spawner_damage: int = spawner.damage.max_value_after_buffs
+	damage.max_value = float(base_damage) * float(spawner_damage) / 100
 
 
 # Finds the closest Enemy or Chest in an array of nodes.

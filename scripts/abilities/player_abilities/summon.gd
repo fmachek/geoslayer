@@ -25,7 +25,7 @@ var minion_amount: int = 5: set = set_minion_amount
 var minion_distance: float = 100.0
 
 var _cast_timer: Timer
-var _cast_time: float = 0.75
+var _cast_time: float = 0.5
 var _minion_spawn_pos: Vector2
 var _speed_debuff: int = 50
 #endregion
