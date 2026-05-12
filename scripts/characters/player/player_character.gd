@@ -121,7 +121,7 @@ func replace_ability1(ability: Ability) -> void:
 			# Ability is already in slot 2 but nothing is in slot 1
 			replace_ability2(null) # unequip slot 2
 	if ability1:
-		abilities.remove_child(ability1)
+		_unequip_ability(ability1)
 	ability1 = ability
 	super.equip_ability(ability1)
 	ability1_changed.emit(ability1)
@@ -142,10 +142,17 @@ func replace_ability2(ability: Ability) -> void:
 			# Ability is already in slot 1 but nothing is in slot 2
 			replace_ability1(null) # unequip slot 1
 	if ability2:
-		abilities.remove_child(ability2)
+		_unequip_ability(ability2)
 	ability2 = ability
 	super.equip_ability(ability2)
 	ability2_changed.emit(ability2)
+
+
+func _unequip_ability(ability: Ability) -> void:
+	ability.casted.disconnect(start_casting)
+	ability.finished_casting.disconnect(finish_casting)
+	ability.unequipping.disconnect(_on_ability_unequipping)
+	abilities.remove_child(ability)
 
 
 ## Swaps abilities in the 2 slots.

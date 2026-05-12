@@ -86,10 +86,10 @@ func _on_character_detection_area_body_entered(body: Node2D) -> void:
 			var distance_to_target: float = global_position.distance_to(target.global_position)
 			if distance_to_body < distance_to_target:
 				target = body
-				cast_random_ability()
+				call_deferred("cast_random_ability")
 		else:
 			target = body
-			cast_random_ability()
+			call_deferred("cast_random_ability")
 
 
 # Detects the target exiting the detection area. Scans
