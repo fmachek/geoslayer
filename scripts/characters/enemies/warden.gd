@@ -4,9 +4,9 @@ extends Enemy
 ## enemies' health and damage.
 
 ## Base damage buff applied to nearby allies.
-var base_damage_buff_amount: int = 5
+var base_damage_buff_amount: int = 15
 ## Base health buff applied to nearby allies.
-var base_health_buff_amount: int = 5
+var base_health_buff_amount: int = 15
 
 @onready var _buff_area: Area2D = $BuffArea
 @onready var _sword_particles: CPUParticles2D = $SwordParticles
@@ -51,11 +51,11 @@ func _buff_nearby_friendly_units() -> void:
 
 
 func _buff_friendly_unit(unit: Enemy) -> void:
-	var damage_buff_amount: int = base_damage_buff_amount * level.current_level
+	var damage_buff_amount: int = float(base_damage_buff_amount) * pow(1.15, level.current_level - 1)
 	var damage_buff := Buff.new(damage_buff_amount, 0) # Never expires
 	damage_buff.apply_to_stat(unit.damage)
 	
-	var health_buff_amount: int = base_health_buff_amount * level.current_level
+	var health_buff_amount: int = float(base_health_buff_amount) * pow(1.25, level.current_level - 1)
 	var health_buff := Buff.new(health_buff_amount, 0) # Never expires
 	health_buff.apply_to_stat(unit.health)
 

@@ -11,5 +11,4 @@ zone_base_damage = 10
 zone_tick_time = 0.1
 draw_color = Color(0.65115297, 0.30963436, 1, 1)
 outline_color = Color(0.5955765, 0.004212596, 0.9855687, 1)
-base_health = 150
-base_damage = 120
+base_health = 120

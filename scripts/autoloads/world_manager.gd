@@ -23,8 +23,7 @@ var current_world: World
 ## Dictionary of user levels required to enter each world.
 var world_required_levels: Dictionary[int, int] = {
 	1: 1,
-	2: 5,
-	3: 10
+	2: 10
 }
 ## Array of numbers of worlds which are hidden (they aren't loaded
 ## in the world selection UI).
