@@ -4,4 +4,6 @@ extends Minion
 
 
 func _load_abilities() -> void:
-	_load_ability(Shoot.new())
+	var shoot := Shoot.new()
+	shoot.projectile_knockback = 0.0
+	_load_ability(shoot)

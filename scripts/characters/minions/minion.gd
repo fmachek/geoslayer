@@ -53,7 +53,7 @@ func generate_drop_pool() -> void:
 
 
 func update_stats(current_level: int) -> void:
-	var new_health: int = base_health + (current_level - 1) * 2
+	var new_health: int = base_health + (current_level - 1) * 5
 	health.max_value = new_health
 
 

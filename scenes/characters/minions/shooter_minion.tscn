@@ -5,5 +5,5 @@
 
 [node name="ShooterMinion" unique_id=1080282355 instance=ExtResource("1_0skty")]
 script = ExtResource("2_m4ip8")
-base_health = 20
-base_damage = 25
+base_health = 40
+base_damage = 50
