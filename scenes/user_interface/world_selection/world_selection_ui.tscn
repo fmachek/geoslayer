@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bar5hckyiodd1" path="res://scripts/user_interface/world_selection/world_selection_ui.gd" id="1_41qj7"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="1_wi1en"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_41qj7"]
-[ext_resource type="Texture2D" uid="uid://db5pth6l5jday" path="res://assets/user_interface/textures/background_tile.png" id="2_t77po"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_t77po"]
 [ext_resource type="StyleBox" uid="uid://c2vtf7qlhecwb" path="res://assets/user_interface/styles/world_selection/selected_world_panel.tres" id="2_xxlyo"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_xxlyo"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_0fdx1"]
@@ -11,6 +11,16 @@
 [sub_resource type="Gradient" id="Gradient_t77po"]
 offsets = PackedFloat32Array(0.17218544, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t77po"]
+bg_color = Color(0, 0, 0, 0.102000006)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 0.18431373)
+corner_radius_top_right = 40
+corner_radius_bottom_left = 40
 
 [node name="WorldSelectionUI" type="Control" unique_id=382332760]
 process_mode = 3
@@ -22,8 +32,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_41qj7")
 
-[node name="BGTextureRect" type="TextureRect" parent="." unique_id=144937535]
-modulate = Color(0.5609549, 0.5609549, 0.5609549, 1)
+[node name="Background" type="Control" parent="." unique_id=1187309616]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=97187877]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=564785755]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.54800004)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +59,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_t77po")
-stretch_mode = 1
 
 [node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1099198104]
 position = Vector2(576, 680)
@@ -151,7 +178,19 @@ theme_override_styles/disabled_mirrored = ExtResource("4_0fdx1")
 theme_override_styles/focus = ExtResource("3_xxlyo")
 text = "Back to main menu"
 
-[node name="WorldButtonContainer" type="HFlowContainer" parent="MarginContainer/HBoxContainer" unique_id=1311542076]
+[node name="RightContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=26449306]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_t77po")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightContainer" unique_id=285962446]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="WorldButtonContainer" type="HFlowContainer" parent="MarginContainer/HBoxContainer/RightContainer/MarginContainer" unique_id=1311542076]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

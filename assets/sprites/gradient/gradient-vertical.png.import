@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db5pth6l5jday"
-path="res://.godot/imported/background_tile.png-2ceb594149d9e4f667bc462ddf7381ad.ctex"
+uid="uid://canoywhq5tpu0"
+path="res://.godot/imported/gradient-vertical.png-f7f171cc99dbd7fd116dd5a50db0349b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/user_interface/textures/background_tile.png"
-dest_files=["res://.godot/imported/background_tile.png-2ceb594149d9e4f667bc462ddf7381ad.ctex"]
+source_file="res://assets/sprites/gradient/gradient-vertical.png"
+dest_files=["res://.godot/imported/gradient-vertical.png-f7f171cc99dbd7fd116dd5a50db0349b.ctex"]
 
 [params]
 

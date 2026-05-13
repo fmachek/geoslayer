@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyt3si31ylbh0" path="res://scripts/user_interface/pause_interface/pause_interface.gd" id="1_1xlts"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_b4b17"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_b6otm"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_clr6w"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_r8txd"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_atr6k"]
@@ -18,14 +19,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xlts")
 
-[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1932923834]
+[node name="Background" type="Control" parent="." unique_id=57177829]
+modulate = Color(0.5529556, 0.55295557, 0.55295557, 0.6)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.627451)
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=491001650]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=1415067613]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.90000004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_b6otm")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1852009637]
 layout_mode = 1

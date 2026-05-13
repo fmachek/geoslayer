@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b6hwmcxgdm50y" path="res://scripts/user_interface/progression/progression_ui.gd" id="1_d8fo5"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="1_xbbu4"]
-[ext_resource type="Texture2D" uid="uid://db5pth6l5jday" path="res://assets/user_interface/textures/background_tile.png" id="2_cehwu"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_d8fo5"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_uai83"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_2xkh7"]
 [ext_resource type="Texture2D" uid="uid://cvknunjfhq8fx" path="res://assets/user_interface/misc/arrow_up.png" id="3_5u1a8"]
 [ext_resource type="Texture2D" uid="uid://bxd516lq4j480" path="res://assets/user_interface/misc/unlocked.png" id="3_cehwu"]
@@ -38,16 +38,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d8fo5")
 
-[node name="BGTextureRect" type="TextureRect" parent="." unique_id=1560633467]
-modulate = Color(0.5609549, 0.5609549, 0.5609549, 1)
+[node name="Background" type="Control" parent="." unique_id=1691018494]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_cehwu")
-stretch_mode = 1
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=1214865388]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=1808135738]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.54800004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uai83")
 
 [node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=523975272]
 position = Vector2(576, 680)
