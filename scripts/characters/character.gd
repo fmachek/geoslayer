@@ -361,10 +361,13 @@ func _on_level_changed(new_level: int) -> void:
 
 
 ## Updates health and damage to scale with the current [Level].
+## The stats also scale with [member World.stat_multiplier].
 func update_stats(current_level: int) -> void:
 	var new_health: int = ceil(float(base_health) * pow(1.25, current_level - 1))
+	new_health *= WorldManager.current_world.stat_multiplier
 	health.max_value = new_health
 	var new_damage: int = ceil(float(base_damage) * pow(1.15, current_level - 1))
+	new_damage *= WorldManager.current_world.stat_multiplier
 	damage.max_value = new_damage
 
 

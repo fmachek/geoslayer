@@ -107,6 +107,10 @@ func equip_ability(ability: Ability) -> void:
 		replace_ability1(ability)
 
 
+func update_stats(current_level: int) -> void:
+	pass
+
+
 ## Replaces [Ability] in slot 1. If the new [Ability] is already in slot 2,
 ## the slots swap their abilities.
 func replace_ability1(ability: Ability) -> void:

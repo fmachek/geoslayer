@@ -15,6 +15,8 @@ extends Node2D
 ## automatically and must be set via the inspector. It is used for
 ## loading information about enemies in the [EnemiesTab].
 @export var enemy_names: Array[String] = []
+## Multiplier used when updating [Character] stats.
+@export var stat_multiplier: float = 1.0
 
 var _player_spawn_pos: Vector2
 var _unopened_chests: Array = []
