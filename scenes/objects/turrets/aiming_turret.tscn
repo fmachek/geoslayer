@@ -5,8 +5,7 @@
 
 [node name="AimingTurret" unique_id=1882429743 instance=ExtResource("1_pwkum")]
 script = ExtResource("2_qmgpc")
-draw_color = Color(0.7890926, 0.16292867, 0.7044494, 1)
-outline_color = Color(0.58505046, 0.06763042, 0.5217187, 1)
+outline_color = Color(0.24313726, 0.24313726, 0.24313726, 1)
 
 [node name="ShootTimer" parent="." index="3" unique_id=1837056880]
 wait_time = 1.0
