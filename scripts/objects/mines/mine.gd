@@ -31,28 +31,34 @@ var stun_duration: float = 0.75
 
 var _can_detect_projectiles: bool = true
 var _alpha_tween: Tween
+var _progress_bar_tween: Tween
 
 @onready var _body_area: Area2D = get_node("BodyArea")
 @onready var _body_area_shape: CollisionShape2D = _body_area.get_node("CollisionShape2D")
 @onready var _char_det_area: Area2D = get_node("CharacterDetectionArea")
 @onready var _char_det_area_shape: CollisionShape2D = _char_det_area.get_node("CollisionShape2D")
 @onready var _explosion_timer: Timer = get_node("ExplosionTimer")
+@onready var _progress_bar: ProgressBar = get_node("ExplosionProgressBar")
 
 
 func _ready() -> void:
 	draw_color_changed.connect(queue_redraw)
+	draw_color_changed.connect(_update_progress_bar_color)
 	outline_color_changed.connect(queue_redraw)
 	body_radius_changed.connect(_update_body_shape)
 	detection_area_radius_changed.connect(_update_detection_area_shape)
+	became_inactive.connect(_progress_bar.hide)
 	
 	_update_body_shape(body_radius)
 	_update_detection_area_shape(detection_area_radius)
 	_update_detection_collision_mask(spawner)
+	_update_progress_bar_color(draw_color)
 	
 	_explosion_timer.wait_time = automatic_explosion_time
 	_explosion_timer.start()
 	
 	_fade_in()
+	_tween_progress_bar()
 
 
 func _draw() -> void:
@@ -260,4 +266,19 @@ func _fade(start_alpha: float, end_alpha: float) -> void:
 	_alpha_tween = create_tween()
 	var fade_time: float = 0.25
 	_alpha_tween.tween_property(self, "self_modulate:a", end_alpha, fade_time)
+
+
+func _tween_progress_bar() -> void:
+	if _progress_bar_tween:
+		_progress_bar_tween.kill()
+	_progress_bar.value = 0.0
+	_progress_bar_tween = create_tween()
+	var max_value: float = _progress_bar.max_value
+	_progress_bar_tween.tween_property(_progress_bar, "value", max_value, automatic_explosion_time)
+	_progress_bar_tween.tween_callback(_progress_bar.hide)
+
+
+func _update_progress_bar_color(new_color: Color) -> void:
+	var stylebox: StyleBoxFlat = _progress_bar.get_theme_stylebox("fill")
+	stylebox.bg_color = new_color
 #endregion

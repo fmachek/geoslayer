@@ -8,6 +8,12 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7mqjr"]
 radius = 32.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqolm"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddl11"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Mine" type="Node2D" unique_id=1288664883]
 script = ExtResource("1_yqolm")
 
@@ -31,6 +37,17 @@ shape = SubResource("CircleShape2D_7mqjr")
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=860015982]
 wait_time = 3.0
+
+[node name="ExplosionProgressBar" type="ProgressBar" parent="." unique_id=1203939691]
+offset_left = -26.0
+offset_top = 30.0
+offset_right = 26.0
+offset_bottom = 41.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_yqolm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ddl11")
+value = 50.0
+show_percentage = false
 
 [connection signal="area_entered" from="BodyArea" to="." method="_on_body_area_entered"]
 [connection signal="body_entered" from="CharacterDetectionArea" to="." method="_on_character_detection_area_body_entered"]
