@@ -3,5 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://db864u6onn44v" path="res://scenes/characters/enemies/bosses/boss.tscn" id="1_piolv"]
 
 [node name="Boss1" unique_id=1080282355 instance=ExtResource("1_piolv")]
+draw_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
+outline_color = Color(0.24313726, 0.24313726, 0.24313726, 1)
 base_health = 1200
 base_damage = 250
+
+[node name="HealthBar" parent="." index="5" unique_id=385742775]
+visible = false
