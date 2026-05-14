@@ -18,6 +18,8 @@ var base_damage: int = 20
 var projectile_radius: int = 6
 ## Time until the [FalloffProjectile] disappears.
 var projectile_free_time: float = 0.25
+## Knockback applied by the [FalloffProjectile]s.
+var projectile_knockback: float = 100.0
 
 ## Amount of [FalloffProjectile]s fired on cast.
 var projectile_amount: int = 4
@@ -46,6 +48,7 @@ func _perform_ability() -> void:
 			character, base_damage, projectile_speed, projectile_radius)
 	for proj in projectiles:
 		proj.free_time = projectile_free_time
+		proj.knockback = projectile_knockback
 		proj.hit_character.connect(_apply_speed_buff.unbind(1))
 		proj.hit_character.connect(_apply_armor_buff.unbind(1))
 		proj.hit_character.connect(_emit_buff_particles.unbind(1))
