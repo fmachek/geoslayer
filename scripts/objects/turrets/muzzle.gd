@@ -24,7 +24,15 @@ func _draw():
 	var turret_draw_color: Color = parent.draw_color
 	var turret_outline_color: Color = parent.outline_color
 	draw_rect(rect, turret_draw_color)
-	draw_rect(rect, turret_outline_color, false, 6)
+	
+	# Draw outline
+	var outline_point_1 := Vector2(-width / 2, height / 2)
+	var outline_point_2 := Vector2(-width / 2, -height / 2)
+	var outline_point_3 := Vector2(width / 2, -height / 2)
+	var outline_point_4 := Vector2(width / 2, height / 2)
+	var points = [outline_point_1, outline_point_2, outline_point_3, outline_point_4]
+	var outline_width: float = 6.0
+	draw_polyline(points, turret_outline_color, outline_width)
 
 
 ## Plays the recoil visual effect.

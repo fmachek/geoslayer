@@ -52,9 +52,20 @@ func _draw() -> void:
 	var shape = _col_shape.shape
 	var width: float = shape.size.x
 	var height: float = shape.size.y
-	var rect := Rect2(-width / 2, -height / 2, width, height)
-	draw_rect(rect, draw_color)
-	draw_rect(rect, outline_color, false, 6)
+	var outline_width: float = 6.0
+	
+	var rect_x: float = -width / 2
+	var rect_y: float = -height / 2
+	var fill_rect := Rect2(rect_x, rect_y, width, height)
+	
+	var outline_rect_x: float = rect_x + outline_width / 2
+	var outline_rect_y: float = rect_y + outline_width / 2
+	var outline_rect := Rect2(
+			outline_rect_x, outline_rect_y,
+			width - outline_width, height - outline_width)
+	
+	draw_rect(fill_rect, draw_color)
+	draw_rect(outline_rect, outline_color, false, outline_width)
 
 
 ## Becomes unable to start shooting.
