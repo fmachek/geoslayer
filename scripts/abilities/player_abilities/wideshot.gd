@@ -21,7 +21,9 @@ var spread_angle: float = deg_to_rad(40)
 
 
 func _init() -> void:
-	super(1, "Shoots projectiles in a cone.")
+	var ability_cooldown: float = 1.0
+	var ability_description := "Fires projectiles in a cone."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

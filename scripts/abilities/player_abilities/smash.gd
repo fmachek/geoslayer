@@ -16,7 +16,9 @@ var knockback: float = 500.0
 
 
 func _init() -> void:
-	super(3.0, "Stuns, deals damage to and knocks nearby enemies back.")
+	var ability_cooldown: float = 3.0
+	var ability_description := "Stuns, deals damage to and knocks nearby enemies back."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

@@ -14,7 +14,9 @@ var projectile_radius: int = 15
 
 
 func _init() -> void:
-	super(0.75, "Fires a grenade which explodes on impact.")
+	var ability_cooldown: float = 0.75
+	var ability_description := "Fires a grenade which explodes on impact."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

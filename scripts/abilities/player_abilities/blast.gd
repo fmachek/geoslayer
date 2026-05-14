@@ -8,7 +8,7 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 ## Travel speed of the [Projectile]s fired when cast.
 var projectile_speed: int = 5
 ## Base damage of the [Projectile]s fired when cast.
-var base_damage: int = 15
+var base_damage: int = 20
 ## Radius of the [Projectile]s fired when cast.
 var projectile_radius: int = 12
 ## Amount of [Projectile]s fired when cast.
@@ -18,7 +18,10 @@ var projectile_knockback: float = 1200.0
 
 
 func _init() -> void:
-	super(2, "Shoots projectiles with long knockback in all directions.")
+	var ability_cooldown: float = 2.0
+	var ability_description := "Fires projectiles in all directions. The projectiles \
+			apply a strong knockback."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

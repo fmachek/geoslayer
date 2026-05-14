@@ -12,11 +12,13 @@ var base_damage: int = 25
 ## Radius of the [Projectile]s fired when cast.
 var projectile_radius: int = 8
 ## Knockback applied to [Character]s hit by the [Projectile]s.
-var projectile_knockback: float = 400.0
+var projectile_knockback: float = 200.0
 
 
 func _init() -> void:
-	super(0.75, "Shoots two projectiles.")
+	var ability_cooldown: float = 0.75
+	var ability_description := "Fires two projectiles in parallel."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

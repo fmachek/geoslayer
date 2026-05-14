@@ -9,7 +9,7 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 ## Travel speed of the [Projectile] fired when cast.
 var projectile_speed: int = 2
 ## Base damage of the [Projectile] fired when cast.
-var base_damage: int = 50
+var base_damage: int = 70
 ## Radius of the [Projectile] fired when cast.
 var projectile_radius: int = 20
 ## Knockback applied to [Character]s hit by the [Projectile].
@@ -22,8 +22,10 @@ var speed_debuff_duration: float = 0.5
 
 
 func _init() -> void:
-	super(1, "Shoots a large projectile and applies
-			a short speed debuff and long knockback to the caster.")
+	var ability_cooldown: float = 1.0
+	var ability_description := "Fires a large projectile and applies \
+			a short speed debuff to the caster."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

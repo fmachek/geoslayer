@@ -27,7 +27,9 @@ var _cast_timer: Timer
 
 
 func _init() -> void:
-	super(12.0, "Summons a damaging and slowing storm.")
+	var ability_cooldown: float = 12.0
+	var ability_description := "Summons a damaging and slowing storm."
+	super(ability_cooldown, ability_description)
 
 
 func _ready() -> void:

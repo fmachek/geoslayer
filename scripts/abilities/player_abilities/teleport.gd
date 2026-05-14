@@ -18,7 +18,9 @@ var _teleport_pos: Vector2
 
 
 func _init() -> void:
-	super(3, "Teleports the caster to the position they're aiming at.")
+	var ability_cooldown: float = 3.0
+	var ability_description := "Teleports the caster."
+	super(ability_cooldown, ability_description)
 
 
 func _ready() -> void:

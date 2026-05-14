@@ -22,9 +22,10 @@ var _projectiles_remaining: int
 
 
 func _init() -> void:
-	var desc := "Fires %d projectiles which heal the
-			caster if they hit an enemy." % projectile_amount
-	super(1, desc)
+	var ability_cooldown: float = 1.0
+	var ability_description := "Fires %d projectiles which heal the\
+		 caster if they hit an enemy." % projectile_amount
+	super(ability_cooldown, ability_description)
 
 
 func _ready() -> void:

@@ -32,8 +32,9 @@ var _speed_debuff: int = 50
 
 
 func _init() -> void:
-	var desc: String = "Summons %d minions." % minion_amount
-	super(5.0, desc)
+	var ability_cooldown: float = 5.0
+	var ability_description: String = "Summons %d minions." % minion_amount
+	super(ability_cooldown, ability_description)
 	minion_amount_changed.connect(_update_description)
 
 

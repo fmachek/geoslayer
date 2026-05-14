@@ -26,8 +26,10 @@ var aim_speed_debuff: int = 50
 
 
 func _init() -> void:
-	super(2.0, "Aims, slowing the user down temporarily,
-			and fires a fast piercing projectile.")
+	var ability_cooldown: float = 1.5
+	var ability_description := "Aims, slowing the caster down temporarily,\
+			 and fires a fast piercing projectile."
+	super(ability_cooldown, ability_description)
 
 
 func _ready() -> void:

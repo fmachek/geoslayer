@@ -16,7 +16,9 @@ var projectile_knockback: float = 350.0
 
 
 func _init() -> void:
-	super(0.5, "Shoots a projectile.")
+	var ability_cooldown: float = 0.5
+	var ability_description := "Fires a projectile."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:

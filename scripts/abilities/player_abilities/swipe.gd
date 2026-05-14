@@ -16,7 +16,9 @@ var swipe_time: float = 0.25
 
 
 func _init() -> void:
-	super(2.0, "Performs a melee swipe attack.")
+	var ability_cooldown: float = 2.0
+	var ability_description := "Performs a melee swipe attack."
+	super(ability_cooldown, ability_description)
 
 
 func _perform_ability() -> void:
