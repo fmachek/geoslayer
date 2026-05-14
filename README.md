@@ -36,6 +36,7 @@ Earlier worlds have a more limited drop pool of abilities. For example, World 1 
 | Shred        | Close range cone attack which applies an armor and speed buff to the caster if the projectiles hit a target | Regular |
 | Swipe        | Performs a swipe melee attack | Regular |
 | Smash        | Deals damage to, stuns and knocks enemies around the caster back | Regular |
+| Trap         | Places down a mine which deals damage to, stuns and knocks enemies back when exploding. It can explode when stepped on by enemies or automatically after a given amount of time. The caster can also make it explode instantly by firing a projectile at it. | Regular |
 | Storm        | Spawns an area which damages and slows enemies down while they're standing in it | Magical |
 | Summon       | Spawns multiple minions who fight alongside the player | Magical |
 | Teleport     | Teleports the caster | Magical |
