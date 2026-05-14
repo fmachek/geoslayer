@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://q0sl1u2xpkbo"]
+
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="1_7ulme"]
+
+[sub_resource type="Gradient" id="Gradient_05h7t"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="MineSmokeParticles" type="CPUParticles2D" unique_id=1559658901]
+z_index = 11
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 800.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.1
+linear_accel_min = -750.0
+linear_accel_max = -750.0
+scale_amount_min = 40.0
+scale_amount_max = 80.0
+color_ramp = SubResource("Gradient_05h7t")
+script = ExtResource("1_7ulme")

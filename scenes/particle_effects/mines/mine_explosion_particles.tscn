@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bfgx77m0fujna"]
+
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="1_05h7t"]
+
+[sub_resource type="Curve" id="Curve_05h7t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_05h7t"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="MineExplosionParticles" type="CPUParticles2D" unique_id=1559658901]
+z_index = 11
+emitting = false
+amount = 40
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 800.0
+initial_velocity_max = 1200.0
+scale_amount_min = 40.0
+scale_amount_max = 80.0
+scale_amount_curve = SubResource("Curve_05h7t")
+color_ramp = SubResource("Gradient_05h7t")
+script = ExtResource("1_05h7t")

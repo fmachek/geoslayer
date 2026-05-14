@@ -98,6 +98,7 @@ escape={
 2d_physics/layer_10="Players"
 2d_physics/layer_11="Containers"
 2d_physics/layer_12="Bosses"
+2d_physics/layer_13="Mines"
 
 [physics]
 

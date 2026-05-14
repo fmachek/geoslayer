@@ -27,6 +27,8 @@ func _update_area_mask(area_source: Node2D) -> void:
 
 
 func _update_sprite() -> void:
+	if not _sprite.texture:
+		return
 	var texture_size: Vector2 = _sprite.texture.get_size()
 	var texture_width: float = texture_size.x
 	var new_scale: float = (radius * 2) / texture_width
