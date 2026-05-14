@@ -86,6 +86,7 @@ emitting = false
 amount = 3
 texture = ExtResource("6_yscb1")
 lifetime = 0.5
+local_coords = true
 direction = Vector2(1, -1)
 spread = 15.0
 gravity = Vector2(0, 0)
