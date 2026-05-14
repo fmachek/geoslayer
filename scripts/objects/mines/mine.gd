@@ -179,9 +179,12 @@ func _on_body_area_entered(area: Area2D) -> void:
 		return
 	if not parent is Projectile:
 		return
-	if parent.projectile_properties.source == spawner:
+	var projectile: Projectile = parent
+	if not projectile.can_explode:
+		return
+	if projectile.projectile_properties.source == spawner:
 		_can_detect_projectiles = false
-		parent.call_deferred("explode")
+		projectile.call_deferred("explode")
 		call_deferred("explode")
 
 
