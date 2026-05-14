@@ -31,7 +31,9 @@ var _flurry_timer: Timer
 
 
 func _init() -> void:
-	super(3, "Fires a flurry of projectiles.")
+	var ability_cooldown: float = 2.0
+	var ability_description := "Fires a flurry of projectiles."
+	super(ability_cooldown, ability_description)
 
 
 func _ready() -> void:
