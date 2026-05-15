@@ -7,6 +7,7 @@ extends Chest
 
 func generate_ability_drop_pool() -> void:
 	super()
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/summon_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/storm_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/teleport_pickup.tscn", 100))
+	var magical_ability_names: Array[String] = [
+		"summon", "storm", "teleport"
+	]
+	add_abilities_to_drop_pool(magical_ability_names)

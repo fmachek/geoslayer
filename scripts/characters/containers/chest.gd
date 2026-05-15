@@ -83,16 +83,17 @@ func drop_ability() -> void:
 ## it will be ignored. The [Drop] will be picked randomly using
 ## [method Array.pick_random] inside the [member drop_ability] function.
 func generate_ability_drop_pool() -> void:
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/blast_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/cannonball_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/doubleshot_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/flurry_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/wideshot_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/pierce_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/explosive_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/lifesteal_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/shred_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/swipe_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/smash_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/trap_pickup.tscn", 100))
-	ability_drop_pool.append(Drop.new("res://scenes/objects/ability_pickups/flee_pickup.tscn", 100))
+	var ability_names: Array[String] = [
+		"blast", "cannonball", "doubleshot", "flurry", "wideshot",
+		"pierce", "explosive", "lifesteal", "shred", "swipe",
+		"smash", "trap", "flee"
+	]
+	add_abilities_to_drop_pool(ability_names)
+
+
+func add_abilities_to_drop_pool(ability_names: Array[String]) -> void:
+	var scene_path_template := "res://scenes/objects/ability_pickups/%s_pickup.tscn"
+	for ability_name in ability_names:
+		var scene_path := scene_path_template % ability_name.to_lower()
+		var drop := Drop.new(scene_path, 100)
+		ability_drop_pool.append(drop)
