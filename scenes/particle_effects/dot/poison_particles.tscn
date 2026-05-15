@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://blwv8h5lu2tjm"]
+
+[ext_resource type="Texture2D" uid="uid://douhc4tppplls" path="res://assets/sprites/objects/projectiles/particles/circle.png" id="1_f0nn4"]
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="2_2463m"]
+
+[sub_resource type="Curve" id="Curve_2463m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24691361, 1), 0.0, 0.0, 0, 0, Vector2(0.7530865, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_2463m"]
+offsets = PackedFloat32Array(0, 0.1889401, 0.8110599, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="PoisonParticles" type="CPUParticles2D" unique_id=1011036732]
+amount = 4
+texture = ExtResource("1_f0nn4")
+local_coords = true
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+linear_accel_min = -15.0
+linear_accel_max = -15.0
+scale_amount_min = 0.02
+scale_amount_max = 0.03
+scale_amount_curve = SubResource("Curve_2463m")
+color_ramp = SubResource("Gradient_2463m")
+script = ExtResource("2_2463m")

@@ -57,7 +57,8 @@ func _fire_projectile(angle: float) -> void:
 			_PROJ_SCENE, angle, character, base_damage,
 			(projectile_speed - _proj_speed_decrease), projectile_radius
 	)
-	var dot := DamageOverTime.new(dot_damage, dot_tick_time, dot_tick_amount)
+	var dot := ParticleDoT.new(dot_damage, dot_tick_time, dot_tick_amount)
+	dot.particle_color = proj.projectile_properties.draw_color
 	proj.dot = dot
 
 

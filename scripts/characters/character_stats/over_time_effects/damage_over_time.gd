@@ -8,6 +8,7 @@ extends Node
 
 ## Emitted when [member tick_time] changes.
 signal tick_time_changed(new_time: float)
+signal applied_to_target(target: Character)
 
 ## Damage dealt on every tick.
 var damage_per_tick: int = 5: set = _set_damage_per_tick
@@ -38,12 +39,18 @@ func apply_to(target: Character) -> void:
 	_target_character = target
 	_target_health = target.health
 	_target_health.add_child(self)
+	applied_to_target.emit(target)
 
 
 func _deal_damage() -> void:
-	if _target_health and _ticks_remaining > 0:
-		_ticks_remaining -= 1
-		_target_character.take_damage(damage_per_tick, Character.DamageType.DOT, true)
+	if not is_instance_valid(_target_health):
+		return
+	if _ticks_remaining < 1:
+		return
+	_ticks_remaining -= 1
+	_target_character.take_damage(damage_per_tick, Character.DamageType.DOT, true)
+	if _ticks_remaining == 0:
+		queue_free()
 
 
 func _create_tick_timer() -> void:

@@ -59,5 +59,6 @@ func _fire_projectile(direction: Vector2) -> void:
 			self, proj_damage, proj_radius, global_position
 	)
 	var proj: DoTProjectile = ProjectileFunctions.fire_projectile(_PROJ_SCENE, props)
-	var dot := DamageOverTime.new(dot_damage, dot_tick_time, dot_tick_amount)
+	var dot := ParticleDoT.new(dot_damage, dot_tick_time, dot_tick_amount)
+	dot.particle_color = proj.projectile_properties.draw_color
 	proj.dot = dot
