@@ -33,7 +33,9 @@ var _proj_speed_decrease: float
 
 
 func _init() -> void:
-	super(5, "Fires projectiles which deal damage over time.")
+	var ability_cooldown: float = 3.0
+	var ability_description: String = "Fires projectiles which deal damage over time."
+	super(ability_cooldown, ability_description)
 
 
 func _ready() -> void:
