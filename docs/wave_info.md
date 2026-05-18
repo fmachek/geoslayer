@@ -6,7 +6,7 @@ World 0 is a testing world where you can pick up all unlockable abilities to try
 
 ## World 1
 - **Wave 1**:
-    * 6 Shooters
+    * 4 Shooters
 - **Wave 2**:
     * 4 Shooters
     * 2 Sprayers
