@@ -31,32 +31,32 @@ navigation_polygon = SubResource("NavigationPolygon_tekg8")
 
 [node name="Turret" parent="." index="5" unique_id=1882429743 instance=ExtResource("4_tekg8")]
 position = Vector2(-288, 608)
-shoot_time = 4.0
+shoot_time = 5.0
 
 [node name="Turret2" parent="." index="6" unique_id=2073793660 instance=ExtResource("4_tekg8")]
 position = Vector2(288, -608)
 rotation = 3.1415927
-shoot_time = 4.0
+shoot_time = 5.0
 
 [node name="Turret3" parent="." index="7" unique_id=854976180 instance=ExtResource("4_tekg8")]
 position = Vector2(-608, -288)
 rotation = 1.5707964
-shoot_time = 4.0
+shoot_time = 5.0
 
 [node name="Turret4" parent="." index="8" unique_id=1379383280 instance=ExtResource("4_tekg8")]
 position = Vector2(608, 288)
 rotation = -1.5707964
-shoot_time = 4.0
+shoot_time = 5.0
 
 [node name="AimingTurret" parent="." index="9" unique_id=684001380 instance=ExtResource("3_en3i5")]
 position = Vector2(-544, 544)
 rotation = 0.7853982
-shoot_time = 4.0
+shoot_time = 5.0
 
 [node name="AimingTurret2" parent="." index="10" unique_id=392894463 instance=ExtResource("3_en3i5")]
 position = Vector2(544, -544)
 rotation = -2.3561945
-shoot_time = 4.0
+shoot_time = 5.0
 
 [node name="ShooterSpawner1" parent="." index="11" unique_id=1925204194 instance=ExtResource("2_xijrn")]
 position = Vector2(-576, -576)
