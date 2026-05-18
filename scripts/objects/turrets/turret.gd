@@ -78,6 +78,7 @@ func _draw() -> void:
 
 ## Becomes unable to start shooting.
 func disable() -> void:
+	_shoot_timer.stop()
 	can_start_shooting = false
 
 
@@ -127,7 +128,8 @@ func _update_shoot_timer(new_wait_time: float) -> void:
 	if is_instance_valid(_shoot_timer):
 		_shoot_timer.stop()
 		_shoot_timer.wait_time = new_wait_time
-		_shoot_timer.start()
+		if can_start_shooting:
+			_shoot_timer.start()
 
 
 func _start_progress_bar() -> void:
