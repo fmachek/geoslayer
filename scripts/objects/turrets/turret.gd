@@ -9,6 +9,7 @@ signal shot()
 signal started_shooting()
 ## Emitted when the [Turret] stops shooting.
 signal stopped_shooting()
+signal fire_rate_changed()
 
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
@@ -24,19 +25,21 @@ const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 ## Radius of every [Projectile] fired by the [Turret].
 @export var projectile_radius: int = 10
 ## Amount of time between individual shots.
-@export var shoot_time: float = 3.0
+@export var shoot_time: float = 3.0: set = _set_shoot_time
 ## Knockback applied by [Projectile]s fired.
 @export var projectile_knockback: float = 0.0
 #endregion
 
 ## Says if the [Turret] can start shooting or not.
 var can_start_shooting: bool = true
+var _bar_tween: Tween
 
 #region @onready variables
 @onready var _col_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var _muzzle: Node2D = $Muzzle
 @onready var _shoot_timer: Timer = $ShootTimer
 @onready var _shoot_particles: CPUParticles2D = $ShootParticles
+@onready var _progress_bar: ProgressBar = $FireProgressBar
 #endregion
 
 
@@ -44,8 +47,13 @@ func _ready() -> void:
 	WorldManager.wave_started.connect(start_shooting)
 	WorldManager.wave_ended.connect(stop_shooting)
 	WorldManager.final_wave_started.connect(disable)
+	fire_rate_changed.connect(_update_shoot_timer)
+	shot.connect(_start_progress_bar)
+	started_shooting.connect(_start_progress_bar)
+	stopped_shooting.connect(_stop_progress_bar)
 	_shoot_particles.color = draw_color
 	_shoot_timer.wait_time = shoot_time
+	_update_progress_bar_color()
 
 
 func _draw() -> void:
@@ -102,3 +110,47 @@ func shoot() -> void:
 ## Multiplies [member damage] by [code]1.2[/code].
 func increase_damage() -> void:
 	damage *= 1.2
+
+
+func increase_fire_rate() -> void:
+	shoot_time -= 0.25
+
+
+func _set_shoot_time(value: float) -> void:
+	if value < 0.1:
+		value = 0.1
+	shoot_time = value
+	fire_rate_changed.emit(value)
+
+
+func _update_shoot_timer(new_wait_time: float) -> void:
+	if is_instance_valid(_shoot_timer):
+		_shoot_timer.stop()
+		_shoot_timer.wait_time = new_wait_time
+		_shoot_timer.start()
+
+
+func _start_progress_bar() -> void:
+	if not is_instance_valid(_progress_bar):
+		return
+	_progress_bar.show()
+	_progress_bar.value = 0.0
+	if _bar_tween:
+		_bar_tween.kill()
+	_bar_tween = create_tween()
+	var tween_time: float = shoot_time
+	var max_value: float = _progress_bar.max_value
+	_bar_tween.tween_property(_progress_bar, "value", max_value, tween_time)
+
+
+func _stop_progress_bar() -> void:
+	if not is_instance_valid(_progress_bar):
+		return
+	if _bar_tween:
+		_bar_tween.kill()
+	_progress_bar.hide()
+
+
+func _update_progress_bar_color() -> void:
+	var stylebox: StyleBoxFlat = _progress_bar.get_theme_stylebox("fill")
+	stylebox.bg_color = draw_color.lightened(0.3)

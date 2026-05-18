@@ -53,7 +53,7 @@ position = Vector2(-544, 544)
 rotation = 0.7853982
 shoot_time = 4.0
 
-[node name="AimingTurret4" parent="." index="10" unique_id=392894463 instance=ExtResource("3_en3i5")]
+[node name="AimingTurret2" parent="." index="10" unique_id=392894463 instance=ExtResource("3_en3i5")]
 position = Vector2(544, -544)
 rotation = -2.3561945
 shoot_time = 4.0
@@ -72,14 +72,14 @@ draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
 outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1, 2, 5, 6)
 
-[node name="ShooterSpawner5" parent="." index="13" unique_id=1341252714 instance=ExtResource("2_xijrn")]
+[node name="ShooterSpawner3" parent="." index="13" unique_id=1341252714 instance=ExtResource("2_xijrn")]
 position = Vector2(448, 576)
 character_scene = ExtResource("3_tekg8")
 draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
 outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
 spawn_waves = PackedInt32Array(1, 2, 3, 5, 6)
 
-[node name="ShooterSpawner6" parent="." index="14" unique_id=170046639 instance=ExtResource("2_xijrn")]
+[node name="ShooterSpawner4" parent="." index="14" unique_id=170046639 instance=ExtResource("2_xijrn")]
 position = Vector2(576, 576)
 character_scene = ExtResource("3_tekg8")
 draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
@@ -138,8 +138,8 @@ spawn_waves = PackedInt32Array(10)
 
 [connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner1" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner2" method="_on_wave_manager_alert_next_wave"]
-[connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner5" method="_on_wave_manager_alert_next_wave"]
-[connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner6" method="_on_wave_manager_alert_next_wave"]
+[connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner3" method="_on_wave_manager_alert_next_wave"]
+[connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner4" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="SprayerSpawner1" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="SprayerSpawner2" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="GuardSpawner1" method="_on_wave_manager_alert_next_wave"]
@@ -149,8 +149,8 @@ spawn_waves = PackedInt32Array(10)
 [connection signal="alert_next_wave" from="WaveManager" to="BossSpawner" method="_on_wave_manager_alert_next_wave"]
 [connection signal="current_wave_changed" from="WaveManager" to="ShooterSpawner1" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="ShooterSpawner2" method="_on_wave_changed"]
-[connection signal="current_wave_changed" from="WaveManager" to="ShooterSpawner5" method="_on_wave_changed"]
-[connection signal="current_wave_changed" from="WaveManager" to="ShooterSpawner6" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="ShooterSpawner3" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="ShooterSpawner4" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="SprayerSpawner1" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="SprayerSpawner2" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="GuardSpawner1" method="_on_wave_changed"]
@@ -159,15 +159,21 @@ spawn_waves = PackedInt32Array(10)
 [connection signal="current_wave_changed" from="WaveManager" to="HealerSpawner2" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="BossSpawner" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret" method="increase_damage" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="Turret" method="increase_fire_rate" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret2" method="increase_damage" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="Turret2" method="increase_fire_rate" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret3" method="increase_damage" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="Turret3" method="increase_fire_rate" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret4" method="increase_damage" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="Turret4" method="increase_fire_rate" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="AimingTurret" method="increase_damage" unbinds=1]
-[connection signal="current_wave_changed" from="WaveManager" to="AimingTurret4" method="increase_damage" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="AimingTurret" method="increase_fire_rate" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="AimingTurret2" method="increase_damage" unbinds=1]
+[connection signal="current_wave_changed" from="WaveManager" to="AimingTurret2" method="increase_fire_rate" unbinds=1]
 [connection signal="spawning_character" from="ShooterSpawner1" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="ShooterSpawner2" to="WaveManager" method="register_enemy"]
-[connection signal="spawning_character" from="ShooterSpawner5" to="WaveManager" method="register_enemy"]
-[connection signal="spawning_character" from="ShooterSpawner6" to="WaveManager" method="register_enemy"]
+[connection signal="spawning_character" from="ShooterSpawner3" to="WaveManager" method="register_enemy"]
+[connection signal="spawning_character" from="ShooterSpawner4" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="SprayerSpawner1" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="SprayerSpawner2" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="GuardSpawner1" to="WaveManager" method="register_enemy"]
