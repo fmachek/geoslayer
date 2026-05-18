@@ -14,6 +14,8 @@ signal final_wave_started()
 signal final_wave_finished()
 ## Emitted after entering the scene tree and when starting a new wave.
 signal alert_next_wave(next_wave: int, exceeds_max: bool)
+## Emitted when the amount of enemies remaining changes.
+signal enemies_remaining_changed(enemies_remaining: int)
 
 ## Total amount of waves.
 @export var max_waves: int = 5
@@ -60,6 +62,7 @@ func register_enemy(enemy: Enemy) -> void:
 		return
 	enemies.append(enemy)
 	enemy.died.connect(func(): unregister_enemy(enemy))
+	enemies_remaining_changed.emit(len(enemies))
 
 
 ## Unregisters an [Enemy]. The amount of currently
@@ -72,6 +75,7 @@ func unregister_enemy(enemy: Enemy) -> void:
 	if enemy.died.is_connected(unregister_enemy):
 		enemy.died.disconnect(unregister_enemy)
 	_check_enemy_amount()
+	enemies_remaining_changed.emit(len(enemies))
 
 
 ## Sets [member current_wave].

@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://bg7c0avopq04p" path="res://scripts/user_interface/hud/wave_info/current_wave_label.gd" id="16_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_ui/pause_interface.tscn" id="16_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://blrpytnhphj5t" path="res://scenes/user_interface/large_tab_container/enemies_tab/enemies_tab.tscn" id="17_yc10j"]
+[ext_resource type="Script" uid="uid://cmlti0osrpr4c" path="res://scripts/user_interface/hud/wave_info/enemies_remaining_label.gd" id="23_og1vs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_muem4"]
 font_size = 32
@@ -362,6 +363,14 @@ size_flags_vertical = 0
 theme_override_constants/outline_size = 8
 text = "Next wave: N"
 script = ExtResource("16_0ld40")
+
+[node name="EnemiesRemainingLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/WaveInfoContainer" unique_id=1549354204]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/outline_size = 8
+text = "Enemies remaining: N"
+script = ExtResource("23_og1vs")
 
 [node name="DeathUserInterface" parent="CanvasLayer" unique_id=1370909485 instance=ExtResource("15_jbj1t")]
 visible = false
