@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cr42vacfxxelg"]
+
+[ext_resource type="Script" uid="uid://mt2h8jnkj6hj" path="res://scripts/objects/black_holes/black_hole_spawn_particle.gd" id="1_v2con"]
+
+[node name="BlackHoleSpawnParticle" type="Node2D" unique_id=1419262359]
+script = ExtResource("1_v2con")

@@ -65,6 +65,8 @@ var is_alive: bool = true
 var is_immune_to_stun: bool = false
 ## Says if the [Character] is immune to knockback or not.
 var is_immune_to_knockback: bool = false
+## Says if the [Character] is immune to external velocity or not, for example drag.
+var is_immune_to_external_velocity: bool = false
 ## Says if the [Character] is currently stunned or not.
 var is_stunned: bool = false
 ## Variable used to say what level the [Character] spawns with.
@@ -75,6 +77,8 @@ var initial_level: int = 1
 var _knockback := Vector2.ZERO
 # Array of vectors which add up to the final knockback.
 var _knockback_vectors: Array[Vector2] = []
+# Velocity applied by the outside, for example drag.
+var _external_velocity: Vector2 = Vector2.ZERO
 # Array of timers, each representing one stun.
 var _stuns: Array[Timer] = []
 # Used for fading in when spawning.
@@ -122,6 +126,10 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if _external_velocity != Vector2.ZERO:
+		velocity = _external_velocity
+		move_and_slide()
+		_external_velocity = Vector2.ZERO
 	velocity = Vector2.ZERO
 	_calculate_knockback()
 	velocity += _knockback
@@ -224,6 +232,14 @@ func _calculate_knockback() -> void:
 		if vector.length() >= 40:
 			new_array.append(vector)
 	_knockback_vectors = new_array
+
+
+## Adds external velocity which makes the [Character] move
+## in a certain direction at a certain speed.
+func add_velocity(new_velocity: Vector2) -> void:
+	if is_immune_to_external_velocity:
+		return
+	_external_velocity += new_velocity
 
 
 ## Emits [signal health_changed]. This propagates the signal for simplicity.

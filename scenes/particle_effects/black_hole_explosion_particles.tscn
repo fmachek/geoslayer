@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dti15tg3rh08o"]
+
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="1_nycmj"]
+
+[sub_resource type="Gradient" id="Gradient_nycmj"]
+offsets = PackedFloat32Array(0, 0.66885245, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="BlackHoleExplosionParticles" type="CPUParticles2D" unique_id=680457309]
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1500.0
+initial_velocity_max = 2000.0
+orbit_velocity_min = 1.0
+orbit_velocity_max = 1.0
+linear_accel_min = -800.0
+linear_accel_max = -200.0
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+color_ramp = SubResource("Gradient_nycmj")
+script = ExtResource("1_nycmj")

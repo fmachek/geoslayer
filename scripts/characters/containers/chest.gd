@@ -28,6 +28,7 @@ func _ready() -> void:
 	# Ensures that an ability is dropped on death
 	died.connect(drop_ability)
 	is_immune_to_stun = true
+	is_immune_to_external_velocity = true
 	$InfoLabel.label_settings.font_color = draw_color
 	if ability_drop_pool.is_empty():
 		generate_ability_drop_pool()

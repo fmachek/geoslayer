@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://el3fto36j6m7"]
+
+[ext_resource type="Script" uid="uid://bofx1pjljivn0" path="res://scripts/objects/black_holes/black_hole_spawn_effect.gd" id="1_eq1s1"]
+[ext_resource type="PackedScene" uid="uid://dti15tg3rh08o" path="res://scenes/particle_effects/black_hole_explosion_particles.tscn" id="2_hc11p"]
+
+[node name="BlackHoleSpawnEffect" type="Node2D" unique_id=368997296]
+script = ExtResource("1_eq1s1")
+
+[node name="ExplosionParticles" parent="." unique_id=680457309 instance=ExtResource("2_hc11p")]
+script = null

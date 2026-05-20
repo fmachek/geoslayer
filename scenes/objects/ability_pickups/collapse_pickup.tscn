@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://0ucn7dm64pis"]
+
+[ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_mgrhe"]
+[ext_resource type="Script" uid="uid://uv680ebquo1t" path="res://scripts/abilities/player_abilities/collapse.gd" id="2_yl4ug"]
+
+[node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_mgrhe")]
+ability_script = ExtResource("2_yl4ug")

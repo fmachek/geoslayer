@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bh0c78i665fph"]
+
+[ext_resource type="Script" uid="uid://d1r12x4x2thr4" path="res://scripts/objects/black_holes/black_hole.gd" id="1_4gn1j"]
+[ext_resource type="PackedScene" uid="uid://e30w00rkwerb" path="res://scenes/particle_effects/disc_particles.tscn" id="2_h6d5b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gn1j"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6d5b"]
+radius = 500.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6d5b"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqhyq"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="BlackHole" type="Node2D" unique_id=279386755]
+z_index = 1
+script = ExtResource("1_4gn1j")
+
+[node name="HoleBodyArea" type="Area2D" parent="." unique_id=454703476]
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleBodyArea" unique_id=2048213644]
+shape = SubResource("CircleShape2D_4gn1j")
+
+[node name="GravityArea" type="Area2D" parent="." unique_id=2075363439]
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
+monitorable = false
+priority = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea" unique_id=27696203]
+shape = SubResource("CircleShape2D_h6d5b")
+
+[node name="DiscParticles" parent="." unique_id=1754352661 instance=ExtResource("2_h6d5b")]
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1434376256]
+
+[node name="ParticleAddTimer" type="Timer" parent="." unique_id=219377425]
+
+[node name="ExplosionProgressBar" type="ProgressBar" parent="." unique_id=605284880]
+visible = false
+z_index = 11
+offset_left = -40.0
+offset_top = 63.0
+offset_right = 40.0
+offset_bottom = 81.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_h6d5b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tqhyq")
+value = 50.0
+show_percentage = false
