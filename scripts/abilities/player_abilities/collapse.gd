@@ -10,16 +10,16 @@ const _SPAWN_EFFECT_SCENE := preload(
 var black_hole_base_damage: int = 50
 var black_hole_radius: float = 50.0
 var gravity_area_radius: float = 400.0
-var expiration_time: float = 4.0
+var expiration_time: float = 8.0
 var black_hole_drag: float = 50.0
 
-var cast_time: float = 2.5
+var cast_time: float = 1.5
 var _cast_timer: Timer
 var _black_hole_spawn_position: Vector2
 
 
 func _init() -> void:
-	var ability_cooldown: float = 10.0
+	var ability_cooldown: float = 15.0
 	var ability_description: String = "Summons a black hole which attracts\
 		 enemies for %d seconds. Then it explodes, dealing damage to enemies\
 		 and knocking them back." % expiration_time
