@@ -46,6 +46,10 @@ func apply_to_stat(stat: CharacterStat) -> void:
 	target_stat.add_buff(self)
 
 
+func end() -> void:
+	ended.emit(self)
+
+
 func _begin() -> void:
 	if duration > 0:
 		_create_duration_timer()
@@ -59,7 +63,7 @@ func _on_added_buff(buff: Buff) -> void:
 
 
 func _on_duration_timer_timeout() -> void:
-	ended.emit(self)
+	end()
 
 
 func _create_duration_timer() -> void:

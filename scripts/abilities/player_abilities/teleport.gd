@@ -56,8 +56,10 @@ func _finish_casting() -> void:
 
 
 func _apply_speed_debuff() -> void:
-	var speed_debuff: Buff = Buff.new(-50000, _cast_time)
+	var speed_debuff: Buff = Buff.new(-50000, 0)
 	speed_debuff.apply_to_stat(character.speed)
+	was_interrupted.connect(speed_debuff.end)
+	finished_casting.connect(speed_debuff.end)
 
 
 func _spawn_teleport_position_particles(pos: Vector2) -> void:

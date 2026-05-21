@@ -69,8 +69,10 @@ func _spawn_zone() -> void:
 
 
 func _apply_speed_debuff() -> void:
-	var speed_debuff: Buff = Buff.new(-speed_debuff_amount, _cast_time)
+	var speed_debuff: Buff = Buff.new(-speed_debuff_amount, 0)
 	speed_debuff.apply_to_stat(character.speed)
+	was_interrupted.connect(speed_debuff.end)
+	finished_casting.connect(speed_debuff.end)
 
 
 func _spawn_cast_particles() -> void:

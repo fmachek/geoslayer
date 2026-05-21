@@ -54,8 +54,10 @@ func _finish_aiming() -> void:
 
 
 func _apply_speed_debuff() -> void:
-	var speed_debuff: Buff = Buff.new(-aim_speed_debuff, aim_time)
+	var speed_debuff: Buff = Buff.new(-aim_speed_debuff, 0)
 	speed_debuff.apply_to_stat(character.speed)
+	was_interrupted.connect(speed_debuff.end)
+	finished_casting.connect(speed_debuff.end)
 
 
 func _create_aim_timer() -> void:

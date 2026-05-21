@@ -69,10 +69,11 @@ func _finish_casting() -> void:
 	finished_casting.emit()
 
 
-# Applies a debuff with a duration equal to the cast time.
 func _apply_speed_debuff() -> void:
-	var speed_debuff: Buff = Buff.new(-_speed_debuff, _cast_time)
+	var speed_debuff: Buff = Buff.new(-_speed_debuff, 0)
 	speed_debuff.apply_to_stat(character.speed)
+	was_interrupted.connect(speed_debuff.end)
+	finished_casting.connect(speed_debuff.end)
 
 
 # Spawns minions around the caster's target position. Uses
