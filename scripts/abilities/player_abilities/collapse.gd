@@ -16,6 +16,7 @@ var black_hole_drag: float = 50.0
 var cast_time: float = 1.5
 var _cast_timer: Timer
 var _black_hole_spawn_position: Vector2
+var _speed_debuff: int = 50
 
 
 func _init() -> void:
@@ -35,6 +36,7 @@ func _perform_ability() -> void:
 	var col_point: Vector2 = character.get_raycast_collision(target_pos)
 	_black_hole_spawn_position = col_point
 	_create_spawn_effect(_black_hole_spawn_position)
+	_apply_speed_debuff()
 	_start_casting()
 
 
@@ -51,6 +53,13 @@ func _finish_casting() -> void:
 	if _black_hole_spawn_position:
 		_spawn_black_hole(_black_hole_spawn_position)
 	finished_casting.emit()
+
+
+func _apply_speed_debuff() -> void:
+	var speed_debuff: Buff = Buff.new(-_speed_debuff, 0)
+	speed_debuff.apply_to_stat(character.speed)
+	was_interrupted.connect(speed_debuff.end)
+	finished_casting.connect(speed_debuff.end)
 
 
 func _spawn_black_hole(position: Vector2) -> void:
