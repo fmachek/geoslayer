@@ -23,9 +23,10 @@ var speed_debuff_duration: float = 0.5
 
 func _init() -> void:
 	var ability_cooldown: float = 1.0
+	var ability_cast_time: float = 0.0
 	var ability_description := "Fires a large projectile and applies \
 			a short speed debuff to the caster."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
@@ -36,6 +37,10 @@ func _perform_ability() -> void:
 	proj.knockback = projectile_knockback
 	_apply_speed_debuff()
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _apply_speed_debuff() -> void:

@@ -12,47 +12,31 @@ const _POS_PART_SCENE := preload(
 const _CAST_PART_SCENE := preload(
 		"res://scenes/particle_effects/teleport_cast_particles.tscn")
 
-var _cast_timer: Timer
-var _cast_time: float = 0.4
 var _teleport_pos: Vector2
 
 
 func _init() -> void:
 	var ability_cooldown: float = 3.0
+	var ability_cast_time: float = 0.4
 	var ability_description := "Teleports the caster."
-	super(ability_cooldown, ability_description)
-
-
-func _ready() -> void:
-	_create_cast_timer()
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
-	_start_casting()
+	_teleport_caster(_teleport_pos)
+	finished_casting.emit()
 
 
-func _reset_ability() -> void:
-	if _cast_timer:
-		_cast_timer.stop()
+func _handle_casting() -> void:
+	var target_pos: Vector2 = character.target_pos
+	_teleport_pos = character.get_raycast_collision(target_pos)
+	_apply_speed_debuff()
+	_spawn_teleport_position_particles(_teleport_pos)
 
 
 func _teleport_caster(pos: Vector2) -> void:
 	_spawn_teleport_cast_particles()
 	character.global_position = pos
-
-
-func _start_casting() -> void:
-	var target_pos: Vector2 = character.target_pos
-	_teleport_pos = character.get_raycast_collision(target_pos)
-	_apply_speed_debuff()
-	_spawn_teleport_position_particles(_teleport_pos)
-	_cast_timer.start()
-
-
-func _finish_casting() -> void:
-	if _teleport_pos:
-		_teleport_caster(_teleport_pos)
-	finished_casting.emit()
 
 
 func _apply_speed_debuff() -> void:
@@ -75,11 +59,3 @@ func _spawn_teleport_cast_particles() -> void:
 	particles.global_position = character.global_position
 	character.get_parent().add_child(particles)
 	particles.emitting = true
-
-
-func _create_cast_timer() -> void:
-	_cast_timer = Timer.new()
-	_cast_timer.wait_time = _cast_time
-	_cast_timer.one_shot = true
-	_cast_timer.timeout.connect(_finish_casting)
-	add_child(_cast_timer)

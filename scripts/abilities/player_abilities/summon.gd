@@ -24,8 +24,6 @@ var minion_amount: int = 5: set = set_minion_amount
 ## Minions' distance from the cast target position.
 var minion_distance: float = 100.0
 
-var _cast_timer: Timer
-var _cast_time: float = 0.5
 var _minion_spawn_pos: Vector2
 var _speed_debuff: int = 50
 #endregion
@@ -33,40 +31,24 @@ var _speed_debuff: int = 50
 
 func _init() -> void:
 	var ability_cooldown: float = 5.0
+	var ability_cast_time: float = 0.5
 	var ability_description: String = "Summons %d minions." % minion_amount
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 	minion_amount_changed.connect(_update_description)
 
 
-func _ready() -> void:
-	_create_cast_timer()
-
-
 func _perform_ability() -> void:
-	_start_casting()
-
-
-func _reset_ability() -> void:
-	if _cast_timer:
-		_cast_timer.stop()
-
-
-# Gets the raycast collision point if there is one, spawns
-# particles and applies a speed debuff.
-func _start_casting() -> void:
-	var target_pos: Vector2 = character.target_pos
-	_minion_spawn_pos = character.get_raycast_collision(target_pos)
-	_spawn_pos_particles()
-	_apply_speed_debuff()
-	_cast_timer.start()
-
-
-# Spawns the minions when casting finishes.
-func _finish_casting() -> void:
 	if _minion_spawn_pos:
 		_spawn_minions(_minion_spawn_pos)
 		_spawn_cast_particles()
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	var target_pos: Vector2 = character.target_pos
+	_minion_spawn_pos = character.get_raycast_collision(target_pos)
+	_spawn_pos_particles()
+	_apply_speed_debuff()
 
 
 func _apply_speed_debuff() -> void:
@@ -138,11 +120,3 @@ func set_minion_amount(amount: int) -> void:
 
 func _update_description(minions: int) -> void:
 	self.description = "Summons %d minions." % minions
-
-
-func _create_cast_timer() -> void:
-	_cast_timer = Timer.new()
-	_cast_timer.wait_time = _cast_time
-	_cast_timer.one_shot = true
-	_cast_timer.timeout.connect(_finish_casting)
-	add_child(_cast_timer)

@@ -23,16 +23,22 @@ var _projectiles_remaining: int
 
 func _init() -> void:
 	var ability_cooldown: float = 1.0
+	var ability_cast_time: float = float(projectile_amount) * fire_time
 	var ability_description := "Fires %d projectiles which heal the\
 		 caster if they hit an enemy." % projectile_amount
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _ready() -> void:
+	super()
 	_create_fire_timer()
 
 
 func _perform_ability() -> void:
+	pass
+
+
+func _handle_casting() -> void:
 	_projectiles_remaining = projectile_amount
 	_fire_timer.start()
 	_fire_projectile()

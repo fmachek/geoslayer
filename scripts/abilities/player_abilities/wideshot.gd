@@ -22,8 +22,9 @@ var spread_angle: float = deg_to_rad(40)
 
 func _init() -> void:
 	var ability_cooldown: float = 1.0
+	var ability_cast_time: float = 0.0
 	var ability_description := "Fires projectiles in a cone."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
@@ -33,3 +34,7 @@ func _perform_ability() -> void:
 	for proj in projectiles:
 		proj.knockback = projectile_knockback
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

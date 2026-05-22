@@ -12,10 +12,11 @@ var stun_duration: float = 0.75
 
 func _init() -> void:
 	var ability_cooldown: float = 2.0
+	var ability_cast_time: float = 0.0
 	var ability_description := "Places a mine which deals damage to and stuns enemies. \
 			The mine explodes when it is stepped on or automatically after %d seconds. \
 			It can also be exploded by the caster's projectiles." % automatic_explosion_time
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
@@ -34,3 +35,7 @@ func _perform_ability() -> void:
 	
 	character.get_parent().add_child(mine)
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

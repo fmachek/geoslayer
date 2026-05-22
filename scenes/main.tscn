@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0iyx6c1ldl2p" path="res://scripts/main.gd" id="1_tipki"]
 [ext_resource type="Script" uid="uid://c3y5sbyxtgd61" path="res://scripts/user_interface/hud/start_wave_button.gd" id="3_tipki"]
 [ext_resource type="Script" uid="uid://bqg4v6lvah0ib" path="res://scripts/user_interface/hud/bottom_hud.gd" id="4_jscy8"]
+[ext_resource type="Script" uid="uid://dev0qupvxtfcl" path="res://scripts/user_interface/hud/casting_bar.gd" id="5_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://cwjp3a61svi3j" path="res://scenes/user_interface/hud/stats_tab/stats_tab.tscn" id="8_jkv2x"]
@@ -30,6 +31,12 @@
 font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og1vs"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wyq8"]
+bg_color = Color(0.15294118, 0.45882353, 0.8901961, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscy8"]
 bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
@@ -133,6 +140,31 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 20
+
+[node name="CastingBar" type="ProgressBar" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=168777612]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(145, 22)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_og1vs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2wyq8")
+value = 50.0
+show_percentage = false
+script = ExtResource("5_2wyq8")
+
+[node name="AbilityNameLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/CastingBar" unique_id=1707104272]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "Collapse"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartWaveButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=417665695]
 layout_mode = 2

@@ -17,8 +17,9 @@ var projectile_knockback: float = 350.0
 
 func _init() -> void:
 	var ability_cooldown: float = 0.5
+	var ability_cast_time: float = 0.0
 	var ability_description := "Fires a projectile."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
@@ -29,3 +30,7 @@ func _perform_ability() -> void:
 			damage, projectile_radius)
 	proj.knockback = projectile_knockback
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

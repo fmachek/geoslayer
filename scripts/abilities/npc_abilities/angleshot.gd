@@ -18,7 +18,7 @@ var angle: float = 45.0
 
 
 func _init() -> void:
-	super(0.5, "Fires two projectiles in different directions.")
+	super(0.5, 0.0, "Fires two projectiles in different directions.")
 
 
 func _perform_ability() -> void:
@@ -27,6 +27,10 @@ func _perform_ability() -> void:
 	_fire_projectile_at_angle(angle_to_target + deg_to_rad(-angle))
 	_fire_projectile_at_angle(angle_to_target + deg_to_rad(angle))
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _fire_projectile_at_angle(proj_angle: float) -> void:

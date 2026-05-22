@@ -22,14 +22,20 @@ var _current_step: int = 0
 
 
 func _init() -> void:
-	super(2.0, "Fires many projectiles in opposite directions.")
+	var ability_cast_time: float = float(step_amount - 1) * fire_time
+	super(2.0, ability_cast_time, "Fires many projectiles in opposite directions.")
 
 
 func _ready() -> void:
+	super()
 	_create_fire_timer()
 
 
 func _perform_ability() -> void:
+	pass
+
+
+func _handle_casting() -> void:
 	_current_step = 0
 	_fire_timer.start()
 	_fire_projectiles()

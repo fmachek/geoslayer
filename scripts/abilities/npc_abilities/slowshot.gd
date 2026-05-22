@@ -15,7 +15,7 @@ var projectile_radius: int = 8
 
 
 func _init() -> void:
-	super._init(0.5, "Fires a slowing projectile.")
+	super(0.5, 0.0, "Fires a slowing projectile.")
 
 
 func _perform_ability() -> void:
@@ -25,3 +25,7 @@ func _perform_ability() -> void:
 			_PROJ_SCENE, character, projectile_speed,
 			damage, projectile_radius)
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

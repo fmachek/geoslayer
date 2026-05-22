@@ -17,7 +17,7 @@ signal draw_color_changed(color: Color)
 ## Emitted when the outline color changes.
 signal outline_color_changed(color: Color)
 ## Emitted when the [Character] starts casting an [Ability].
-signal started_casting()
+signal started_casting(ability: Ability)
 ## Emitted when the [Character] finishes casting an [Ability].
 signal finished_casting()
 ## Emitted when the [Character] gets stunned.
@@ -287,7 +287,7 @@ func equip_ability(ability: Ability) -> void:
 		abilities.add_child(ability)
 		ability.name = ability.ability_name
 		ability.change_character(self)
-		ability.casted.connect(start_casting)
+		ability.casted.connect(start_casting.bind(ability))
 		ability.finished_casting.connect(finish_casting)
 		ability.unequipping.connect(_on_ability_unequipping)
 
@@ -347,13 +347,11 @@ func change_color(new_draw_color: Color, new_outline_color: Color) -> void:
 	self.outline_color = new_outline_color
 
 
-## Starts casting.
-func start_casting() -> void:
+func start_casting(ability: Ability) -> void:
 	is_casting = true
-	started_casting.emit()
+	started_casting.emit(ability)
 
 
-## Finishes casting.
 func finish_casting() -> void:
 	is_casting = false
 	finished_casting.emit()

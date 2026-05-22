@@ -1,20 +1,47 @@
 @abstract class_name Ability
 extends Node
-## Represents an ability which makes a character do something, for example
-## fire a projectile. All specific abilities such as [Shoot] and [Wideshot]
-## extend this class.
+## Represents an ability which makes a [Character] do something, for example
+## fire a projectile. All specific abilities such as [Shoot] extend this class.
+##
+## Each [Ability] has to implement the [method _perform_ability] and
+## [method _handle_casting] methods. Generally, [method _perform_ability]
+## is for performing the main action, for example firing a projectile.
+## [method _handle_casting] is usually for things like creating visual effects.[br][br]
+##
+## However, in some cases, [method _handle_casting] itself can be the method
+## which performs the main action. For example, in the [Flurry] ability, the
+## casting itself is part of the main action, because a flurry of projectiles is
+## fired. Therefore, [method _handle_casting] starts its fire timer and
+## [method _perform_ability] does nothing. What matters here is the sequence in which
+## these methods are called. [method _handle_casting] is called when casting begins,
+## [method _perform_ability] is called when casting finishes.[br][br]
+##
+## Some abilities may also override the [method _reset_ability] method.
+## For example, [Flurry] resets its fire timer and resets the amount of projectiles
+## remaining.[br][br]
+##
+## Every [Ability] must have a [member cast_time]. If the cast is instant,
+## it should be set to 0. If the casting is part of the main action such as in [Flurry]
+## (meaning the whole action is essentially a cast),
+## [member cast_time] should be equal to the total time the main action takes. Usually
+## that would be the sum of all the time which passes until [signal finished_casting]
+## is fired.[br][br]
+##
+## Every specific [Ability] has to emit [signal finished_casting], but when or where
+## exactly that happens can vary.
 
 #region signals
-## Emitted when cast by the [Character].
-signal casted() # TODO: rename this signal
+## Emitted when cast.
+signal casted() # TODO: rename this signal, maybe
 ## Emitted when the [Ability] finishes casting. Every specific [Ability] has to
-## emit this at some point, but when exactly that happens can vary.
+## emit this at some point, but when or where exactly that happens can vary.
+## It should, however, always be emitted when [member cast_time] passes.
 signal finished_casting()
 ## Emitted when the cast cooldown starts.
 signal cooldown_started()
 ## Emitted when the cast cooldown ends.
 signal cooldown_ended()
-## Emitted when the [Ability] is being unequipped by the [Character].
+## Emitted when being unequipped.
 signal unequipping(ability: Ability)
 ## Emitted when interrupted.
 signal was_interrupted()
@@ -29,6 +56,8 @@ var description: String
 var texture: Texture2D
 ## Cooldown in seconds.
 var cooldown: float
+## Amount of time the [Ability] takes to cast in seconds.
+var cast_time: float
 ## The [Character] the [Ability] belongs to.
 var character: Character
 ## [code]true[/code] if the [Ability] is on cooldown.
@@ -37,17 +66,23 @@ var is_cooldown: bool = false
 var cooldown_timer: Timer
 ## Says if the [Ability] is currently being cast.
 var is_casting: bool = false
+var _cast_timer: Timer
 #endregion
 
 
-## Performs what the [Ability] is supposed to do. This function must be
-## implemented by each specific Ability.
+## Performs the main ability action.
 @abstract func _perform_ability() -> void
 
 
-func _init(cd: float, desc: String) -> void:
+## Handles the start of casting. In some cases, it can
+## perform the main ability action.
+@abstract func _handle_casting() -> void
+
+
+func _init(cd: float, cast_duration: float, desc: String) -> void:
 	ability_name = get_ability_name()
 	self.cooldown = cd
+	self.cast_time = cast_duration
 	var texture_path = TextureManager.get_ability_icon_path(get_ability_name())
 	self.texture = load(texture_path)
 	self.description = desc
@@ -55,9 +90,14 @@ func _init(cd: float, desc: String) -> void:
 	finished_casting.connect(_on_finished_casting)
 
 
-## Checks if the [Ability] is not on cooldown, if the [Character] can cast
-## and if the [Ability] is not already being cast. The cooldown timer
-## then starts and the [Ability] is performed.
+func _ready() -> void:
+	if not _cast_timer:
+		if cast_time > 0:
+			_create_cast_timer()
+	if not cooldown_timer:
+		_create_cooldown_timer()
+
+
 func cast() -> void:
 	if not is_cooldown and not character.is_casting and not is_casting:
 		is_casting = true
@@ -66,17 +106,18 @@ func cast() -> void:
 		cooldown_timer.start()
 		cooldown_started.emit()
 		_connect_interrupt()
-		_perform_ability()
+		_handle_casting()
+		if is_instance_valid(_cast_timer):
+			_cast_timer.start()
+		else:
+			_perform_ability()
 
 
-## Interrupts the [Ability], emitting [signal finished_casting] and
-## resetting it. Specific abilities or nodes spawned by them must react
-## to the [signal was_interrupted] signal if they perform an action
-## that takes some time to cast. For example: if [Storm] is interrupted,
-## the [ZoneSpawningParticles] should disappear.
 func interrupt() -> void:
 	was_interrupted.emit()
 	finished_casting.emit()
+	if is_instance_valid(_cast_timer):
+		_cast_timer.stop()
 	_reset_ability()
 
 
@@ -91,23 +132,16 @@ func get_ability_name() -> String:
 	return "Unknown"
 
 
-## Changes [member character]. Also creates the cooldown timer.
 func change_character(new_character: Character) -> void:
 	self.character = new_character
-	_create_cooldown_timer()
 
 
-# Emits the unequipping signal and resets itself.
 func _alert_unequip() -> void:
 	unequipping.emit(self)
 	_reset_base()
 	_reset_ability()
 
 
-## Every [Ability] can override this function if necessary.
-## Used when unequipping, needs to reset the [Ability] to its default state.
-## For example, [Flurry] needs to set its amount of projectiles remaining back to
-## the default amount if it is unequipped mid-cast.
 func _reset_ability() -> void:
 	pass
 
@@ -129,6 +163,8 @@ func _reset_base() -> void:
 	is_cooldown = false
 	if cooldown_timer:
 		cooldown_timer.stop()
+	if _cast_timer:
+		_cast_timer.stop()
 
 
 func _on_finished_casting() -> void:
@@ -146,3 +182,11 @@ func _create_cooldown_timer() -> void:
 	cooldown_timer.wait_time = cooldown
 	cooldown_timer.one_shot = true
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
+
+
+func _create_cast_timer() -> void:
+	_cast_timer = Timer.new()
+	_cast_timer.wait_time = cast_time
+	_cast_timer.one_shot = true
+	_cast_timer.timeout.connect(_perform_ability)
+	add_child(_cast_timer)

@@ -9,7 +9,7 @@ const _STATION_DISTANCE: float = 500.0
 
 
 func _init() -> void:
-	super(45, "Spawns 4 healing stations which heal the caster.")
+	super(45, 0.0, "Spawns 4 healing stations which heal the caster.")
 
 
 func _perform_ability() -> void:
@@ -26,6 +26,10 @@ func _perform_ability() -> void:
 		var final_pos: Vector2 = col_pos - direction * 50
 		_spawn_station(character.get_raycast_collision(final_pos))
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _spawn_station(pos: Vector2) -> void:

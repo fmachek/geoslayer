@@ -14,12 +14,16 @@ var shield_base_durability: int = 50
 
 
 func _init() -> void:
-	super(7.5, "Shields the caster from enemy projectiles for %d seconds." % shield_duration)
+	super(7.5, 0.0, "Shields the caster from enemy projectiles for %d seconds." % shield_duration)
 
 
 func _perform_ability() -> void:
 	_spawn_shield()
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _spawn_shield() -> void:

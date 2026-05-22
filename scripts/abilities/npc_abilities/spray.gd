@@ -34,15 +34,25 @@ var _proj_speed_decrease: float
 
 func _init() -> void:
 	var ability_cooldown: float = 3.0
+	var ability_cast_time: float
+	if projectile_amount % 2 == 0:
+		ability_cast_time = ((projectile_amount / 2) - 1) * fire_time
+	else:
+		ability_cast_time = ((projectile_amount - 1) / 2) * fire_time
 	var ability_description: String = "Fires projectiles which deal damage over time."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _ready() -> void:
+	super()
 	_create_fire_timer()
 
 
 func _perform_ability() -> void:
+	pass
+
+
+func _handle_casting() -> void:
 	_proj_speed_decrease = 0
 	_generate_angles()
 	_fire_timer.start()

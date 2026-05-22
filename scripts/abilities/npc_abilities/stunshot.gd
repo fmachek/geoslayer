@@ -34,15 +34,21 @@ var _reg_projectiles_remaining: int
 
 
 func _init() -> void:
+	var ability_cast_time: float = regular_projectile_amount * fire_time
 	var desc := "Fires a stunning projectile followed by two regular ones."
-	super(3.0, desc)
+	super(3.0, ability_cast_time, desc)
 
 
 func _ready() -> void:
+	super()
 	_create_fire_timer()
 
 
 func _perform_ability() -> void:
+	pass
+
+
+func _handle_casting() -> void:
 	_reg_projectiles_remaining = regular_projectile_amount
 	_fire_stun_projectile()
 	_fire_timer.start()

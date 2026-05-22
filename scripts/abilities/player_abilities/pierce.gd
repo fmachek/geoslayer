@@ -19,30 +19,19 @@ var projectile_knockback: float = 1000.0
 
 ## The amount of time the cäster has to aim before firing the projectile.
 var aim_time: float = 0.5
-## Timer used to time the aiming.
-var aim_timer: Timer
 ## Amount by which the caster's speed is debuffed on ability cast.
 var aim_speed_debuff: int = 50
 
 
 func _init() -> void:
 	var ability_cooldown: float = 1.5
+	var ability_cast_time: float = aim_time
 	var ability_description := "Aims, slowing the caster down temporarily,\
 			 and fires a fast piercing projectile."
-	super(ability_cooldown, ability_description)
-
-
-func _ready() -> void:
-	_create_aim_timer()
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
-	_apply_speed_debuff()
-	aim_timer.start()
-	character.show_aim_line()
-
-
-func _finish_aiming() -> void:
 	var char_damage: int = character.damage.max_value_after_buffs
 	var damage: int = float(base_damage) * float(char_damage) / 100
 	var proj := ProjectileFunctions.fire_projectile_from_character(
@@ -53,6 +42,11 @@ func _finish_aiming() -> void:
 	finished_casting.emit()
 
 
+func _handle_casting() -> void:
+	_apply_speed_debuff()
+	character.show_aim_line()
+
+
 func _apply_speed_debuff() -> void:
 	var speed_debuff: Buff = Buff.new(-aim_speed_debuff, 0)
 	speed_debuff.apply_to_stat(character.speed)
@@ -60,15 +54,5 @@ func _apply_speed_debuff() -> void:
 	finished_casting.connect(speed_debuff.end)
 
 
-func _create_aim_timer() -> void:
-	aim_timer = Timer.new()
-	aim_timer.wait_time = aim_time
-	aim_timer.one_shot = true
-	aim_timer.timeout.connect(_finish_aiming)
-	add_child(aim_timer)
-
-
 func _reset_ability() -> void:
-	if aim_timer:
-		aim_timer.stop()
 	character.hide_aim_line()

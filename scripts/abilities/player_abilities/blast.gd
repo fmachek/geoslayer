@@ -19,14 +19,19 @@ var projectile_knockback: float = 1200.0
 
 func _init() -> void:
 	var ability_cooldown: float = 2.0
+	var ability_cast_time: float = 0.0
 	var ability_description := "Fires projectiles in all directions. The projectiles \
 			apply a strong knockback."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
 	_spawn_projectiles(projectile_amount)
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _spawn_projectiles(amount: int) -> void:

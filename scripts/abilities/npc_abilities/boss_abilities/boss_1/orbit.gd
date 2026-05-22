@@ -13,7 +13,8 @@ var laser_lifetime: float = 5.0
 
 
 func _init() -> void:
-	super(15, "Spawns 4 lasers which orbit around the caster.")
+	var ability_cast_time: float = 0.0
+	super(15, ability_cast_time, "Spawns 4 lasers which orbit around the caster.")
 
 
 func _perform_ability() -> void:
@@ -28,3 +29,7 @@ func _perform_ability() -> void:
 	laser_cross.global_position = character.global_position
 	
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

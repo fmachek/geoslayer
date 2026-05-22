@@ -15,15 +15,20 @@ var spread_angle: float = deg_to_rad(20)
 
 func _init() -> void:
 	var ability_cooldown: float = 2.0
+	var ability_cast_time: float = 0.0
 	var ability_description := "Fires %d projectiles and knocks the caster back in the \
 			opposite direction." % projectile_amount
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
 	_fire_projectiles()
 	_apply_knockback()
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _fire_projectiles() -> void:

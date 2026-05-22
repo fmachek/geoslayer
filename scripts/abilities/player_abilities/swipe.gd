@@ -17,13 +17,18 @@ var swipe_time: float = 0.25
 
 func _init() -> void:
 	var ability_cooldown: float = 2.0
+	var ability_cast_time: float = swipe_time
 	var ability_description := "Performs a melee swipe attack."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
+	pass
+
+
+func _handle_casting() -> void:
 	var swipe: SwipeAttack = _create_swipe()
-	swipe.finished.connect(func(): finished_casting.emit())
+	swipe.finished.connect(finished_casting.emit)
 	
 	var target_dir := character.global_position.direction_to(character.target_pos)
 	var target_angle: float = target_dir.angle()

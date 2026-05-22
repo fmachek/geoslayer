@@ -17,7 +17,7 @@ var shield_durability: int = 1
 
 
 func _init() -> void:
-	super(2.5, "Applies a shield to nearby allies.")
+	super(2.5, 0.0, "Applies a shield to nearby allies.")
 
 
 func _perform_ability() -> void:
@@ -30,3 +30,7 @@ func _perform_ability() -> void:
 	area.global_position = character.global_position
 	character.get_parent().add_child(area)
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

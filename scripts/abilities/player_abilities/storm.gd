@@ -21,41 +21,25 @@ var speed_debuff_amount: int = 50
 
 # Position where the StormZone is being spawned.
 var _zone_pos: Vector2
-# Time the ability takes to cast.
-var _cast_time: float = 1.0
-var _cast_timer: Timer
 
 
 func _init() -> void:
 	var ability_cooldown: float = 12.0
+	var ability_cast_time: float = 1.0
 	var ability_description := "Summons a damaging and slowing storm."
-	super(ability_cooldown, ability_description)
-
-
-func _ready() -> void:
-	_create_cast_timer()
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _perform_ability() -> void:
+	_spawn_zone()
+	finished_casting.emit()
+
+
+func _handle_casting() -> void:
 	var target_pos: Vector2 = character.target_pos
 	_zone_pos = character.get_raycast_collision(target_pos)
 	_apply_speed_debuff()
 	_spawn_cast_particles()
-	_start_casting()
-
-
-func _reset_ability() -> void:
-	if _cast_timer:
-		_cast_timer.stop()
-
-
-func _start_casting() -> void:
-	_cast_timer.start()
-
-
-func _finish_casting() -> void:
-	_spawn_zone()
-	finished_casting.emit()
 
 
 func _spawn_zone() -> void:
@@ -81,11 +65,3 @@ func _spawn_cast_particles() -> void:
 	particles.radius = zone_radius
 	particles.global_position = _zone_pos
 	character.get_parent().add_child(particles)
-
-
-func _create_cast_timer() -> void:
-	_cast_timer = Timer.new()
-	_cast_timer.wait_time = _cast_time
-	_cast_timer.one_shot = true
-	_cast_timer.timeout.connect(_finish_casting)
-	add_child(_cast_timer)

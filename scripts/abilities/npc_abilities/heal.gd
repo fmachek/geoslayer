@@ -13,7 +13,7 @@ var radius: float = 200.0
 
 
 func _init() -> void:
-	super(4, "Heals friendly characters around the caster.")
+	super(4, 0.0, "Heals friendly characters around the caster.")
 
 
 func _perform_ability() -> void:
@@ -26,3 +26,7 @@ func _perform_ability() -> void:
 	heal.global_position = character.global_position
 	character.get_parent().add_child(heal)
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass

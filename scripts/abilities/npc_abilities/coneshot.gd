@@ -25,7 +25,7 @@ var secondary_angle: float = deg_to_rad(15)
 func _init() -> void:
 	var desc := "Fires one large projectile in the middle and
 			two smaller projectiles around it."
-	super(2.0, desc)
+	super(2.0, 0.0, desc)
 
 
 func _perform_ability() -> void:
@@ -42,6 +42,10 @@ func _perform_ability() -> void:
 	_fire_secondary_projectile(angle_1)
 	_fire_secondary_projectile(angle_2)
 	finished_casting.emit()
+
+
+func _handle_casting() -> void:
+	pass
 
 
 func _fire_secondary_projectile(angle: float) -> void:

@@ -32,18 +32,24 @@ var _flurry_timer: Timer
 
 func _init() -> void:
 	var ability_cooldown: float = 2.0
+	var ability_cast_time: float = float(projectile_amount) * flurry_fire_time
 	var ability_description := "Fires a flurry of projectiles."
-	super(ability_cooldown, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description)
 
 
 func _ready() -> void:
+	super()
 	_create_flurry_timer()
 
 
 func _perform_ability() -> void:
+	pass
+
+
+func _handle_casting() -> void:
 	_projectiles_remaining = projectile_amount
-	_flurry_timer.start()
 	_fire_projectile()
+	_flurry_timer.start()
 
 
 func _reset_ability() -> void:
