@@ -122,6 +122,8 @@ func replace_ability1(ability: Ability) -> void:
 			return
 	elif ability2 and ability:
 		if ability2.ability_name == ability.ability_name:
+			if not can_unequip_ability(ability2):
+				return
 			# Ability is already in slot 2 but nothing is in slot 1
 			replace_ability2(null) # unequip slot 2
 	if ability1:
@@ -143,6 +145,8 @@ func replace_ability2(ability: Ability) -> void:
 			return
 	elif ability1 and ability:
 		if ability1.ability_name == ability.ability_name:
+			if not can_unequip_ability(ability1):
+				return
 			# Ability is already in slot 1 but nothing is in slot 2
 			replace_ability1(null) # unequip slot 1
 	if ability2:
