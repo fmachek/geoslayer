@@ -13,7 +13,10 @@ extends Enemy
 ## by each specific [Boss]. For example, a phase 2 method can add more abilities 
 ## to the [Boss]' kit, or make something special happen.
 
-var _current_phase: int = 1
+## Emitted when [member current_phase] changes.
+signal phase_changed(new_phase: int)
+
+var current_phase: int = 1: set = _set_current_phase
 
 
 ## Starts phase 1. Must be implemented by each specific [Boss].
@@ -55,11 +58,11 @@ func _draw_spikes() -> void:
 
 
 func _switch_phase(new_phase: int) -> void:
-	if _current_phase != new_phase and new_phase > _current_phase:
-		_current_phase = new_phase
-		if _current_phase == 2:
+	if current_phase != new_phase and new_phase > current_phase:
+		current_phase = new_phase
+		if current_phase == 2:
 			_start_phase_2()
-		elif _current_phase == 3:
+		elif current_phase == 3:
 			_start_phase_3()
 
 
@@ -68,3 +71,10 @@ func _on_health_changed(_old_health: int, new_health: int) -> void:
 		_switch_phase(3)
 	elif new_health <= (health.max_value / 3) * 2:
 		_switch_phase(2)
+
+
+func _set_current_phase(phase: int) -> void:
+	if phase < current_phase:
+		return
+	current_phase = phase
+	phase_changed.emit(phase)

@@ -6,6 +6,9 @@ extends Node2D
 ## the [Chest], they stack up in the background. If the player opens it later,
 ## another unopened [Chest] will spawn. That essentially works as a queue for [Chest]s.
 
+## Emitted when a boss is spawned.
+signal boss_spawned(boss: Character)
+
 ## Scene of the [Chest] dropped when a wave ends.
 @export var chest_scene: PackedScene = load(
 		"res://scenes/characters/containers/chest.tscn")
@@ -70,3 +73,7 @@ func _handle_wave_end() -> void:
 	if wave_manager.current_wave == wave_manager.max_waves:
 		return
 	call_deferred("spawn_chest")
+
+
+func handle_boss_spawn(boss: Character) -> void:
+	boss_spawned.emit(boss)

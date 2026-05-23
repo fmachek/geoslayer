@@ -15,6 +15,8 @@ signal final_wave_started()
 signal final_wave_finished()
 ## Emitted when the amount of enemies remaining changes.
 signal enemies_remaining_changed(enemies_remaining: int)
+## Emitted when a boss is spawned.
+signal boss_spawned(boss: Character)
 ## Emitted when boss death in [member current_world] is handled.
 signal boss_died()
 ## Emitted when [member current_world] is ready.
@@ -47,6 +49,7 @@ func load_world(main: Main, world_number: int) -> void:
 	if world_scene:
 		current_world = world_scene.instantiate()
 		current_world.ready.connect(func(): world_loaded.emit(current_world))
+		current_world.boss_spawned.connect(boss_spawned.emit)
 		main.add_child(current_world)
 		var wave_manager: WaveManager = current_world.wave_manager
 		wave_manager.wave_started.connect(wave_started.emit)

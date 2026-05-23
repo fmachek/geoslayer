@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0iyx6c1ldl2p" path="res://scripts/main.gd" id="1_tipki"]
 [ext_resource type="Script" uid="uid://c3y5sbyxtgd61" path="res://scripts/user_interface/hud/start_wave_button.gd" id="3_tipki"]
 [ext_resource type="Script" uid="uid://bqg4v6lvah0ib" path="res://scripts/user_interface/hud/bottom_hud.gd" id="4_jscy8"]
+[ext_resource type="Script" uid="uid://drkjvql1keyu7" path="res://scripts/user_interface/hud/boss_health/boss_health_container.gd" id="4_vxglm"]
 [ext_resource type="Script" uid="uid://dev0qupvxtfcl" path="res://scripts/user_interface/hud/casting_bar.gd" id="5_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
@@ -30,6 +31,23 @@
 [sub_resource type="LabelSettings" id="LabelSettings_muem4"]
 font_size = 32
 outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_babk2"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 0.6117647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37snd"]
+bg_color = Color(0, 1, 0, 0.38431373)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2wyq8"]
+color = Color(0.1680183, 0.1680183, 0.1680183, 0.3)
+grow_begin = 3.0
+grow_end = 3.0
+thickness = 4
+vertical = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_2wyq8"]
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og1vs"]
@@ -103,20 +121,85 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=357967508]
+[node name="TopContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=1352651025]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="BossHealthContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer" unique_id=1422642960]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 5
+script = ExtResource("4_vxglm")
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer" unique_id=1915578128]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Boss health"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer" unique_id=1787894532]
+custom_minimum_size = Vector2(240, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_babk2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_37snd")
+show_percentage = false
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer/ProgressBar" unique_id=972325252]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 78.0
+offset_right = 82.0
+offset_bottom = 30.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/separator = SubResource("StyleBoxLine_2wyq8")
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer/ProgressBar" unique_id=799491215]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 158.0
+offset_right = 162.0
+offset_bottom = 30.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/separator = SubResource("StyleBoxLine_2wyq8")
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer/ProgressBar" unique_id=705667987]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "500/1000"
+label_settings = SubResource("LabelSettings_2wyq8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PhaseLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer" unique_id=1135352072]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+text = "Phase 1"
+horizontal_alignment = 1
+
+[node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer" unique_id=357967508]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = -5
 script = ExtResource("10_ya4ey")
 
-[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" unique_id=117239358]
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=117239358]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 text = "New ability unlocked:"
 horizontal_alignment = 1
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" unique_id=1365762045]
+[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=1365762045]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.73333335, 0, 0.73333335, 1)
 theme_override_constants/outline_size = 8
@@ -124,7 +207,7 @@ theme_override_font_sizes/font_size = 32
 text = "AbilityName"
 horizontal_alignment = 1
 
-[node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" unique_id=599509163]
+[node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=599509163]
 wait_time = 5.0
 one_shot = true
 
@@ -412,7 +495,7 @@ visible = false
 offset_left = 0.0
 offset_right = 0.0
 
-[connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
 [connection signal="gained_stat_points" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_gained_stat_points"]
 [connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_hidden"]
 [connection signal="pressed_increase" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_pressed_increase"]
