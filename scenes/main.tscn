@@ -208,7 +208,7 @@ text = "AbilityName"
 horizontal_alignment = 1
 
 [node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=599509163]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=249147002]
