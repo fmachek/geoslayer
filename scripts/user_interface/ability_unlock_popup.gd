@@ -15,16 +15,18 @@ func _ready():
 
 ## Displays the unlock of an ability with a given [param ability_name].
 func show_unlock(ability_name: String):
+	if _fade_tween:
+		_fade_tween.kill()
 	show()
 	modulate.a = 1
 	_name_label.text = ability_name
+	_fade_out_timer.stop()
 	_fade_out_timer.start()
 
 
 func _fade_out():
 	if _fade_tween:
 		_fade_tween.kill()
-		modulate.a = 1
 	_fade_tween = create_tween()
 	_fade_tween.tween_property(self, "modulate:a", 0, 1)
 	_fade_tween.tween_callback(hide)
