@@ -15,6 +15,8 @@ func _ready() -> void:
 
 
 func show_reminder() -> void:
+	if visible: # Prevent animation reset
+		return
 	show()
 	_move_arrow_down()
 

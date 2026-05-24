@@ -344,6 +344,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 
 [node name="Reminder" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer" unique_id=1777683397]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("15_y6deb")
