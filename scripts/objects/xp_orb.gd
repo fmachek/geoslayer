@@ -11,8 +11,8 @@ static var xp_amount: int = 30
 @export var draw_color: Color = Color(1.0, 0.0, 1.0, 1.0)
 ## Outline color of the [XPOrb] shape.
 @export var outline_color: Color = Color(0.732, 0.0, 0.732, 1.0)
-@export var min_radius: float = 6
-@export var max_radius: float = 8
+@export var min_radius: float = 3
+@export var max_radius: float = 5
 
 var _is_following_player: bool = false
 var _player: PlayerCharacter
