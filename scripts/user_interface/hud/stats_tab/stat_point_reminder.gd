@@ -11,7 +11,6 @@ var _arrow_tween: Tween
 
 func _ready() -> void:
 	_original_arrow_pos = _arrow.position
-	show_reminder()
 
 
 func show_reminder() -> void:
@@ -51,9 +50,13 @@ func _create_arrow_tween() -> Tween:
 	return tween
 
 
-func _on_stats_tab_gained_stat_points() -> void:
+func _on_stats_tab_pressed_increase() -> void:
+	hide_reminder()
+
+
+func _on_stats_tab_gained_points_while_hidden() -> void:
 	show_reminder()
 
 
-func _on_stats_tab_pressed_increase() -> void:
+func _on_stats_tab_opened() -> void:
 	hide_reminder()

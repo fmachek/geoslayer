@@ -497,7 +497,8 @@ offset_left = 0.0
 offset_right = 0.0
 
 [connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
-[connection signal="gained_stat_points" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_gained_stat_points"]
+[connection signal="gained_points_while_hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_gained_points_while_hidden"]
 [connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_hidden"]
+[connection signal="opened" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_opened"]
 [connection signal="pressed_increase" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_pressed_increase"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_open_button_pressed"]

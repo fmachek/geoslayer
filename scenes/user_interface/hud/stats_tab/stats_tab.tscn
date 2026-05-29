@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://6vw25iml7gif" path="res://scripts/user_interface/hud/stats_tab/stats_tab.gd" id="1_76cvo"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76cvo"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.32941177)
+border_color = Color(0, 0.83784014, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_76cvo"]
 font_size = 12
 font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
@@ -20,16 +28,14 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4i4k"]
 
-[node name="StatsTab" type="MarginContainer" unique_id=764354913]
+[node name="StatsTab" type="PanelContainer" unique_id=2867727]
+offset_right = 122.0
+offset_bottom = 81.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
-mouse_filter = 0
 mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_76cvo")
 script = ExtResource("1_76cvo")
-
-[node name="BackgroundRect" type="ColorRect" parent="." unique_id=592746951]
-layout_mode = 2
-color = Color(0, 0, 0, 0.33100003)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=434208054]
 layout_mode = 2
@@ -87,4 +93,5 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_m4i4k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_rkvu0")
 text = "X"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
