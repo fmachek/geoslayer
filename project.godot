@@ -99,6 +99,7 @@ escape={
 2d_physics/layer_11="Containers"
 2d_physics/layer_12="Bosses"
 2d_physics/layer_13="Mines"
+2d_physics/layer_14="Boomerangs"
 
 [physics]
 
