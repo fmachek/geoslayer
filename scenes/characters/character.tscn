@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxtbqakp438ob" path="res://scenes/user_interface/hud/health_bar.tscn" id="3_ma1fs"]
 [ext_resource type="Script" uid="uid://bdilgwqtqc44e" path="res://scripts/characters/levels/level.gd" id="4_ma1fs"]
 [ext_resource type="Texture2D" uid="uid://c1xke6hlkwyl8" path="res://assets/sprites/characters/particles/stun_particle.png" id="6_yscb1"]
+[ext_resource type="Script" uid="uid://b8eqnowv1p6o8" path="res://scripts/characters/player/aim_indicator.gd" id="7_ysl2u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yscb1"]
 radius = 32.0
@@ -96,5 +97,14 @@ scale_amount_min = 0.03
 scale_amount_max = 0.06
 color_ramp = SubResource("Gradient_ysl2u")
 
+[node name="AimIndicator" type="Node2D" parent="." unique_id=71175215]
+unique_name_in_owner = true
+visible = false
+z_index = 11
+z_as_relative = false
+script = ExtResource("7_ysl2u")
+
+[connection signal="outline_color_changed" from="." to="AimIndicator" method="_on_character_outline_color_changed"]
+[connection signal="ready" from="." to="AimIndicator" method="_on_character_ready"]
 [connection signal="current_value_changed" from="CharacterStats/Health" to="." method="emit_health_change"]
 [connection signal="max_value_after_buffs_changed" from="CharacterStats/Health" to="." method="emit_max_health_change"]

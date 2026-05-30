@@ -51,9 +51,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	super._process(delta)
 	target_pos = get_global_mouse_position()
-	_move_aim_indicator()
+	super(delta)
 
 
 # Moves on every physics frame.
@@ -256,13 +255,3 @@ func _apply_user_stats() -> void:
 				if child.stat_name == stat_name:
 					child.max_value += child.perk_point_increase * stat_value
 					break
-
-
-func _move_aim_indicator() -> void:
-	var aim_indicator: AimIndicator = $AimIndicator
-	if aim_indicator:
-		var mouse_pos: Vector2 = get_global_mouse_position()
-		var direction: Vector2 = (mouse_pos - global_position).normalized()
-		var radius: int = $CollisionShape2D.shape.radius
-		var offset: int = 12
-		aim_indicator.global_position = global_position + direction * (radius + offset)

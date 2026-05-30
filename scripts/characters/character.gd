@@ -48,6 +48,8 @@ const _DMG_LABEL_SCENE := preload(
 @export var base_damage: int = 100
 ## Reduces knockback applied via [method apply_knockback].
 @export var knockback_resistance: int = 0
+## Says whether the aim indicator should be shown or not.
+@export var shows_aim_indicator: bool = false
 #endregion
 
 #region regular variables
@@ -115,6 +117,10 @@ func _ready() -> void:
 	_fill_health() # Spawn with max health
 	generate_drop_pool()
 	
+	if shows_aim_indicator:
+		var aim_indicator = get_node("AimIndicator")
+		aim_indicator.show()
+	
 	$HealthBar.set_up(self) # Sets up the health bar which appears below the character
 	%AimLine.default_color = Color(outline_color, 0.3)
 	_fade_in()
@@ -123,6 +129,8 @@ func _ready() -> void:
 # Moves the aim line, which is used to display aiming, on every frame.
 func _process(_delta: float) -> void:
 	move_aim_line()
+	if shows_aim_indicator:
+		_move_aim_indicator()
 
 
 func _physics_process(_delta: float) -> void:
@@ -481,3 +489,17 @@ func _fade_in() -> void:
 	var fade_time: float = 0.5
 	self_modulate.a = 0.0
 	_fade_tween.tween_property(self, "self_modulate:a", 1.0, fade_time)
+
+
+func _move_aim_indicator() -> void:
+	var aim_indicator: AimIndicator = $AimIndicator
+	if aim_indicator:
+		var direction: Vector2 = (target_pos - global_position).normalized()
+		var shape = $CollisionShape2D.shape
+		var offset: int = 12
+		if shape is CircleShape2D:
+			var radius: int = shape.radius
+			aim_indicator.global_position = global_position + direction * (radius + offset)
+		elif shape is RectangleShape2D:
+			var width: float = shape.size.x
+			aim_indicator.global_position = global_position + direction * (width + offset)

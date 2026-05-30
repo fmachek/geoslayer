@@ -13,6 +13,7 @@ draw_color = Color(0.93253213, 0, 0.063352175, 1)
 outline_color = Color(0.6582416, 0, 0.03047952, 1)
 base_health = 2000
 base_damage = 500
+shows_aim_indicator = false
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
 shape = SubResource("CircleShape2D_5ci7y")
