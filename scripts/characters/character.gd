@@ -494,7 +494,10 @@ func _fade_in() -> void:
 func _move_aim_indicator() -> void:
 	var aim_indicator: AimIndicator = $AimIndicator
 	if aim_indicator:
-		var direction: Vector2 = (target_pos - global_position).normalized()
+		var direction: Vector2
+		direction = (target_pos - global_position).normalized()
+		if direction == Vector2.ZERO:
+			direction = Vector2(1, 0)
 		var shape = $CollisionShape2D.shape
 		var offset: int = 12
 		if shape is CircleShape2D:

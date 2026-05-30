@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxtbqakp438ob" path="res://scenes/user_interface/hud/health_bar.tscn" id="3_ma1fs"]
 [ext_resource type="Script" uid="uid://bdilgwqtqc44e" path="res://scripts/characters/levels/level.gd" id="4_ma1fs"]
 [ext_resource type="Texture2D" uid="uid://c1xke6hlkwyl8" path="res://assets/sprites/characters/particles/stun_particle.png" id="6_yscb1"]
-[ext_resource type="Script" uid="uid://b8eqnowv1p6o8" path="res://scripts/characters/player/aim_indicator.gd" id="7_ysl2u"]
+[ext_resource type="Script" uid="uid://b8eqnowv1p6o8" path="res://scripts/characters/aim_indicator.gd" id="7_ysl2u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yscb1"]
 radius = 32.0
