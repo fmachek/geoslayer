@@ -25,12 +25,14 @@ var projectile_knockback: float = 100.0
 var projectile_amount: int = 4
 ## Angle of the cone spread in radians.
 var spread_angle: float = deg_to_rad(20)
-## Speed buff amount applied to [member character].
+## Speed buff amount applied to [member character] per projectile.
 var speed_buff: int = 10
 ## Duration of speed buff applied to [member character].
 var speed_buff_duration: float = 1.0
-## Armor buff amount applied to [member character].
-var armor_buff: int = 20
+## Base buff amount applied to [member character] per projectile.
+var base_armor_buff: int = 10
+## Multiplier of the armor buff, set when the ability is performed.
+var armor_buff_multiplier: float = 1.0
 ## Duration of armor buff applied to [member character].
 var armor_buff_duration: float = 1.0
 
@@ -45,6 +47,7 @@ func _init() -> void:
 
 
 func _perform_ability() -> void:
+	_update_armor_buff_multiplier()
 	var projectiles: Array[Projectile] = ProjectileFunctions.fire_projectile_cone(
 			_PROJ_SCENE, projectile_amount, spread_angle,
 			character, base_damage, projectile_speed, projectile_radius)
@@ -67,8 +70,15 @@ func _apply_speed_buff() -> void:
 
 
 func _apply_armor_buff() -> void:
+	var armor_buff: int = base_armor_buff * armor_buff_multiplier
 	var buff := Buff.new(armor_buff, armor_buff_duration)
 	buff.apply_to_stat(character.armor)
+
+
+func _update_armor_buff_multiplier() -> void:
+	var caster_level: int = character.level.current_level
+	# Armor scales every 10 levels
+	armor_buff_multiplier = 1 + caster_level / 10
 
 
 func _emit_buff_particles() -> void:
