@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://3bjnhhporurv"]
 
 [ext_resource type="Script" uid="uid://b0xjhexn4e714" path="res://scripts/objects/shields/shield.gd" id="1_pbl5b"]
+[ext_resource type="Texture2D" uid="uid://dhwrs5v8cnkdc" path="res://assets/sprites/characters/particles/shield.png" id="2_qajrr"]
+[ext_resource type="Texture2D" uid="uid://juvorgbct332" path="res://assets/user_interface/misc/hourglass.png" id="3_lkl8o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqo7t"]
 radius = 82.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbl5b"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qajrr"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Shield" type="Node2D" unique_id=1376906853]
 z_index = -1
@@ -19,5 +27,58 @@ shape = SubResource("CircleShape2D_yqo7t")
 
 [node name="ExpirationTimer" type="Timer" parent="." unique_id=1752258470]
 one_shot = true
+
+[node name="BarContainer" type="HBoxContainer" parent="." unique_id=1753110955]
+offset_left = -69.0
+offset_top = 90.0
+offset_right = 69.0
+offset_bottom = 113.0
+size_flags_horizontal = 4
+
+[node name="DurabilityBarContainer" type="HBoxContainer" parent="BarContainer" unique_id=1157171024]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="BarContainer/DurabilityBarContainer" unique_id=696750813]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("2_qajrr")
+expand_mode = 2
+
+[node name="DurabilityBar" type="ProgressBar" parent="BarContainer/DurabilityBarContainer" unique_id=1403573795]
+z_index = 1
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_pbl5b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qajrr")
+value = 50.0
+show_percentage = false
+
+[node name="TimeBarContainer" type="HBoxContainer" parent="BarContainer" unique_id=73658324]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="BarContainer/TimeBarContainer" unique_id=931972527]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("3_lkl8o")
+expand_mode = 2
+
+[node name="TimeBar" type="ProgressBar" parent="BarContainer/TimeBarContainer" unique_id=701573471]
+z_index = 1
+custom_minimum_size = Vector2(40, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_pbl5b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qajrr")
+value = 50.0
+show_percentage = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

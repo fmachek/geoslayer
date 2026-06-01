@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bmcjtbly2ixbt"]
+
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="1_fmhqq"]
+
+[sub_resource type="Curve" id="Curve_qajrr"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, -200), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pbl5b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="DestroyParticles" type="CPUParticles2D" unique_id=509466516]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.5
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 82.0
+emission_ring_radius = 82.0
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+radial_accel_min = 2.0
+radial_accel_max = 2.0
+radial_accel_curve = SubResource("Curve_qajrr")
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_pbl5b")
+script = ExtResource("1_fmhqq")
