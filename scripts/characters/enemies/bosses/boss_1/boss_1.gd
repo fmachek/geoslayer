@@ -3,7 +3,7 @@ extends Boss
 ## Represents the first [Boss].
 ##
 ## In the first phase, this [Boss] uses [Cannonball] and a
-## buffed version of [Storm].
+## modified version of [Storm] (its variables are changed).
 ##
 ## In the second phase, the [Stations] and [Orbit] abilities
 ## are added to its kit.
@@ -26,6 +26,8 @@ func generate_drop_pool() -> void:
 func _load_abilities() -> void:
 	var storm := Storm.new()
 	storm.zone_radius = 350
+	storm.cast_time = 2.0
+	storm.cooldown = 18.0
 	_load_ability(storm)
 	_load_ability(Cannonball.new())
 
