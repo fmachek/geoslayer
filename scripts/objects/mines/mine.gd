@@ -177,15 +177,21 @@ func _on_body_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	if not is_instance_valid(parent):
 		return
-	if not parent is Projectile:
-		return
-	var projectile: Projectile = parent
-	if not projectile.can_explode:
-		return
-	if projectile.projectile_properties.source == spawner:
-		_can_detect_projectiles = false
-		projectile.call_deferred("explode")
-		call_deferred("explode")
+	if parent is Projectile:
+		var projectile: Projectile = parent
+		if not projectile.can_explode:
+			return
+		if projectile.projectile_properties.source == spawner:
+			_can_detect_projectiles = false
+			projectile.call_deferred("explode")
+			call_deferred("explode")
+	elif parent is Boomerang:
+		var boomerang: Boomerang = parent
+		if boomerang.is_inactive:
+			return
+		if boomerang.caster == spawner:
+			_can_detect_projectiles = false
+			call_deferred("explode")
 
 
 #region shape updates
