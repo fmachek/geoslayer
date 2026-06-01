@@ -91,12 +91,10 @@ func _become_inactive() -> void:
 func _play_fade_out_tween() -> void:
 	if _fade_tween:
 		_fade_tween.kill()
-	var tree: SceneTree = get_tree()
-	if tree:
-		_fade_tween = get_tree().create_tween()
-		_fade_tween.tween_property(self, "modulate:a", 0, 1)
-		_fade_tween.play()
-		_fade_tween.tween_callback(queue_free)
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(self, "modulate:a", 0, 1)
+	_fade_tween.play()
+	_fade_tween.tween_callback(queue_free)
 
 
 # Updates radius in the particles and collision shape to match the

@@ -19,7 +19,7 @@ func play_death_cam_tween() -> void:
 	death_cam.zoom = Vector2(1, 1)
 	if _death_cam_tween:
 		_death_cam_tween.kill()
-	_death_cam_tween = get_tree().create_tween()
+	_death_cam_tween = create_tween()
 	_death_cam_tween.set_ease(Tween.EASE_OUT)
 	_death_cam_tween.set_trans(Tween.TRANS_ELASTIC)
 	var end_zoom := Vector2(1.5, 1.5)

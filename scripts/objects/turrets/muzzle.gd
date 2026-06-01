@@ -44,6 +44,6 @@ func apply_recoil() -> void:
 	var recoil := Vector2(0, 25.0)
 	var recoil_pos: Vector2 = (position + recoil)
 	position = recoil_pos
-	_recoil_tween = get_tree().create_tween()
+	_recoil_tween = create_tween()
 	_recoil_tween.tween_property(self, "position", _original_pos, 0.15)
 	_recoil_tween.play()

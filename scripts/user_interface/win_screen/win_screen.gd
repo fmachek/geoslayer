@@ -40,7 +40,7 @@ func _play_orb_effect() -> void:
 		var offset := Vector2(randi_range(-50, 50), 0)
 		var target_pos := bar_pos + half_x_size + offset
 		
-		var tween := get_tree().create_tween()
+		var tween := create_tween()
 		tween.tween_property(orb, "global_position", target_pos, 0.5)
 		tween.tween_callback(orb.queue_free)
 		tween.tween_callback(func(): _level_container.level.add_xp(1))

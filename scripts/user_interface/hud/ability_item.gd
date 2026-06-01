@@ -45,7 +45,7 @@ func _play_cooldown_tween():
 	_cooldown_rect.size.y = size.y
 	if _cooldown_tween:
 		_cooldown_tween.kill()
-	_cooldown_tween = get_tree().create_tween()
+	_cooldown_tween = create_tween()
 	_cooldown_tween.tween_property(_cooldown_rect, "size:y", 0, current_ability.cooldown)
 
 

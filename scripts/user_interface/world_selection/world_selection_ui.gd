@@ -88,7 +88,7 @@ func _on_enter_world_button_pressed() -> void:
 func _play_world_number_label_tween():
 	if _world_number_label_tween:
 		_world_number_label_tween.kill()
-	_world_number_label_tween = get_tree().create_tween()
+	_world_number_label_tween = create_tween()
 	var label: Label = _selected_world_panel.get_node("WorldNumberLabel")
 	label.scale = Vector2(1.5, 1.5)
 	_world_number_label_tween.tween_property(label, "scale", Vector2.ONE, 0.25)

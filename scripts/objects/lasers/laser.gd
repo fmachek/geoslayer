@@ -101,7 +101,7 @@ func _on_start_timer_timeout() -> void:
 func _fade_out() -> void:
 	if _fade_tween:
 		_fade_tween.kill()
-	_fade_tween = get_tree().create_tween()
+	_fade_tween = create_tween()
 	_fade_tween.tween_property(self, "modulate:a", 0, 0.5)
 	_fade_tween.tween_callback(queue_free)
 

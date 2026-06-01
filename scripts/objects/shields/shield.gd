@@ -122,9 +122,12 @@ func _stop_monitoring() -> void:
 
 
 func _spawn_destroy_particles() -> void:
+	var parent = get_parent()
+	if not is_instance_valid(parent):
+		return
 	var particles: FreeParticles = destroy_particles_scene.instantiate()
 	particles.color = outline_color
-	get_parent().add_child(particles)
+	parent.add_child(particles)
 	particles.global_position = global_position
 	particles.emitting = true
 
@@ -143,7 +146,7 @@ func _fade(start_a: float, end_a: float) -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 	modulate.a = start_a
-	_fade_tween = get_tree().create_tween()
+	_fade_tween = create_tween()
 	_fade_tween.tween_property(self, "modulate:a", end_a, 0.25)
 #endregion
 
