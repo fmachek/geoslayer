@@ -145,6 +145,7 @@ horizontal_alignment = 1
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer" unique_id=1787894532]
 custom_minimum_size = Vector2(240, 30)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_babk2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_37snd")
 show_percentage = false
@@ -156,6 +157,7 @@ offset_left = 78.0
 offset_right = 82.0
 offset_bottom = 30.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_2wyq8")
 
 [node name="VSeparator2" type="VSeparator" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer/ProgressBar" unique_id=799491215]
@@ -165,6 +167,7 @@ offset_left = 158.0
 offset_right = 162.0
 offset_bottom = 30.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_2wyq8")
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/BossHealthContainer/ProgressBar" unique_id=705667987]
