@@ -114,7 +114,7 @@ func increase_damage() -> void:
 
 
 func increase_fire_rate() -> void:
-	shoot_time -= 0.25
+	shoot_time -= 0.2
 
 
 func _set_shoot_time(value: float) -> void:
