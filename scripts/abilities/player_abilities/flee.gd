@@ -4,7 +4,7 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 var projectile_speed: float = 5.0
-var base_damage: int = 30
+var base_damage: int = 15
 var projectile_radius: float = 7.0
 var projectile_knockback: float = 400.0
 var caster_knockback: float = -1250.0

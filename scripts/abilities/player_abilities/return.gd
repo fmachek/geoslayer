@@ -4,13 +4,13 @@ extends Ability
 var boomerang_scene: PackedScene = preload(
 	"res://scenes/objects/boomerangs/boomerang.tscn"
 )
-var boomerang_damage: int = 40
+var boomerang_damage: int = 30
 var boomerang_travel_speed: float = 500.0
-var boomerang_return_time: float = 1.0
+var boomerang_return_time: float = 0.75
 
 
 func _init() -> void:
-	var ability_cooldown: float = 3.0
+	var ability_cooldown: float = 2.0
 	var ability_description: String = "Throws a boomerang which returns to the caster."
 	var ability_cast_duration: float = 0.0
 	super(ability_cooldown, ability_cast_duration, ability_description)

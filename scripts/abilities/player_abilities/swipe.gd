@@ -6,17 +6,17 @@ extends Ability
 const _SWIPE_SCENE := preload("res://scenes/objects/attacks/swipe_attack.tscn")
 
 ## Base damage dealt by the [SwipeAttack].
-var swipe_damage: int = 70
+var swipe_damage: int = 35
 ## Length of the [SwipeAttack].
-var swipe_length: float = 200.0
+var swipe_length: float = 250.0
 ## Angle which the [SwipeAttack] covers, in degrees.
 var swipe_degrees: float = 120.0
 ## Time until the [SwipeAttack] reaches its destination.
-var swipe_time: float = 0.25
+var swipe_time: float = 0.2
 
 
 func _init() -> void:
-	var ability_cooldown: float = 2.0
+	var ability_cooldown: float = 1.0
 	var ability_cast_time: float = swipe_time
 	var ability_description := "Performs a melee swipe attack."
 	super(ability_cooldown, ability_cast_time, ability_description)
