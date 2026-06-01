@@ -25,6 +25,7 @@ var expiration_time: float = 5.0: set = _set_expiration_time
 var durability: int = 150: set = _set_durability
 ## Says if the [Shield] is active or not.
 var is_active: bool = true
+var piercing_objects: Array[Node2D] = []
 # Tween used for fade in and fade out.
 var _fade_tween: Tween
 
@@ -66,11 +67,17 @@ func _on_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	if not parent:
 		return
+	if parent in piercing_objects: # Object already dealt damage to the shield
+		return
 	if parent is Projectile:
 		var projectile: Projectile = parent
 		if _is_enemy_projectile(projectile) and projectile.can_deal_damage:
 			var damage: int = projectile.projectile_properties.damage
-			projectile.explode()
+			if projectile is not PiercingProjectile:
+				# Piercing projectiles pierce through shields
+				projectile.explode()
+			else:
+				piercing_objects.append(projectile)
 			durability -= damage
 
 

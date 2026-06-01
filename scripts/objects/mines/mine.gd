@@ -183,7 +183,9 @@ func _on_body_area_entered(area: Area2D) -> void:
 			return
 		if projectile.projectile_properties.source == spawner:
 			_can_detect_projectiles = false
-			projectile.call_deferred("explode")
+			if not projectile is PiercingProjectile:
+				# Piercing projectiles pierce through mines
+				projectile.call_deferred("explode")
 			call_deferred("explode")
 	elif parent is Boomerang:
 		var boomerang: Boomerang = parent
