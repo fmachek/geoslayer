@@ -8,6 +8,7 @@ var explosion_radius: float = 200.0
 var explosion_knockback: float = 1000.0
 var automatic_explosion_time: float = 3.0
 var stun_duration: float = 0.75
+var placement_distance: float = 100.0
 
 
 func _init() -> void:
@@ -31,7 +32,12 @@ func _perform_ability() -> void:
 	var caster_damage: int = character.damage.max_value_after_buffs
 	var mine_damage: int = float(base_mine_damage) * (float(caster_damage) / 100)
 	mine.explosion_damage = mine_damage
-	mine.global_position = character.global_position
+	
+	var target_pos: Vector2 = character.target_pos
+	var target_dir: Vector2 = (target_pos - character.global_position).normalized()
+	var target_mine_pos: Vector2 = character.global_position + target_dir * placement_distance
+	var final_pos: Vector2 = character.get_raycast_collision(target_mine_pos)
+	mine.global_position = final_pos
 	
 	character.get_parent().add_child(mine)
 	finished_casting.emit()
