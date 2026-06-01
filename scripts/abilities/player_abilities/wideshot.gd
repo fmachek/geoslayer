@@ -10,14 +10,14 @@ var projectile_speed: int = 5
 ## Base damage of the [Projectile]s fired when cast.
 var base_damage: int = 18
 ## Radius of the [Projectile]s fired when cast.
-var projectile_radius: int = 6
+var projectile_radius: float = 6.0
 ## Knockback applied to [Character]s hit by the [Projectile]s.
 var projectile_knockback: float = 400.0
 
 ## Amount of [Projectile]s fired on cast.
 var projectile_amount: int = 5
 ## Angle of the cone spread in radians.
-var spread_angle: float = deg_to_rad(40)
+var spread_angle: float = deg_to_rad(30)
 
 
 func _init() -> void:
