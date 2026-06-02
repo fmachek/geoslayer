@@ -49,6 +49,7 @@ func _ready() -> void:
 	durability_changed.connect(_update_durability_bar)
 	_update_shape_radius(radius)
 	_update_expiration_timer(expiration_time)
+	_create_bar_styleboxes()
 	_update_colors()
 	_durability_bar.max_value = durability
 	_durability_bar.value = durability
@@ -172,11 +173,9 @@ func _update_colors() -> void:
 		if parent is Character:
 			draw_color = Color(parent.draw_color, 0.25)
 			outline_color = Color(parent.draw_color, 0.5)
-			var stylebox1: StyleBoxFlat = _durability_bar.get_theme_stylebox("fill")
+			var bar_stylebox: StyleBoxFlat = _durability_bar.get_theme_stylebox("fill")
 			var bar_color: Color = parent.draw_color
-			stylebox1.bg_color = bar_color
-			var stylebox2: StyleBoxFlat = _time_bar.get_theme_stylebox("fill")
-			stylebox2.bg_color = bar_color
+			bar_stylebox.bg_color = bar_color
 			var durability_texture: TextureRect = $BarContainer/DurabilityBarContainer/TextureRect
 			durability_texture.modulate = bar_color
 			var time_texture: TextureRect = $BarContainer/TimeBarContainer/TextureRect
@@ -224,3 +223,9 @@ func _tween_time_bar() -> void:
 	_time_bar_tween = _time_bar.create_tween()
 	var end_value: float = _time_bar.max_value
 	_time_bar_tween.tween_property(_time_bar, "value", end_value, expiration_time)
+
+
+func _create_bar_styleboxes() -> void:
+	var bar_stylebox := StyleBoxFlat.new()
+	_time_bar.add_theme_stylebox_override("fill", bar_stylebox)
+	_durability_bar.add_theme_stylebox_override("fill", bar_stylebox)
