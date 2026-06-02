@@ -5,7 +5,7 @@
 
 [node name="Mage" unique_id=1080282355 instance=ExtResource("1_ycna6")]
 script = ExtResource("2_vrtod")
-zone_final_radius = 500.0
+zone_final_radius = 750.0
 zone_life_time = 5.0
 zone_base_damage = 10
 zone_tick_time = 0.1
