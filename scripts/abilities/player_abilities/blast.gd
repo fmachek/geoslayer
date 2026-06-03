@@ -6,7 +6,7 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 ## Travel speed of the [Projectile]s fired when cast.
-var projectile_speed: int = 5
+var projectile_speed: float = 5.0
 ## Base damage of the [Projectile]s fired when cast.
 var base_damage: int = 20
 ## Radius of the [Projectile]s fired when cast.
