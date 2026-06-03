@@ -21,7 +21,7 @@ offset_right = 150.0
 offset_bottom = 75.0
 rotation = 3.1415927
 mouse_filter = 2
-color = Color(0.6862745, 0, 0, 0.7647059)
+color = Color(0, 0, 0, 0.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2052647753]
 layout_mode = 1
