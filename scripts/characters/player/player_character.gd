@@ -48,6 +48,8 @@ func _ready() -> void:
 	target_pos = get_global_mouse_position()
 	_apply_user_stats()
 	_fill_health()
+	finished_casting.connect(_cast_ability_1_if_pressed)
+	finished_casting.connect(_cast_ability_2_if_pressed)
 
 
 func _process(delta: float) -> void:
@@ -69,10 +71,10 @@ func _unhandled_input(event) -> void:
 	if is_stunned:
 		return
 	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.is_action_pressed("cast_1"):
 			if ability1:
 				ability1.cast()
-		elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.is_action_pressed("cast_2"):
 			if ability2:
 				ability2.cast()
 
@@ -96,11 +98,15 @@ func equip_ability(ability: Ability) -> void:
 		if equipped_ability.ability_name == ability.ability_name: return
 	if ability1 == null:
 		ability1 = ability
-		super.equip_ability(ability1)
+		super(ability1)
+		if ability1:
+			ability1.cooldown_ended.connect(_cast_ability_1_if_pressed)
 		ability1_changed.emit(ability1)
 	elif ability2 == null:
 		ability2 = ability
-		super.equip_ability(ability2)
+		super(ability2)
+		if ability2:
+			ability2.cooldown_ended.connect(_cast_ability_2_if_pressed)
 		ability2_changed.emit(ability2)
 	else:
 		replace_ability1(ability)
@@ -129,6 +135,8 @@ func replace_ability1(ability: Ability) -> void:
 		_unequip_ability(ability1)
 	ability1 = ability
 	super.equip_ability(ability1)
+	if ability1:
+		ability1.cooldown_ended.connect(_cast_ability_1_if_pressed)
 	ability1_changed.emit(ability1)
 
 
@@ -152,6 +160,8 @@ func replace_ability2(ability: Ability) -> void:
 		_unequip_ability(ability2)
 	ability2 = ability
 	super.equip_ability(ability2)
+	if ability2:
+		ability2.cooldown_ended.connect(_cast_ability_2_if_pressed)
 	ability2_changed.emit(ability2)
 
 
@@ -159,6 +169,10 @@ func _unequip_ability(ability: Ability) -> void:
 	ability.casted.disconnect(start_casting)
 	ability.finished_casting.disconnect(finish_casting)
 	ability.unequipping.disconnect(_on_ability_unequipping)
+	if ability.cooldown_ended.is_connected(_cast_ability_1_if_pressed):
+		ability.cooldown_ended.disconnect(_cast_ability_1_if_pressed)
+	if ability.cooldown_ended.is_connected(_cast_ability_2_if_pressed):
+		ability.cooldown_ended.disconnect(_cast_ability_2_if_pressed)
 	abilities.remove_child(ability)
 
 
@@ -166,6 +180,10 @@ func _unequip_ability(ability: Ability) -> void:
 func swap_ability_slots() -> void:
 	if not (can_unequip_ability(ability1) and can_unequip_ability(ability2)):
 		return
+	if ability1:
+		ability1.cooldown_ended.disconnect(_cast_ability_1_if_pressed)
+	if ability2:
+		ability2.cooldown_ended.disconnect(_cast_ability_2_if_pressed)
 	var ability1_temp: Ability = ability1
 	ability1 = ability2
 	ability2 = ability1_temp
@@ -255,3 +273,15 @@ func _apply_user_stats() -> void:
 				if child.stat_name == stat_name:
 					child.max_value += child.perk_point_increase * stat_value
 					break
+
+
+func _cast_ability_1_if_pressed() -> void:
+	if Input.is_action_pressed("cast_1"):
+		if ability1:
+			ability1.cast()
+
+
+func _cast_ability_2_if_pressed() -> void:
+	if Input.is_action_pressed("cast_2"):
+		if ability2:
+			ability2.cast()

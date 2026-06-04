@@ -55,19 +55,13 @@ func _stop_cooldown_tween():
 	_cooldown_rect.size.y = 0
 
 
-func _on_ability_cooldown_ended():
-	_stop_cooldown_tween()
-
-
 func _connect_ability_signals():
 	current_ability.casted.connect(_play_cooldown_tween)
-	current_ability.cooldown_ended.connect(_on_ability_cooldown_ended)
 	cast.connect(current_ability.cast)
 
 
 func _disconnect_ability_signals():
 	current_ability.casted.disconnect(_play_cooldown_tween)
-	current_ability.cooldown_ended.disconnect(_on_ability_cooldown_ended)
 	cast.disconnect(current_ability.cast)
 
 
