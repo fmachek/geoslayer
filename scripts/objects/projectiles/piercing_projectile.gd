@@ -6,6 +6,11 @@ extends Projectile
 var _collisions: Array[Character] = []
 
 
+func _physics_process(delta: float) -> void:
+	super(delta)
+	look_at(global_position + projectile_properties.direction)
+
+
 # Overrides the Projectile draw function. This projectile is special
 # because while it has a circular collision shape, the drawn shape is
 # a pointy bullet.

@@ -43,7 +43,6 @@ func _physics_process(delta: float) -> void:
 		var speed: float = projectile_properties.speed
 		var dir: Vector2 = projectile_properties.direction
 		global_position += speed * dir * delta * 200
-		look_at(global_position + dir)
 
 
 # Draws the shape, in this case a circle.

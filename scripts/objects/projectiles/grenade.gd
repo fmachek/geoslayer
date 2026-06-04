@@ -6,6 +6,7 @@ extends Projectile
 ## the explosion. This variable prevents the smaller projectiles from dealing damage
 ## to that object.
 
+var rotation_speed: float = 6.0
 ## Amount of smaller projectiles spawned on impact.
 var projectile_amount: int = 8
 ## The [Node2D] which caused the explosion (the [Grenade] collided with it).
@@ -14,11 +15,29 @@ var _explosion_body: Node2D = null
 var _proj_scene := load("res://scenes/objects/projectiles/grenade_projectile.tscn")
 
 
+func _physics_process(delta: float) -> void:
+	super(delta)
+	global_rotation += rotation_speed * delta
+
+
 func _ready() -> void:
 	super()
 	# Smaller projectiles are spawned after exploding
 	# Call deferred to fix errors
 	exploded.connect(func(): call_deferred("_spawn_projectiles"))
+
+
+func _draw() -> void:
+	if not can_explode:
+		return
+	var radius: float = projectile_properties.radius
+	var pos := Vector2(-radius, -radius)
+	var rect := Rect2(pos, Vector2(radius * 2, radius * 2))
+	var color: Color = projectile_properties.draw_color
+	var outline_color: Color = projectile_properties.outline_color
+	var outline_width: float = radius / 4
+	draw_rect(rect, color, true)
+	draw_rect(rect, outline_color, false, outline_width)
 
 
 func _handle_character_collision(character: Character) -> void:
