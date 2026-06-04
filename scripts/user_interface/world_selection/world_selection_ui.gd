@@ -2,7 +2,7 @@ class_name WorldSelectionUI
 extends Control
 ## Represents UI where the player can select a [World] to enter.
 
-## Emitted when the "Enter world" button is pressed.
+## Emitted when the "Enter world" or "Enter Training" button is pressed.
 signal enter_world_pressed(world_number: int)
 ## Emitted when [member selected_world_number] changes.
 signal selected_world_number_changed(new_number: int)
@@ -22,12 +22,14 @@ var _world_number_label_tween: Tween
 @onready var _enter_world_button: Button = %EnterWorldButton
 @onready var _menu_button: Button = %BackToMenuButton
 @onready var _selected_world_panel: Panel = %SelectedWorldPanel
+@onready var _training_button: Button = %EnterTrainingButton
 
 
 func _ready() -> void:
 	_enter_world_button.pressed.connect(_on_enter_world_button_pressed)
 	_menu_button.pressed.connect(GameManager.switch_to_menu)
 	enter_world_pressed.connect(GameManager.select_world)
+	_training_button.pressed.connect(enter_training)
 	_update_from_config()
 	_load_all_worlds()
 
@@ -82,7 +84,8 @@ func _load_world(world_number: int) -> void:
 
 func _on_enter_world_button_pressed() -> void:
 	enter_world_pressed.emit(selected_world_number)
-	ConfigManager.update_chosen_world(selected_world_number)
+	if selected_world_number != 0:
+		ConfigManager.update_chosen_world(selected_world_number)
 
 
 func _play_world_number_label_tween():
@@ -96,3 +99,8 @@ func _play_world_number_label_tween():
 
 func _get_world_scene_path(number: int) -> String:
 	return "res://scenes/worlds/world_%d.tscn" % number
+
+
+func enter_training() -> void:
+	selected_world_number = 0
+	enter_world_pressed.emit(selected_world_number)
