@@ -64,7 +64,7 @@ func _spawn_projectile(direction: Vector2) -> void:
 	if is_instance_valid(projectile_properties.source):
 		source = projectile_properties.source
 	var damage: int = projectile_properties.damage * 0.5
-	var radius: float = projectile_properties.radius * 0.5
+	var radius: float = projectile_properties.radius * 0.6
 	var proj_props := ProjectileProperties.new(
 			projectile_properties.draw_color, projectile_properties.outline_color,
 			direction, projectile_properties.speed, source, damage, radius,
