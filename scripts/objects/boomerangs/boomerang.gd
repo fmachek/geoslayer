@@ -18,6 +18,7 @@ var travel_speed: float = 500.0
 var travel_direction: Vector2 = Vector2.ONE
 var rotation_speed: float = 20.0
 var return_speed_increase: float = 50.0
+var knockback: float = 400.0
 
 var return_time: float = 1.0
 var is_returning: bool = false
@@ -148,7 +149,12 @@ func _deal_damage(character: Character) -> void:
 	if character in _characters_hit:
 		return
 	character.take_damage(base_damage * damage_multiplier)
-	_characters_hit.append(character)
+
+
+func _apply_knockback(character: Character) -> void:
+	if character in _characters_hit:
+		return
+	character.apply_knockback(knockback * travel_direction)
 
 
 func _stop_area_monitors() -> void:
@@ -177,6 +183,8 @@ func _update_damage_multiplier(caster_character: Character) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Character:
 		_deal_damage(body)
+		_apply_knockback(body)
+		_characters_hit.append(body)
 	elif body is TileMapLayer:
 		return_to_caster()
 
