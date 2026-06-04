@@ -11,7 +11,7 @@ var black_hole_base_damage: int = 50
 var black_hole_radius: float = 50.0
 var gravity_area_radius: float = 400.0
 var expiration_time: float = 8.0
-var black_hole_drag: float = 50.0
+var black_hole_drag: float = 30.0
 
 var _black_hole_spawn_position: Vector2
 var _speed_debuff: int = 50
