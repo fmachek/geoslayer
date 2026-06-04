@@ -54,6 +54,7 @@ func _ready() -> void:
 	_durability_bar.max_value = durability
 	_durability_bar.value = durability
 	_update_bar_positions()
+	_update_durability_bar(durability)
 	_time_bar.value = 0
 	_tween_time_bar()
 	_expiration_timer.start()
@@ -191,6 +192,8 @@ func _update_bar_positions() -> void:
 
 func _update_durability_bar(new_durability: int) -> void:
 	_durability_bar.value = new_durability
+	var label: Label = _durability_bar.get_node("DurabilityLabel")
+	label.text = str(new_durability)
 #endregion
 
 
