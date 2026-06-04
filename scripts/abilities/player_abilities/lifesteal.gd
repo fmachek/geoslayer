@@ -15,7 +15,7 @@ var projectile_radius: int = 8
 ## Amount of [LifestealProjectile]s fired on each cast.
 var projectile_amount: int = 3
 ## Time between the firing of individual [LifestealProjectile]s.
-var fire_time: float = 0.2
+var fire_time: float = 0.1
 
 var _fire_timer: Timer
 var _projectiles_remaining: int
