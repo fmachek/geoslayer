@@ -7,25 +7,22 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 ## Travel speed of the [Projectile] fired when cast.
-var projectile_speed: int = 2
+var projectile_speed: float = 2.5
 ## Base damage of the [Projectile] fired when cast.
 var base_damage: int = 70
 ## Radius of the [Projectile] fired when cast.
 var projectile_radius: int = 20
 ## Knockback applied to [Character]s hit by the [Projectile].
-var projectile_knockback: float = 1500.0
-
-## The amount by which the caster's speed is debuffed on cast.
-var speed_debuff: int = 30
-## The duration of the speed debuff on cast in seconds.
-var speed_debuff_duration: float = 0.5
+var projectile_knockback: float = 800.0
+## Knockback applied to the caster.
+var caster_knockback: float = 500.0
 
 
 func _init() -> void:
 	var ability_cooldown: float = 1.0
 	var ability_cast_time: float = 0.0
-	var ability_description := "Fires a large projectile and applies \
-			a short speed debuff to the caster."
+	var ability_description := "Fires a large projectile and knocks \
+			the caster back slightly."
 	super(ability_cooldown, ability_cast_time, ability_description)
 
 
@@ -35,7 +32,7 @@ func _perform_ability() -> void:
 	var proj := ProjectileFunctions.fire_projectile_from_character(_PROJ_SCENE,
 			character, projectile_speed, damage, projectile_radius)
 	proj.knockback = projectile_knockback
-	_apply_speed_debuff()
+	_apply_knockback_to_caster()
 	finished_casting.emit()
 
 
@@ -43,6 +40,7 @@ func _handle_casting() -> void:
 	pass
 
 
-func _apply_speed_debuff() -> void:
-	var debuff := Buff.new(-speed_debuff, speed_debuff_duration)
-	debuff.apply_to_stat(character.speed)
+func _apply_knockback_to_caster() -> void:
+	var direction: Vector2 = (character.target_pos - character.global_position).normalized()
+	var knockback: Vector2 = caster_knockback * -direction
+	character.apply_knockback(knockback)
