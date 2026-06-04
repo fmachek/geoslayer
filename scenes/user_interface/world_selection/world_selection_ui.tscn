@@ -222,4 +222,4 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("9_1hh77")
 theme_override_styles/disabled = ExtResource("11_o4hdu")
 theme_override_styles/disabled_mirrored = ExtResource("11_o4hdu")
 theme_override_styles/focus = ExtResource("10_o7x43")
-text = "Enter Training"
+text = "Enter training"
