@@ -17,6 +17,7 @@ signal spawning_character(char: Character)
 ## integers 1, 3 and 5, the [CharacterSpawner] will trigger on each
 ## one of those waves.
 @export var spawn_waves: PackedInt32Array
+@export var character_level_scales: bool = true
 #endregion
 
 var current_draw_color: Color
@@ -47,7 +48,8 @@ func _draw() -> void:
 ## Spawns a [Character] instantiated from [member character_scene].
 func spawn_character(current_wave: int) -> Character:
 	var character: Character = character_scene.instantiate()
-	character.initial_level = current_wave
+	if character_level_scales:
+		character.initial_level = current_wave
 	spawning_character.emit(character)
 	character.global_position = global_position
 	get_parent().add_child(character)

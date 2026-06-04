@@ -20,6 +20,7 @@ signal boss_spawned(boss: Character)
 @export var enemy_names: Array[String] = []
 ## Multiplier used when updating [Character] stats.
 @export var stat_multiplier: float = 1.0
+@export var spawns_chests: bool = true
 
 var _player_spawn_pos: Vector2
 var _unopened_chests: Array = []
@@ -70,6 +71,8 @@ func _add_chest_to_world(chest: Chest) -> void:
 
 
 func _handle_wave_end() -> void:
+	if not spawns_chests:
+		return
 	if wave_manager.current_wave == wave_manager.max_waves:
 		return
 	call_deferred("spawn_chest")
