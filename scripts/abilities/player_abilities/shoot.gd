@@ -10,7 +10,7 @@ var projectile_speed: int = 3
 ## Base damage of the [Projectile] fired when cast.
 var base_damage: int = 30
 ## Radius of the [Projectile] fired when cast.
-var projectile_radius: int = 10
+var projectile_radius: int = 11
 ## Knockback applied to [Character]s hit by the [Projectile].
 var projectile_knockback: float = 350.0
 
