@@ -15,9 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://cnyqxqibx7elo" path="res://scenes/objects/turrets/aiming_turret.tscn" id="13_36o8v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dl5br"]
-vertices = PackedVector2Array(630, 630, -630, 630, -630, -630, 630, -630)
+vertices = PackedVector2Array(886, 886, -886, 886, -886, -886, 886, -886)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-640, -640, 640, -640, 640, 640, -640, 640)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-896, -896, 896, -896, 896, 896, -896, 896)])
 
 [node name="World2" unique_id=514046658 instance=ExtResource("1_dl5br")]
 chest_scene = ExtResource("2_53un6")
@@ -31,7 +31,6 @@ tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAA
 max_waves = 10
 
 [node name="NavigationRegion2D" parent="." index="4" unique_id=732517934]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_dl5br")
 
 [node name="Turret" parent="." index="5" unique_id=386473 instance=ExtResource("2_1t1ea")]
