@@ -10,6 +10,7 @@ var dot: DamageOverTime
 func _handle_character_collision(character: Character) -> void:
 	can_deal_damage = false
 	_deal_damage(character)
+	_apply_knockback(character)
 	_apply_dot(character)
 	explode()
 

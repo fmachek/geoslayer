@@ -43,3 +43,4 @@ func _handle_character_collision(character: Character) -> void:
 	if not character in _collisions:
 		_collisions.append(character)
 		_deal_damage(character)
+		_apply_knockback(character)

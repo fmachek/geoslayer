@@ -101,7 +101,6 @@ func _draw_projectile_shape() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Character and can_deal_damage:
 		hit_character.emit(body)
-		_apply_knockback(body)
 		_handle_character_collision(body)
 	else:
 		explode()
@@ -133,6 +132,7 @@ func _on_flying_particles_finished() -> void:
 func _handle_character_collision(character: Character) -> void:
 	can_deal_damage = false
 	_deal_damage(character)
+	_apply_knockback(character)
 	explode()
 
 
