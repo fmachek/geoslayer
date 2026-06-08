@@ -1,49 +1,41 @@
 # Geoslayer
-This is my project I started simply to improve at developing games in Godot Engine, but it has actually turned out to be a bit more than that.
+
+This is the repository for my game: Geoslayer. I am currently working on version 0.2.0. Therefore, the game is not finished yet.
 
 ## Technologies used
+
 * Godot Engine 4.6
 * GDScript
 
-## About the game
+## Overview
 
-Geoslayer is a 2D wave-based survival game with simple graphics. You use your 2 abilities to defeat incoming enemies. Beat the boss who spawns at the end to win.
+Geoslayer is a 2D wave-based game with simple graphics. You use your 2 abilities to defeat incoming enemies. Beat the boss who spawns at the end to win.
 
-Unlock abilities from chests you get for surviving waves, pick and choose which ones you want to use. Currently there are 19 player abilities in total.
+Unlock abilities from chests you get for surviving waves, pick the ones you want to use. Currently there are 19 player abilities in total.
 
 You get XP by defeating enemies or opening chests. When you level up, you gain a few points you can use to upgrade your stats. When you win the game by defeating the boss and you exit the arena, the XP you earned is converted into permanent XP. When you increase your permanent level, you also gain stat points similar to the ones you earned in-game. These permanent stat points can also occasionally drop from enemies.
 
-Your permament level is important when entering different worlds. Every world other than World 1 (and World 0, a testing world) will have a level requirement.
+Your permament level is important when entering different worlds. Every world will have a level requirement (except for World 1, of course).
 
 ### Gameplay showcase
+
 ![Gameplay](./assets/screenshots/gameplay.gif)
 
-### Player abilities
-There are currently 19 abilities usable by the player. Their types are essentially their themes.
-Earlier worlds have a more limited drop pool of abilities. For example, World 1 only drops regular abilities. World 2 adds magical abilities on top of that.
+### Permanent upgrades
 
-| Ability name | Ability description | Type |
-| ------------ | ------------------- | ------------------- |
-| Shoot        | Basic starter ability, fires a projectile | Regular |
-| Doubleshot   | Fires two projectiles in parallel | Regular |
-| Cannonball   | Fires a large and high-damage but slow projectile, it also applies a huge knockback | Regular |
-| Blast        | Fires projectiles with huge knockback in all directions | Regular |
-| Flurry       | Fires multiple projectiles with recoil in quick succession | Regular |
-| Wideshot     | Fires multiple projectiles in a cone | Regular |
-| Pierce       | Fires a high-damage fast piercing projectile, but requires a cast | Regular |
-| Explosive    | Fires a projectile which explodes into more smaller projectiles on impact | Regular |
-| Lifesteal    | Fires 3 projectiles which heal the caster for a portion of the damage dealt | Regular |
-| Shred        | Close range cone attack which applies an armor and speed buff to the caster if the projectiles hit a target | Regular |
-| Swipe        | Performs a swipe melee attack | Regular |
-| Smash        | Deals damage to, stuns and knocks enemies around the caster back | Regular |
-| Trap         | Places down a mine which deals damage to, stuns and knocks enemies back when exploding. It can explode when stepped on by enemies or automatically after a given amount of time. The caster can also make it explode instantly by firing a projectile at it. | Regular |
-| Flee         | Fires projectiles in a cone and knocks the caster back in the opposite direction. | Regular |
-| Return       | Throws a boomerang which returns to the caster. | Regular |
-| Storm        | Spawns an area which damages and slows enemies down while they're standing in it | Magical |
-| Summon       | Spawns multiple minions who fight alongside the player | Magical |
-| Teleport     | Teleports the caster | Magical |
-| Collapse     | Summons a black hole which attracts enemies. After some time it explodes, dealing damage to enemies and knocking them back. | Magical |
+![Progression](./assets/screenshots/progression.png)
+
+### Player abilities
+
+There are currently 19 abilities usable by the player. Abilities are unlocked from chests. Each ability has a "theme", for example magical. Regular abilities with no particular theme (the abilities with a regular gray background in their icon) are unlockable in World 1, whereas magical abilities are unlockable in World 2. Regular abilities are unlockable in World 2 as well - the magical abilities are added into the drop pool on top of the World 1 drop pool.
+
+![Abilities](./assets/screenshots/abilities.gif)
 
 ## Credits
-* Kenney (some assets): https://kenney.nl/
-* Sora (font): https://fonts.google.com/specimen/Sora
+
+Here is some of the stuff I used, for example where I got some of my assets.
+
+* Kenney: https://kenney.nl/
+    * Some assets
+* Sora: https://fonts.google.com/specimen/Sora
+    * This is the main font the game uses
