@@ -73,7 +73,7 @@ func _handle_save_not_found() -> void:
 
 
 func _handle_save_incomplete() -> void:
-	_handle_save("Player save was incomplete.")
+	_handle_save("Player save was incomplete. Creating new save.")
 
 
 func _handle_save(message: String) -> void:

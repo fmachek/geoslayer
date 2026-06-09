@@ -39,79 +39,92 @@ func _ready() -> void:
 	load_user()
 
 
-## Attempts to load a user from the config file at [member CONFIG_PATH].
-## If the load fails, a new user is created and then saved.
-## Partial loads are also handled. If a value is missing, it is set to
-## the default value.
+## Loads user data from a config file at [member CONFIG_PATH].
+## If any data is missing from the config, a new user is created.
+## No partial loads are done.
 func load_user() -> void:
 	var config := ConfigFile.new()
-	
 	var err = config.load(CONFIG_PATH)
 	if err != OK:
+		# Config doesn't exist at all - create new user.
 		load_status = LoadStatus.NOT_FOUND
 		print("Config not found, creating new user.")
 		create_new_user()
 		return
 	
 	var sections: PackedStringArray = config.get_sections()
-	if not sections.is_empty():
-		var is_load_incomplete: bool = false
-		var user = sections[0]
-		
-		var level = config.get_value(user, "Level")
-		if level is not int:
-			level = 1
-			is_load_incomplete = true
-		
-		var current_xp = config.get_value(user, "CurrentXP")
-		if current_xp is not int:
-			current_xp = 0
-			is_load_incomplete = true
-		
-		var required_xp = config.get_value(user, "RequiredXP")
-		if required_xp is not int:
-			required_xp = 100
-			is_load_incomplete = true
-		
-		var health = config.get_value(user, "Health")
-		if health is not int:
-			health = 0
-			is_load_incomplete = true
-		
-		var armor = config.get_value(user, "Armor")
-		if armor is not int:
-			armor = 0
-			is_load_incomplete = true
-		
-		var damage = config.get_value(user, "Damage")
-		if damage is not int:
-			damage = 0
-			is_load_incomplete = true
-		
-		var speed = config.get_value(user, "Speed")
-		if speed is not int:
-			speed = 0
-			is_load_incomplete = true
-		
-		var stat_points = config.get_value(user, "StatPoints")
-		if stat_points is not int:
-			stat_points = 0
-			is_load_incomplete = true
-		user_stat_points = stat_points
-		
-		print("Loaded user with level %d (XP: %d). Required XP: %d." % [level, current_xp, required_xp])
-		print("User stats: health (%d), damage (%d), speed (%d)" % [health, damage, speed])
-		_load_user_level(level, current_xp, required_xp)
-		_load_stats(health, armor, damage, speed)
-		
-		if is_load_incomplete:
-			load_status = LoadStatus.INCOMPLETE
-			save_user()
-		else:
-			load_status = LoadStatus.SUCCESS
-	else:
-		load_status = LoadStatus.FAIL
+	var expected_sections: Array[String] = ["Level", "Stats"]
+	
+	# Missing sections - create new user, ignore existing sections.
+	if sections.size() != expected_sections.size():
+		load_status = LoadStatus.INCOMPLETE
+		print("Missing sections in user config file. Creating new user.")
 		create_new_user()
+		return
+	
+	var level_section = sections[0]
+	var stat_section = sections[1]
+	# Check for incorrect section names.
+	if level_section != "Level" or stat_section != "Stats":
+		load_status = LoadStatus.INCOMPLETE
+		print("User config is not in the correct format. Creating new user.")
+		create_new_user()
+		return
+	
+	# Load level data first
+	var level_data: Dictionary[String, int] = load_level_from_config(config, level_section)
+	if level_data.is_empty():
+		load_status = LoadStatus.INCOMPLETE
+		print("User level data is missing. Creating new user.")
+		create_new_user()
+		return
+	
+	var stats_data: Dictionary[String, int] = load_stats_from_config(config, stat_section)
+	if stats_data.is_empty():
+		load_status = LoadStatus.INCOMPLETE
+		print("User stat data is missing. Creating new user.")
+		create_new_user()
+		return
+	
+	var level: int = level_data.get("Level")
+	var current_xp: int = level_data.get("CurrentXP")
+	var required_xp: int = level_data.get("RequiredXP")
+	
+	var stat_points: int = stats_data.get("StatPoints")
+	var health: int = stats_data.get("Health")
+	var armor: int = stats_data.get("Armor")
+	var damage: int = stats_data.get("Damage")
+	var speed: int = stats_data.get("Speed")
+	
+	print("Loaded user with level %d (XP: %d). Required XP: %d." % [level, current_xp, required_xp])
+	print("User stats: health (%d), armor (%d), damage (%d), speed (%d)" % [health, armor, damage, speed])
+	_load_user_level(level, current_xp, required_xp)
+	_load_stats(health, armor, damage, speed)
+	user_stat_points = stat_points
+	
+	load_status = LoadStatus.SUCCESS
+
+
+func load_level_from_config(config: ConfigFile, section: String) -> Dictionary[String, int]:
+	var value_names: Array[String] = ["Level", "CurrentXP", "RequiredXP"]
+	return load_integers_from_section(config, section, value_names)
+
+
+func load_stats_from_config(config: ConfigFile, section: String) -> Dictionary[String, int]:
+	var value_names: Array[String] = ["StatPoints", "Health", "Armor", "Damage", "Speed"]
+	return load_integers_from_section(config, section, value_names)
+
+
+func load_integers_from_section(config: ConfigFile, section: String, value_names: Array[String]) -> Dictionary[String, int]:
+	var values: Dictionary[String, int] = {}
+	for value_name in value_names:
+		var value = config.get_value(section, value_name)
+		if value is not int:
+			# Return empty dictionary
+			return {}
+		else:
+			values.set(value_name, value)
+	return values
 
 
 ## Creates a new user with default values.
@@ -126,13 +139,13 @@ func create_new_user() -> void:
 func save_user() -> void:
 	var config := ConfigFile.new()
 	
-	config.set_value("User", "Level", user_level.current_level)
-	config.set_value("User", "CurrentXP", user_level.current_xp)
-	config.set_value("User", "RequiredXP", user_level.required_xp)
-	config.set_value("User", "StatPoints", user_stat_points)
+	config.set_value("Level", "Level", user_level.current_level)
+	config.set_value("Level", "CurrentXP", user_level.current_xp)
+	config.set_value("Level", "RequiredXP", user_level.required_xp)
+	config.set_value("Stats", "StatPoints", user_stat_points)
 	
 	for stat: UserStat in user_stats:
-		config.set_value("User", stat.stat_name, stat.stat_value)
+		config.set_value("Stats", stat.stat_name, stat.stat_value)
 	
 	var err = config.save(CONFIG_PATH)
 	if err != OK:
