@@ -3,6 +3,8 @@ extends Node2D
 ## Represents an object which buffs a [PlayerCharacter]'s [CharacterStat]
 ## on pickup.
 
+signal was_picked_up(player: PlayerCharacter)
+
 # Used to instantiate BuffPickupLabel.
 const _PICKUP_LABEL_SCENE := preload(
 		"res://scenes/user_interface/world_labels/buff_pickup_label.tscn")
@@ -26,6 +28,10 @@ var _was_picked_up := false
 var _scale_tween: Tween
 
 
+func _ready() -> void:
+	was_picked_up.connect(_buff_player)
+
+
 func _process(delta: float) -> void:
 	global_rotation += rot_speed * delta
 
@@ -47,7 +53,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var stat: CharacterStat = body.get(target_stat_name)
 		if stat:
 			_was_picked_up = true
-			_buff_stat(stat)
+			was_picked_up.emit(body)
+
+
+func _buff_player(player: PlayerCharacter) -> void:
+	var stat: CharacterStat = player.get(target_stat_name)
+	if stat:
+		_buff_stat(stat)
 
 
 func _buff_stat(stat: CharacterStat) -> void:
