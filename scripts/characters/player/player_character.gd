@@ -221,7 +221,6 @@ func load_unlocked_abilities() -> void:
 		unlocked_abilities.clear()
 	var starter_ability: Ability = Shoot.new()
 	unlocked_abilities.append(starter_ability)
-	unlocked_abilities.append(Rush.new())
 
 
 # Input direction from Godot Docs
