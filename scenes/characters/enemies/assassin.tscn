@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d4my5w3xnan63"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_sdxoy"]
+[ext_resource type="Script" uid="uid://dwqjjbxmms6h3" path="res://scripts/characters/enemies/assassin.gd" id="2_3kcse"]
+
+[node name="Assassin" unique_id=1080282355 instance=ExtResource("1_sdxoy")]
+script = ExtResource("2_3kcse")
+draw_color = Color(0.24976143, 0.26577392, 0.23783869, 1)
+outline_color = Color(0.1380257, 0.14817509, 0.13040712, 1)
+
+[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
+max_value = 150
+current_value = 150

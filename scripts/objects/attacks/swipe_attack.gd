@@ -71,11 +71,13 @@ var _is_swiping: bool = false
 func _ready() -> void:
 	_shape.shape = RectangleShape2D.new()
 	width_changed.connect(_update_shape_width)
+	width_changed.connect(_update_particle_emission_shape)
 	height_changed.connect(_update_shape_height)
 	draw_color_changed.connect(_update_particle_color)
 	_update_shape_width(width)
 	_update_shape_height(height)
 	_update_particle_color(draw_color)
+	_update_particle_emission_shape(width)
 	_update_collision_mask()
 	queue_redraw()
 
@@ -152,6 +154,12 @@ func _update_collision_mask() -> void:
 func _update_particle_color(color: Color) -> void:
 	if is_instance_valid(_particles):
 		_particles.color = color
+
+
+func _update_particle_emission_shape(attack_length: float) -> void:
+	if is_instance_valid(_particles):
+		_particles.emission_rect_extents.x = attack_length / 2.0
+		_particles.position = Vector2(attack_length / 2, 0.0)
 #endregion
 
 

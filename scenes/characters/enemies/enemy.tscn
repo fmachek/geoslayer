@@ -9,7 +9,3 @@ collision_layer = 138
 radius = 60.0
 avoidance_layers = 128
 avoidance_mask = 128
-
-[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
-max_value = 75
-current_value = 75

@@ -40,10 +40,11 @@ var armor_buff_duration: float = 1.0
 func _init() -> void:
 	var ability_cooldown: float = 1.0
 	var ability_cast_time: float = 0.0
+	var ability_cast_range: float = 200.0
 	var ability_description := ("Fires %d projectiles in a close range cone. " + \
 	"The projectiles deal more damage up close. Each hit applies" + \
 	" an armor and speed buff to the caster.") % projectile_amount
-	super(ability_cooldown, ability_cast_time, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description, ability_cast_range)
 
 
 func _perform_ability() -> void:

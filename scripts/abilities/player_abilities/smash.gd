@@ -18,8 +18,9 @@ var knockback: float = 500.0
 func _init() -> void:
 	var ability_cooldown: float = 2.0
 	var ability_cast_time: float = 0.0
+	var ability_cast_range: float = radius
 	var ability_description := "Stuns, deals damage to and knocks nearby enemies back."
-	super(ability_cooldown, ability_cast_time, ability_description)
+	super(ability_cooldown, ability_cast_time, ability_description, ability_cast_range)
 
 
 func _perform_ability() -> void:

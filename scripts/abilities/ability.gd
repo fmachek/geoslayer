@@ -58,6 +58,9 @@ var texture: Texture2D
 var cooldown: float
 ## Amount of time the [Ability] takes to cast in seconds.
 var cast_time: float
+## Used by NPCs to determine whether casting the [Ability] would
+## make sense (for example close range abilities).
+var cast_range: float
 ## The [Character] the [Ability] belongs to.
 var character: Character
 ## [code]true[/code] if the [Ability] is on cooldown.
@@ -79,10 +82,11 @@ var _cast_timer: Timer
 @abstract func _handle_casting() -> void
 
 
-func _init(cd: float, cast_duration: float, desc: String) -> void:
+func _init(cd: float, cast_duration: float, desc: String, range: float = 0) -> void:
 	ability_name = get_ability_name()
 	self.cooldown = cd
 	self.cast_time = cast_duration
+	self.cast_range = range
 	var texture_path = TextureManager.get_ability_icon_path(get_ability_name())
 	self.texture = load(texture_path)
 	self.description = desc

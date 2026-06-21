@@ -17,12 +17,13 @@ signal target_changed(new_target: Character)
 var target: Character: set = set_target
 ## Array of abilities ready to be cast.
 var castable_abilities: Array[Ability] = []
-## Cooldown used to space out individual [Ability] casts.
-var cast_cooldown: float = 2.0
 ## Minimum cooldown applied after every [Ability] cast, in seconds.
 var min_cast_cooldown: float = 1.0
+## Maximum cooldown applied after every [Ability] cast, in seconds.
+var max_cast_cooldown: float = 2.0
 ## Distance at which the [CastingCharacter] stops following its [member target].
 var stop_distance: float = 180.0
+var _attempting_to_cast: bool = false
 
 ## [NavigationAgent2D] used for avoidance of other casting characters.
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -49,7 +50,7 @@ var stop_distance: float = 180.0
 func _ready() -> void:
 	super()
 	nav_agent.target_desired_distance = stop_distance
-	cast_cooldown_timer.wait_time = cast_cooldown
+	cast_cooldown_timer.wait_time = randf_range(min_cast_cooldown, max_cast_cooldown)
 	# Attempt to cast when stun ends
 	stun_ended.connect(cast_random_ability)
 	target_changed.connect(_reset_nav_agent.unbind(1))
@@ -86,21 +87,37 @@ func _physics_process(delta: float) -> void:
 		nav_agent.set_velocity(direction * 300 * float(speed.max_value_after_buffs) / 100)
 	elif _knockback != Vector2.ZERO:
 		move_and_slide()
+	
+	if _attempting_to_cast:
+		cast_random_ability()
 
 
 ## Attempts to cast a random [Ability] from [member castable_abilities].
-func cast_random_ability() -> void:
-	if is_stunned: return # Is stunned - can't cast
-	if not target: return # No target to attack
-	if not cast_cooldown_timer.is_stopped(): return # Cast is on cooldown
-	if castable_abilities.is_empty(): return # No abilities to cast
+func cast_random_ability() -> bool:
+	if is_stunned: return false # Is stunned - can't cast
+	if not target: return false # No target to attack
+	if not cast_cooldown_timer.is_stopped(): return false # Cast is on cooldown
+	if castable_abilities.is_empty(): return false # No abilities to cast
 	
 	var random_ability: Ability = castable_abilities.pick_random()
 	if random_ability:
+		if random_ability.cast_range != 0:
+			var distance_to_target: float = global_position.distance_to(target_pos)
+			if distance_to_target > random_ability.cast_range:
+				# Set this to true - the character will try to cast again
+				# on every physics frame, until successful.
+				_attempting_to_cast = true
+				return false
 		target_pos = target.global_position
-		cast_cooldown_timer.wait_time = min_cast_cooldown + randf_range(0, 1.0)
+		cast_cooldown_timer.wait_time = randf_range(min_cast_cooldown, max_cast_cooldown)
 		cast_cooldown_timer.start()
 		random_ability.cast()
+		_attempting_to_cast = false
+		return true
+	
+	# No abilities to cast, so just stop trying to cast.
+	_attempting_to_cast = false
+	return false
 
 
 ## Sets [member target].

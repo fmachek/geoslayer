@@ -23,7 +23,8 @@ var spawner: PlayerCharacter:
 
 
 func _init() -> void:
-	cast_cooldown = 0.75
+	min_cast_cooldown = 0.75
+	max_cast_cooldown = 1.5
 
 
 func _ready() -> void:

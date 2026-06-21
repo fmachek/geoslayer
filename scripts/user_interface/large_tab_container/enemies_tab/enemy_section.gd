@@ -55,3 +55,10 @@ func load_guard() -> void:
 func load_healer() -> void:
 	var desc := "Casts Lifesteal and heals friendly units around itself."
 	load_enemy("Healer", desc)
+
+
+## Loads information about [Assassin].
+func load_assassin() -> void:
+	var desc := "Dashes at its enemy and swipes at close range. \
+			Is very fast."
+	load_enemy("Assassin", desc)
