@@ -13,11 +13,11 @@ var zoom_steps: Array[Vector2] = [
 
 var _zoom_tween: Tween
 var _zooming: bool = false
-var _current_zoom: int = 2
+var _current_zoom: int = 1
 
 
 func _ready() -> void:
-	_current_zoom = 2
+	_current_zoom = 1
 	zoom = zoom_steps[_current_zoom]
 
 
