@@ -225,7 +225,7 @@ func load_unlocked_abilities() -> void:
 # Input direction from Godot Docs
 # (https://docs.godotengine.org/en/stable/tutorials/2d/2d_movement.html)
 func get_input() -> void:
-	if is_stunned:
+	if is_stunned or _dash != null:
 		return
 	var input_direction: Vector2 = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * 300 * float(speed.max_value_after_buffs) / 100

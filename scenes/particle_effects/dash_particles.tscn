@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cp2ipiqk5melg"]
+
+[ext_resource type="Script" uid="uid://df75pewx1tcuy" path="res://scripts/particle_effects/free_particles.gd" id="1_jgekf"]
+
+[sub_resource type="Gradient" id="Gradient_xeb0k"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DashParticles" type="CPUParticles2D" unique_id=468402765]
+z_index = -1
+emitting = false
+amount = 10
+one_shot = true
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 20.0
+scale_amount_max = 50.0
+color_ramp = SubResource("Gradient_xeb0k")
+script = ExtResource("1_jgekf")

@@ -81,6 +81,7 @@ var _knockback := Vector2.ZERO
 var _knockback_vectors: Array[Vector2] = []
 # Velocity applied by the outside, for example drag.
 var _external_velocity: Vector2 = Vector2.ZERO
+var _dash: Dash = null
 # Array of timers, each representing one stun.
 var _stuns: Array[Timer] = []
 # Used for fading in when spawning.
@@ -112,6 +113,7 @@ func _ready() -> void:
 	stun_ended.connect(_end_stun)
 	draw_color_changed.connect(queue_redraw)
 	outline_color_changed.connect(queue_redraw)
+	was_stunned.connect(interrupt_dash)
 	
 	update_stats(level.current_level) # Update stats on spawn
 	_fill_health() # Spawn with max health
@@ -133,7 +135,14 @@ func _process(_delta: float) -> void:
 		_move_aim_indicator()
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if _dash != null:
+		var movement: Vector2 = _dash.handle_process(delta)
+		if movement != Vector2.ZERO:
+			velocity = movement * 50
+			move_and_slide()
+		else:
+			_dash = null
 	if _external_velocity != Vector2.ZERO:
 		velocity = _external_velocity
 		move_and_slide()
@@ -160,6 +169,18 @@ func _draw() -> void:
 		var outline_width: int = 4
 		draw_rect(rect, draw_color)
 		draw_rect(rect, outline_color, false, outline_width)
+
+
+func dash(distance: float, duration: float, direction: Vector2) -> Dash:
+	# Dashing again while dashing overrides the old dash.
+	_dash = Dash.new(distance, duration, direction)
+	return _dash
+
+
+func interrupt_dash() -> void:
+	if is_instance_valid(_dash):
+		_dash.interrupt()
+	_dash = null
 
 
 ## Applies a knockback to the [Character] if it isn't immune to it

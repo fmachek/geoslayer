@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddt0gvke8wbe1"]
+
+[ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_mbyp3"]
+[ext_resource type="Script" uid="uid://0flmpoxiesgq" path="res://scripts/abilities/player_abilities/rush.gd" id="2_d62k3"]
+
+[node name="RushPickup" unique_id=176297332 instance=ExtResource("1_mbyp3")]
+ability_script = ExtResource("2_d62k3")

@@ -61,7 +61,7 @@ func _ready() -> void:
 # Handles movement.
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if not is_stunned:
+	if not is_stunned and _dash == null:
 		if is_instance_valid(target):
 			target_pos = target.global_position
 		elif _knockback != Vector2.ZERO:
@@ -146,7 +146,7 @@ func _scan_for_target() -> void:
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	# Skip if the character is stunned
-	if is_stunned:
+	if is_stunned or _dash != null:
 		return
 	# Skip if navigation is finished
 	if nav_agent.is_navigation_finished():
