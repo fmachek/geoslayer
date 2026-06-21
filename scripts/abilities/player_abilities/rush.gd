@@ -43,15 +43,9 @@ func _handle_casting() -> void:
 	dash_particles.lifetime = dash_duration
 	dash_particles.emitting = true
 	
-	damage_area = create_damage_area()
-	damage_area.body_entered.connect(_on_damage_area_body_entered)
-	character.add_child(damage_area)
+	call_deferred("create_damage_area")
 	
-	dash.ended.connect(
-		func():
-			if is_instance_valid(damage_area):
-				damage_area.queue_free()
-	)
+	dash.ended.connect(_delete_damage_area)
 	dash.ended.connect(
 		func():
 			if is_instance_valid(dash_particles):
@@ -61,14 +55,11 @@ func _handle_casting() -> void:
 	
 	var caster_damage: int = character.damage.max_value_after_buffs
 	damage = float(dash_base_damage) * (float(caster_damage) / 100)
-	
-	damage_area.monitoring = true
 
 
-func create_damage_area() -> Area2D:
+func create_damage_area() -> void:
 	var area := Area2D.new()
 	area.monitorable = false
-	area.monitoring = false
 	area.set_collision_layer(0)
 	area.set_collision_mask(0)
 	CollisionMaskFunctions.set_area_collision_mask(area, character)
@@ -76,7 +67,9 @@ func create_damage_area() -> Area2D:
 	col_shape.shape = CircleShape2D.new()
 	col_shape.shape.radius = character.get_node("CollisionShape2D").shape.radius
 	area.add_child(col_shape)
-	return area
+	area.body_entered.connect(_on_damage_area_body_entered)
+	character.add_child(area)
+	damage_area = area
 
 
 func _reset_ability() -> void:
@@ -94,3 +87,8 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 			var dir_to_body: Vector2 = (body.global_position 
 					- character.global_position).normalized()
 			body.apply_knockback(dir_to_body * dash_knockback)
+
+
+func _delete_damage_area() -> void:
+	if is_instance_valid(damage_area):
+		damage_area.queue_free()
