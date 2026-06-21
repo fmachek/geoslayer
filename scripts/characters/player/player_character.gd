@@ -101,11 +101,13 @@ func equip_ability(ability: Ability) -> void:
 		super(ability1)
 		if ability1:
 			ability1.cooldown_ended.connect(_cast_ability_1_if_pressed)
+			ability1.cooldown_ended.connect(_cast_ability_2_if_pressed)
 		ability1_changed.emit(ability1)
 	elif ability2 == null:
 		ability2 = ability
 		super(ability2)
 		if ability2:
+			ability2.cooldown_ended.connect(_cast_ability_1_if_pressed)
 			ability2.cooldown_ended.connect(_cast_ability_2_if_pressed)
 		ability2_changed.emit(ability2)
 	else:
@@ -137,6 +139,7 @@ func replace_ability1(ability: Ability) -> void:
 	super.equip_ability(ability1)
 	if ability1:
 		ability1.cooldown_ended.connect(_cast_ability_1_if_pressed)
+		ability1.cooldown_ended.connect(_cast_ability_2_if_pressed)
 	ability1_changed.emit(ability1)
 
 
@@ -161,6 +164,7 @@ func replace_ability2(ability: Ability) -> void:
 	ability2 = ability
 	super.equip_ability(ability2)
 	if ability2:
+		ability2.cooldown_ended.connect(_cast_ability_1_if_pressed)
 		ability2.cooldown_ended.connect(_cast_ability_2_if_pressed)
 	ability2_changed.emit(ability2)
 
@@ -180,13 +184,10 @@ func _unequip_ability(ability: Ability) -> void:
 func swap_ability_slots() -> void:
 	if not (can_unequip_ability(ability1) and can_unequip_ability(ability2)):
 		return
-	if ability1:
-		ability1.cooldown_ended.disconnect(_cast_ability_1_if_pressed)
-	if ability2:
-		ability2.cooldown_ended.disconnect(_cast_ability_2_if_pressed)
 	var ability1_temp: Ability = ability1
 	ability1 = ability2
 	ability2 = ability1_temp
+	
 	ability1_changed.emit(ability1)
 	ability2_changed.emit(ability2)
 
@@ -220,6 +221,7 @@ func load_unlocked_abilities() -> void:
 		unlocked_abilities.clear()
 	var starter_ability: Ability = Shoot.new()
 	unlocked_abilities.append(starter_ability)
+	unlocked_abilities.append(Rush.new())
 
 
 # Input direction from Godot Docs
