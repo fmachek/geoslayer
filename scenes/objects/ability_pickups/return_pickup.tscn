@@ -3,5 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_igkit"]
 [ext_resource type="Script" uid="uid://b6i23urffdw0v" path="res://scripts/abilities/player_abilities/return.gd" id="2_h3jl6"]
 
-[node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_igkit")]
+[node name="ReturnPickup" unique_id=176297332 instance=ExtResource("1_igkit")]
 ability_script = ExtResource("2_h3jl6")

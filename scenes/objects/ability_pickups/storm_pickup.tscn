@@ -3,5 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_1f7h2"]
 [ext_resource type="Script" uid="uid://ktdve5bewyaf" path="res://scripts/abilities/player_abilities/storm.gd" id="2_ei7ui"]
 
-[node name="AbilityPickup" unique_id=176297332 instance=ExtResource("1_1f7h2")]
+[node name="StormPickup" unique_id=176297332 instance=ExtResource("1_1f7h2")]
 ability_script = ExtResource("2_ei7ui")
