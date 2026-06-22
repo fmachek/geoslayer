@@ -8,7 +8,6 @@ const DASH_PARTICLE_SCENE := preload(
 var dash_distance: float = 600.0
 var dash_duration: float = 0.4
 var dash_base_damage: int = 60
-var dash_knockback: float = 1000.0
 
 var damage_area: Area2D
 var damage: int
@@ -20,7 +19,7 @@ func _init() -> void:
 	var ability_cooldown: float = 2.0
 	var ability_cast_time: float = dash_duration
 	var ability_description: String = "Dash forward, dealing \
-			damage to and knocking back enemies passed through."
+			damage to enemies passed through."
 	super(ability_cooldown, ability_cast_time, ability_description)
 
 
@@ -84,9 +83,6 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		if not body in characters_hit:
 			characters_hit.append(body)
 			body.take_damage(damage)
-			var dir_to_body: Vector2 = (body.global_position 
-					- character.global_position).normalized()
-			body.apply_knockback(dir_to_body * dash_knockback)
 
 
 func _delete_damage_area() -> void:
