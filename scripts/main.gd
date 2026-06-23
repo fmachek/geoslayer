@@ -16,7 +16,6 @@ func _ready() -> void:
 ## Plays a visual effect where the [member death_cam]
 ## zooms into the player's position of death.
 func play_death_cam_tween() -> void:
-	death_cam.zoom = Vector2(1, 1)
 	if _death_cam_tween:
 		_death_cam_tween.kill()
 	_death_cam_tween = create_tween()
@@ -30,4 +29,6 @@ func play_death_cam_tween() -> void:
 func _on_player_died(player: PlayerCharacter) -> void:
 	death_cam.enabled = true
 	death_cam.global_position = player.global_position
+	var player_camera: Camera2D = player.get_node("PlayerCamera")
+	death_cam.zoom = player_camera.zoom # Match initial zoom
 	play_death_cam_tween()
