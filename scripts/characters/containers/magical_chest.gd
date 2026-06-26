@@ -8,6 +8,6 @@ extends Chest
 func generate_ability_drop_pool() -> void:
 	super()
 	var magical_ability_names: Array[String] = [
-		"summon", "storm", "teleport", "collapse"
+		"summon", "storm", "teleport", "collapse", "blast"
 	]
 	add_abilities_to_drop_pool(magical_ability_names)

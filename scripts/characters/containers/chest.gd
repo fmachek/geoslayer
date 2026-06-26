@@ -85,7 +85,7 @@ func drop_ability() -> void:
 ## [method Array.pick_random] inside the [member drop_ability] function.
 func generate_ability_drop_pool() -> void:
 	var ability_names: Array[String] = [
-		"blast", "cannonball", "doubleshot", "flurry", "wideshot",
+		"cannonball", "doubleshot", "flurry", "wideshot",
 		"pierce", "explosive", "lifesteal", "shred", "swipe",
 		"smash", "trap", "flee", "return", "tear", "rush", "dodge"
 	]

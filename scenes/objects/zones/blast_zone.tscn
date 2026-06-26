@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bqvl81ty1x15y"]
+
+[ext_resource type="PackedScene" uid="uid://cpfjgbwdxb0y3" path="res://scenes/objects/zones/zone.tscn" id="1_i2pdf"]
+[ext_resource type="Script" uid="uid://6j7yb8nx1fhc" path="res://scripts/objects/zones/blast_zone.gd" id="2_0duo7"]
+
+[node name="BlastZone" unique_id=391910855 instance=ExtResource("1_i2pdf")]
+script = ExtResource("2_0duo7")
+
+[node name="CharacterDetectionArea" parent="." index="0" unique_id=1287240121]
+collision_mask = 0
+
+[node name="RingParticles" parent="." index="1" unique_id=203274882]
+emitting = false

@@ -23,6 +23,7 @@ var should_emit_tick_particles: bool = true
 ## Says if the [Zone] should disappear when the [member caster]
 ## exits the tree.
 var is_bound_to_caster: bool = true
+var fade_out_time: float = 1.0
 
 # False when the Zone is disappearing.
 var _is_active: bool = true: set = _set_is_active
@@ -92,7 +93,7 @@ func _play_fade_out_tween() -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 	_fade_tween = create_tween()
-	_fade_tween.tween_property(self, "modulate:a", 0, 1)
+	_fade_tween.tween_property(self, "modulate:a", 0, fade_out_time)
 	_fade_tween.play()
 	_fade_tween.tween_callback(queue_free)
 
