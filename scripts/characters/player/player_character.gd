@@ -114,7 +114,7 @@ func equip_ability(ability: Ability) -> void:
 		replace_ability1(ability)
 
 
-func update_stats(current_level: int) -> void:
+func update_stats(_current_level: int) -> void:
 	pass
 
 

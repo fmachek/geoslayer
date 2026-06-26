@@ -23,15 +23,17 @@ func _init(distance: float, duration: float, direction: Vector2) -> void:
 func handle_process(delta: float) -> Vector2:
 	var decrease: float = decrease_per_sec * delta
 	
+	var movement: Vector2
+	
 	if decrease > distance_remaining:
-		var movement: Vector2 = direction * distance_remaining
+		movement = direction * distance_remaining
 		distance_remaining -= decrease
 		if not has_ended:
 			has_ended = true
 			ended.emit()
 		return movement
 
-	var movement: Vector2 = direction * decrease
+	movement = direction * decrease
 	distance_remaining -= decrease
 	return movement
 

@@ -82,11 +82,11 @@ var _cast_timer: Timer
 @abstract func _handle_casting() -> void
 
 
-func _init(cd: float, cast_duration: float, desc: String, range: float = 0) -> void:
+func _init(cd: float, cast_duration: float, desc: String, ability_range: float = 0.0) -> void:
 	ability_name = get_ability_name()
 	self.cooldown = cd
 	self.cast_time = cast_duration
-	self.cast_range = range
+	self.cast_range = ability_range
 	var texture_path = TextureManager.get_ability_icon_path(get_ability_name())
 	self.texture = load(texture_path)
 	self.description = desc

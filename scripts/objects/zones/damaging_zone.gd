@@ -51,7 +51,7 @@ func _on_damage_tick_timer_timeout() -> void:
 		_apply_additional_effects(body)
 
 
-func _apply_additional_effects(character: Character) -> void:
+func _apply_additional_effects(_character: Character) -> void:
 	pass
 
 

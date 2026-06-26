@@ -22,10 +22,10 @@ func _on_boss_spawned(boss: Boss) -> void:
 	_update_bar(health)
 	
 	health.max_value_after_buffs_changed.connect(
-		func(old_value, new_value): _update_bar(health)
+		func(_old_value, _new_value): _update_bar(health)
 	)
 	health.current_value_changed.connect(
-		func(old_value, new_value): _update_bar(health)
+		func(_old_value, _new_value): _update_bar(health)
 	)
 	
 	boss.phase_changed.connect(_update_phase)
