@@ -13,12 +13,12 @@ var projectile_speed: int = 4
 ## Base damage of the [Projectile]s fired when cast.
 var base_damage: int = 12
 ## Radius of the [Projectile]s fired when cast.
-var projectile_radius: int = 5
+var projectile_radius: float = 6.0
 
 ## Amount of projectiles fired on each cast.
 var projectile_amount: int = 10
 ## Time between the firing of individual projectiles.
-var flurry_fire_time: float = 0.1
+var flurry_fire_time: float = 0.05
 ## Maximum projectile recoil angle in degrees.
 var recoil: int = 15
 ## Knockback applied to [Character]s hit by the [Projectile]s.
