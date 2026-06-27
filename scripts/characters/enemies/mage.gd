@@ -26,11 +26,11 @@ func _load_abilities() -> void:
 	teleport.cooldown *= 1.5
 	_load_ability(teleport)
 	_load_ability(Shoot.new())
-	var blast := Blast.new()
-	blast.projectile_amount = 8
-	blast.projectile_speed = 1.5
-	blast.projectile_knockback = 200.0
-	_load_ability(blast)
+	var burst := Burst.new()
+	burst.projectile_amount = 8
+	burst.projectile_speed = 1.5
+	burst.projectile_knockback = 200.0
+	_load_ability(burst)
 
 
 ## Spawns a [GrowingDamagingZone] at [member global_position].
