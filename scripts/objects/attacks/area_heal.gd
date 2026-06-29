@@ -6,6 +6,11 @@ extends InstantArea
 var heal_amount: int = 10
 
 
+func _ready() -> void:
+	super()
+	fade_time = 0.5
+
+
 func _perform(body: Node2D) -> void:
 	if body is Character:
 		body.heal(heal_amount)

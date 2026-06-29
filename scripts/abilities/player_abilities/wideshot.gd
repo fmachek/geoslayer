@@ -3,7 +3,7 @@ extends Ability
 ## Represents the Wideshot ability which fires projectiles in a wide cone.
 ## It is most effective at close range and applies a long knockback.
 
-const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
+var proj_scene := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 ## Travel speed of the [Projectile]s fired when cast.
 var projectile_speed: int = 5
@@ -29,7 +29,7 @@ func _init() -> void:
 
 func _perform_ability() -> void:
 	var projectiles := ProjectileFunctions.fire_projectile_cone(
-			_PROJ_SCENE, projectile_amount, spread_angle,
+			proj_scene, projectile_amount, spread_angle,
 			character, base_damage, projectile_speed, projectile_radius)
 	for proj in projectiles:
 		proj.knockback = projectile_knockback

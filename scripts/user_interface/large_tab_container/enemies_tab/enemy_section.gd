@@ -53,7 +53,8 @@ func load_guard() -> void:
 
 ## Loads information about [Healer].
 func load_healer() -> void:
-	var desc := "Casts Lifesteal and heals friendly units around itself."
+	var desc := "Fires life steal projectiles and heals friendly units. \
+			Also heals friendly units on death."
 	load_enemy("Healer", desc)
 
 
