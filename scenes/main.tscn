@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_ui/pause_interface.tscn" id="16_jbj1t"]
 [ext_resource type="Script" uid="uid://d0syh8w05q11p" path="res://scripts/user_interface/hud/level_progress_bar.gd" id="17_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://blrpytnhphj5t" path="res://scenes/user_interface/large_tab_container/enemies_tab/enemies_tab.tscn" id="17_yc10j"]
+[ext_resource type="Script" uid="uid://bnsmjmif7fccx" path="res://scripts/user_interface/hud/small_hud.gd" id="18_yq6so"]
 [ext_resource type="Script" uid="uid://cmlti0osrpr4c" path="res://scripts/user_interface/hud/wave_info/enemies_remaining_label.gd" id="23_og1vs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_muem4"]
@@ -316,6 +317,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jscy8")
 
 [node name="AbilityItemContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=1281324131]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -367,6 +369,65 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 8
 text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SmallHUD" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer" unique_id=2086580467]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("18_yq6so")
+
+[node name="AbilityContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD" unique_id=88002212]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Container1" type="PanelContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD/AbilityContainer" unique_id=1334121802]
+visible = false
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD/AbilityContainer/Container1" unique_id=1272867]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_0ld40")
+expand_mode = 2
+
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD/AbilityContainer/Container1" unique_id=821449625]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="Container2" type="PanelContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD/AbilityContainer" unique_id=1823975051]
+visible = false
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD/AbilityContainer/Container2" unique_id=2113955825]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("12_gqmmt")
+expand_mode = 2
+
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD/AbilityContainer/Container2" unique_id=1639553853]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD" unique_id=2141585734]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "Level 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -471,6 +532,28 @@ theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
 theme_override_styles/focus = ExtResource("12_jscy8")
 text = "Enemies"
 
+[node name="HUDHideButton" type="Button" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/ButtonContainer" unique_id=558078009]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(134, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_styles/normal = ExtResource("10_gqmmt")
+theme_override_styles/normal_mirrored = ExtResource("10_gqmmt")
+theme_override_styles/pressed = ExtResource("11_yc10j")
+theme_override_styles/pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/hover = ExtResource("12_jscy8")
+theme_override_styles/hover_mirrored = ExtResource("12_jscy8")
+theme_override_styles/hover_pressed = ExtResource("11_yc10j")
+theme_override_styles/hover_pressed_mirrored = ExtResource("11_yc10j")
+theme_override_styles/disabled = ExtResource("13_pm3ni")
+theme_override_styles/disabled_mirrored = ExtResource("13_pm3ni")
+theme_override_styles/focus = ExtResource("12_jscy8")
+text = "Collapse HUD"
+
 [node name="LargeTabContainer" type="MarginContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=879558325]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
@@ -534,3 +617,4 @@ offset_right = 0.0
 [connection signal="opened" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_opened"]
 [connection signal="pressed_increase" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_pressed_increase"]
 [connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTabOpenButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_open_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/ButtonContainer/HUDHideButton" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_hud_hide_button_pressed"]
