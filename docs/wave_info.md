@@ -22,7 +22,7 @@ World 0 is a testing world where you can pick up all unlockable abilities to try
     * 1 Guard
     * 1 Healer
 - **Wave 6**:
-    * 4 Shooters
+    * 3 Shooters
     * 2 Healers
     * 2 Assassins
 - **Wave 7**:
@@ -38,7 +38,7 @@ World 0 is a testing world where you can pick up all unlockable abilities to try
     * 1 Assassin
 - **Wave 9**:
     * 2 Shooters
-    * 2 Guards
+    * 1 Guard
     * 2 Assassins
 - **Wave 10**:
     * The boss

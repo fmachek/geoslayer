@@ -74,7 +74,7 @@ position = Vector2(448, 576)
 character_scene = ExtResource("3_tekg8")
 draw_color = Color(0.8077228, 0.47079715, 0, 0.25)
 outline_color = Color(0.5847179, 0.33361515, 0, 0.25)
-spawn_waves = PackedInt32Array(1, 2, 3, 4, 6)
+spawn_waves = PackedInt32Array(1, 2, 3, 4)
 
 [node name="ShooterSpawner4" parent="." index="14" unique_id=170046639 instance=ExtResource("2_xijrn")]
 position = Vector2(576, 576)
@@ -109,7 +109,7 @@ position = Vector2(576, 192)
 character_scene = ExtResource("7_l4b44")
 draw_color = Color(0.5220287, 0.70975083, 0.7528677, 0.25)
 outline_color = Color(0.40018785, 0.5847179, 0.62782896, 0.25)
-spawn_waves = PackedInt32Array(4, 7, 9)
+spawn_waves = PackedInt32Array(4, 7)
 
 [node name="HealerSpawner1" parent="." index="19" unique_id=1697371194 instance=ExtResource("2_xijrn")]
 position = Vector2(-64, 576)
