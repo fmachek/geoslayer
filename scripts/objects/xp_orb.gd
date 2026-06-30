@@ -2,7 +2,12 @@ class_name XPOrb
 extends Node2D
 ## Represents an XP orb which gives XP to a player on pickup.
 
-const _PARTICLES_SCENE = preload("res://scenes/particle_effects/xp_orb_particles.tscn")
+const _PARTICLES_SCENE = preload(
+	"res://scenes/particle_effects/xp_orb_particles.tscn"
+)
+const _LABEL_SCENE = preload(
+	"res://scenes/user_interface/world_labels/xp_label.tscn"
+)
 
 ## Amount of XP given to the [PlayerCharacter] on pickup.
 static var xp_amount: int = 30
@@ -55,6 +60,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.pick_up_xp_orb(self)
 		var xp_orb_particles: XPOrbParticles = _PARTICLES_SCENE.instantiate()
 		xp_orb_particles.load_from_orb(self)
+		_spawn_label(body)
 		queue_free()
 
 
@@ -68,3 +74,8 @@ func _travel_to_player() -> void:
 func _randomize_radius() -> void:
 	var shape = _col_shape.shape
 	shape.radius = randf_range(min_radius, max_radius)
+
+
+func _spawn_label(char: Character) -> void:
+	var label: XPLabel = _LABEL_SCENE.instantiate()
+	label.spawn_at(char, xp_amount)

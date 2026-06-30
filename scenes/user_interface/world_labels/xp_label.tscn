@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://hgo7qwcvevys"]
+
+[ext_resource type="Script" uid="uid://cndrf76r767fp" path="res://scripts/user_interface/world_labels/xp_label.gd" id="1_c3i37"]
+
+[node name="XpLabel" type="Label" unique_id=2072747060]
+z_index = 14
+theme_override_colors/font_color = Color(0.73333335, 0, 0.73333335, 1)
+theme_override_constants/outline_size = 8
+text = "+10 XP"
+script = ExtResource("1_c3i37")
