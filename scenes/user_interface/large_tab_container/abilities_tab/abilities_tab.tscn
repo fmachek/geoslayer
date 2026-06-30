@@ -51,6 +51,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="UnequipSlot1Button" type="Button" parent="MarginContainer/VBoxContainer/EquipButtonContainer" unique_id=13822694]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 6
@@ -69,6 +70,7 @@ theme_override_styles/focus = ExtResource("4_te8my")
 text = "Unequip slot 1"
 
 [node name="UnequipSlot2Button" type="Button" parent="MarginContainer/VBoxContainer/EquipButtonContainer" unique_id=1582519184]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 6
@@ -87,6 +89,7 @@ theme_override_styles/focus = ExtResource("4_te8my")
 text = "Unequip slot 2"
 
 [node name="UnequipAllButton" type="Button" parent="MarginContainer/VBoxContainer/EquipButtonContainer" unique_id=610643469]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 6
@@ -103,6 +106,18 @@ theme_override_styles/disabled = ExtResource("5_5332j")
 theme_override_styles/disabled_mirrored = ExtResource("5_5332j")
 theme_override_styles/focus = ExtResource("4_te8my")
 text = "Unequip all"
+
+[node name="DisclaimerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=692044635]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+text = "You cannot equip and unequip abilities while a wave is in progress."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=1686797555]
 layout_mode = 2

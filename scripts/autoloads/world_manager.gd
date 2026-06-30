@@ -104,3 +104,9 @@ func get_next_world_unlock() -> int:
 		if user_level < req:
 			return world_number
 	return -1
+
+
+func is_wave_finished() -> bool:
+	if not is_instance_valid(current_world):
+		return true
+	return len(current_world.wave_manager.enemies) == 0

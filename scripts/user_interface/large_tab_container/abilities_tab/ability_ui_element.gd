@@ -29,6 +29,8 @@ var displaying_slot: int = 0
 
 func _ready() -> void:
 	_connect_equip_events()
+	WorldManager.wave_started.connect(_disable_buttons)
+	WorldManager.wave_ended.connect(_enable_buttons)
 
 
 ## Loads a [param player_char]'s unlocked [param ability].
@@ -71,18 +73,18 @@ func _change_slot(new_slot: int):
 	if new_slot == 0:
 		_equipped_label.hide()
 		_highlight_panel.hide()
-		_equip_button_1.disabled = false
-		_equip_button_2.disabled = false
+		_enable_button(_equip_button_1)
+		_enable_button(_equip_button_2)
 	else:
 		_equipped_label.text = "Equipped in slot %d" % new_slot
 		_equipped_label.show()
 		_highlight_panel.show()
 		if new_slot == 1:
-			_equip_button_1.disabled = true
-			_equip_button_2.disabled = false
+			_enable_button(_equip_button_2)
+			_disable_button(_equip_button_1)
 		elif new_slot == 2:
-			_equip_button_1.disabled = false
-			_equip_button_2.disabled = true
+			_enable_button(_equip_button_1)
+			_disable_button(_equip_button_2)
 
 
 func _connect_equip_events():
@@ -108,3 +110,28 @@ func _on_equip_slot_2_button_pressed() -> void:
 
 func _update_cooldown_label(cooldown: float) -> void:
 	_cd_label.text = "Cooldown: " + str(cooldown) + " seconds"
+
+
+func _disable_button(button: Button) -> void:
+	button.disabled = true
+	button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+
+func _enable_button(button: Button) -> void:
+	button.disabled = false
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+
+func _disable_buttons() -> void:
+	_disable_button(_equip_button_1)
+	_disable_button(_equip_button_2)
+
+
+func _enable_buttons() -> void:
+	if displaying_slot == 0:
+		_enable_button(_equip_button_1)
+		_enable_button(_equip_button_2)
+	elif displaying_slot == 1:
+		_enable_button(_equip_button_2)
+	elif displaying_slot == 2:
+		_enable_button(_equip_button_1)

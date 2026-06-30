@@ -91,8 +91,11 @@ func _on_level_changed(_new_level: int) -> void:
 
 ## Equips an [Ability]. Abilities can be equipped in 2 slots. If slot 1 is already
 ## equipped, then the [Ability] is equipped in slot 2. If both are already equipped,
-## the first slot is replaced.
+## the first slot is replaced. An [Ability] cannot be equipped while an enemy wave
+## is in progress.
 func equip_ability(ability: Ability) -> void:
+	if not WorldManager.is_wave_finished():
+		return
 	for equipped_ability in abilities.get_children():
 		# Ability is already equipped => return
 		if equipped_ability.ability_name == ability.ability_name: return
@@ -194,7 +197,10 @@ func swap_ability_slots() -> void:
 
 ## Checks if an [param ability] can be unequipped.
 ## It cannot be unequipped if it's currently casting or on cooldown.
+## It also cannot be unequipped if an enemy wave is in progress.
 func can_unequip_ability(ability: Ability) -> bool:
+	if not WorldManager.is_wave_finished():
+		return false
 	if ability == null:
 		return true
 	if ability.is_cooldown or ability.is_casting:

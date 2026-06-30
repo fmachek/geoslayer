@@ -23,6 +23,11 @@ func _ready() -> void:
 	unequip_slot1_pressed.connect(PlayerManager._on_UI_unequip_slot1_pressed)
 	unequip_slot2_pressed.connect(PlayerManager._on_UI_unequip_slot2_pressed)
 	unequip_all_pressed.connect(PlayerManager._on_UI_unequip_all_pressed)
+	
+	WorldManager.wave_started.connect(_disable_buttons)
+	WorldManager.wave_ended.connect(_enable_buttons)
+	WorldManager.wave_started.connect(%DisclaimerLabel.show)
+	WorldManager.wave_ended.connect(%DisclaimerLabel.hide)
 
 
 ## Loads an [AbilityUIElement] for every [Ability] unlocked
@@ -65,3 +70,25 @@ func _on_close_button_pressed() -> void:
 func _on_player_died():
 	for element in _ability_container.get_children():
 		element.queue_free()
+
+
+func _disable_buttons() -> void:
+	_disable_button(%UnequipSlot1Button)
+	_disable_button(%UnequipSlot2Button)
+	_disable_button(%UnequipAllButton)
+
+
+func _enable_buttons() -> void:
+	_enable_button(%UnequipSlot1Button)
+	_enable_button(%UnequipSlot2Button)
+	_enable_button(%UnequipAllButton)
+
+
+func _disable_button(button: Button) -> void:
+	button.disabled = true
+	button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+
+func _enable_button(button: Button) -> void:
+	button.disabled = false
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
