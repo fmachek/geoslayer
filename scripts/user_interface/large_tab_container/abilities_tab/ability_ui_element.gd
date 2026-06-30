@@ -23,6 +23,7 @@ var displaying_slot: int = 0
 @onready var _equipped_label: Label = %EquippedLabel
 @onready var _cd_label: Label = %CooldownLabel
 @onready var _desc_label: Label = %DescriptionLabel
+@onready var _cast_time_label: Label = %CastTimeLabel
 @onready var _texture_rect: TextureRect = %AbilityTextureRect
 @onready var _highlight_panel: Panel = %HighlightPanel
 
@@ -41,6 +42,7 @@ func load_ability(ability: Ability, player_char: PlayerCharacter):
 	_texture_rect.texture = ability.texture
 	_desc_label.text = ability.description
 	_update_cooldown_label(ability.cooldown)
+	_update_cast_time_label(ability.cast_time)
 	player_char.ability1_changed.connect(_on_player_ability1_changed)
 	player_char.ability2_changed.connect(_on_player_ability2_changed)
 	_perform_first_slot_check()
@@ -109,7 +111,25 @@ func _on_equip_slot_2_button_pressed() -> void:
 
 
 func _update_cooldown_label(cooldown: float) -> void:
-	_cd_label.text = "Cooldown: " + str(cooldown) + " seconds"
+	var new_text: String = "Cooldown: " + str(cooldown)
+	if cooldown <= 1.0:
+		new_text += " second"
+	else:
+		new_text += " seconds"
+	_cd_label.text = new_text
+
+
+func _update_cast_time_label(cast_time: float) -> void:
+	if cast_time == 0.0:
+		_cast_time_label.text = "Cast duration: instant"
+		return
+	
+	var new_text: String = "Cast duration: " + str(cast_time)
+	if cast_time <= 1.0:
+		new_text += " second"
+	else:
+		new_text += " seconds"
+	_cast_time_label.text = new_text
 
 
 func _disable_button(button: Button) -> void:
