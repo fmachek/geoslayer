@@ -137,7 +137,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "Player level:"
 horizontal_alignment = 1
@@ -194,7 +194,7 @@ expand_mode = 2
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=173739619]
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "Permanent stats"
 horizontal_alignment = 1
@@ -299,7 +299,7 @@ text = "Next world unlock:"
 [node name="WorldUnlockLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/UnlockRowContainer/NextWorldUnlock/VBoxContainer" unique_id=1152460682]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "World N at Level N"
 

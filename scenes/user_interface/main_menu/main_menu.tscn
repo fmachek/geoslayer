@@ -223,7 +223,7 @@ theme_override_constants/margin_bottom = 20
 [node name="VersionLabel" type="Label" parent="VersionLabelContainer" unique_id=645791792]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "v?.?.?"
 script = ExtResource("8_tlslw")

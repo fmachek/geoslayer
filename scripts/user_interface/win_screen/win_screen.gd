@@ -46,4 +46,4 @@ func _play_orb_effect() -> void:
 		tween.tween_callback(func(): _level_container.level.add_xp(1))
 		tween.play()
 		
-		await get_tree().create_timer(0.02).timeout
+		await get_tree().create_timer(0.01).timeout

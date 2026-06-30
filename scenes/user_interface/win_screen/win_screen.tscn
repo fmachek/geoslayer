@@ -113,20 +113,20 @@ theme_override_constants/separation = 30
 
 [node name="YouHaveWonLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=775417743]
 layout_mode = 2
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 24
 theme_override_font_sizes/font_size = 48
-text = "YOU HAVE WON!"
+text = "YOU WIN!"
 horizontal_alignment = 1
 
 [node name="LevelAchievedContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1740229585]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = -10
+theme_override_constants/separation = -5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LevelAchievedContainer" unique_id=887688969]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "Level achieved:"
 horizontal_alignment = 1
@@ -166,7 +166,7 @@ metadata/_custom_type_script = "uid://bdilgwqtqc44e"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "Current player level: 10"
 horizontal_alignment = 1
@@ -178,7 +178,7 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 theme_override_styles/background = SubResource("StyleBoxFlat_n5j0h")
 theme_override_styles/fill = SubResource("StyleBoxFlat_22730")
@@ -196,7 +196,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("4_nl1kk")
 theme_override_styles/normal_mirrored = ExtResource("4_nl1kk")
@@ -217,7 +217,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("4_nl1kk")
 theme_override_styles/normal_mirrored = ExtResource("4_nl1kk")
