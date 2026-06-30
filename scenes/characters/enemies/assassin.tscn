@@ -7,6 +7,7 @@
 script = ExtResource("2_3kcse")
 draw_color = Color(0.24976143, 0.26577392, 0.23783869, 1)
 outline_color = Color(0.1380257, 0.14817509, 0.13040712, 1)
+base_health = 75
 
 [node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
 max_value = 150
