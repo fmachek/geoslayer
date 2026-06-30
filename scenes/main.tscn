@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://3ne1dmv1jst4" path="res://scripts/user_interface/hud/wave_info/next_wave_label.gd" id="16_0ld40"]
 [ext_resource type="Script" uid="uid://bg7c0avopq04p" path="res://scripts/user_interface/hud/wave_info/current_wave_label.gd" id="16_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://rdwxidvkcwqx" path="res://scenes/user_interface/pause_ui/pause_interface.tscn" id="16_jbj1t"]
+[ext_resource type="Script" uid="uid://d0syh8w05q11p" path="res://scripts/user_interface/hud/level_progress_bar.gd" id="17_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://blrpytnhphj5t" path="res://scenes/user_interface/large_tab_container/enemies_tab/enemies_tab.tscn" id="17_yc10j"]
 [ext_resource type="Script" uid="uid://cmlti0osrpr4c" path="res://scripts/user_interface/hud/wave_info/enemies_remaining_label.gd" id="23_og1vs"]
 
@@ -335,12 +336,16 @@ script = ExtResource("12_eb6dy")
 
 [node name="LevelLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/LevelHUD" unique_id=896332673]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LevelProgressBar" type="ProgressBar" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/LevelHUD" unique_id=1463875009]
 clip_contents = true
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -350,6 +355,20 @@ theme_override_styles/background = SubResource("StyleBoxFlat_a8y0u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jkv2x")
 step = 1.0
 value = 50.0
+show_percentage = false
+script = ExtResource("17_2f3dj")
+
+[node name="XPLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/LevelHUD/LevelProgressBar" unique_id=1405939468]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StatsTabContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD" unique_id=1303122785]
 layout_mode = 2

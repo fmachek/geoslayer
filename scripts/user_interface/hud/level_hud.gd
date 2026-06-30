@@ -55,7 +55,7 @@ func _on_player_spawned(new_player: PlayerCharacter):
 func _play_level_up_tween():
 	if _level_up_tween:
 		_level_up_tween.kill()
-	_level_label.add_theme_color_override("font_color", Color("bb00bb"))
+	_level_label.modulate = Color("bb00bb")
 	_level_up_tween = create_tween()
 	_level_up_tween.tween_property(
-			_level_label, "theme_override_colors/font_color", Color("ffffffff"), 0.5)
+			_level_label, "modulate", Color("ffffffff"), 0.5)
