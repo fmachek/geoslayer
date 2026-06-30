@@ -5,6 +5,7 @@ extends Node
 const CONFIG_PATH: String = "user://config.cfg"
 
 var chosen_world: int
+var collapse_hud: bool
 
 
 func _ready() -> void:
@@ -25,11 +26,16 @@ func load_config() -> void:
 		if world is not int:
 			world = 1
 		chosen_world = world
+		var collapse_hud = config.get_value(cfg_section, "Collapse HUD")
+		if collapse_hud is not bool:
+			collapse_hud = false
+		self.collapse_hud = collapse_hud
 
 
 func save_config() -> void:
 	var config := ConfigFile.new()
 	config.set_value("Configuration", "Chosen world", chosen_world)
+	config.set_value("Configuration", "Collapse HUD", collapse_hud)
 	var err = config.save(CONFIG_PATH)
 	if err != OK:
 		print("Something went wrong while saving config.")
@@ -39,9 +45,17 @@ func save_config() -> void:
 
 func create_new_config() -> void:
 	chosen_world = 1
+	collapse_hud = false
 	save_config()
 
 
 func update_chosen_world(new_world: int) -> void:
-	chosen_world = new_world
-	save_config()
+	if chosen_world != new_world:
+		chosen_world = new_world
+		save_config()
+
+
+func update_collapse_hud(new_value: bool) -> void:
+	if collapse_hud != new_value:
+		collapse_hud = new_value
+		save_config()
