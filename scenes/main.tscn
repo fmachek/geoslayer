@@ -376,7 +376,6 @@ vertical_alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 1
@@ -384,6 +383,7 @@ script = ExtResource("18_yq6so")
 
 [node name="AbilityContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD" unique_id=88002212]
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 1
@@ -424,7 +424,6 @@ color = Color(0, 0, 0, 0.5019608)
 
 [node name="LevelLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/BottomHUD/VBoxContainer/SmallHUD" unique_id=2141585734]
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Level 1"
