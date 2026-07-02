@@ -5,7 +5,7 @@ extends VBoxContainer
 
 var _fade_tween: Tween
 
-@onready var _name_label: Label = $NameLabel
+@onready var _name_label: Label = $VBoxContainer/NameLabel
 @onready var _fade_out_timer: Timer = $FadeOutTimer
 
 

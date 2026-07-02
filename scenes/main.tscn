@@ -194,22 +194,34 @@ horizontal_alignment = 1
 [node name="AbilityUnlockPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer" unique_id=357967508]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = -5
+theme_override_constants/separation = 0
 script = ExtResource("10_ya4ey")
 
-[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=117239358]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=1769467448]
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/separation = -5
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup/VBoxContainer" unique_id=117239358]
+layout_mode = 2
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "New ability unlocked:"
 horizontal_alignment = 1
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=1365762045]
+[node name="NameLabel" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup/VBoxContainer" unique_id=1365762045]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.73333335, 0, 0.73333335, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "AbilityName"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=1925583701]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "You can equip it in the Abilities tab."
 horizontal_alignment = 1
 
 [node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=599509163]
