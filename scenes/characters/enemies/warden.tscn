@@ -37,8 +37,8 @@ max_value = 50
 current_value = 50
 
 [node name="HealthBar" parent="." index="6" unique_id=385742775]
-offset_top = 49.0
-offset_bottom = 69.0
+offset_top = 62.0
+offset_bottom = 86.0
 
 [node name="BuffTimer" type="Timer" parent="." index="9" unique_id=1777266836]
 wait_time = 2.0

@@ -25,10 +25,8 @@ shape = SubResource("RectangleShape2D_bik2x")
 
 [node name="HealthBar" parent="." index="3" unique_id=385742775]
 z_index = 14
-offset_left = -39.0
 offset_top = 43.0
-offset_right = 39.0
-offset_bottom = 63.0
+offset_bottom = 67.0
 
 [node name="InfoLabel" type="Label" parent="." index="4" unique_id=543637955]
 visible = false

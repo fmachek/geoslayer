@@ -20,6 +20,10 @@ base_health = 300
 [node name="CollisionShape2D" parent="." index="0" unique_id=295435238]
 shape = SubResource("RectangleShape2D_vuhn8")
 
+[node name="HealthBar" parent="." index="3" unique_id=385742775]
+offset_top = 36.0
+offset_bottom = 60.0
+
 [node name="HealingLine" type="Line2D" parent="." index="6" unique_id=715870431]
 visible = false
 points = PackedVector2Array(54, 0, 0, 0)

@@ -24,13 +24,9 @@ shape = SubResource("CircleShape2D_2y4jy")
 max_value = 30
 current_value = 30
 
-[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
-max_value = 75
-current_value = 75
-
 [node name="HealthBar" parent="." index="5" unique_id=385742775]
-offset_top = 29.0
-offset_bottom = 49.0
+offset_top = 35.0
+offset_bottom = 59.0
 
 [node name="HealthDecayTimer" type="Timer" parent="." index="9" unique_id=1164130493]
 autostart = true

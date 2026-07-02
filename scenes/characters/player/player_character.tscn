@@ -13,3 +13,7 @@ shows_aim_indicator = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." index="0" unique_id=10897090]
 script = ExtResource("3_xusps")
+
+[node name="HealthBar" parent="." index="4" unique_id=385742775]
+offset_top = 55.0
+offset_bottom = 79.0

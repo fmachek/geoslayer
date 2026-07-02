@@ -21,13 +21,13 @@ polygon = PackedVector2Array(0, -17.32, -15, 8.66, 15, 8.66)
 [node name="PermanentStatPointLabel" type="Label" parent="." unique_id=557761731]
 z_index = 14
 z_as_relative = false
-offset_left = -37.0
-offset_top = -64.0
-offset_right = 37.0
-offset_bottom = -27.0
+offset_left = -45.0
+offset_top = -75.0
+offset_right = 45.0
+offset_bottom = -30.0
 theme_override_colors/font_color = Color(1, 0, 1, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 12
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Permanent
 Stat Point"
 horizontal_alignment = 1
