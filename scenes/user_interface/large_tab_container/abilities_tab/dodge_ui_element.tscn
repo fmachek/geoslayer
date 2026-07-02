@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bnytukoxfijh5"]
+
+[ext_resource type="Script" uid="uid://c8hysn24ti6ww" path="res://scripts/user_interface/large_tab_container/abilities_tab/dodge_ui_element.gd" id="1_gpcx5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a8y0u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68v6b"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_68v6b"]
+line_spacing = -2.0
+font_size = 10
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Dodge" type="HBoxContainer" unique_id=389526093]
+offset_right = 391.0
+offset_bottom = 75.0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+script = ExtResource("1_gpcx5")
+
+[node name="AbilityTextureRect" type="TextureRect" parent="." unique_id=20019553]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_a8y0u")
+expand_mode = 2
+
+[node name="HighlightPanel" type="Panel" parent="AbilityTextureRect" unique_id=862299736]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_68v6b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=221107057]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=591377577]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AbilityNameLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1797207735]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "Dodge"
+
+[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1358461242]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12633526, 0.7517534, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+text = "Always equipped"
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=507026124]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+text = "..."
+label_settings = SubResource("LabelSettings_68v6b")
+autowrap_mode = 2
+
+[node name="CooldownLabel" type="Label" parent="VBoxContainer" unique_id=1089280797]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+text = "Cooldown: 2 seconds"
+autowrap_mode = 2
+
+[node name="CastTimeLabel" type="Label" parent="VBoxContainer" unique_id=85429018]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 10
+text = "Cast duration: 1 second"
+autowrap_mode = 2

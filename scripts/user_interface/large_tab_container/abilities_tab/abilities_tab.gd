@@ -11,7 +11,13 @@ signal unequip_slot2_pressed()
 signal unequip_all_pressed()
 
 const _ABILITY_ELEMENT_SCENE := preload(
-		"res://scenes/user_interface/large_tab_container/abilities_tab/ability_ui_element.tscn")
+		"res://scenes/user_interface/large_tab_container" + \
+		"/abilities_tab/ability_ui_element.tscn"
+)
+const _DODGE_ELEMENT_SCENE := preload(
+		"res://scenes/user_interface/large_tab_container" + \
+		"/abilities_tab/dodge_ui_element.tscn"
+)
 ## A reference to the [PlayerCharacter].
 var player: PlayerCharacter
 @onready var _ability_container: VBoxContainer = %AbilityContainer
@@ -35,7 +41,10 @@ func _ready() -> void:
 func load_unlocked_abilities():
 	var unlocked_abilities = player.unlocked_abilities
 	for ability: Ability in unlocked_abilities:
-		load_unlocked_ability(ability)
+		if ability is Dodge:
+			load_dodge(ability)
+		else:
+			load_unlocked_ability(ability)
 
 
 ## Loads an [AbilityUIElement] for a given [param ability].
@@ -43,6 +52,12 @@ func load_unlocked_ability(ability: Ability):
 	var ability_ui_element: AbilityUIElement = _ABILITY_ELEMENT_SCENE.instantiate()
 	_ability_container.add_child(ability_ui_element)
 	ability_ui_element.load_ability(ability, player)
+
+
+func load_dodge(dodge: Dodge) -> void:
+	var dodge_ui_element: DodgeUIElement = _DODGE_ELEMENT_SCENE.instantiate()
+	_ability_container.add_child(dodge_ui_element)
+	dodge_ui_element.load_dodge(dodge)
 
 
 func _on_player_spawned(new_player: PlayerCharacter):

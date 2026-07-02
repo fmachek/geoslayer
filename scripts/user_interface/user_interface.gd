@@ -7,6 +7,7 @@ var _label_opacity_tween: Tween
 
 @onready var ability_item_1: AbilityItem = %AbilityItem1
 @onready var ability_item_2: AbilityItem = %AbilityItem2
+@onready var dodge_item: AbilityItem = %DodgeItem
 @onready var _boss_defeated_label: Label = %BossDefeatedLabel
 
 
@@ -19,6 +20,7 @@ func _load_new_player(player: PlayerCharacter):
 	_connect_player_signals(player)
 	ability_item_1.load_ability(player.ability1)
 	ability_item_2.load_ability(player.ability2)
+	dodge_item.load_ability(player.dodge)
 
 
 func _connect_player_signals(player: PlayerCharacter):

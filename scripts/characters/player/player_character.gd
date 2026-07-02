@@ -38,13 +38,15 @@ var perk_points_available: int = 5:
 				gained_perk_points.emit(value - old_value)
 ## Amount of perk points the player gains with every level up.
 var perk_points_per_level: int = 5
+var dodge: Dodge
 #endregion
 
 
 func _ready() -> void:
 	super()
 	load_unlocked_abilities()
-	equip_ability(unlocked_abilities[0]) # Equip first unlocked ability on spawn
+	# Equip first unlocked ability on spawn (excluding Dodge)
+	equip_ability(unlocked_abilities[1])
 	target_pos = get_global_mouse_position()
 	_apply_user_stats()
 	_fill_health()
@@ -77,6 +79,10 @@ func _unhandled_input(event) -> void:
 		if event.is_action_pressed("cast_2"):
 			if ability2:
 				ability2.cast()
+	elif event is InputEventKey:
+		if event.is_action_pressed("dodge"):
+			if dodge:
+				dodge.cast()
 
 
 # Player drops nothing, so this is just an empty function.
@@ -105,6 +111,7 @@ func equip_ability(ability: Ability) -> void:
 		if ability1:
 			ability1.cooldown_ended.connect(_cast_ability_1_if_pressed)
 			ability1.cooldown_ended.connect(_cast_ability_2_if_pressed)
+			ability1.cooldown_ended.connect(_cast_dodge_if_pressed)
 		ability1_changed.emit(ability1)
 	elif ability2 == null:
 		ability2 = ability
@@ -112,6 +119,7 @@ func equip_ability(ability: Ability) -> void:
 		if ability2:
 			ability2.cooldown_ended.connect(_cast_ability_1_if_pressed)
 			ability2.cooldown_ended.connect(_cast_ability_2_if_pressed)
+			ability2.cooldown_ended.connect(_cast_dodge_if_pressed)
 		ability2_changed.emit(ability2)
 	else:
 		replace_ability1(ability)
@@ -119,6 +127,14 @@ func equip_ability(ability: Ability) -> void:
 
 func update_stats(_current_level: int) -> void:
 	pass
+
+
+func _setup_dodge() -> void:
+	dodge = Dodge.new()
+	super.equip_ability(dodge)
+	dodge.cooldown_ended.connect(_cast_ability_1_if_pressed)
+	dodge.cooldown_ended.connect(_cast_ability_2_if_pressed)
+	dodge.cooldown_ended.connect(_cast_dodge_if_pressed)
 
 
 ## Replaces [Ability] in slot 1. If the new [Ability] is already in slot 2,
@@ -225,6 +241,8 @@ func unlock_new_ability(ability: Ability) -> bool:
 func load_unlocked_abilities() -> void:
 	if not unlocked_abilities.is_empty():
 		unlocked_abilities.clear()
+	_setup_dodge()
+	unlocked_abilities.append(dodge)
 	var starter_ability: Ability = Shoot.new()
 	unlocked_abilities.append(starter_ability)
 
@@ -292,3 +310,9 @@ func _cast_ability_2_if_pressed() -> void:
 	if Input.is_action_pressed("cast_2"):
 		if ability2:
 			ability2.cast()
+
+
+func _cast_dodge_if_pressed() -> void:
+	if Input.is_action_pressed("dodge"):
+		if dodge:
+			dodge.cast()

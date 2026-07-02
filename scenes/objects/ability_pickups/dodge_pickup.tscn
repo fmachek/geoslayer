@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cfmfgkuvd5r0h"]
-
-[ext_resource type="PackedScene" uid="uid://c8l5o86hoekde" path="res://scenes/objects/ability_pickups/ability_pickup.tscn" id="1_v5yl0"]
-[ext_resource type="Script" uid="uid://rka1ktslgfe2" path="res://scripts/abilities/player_abilities/dodge.gd" id="2_ifwfv"]
-
-[node name="DodgePickup" unique_id=176297332 instance=ExtResource("1_v5yl0")]
-ability_script = ExtResource("2_ifwfv")

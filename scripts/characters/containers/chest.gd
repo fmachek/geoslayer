@@ -87,7 +87,7 @@ func generate_ability_drop_pool() -> void:
 	var ability_names: Array[String] = [
 		"cannonball", "doubleshot", "flurry", "wideshot",
 		"pierce", "explosive", "lifesteal", "shred", "swipe",
-		"smash", "trap", "flee", "return", "tear", "rush", "dodge"
+		"smash", "trap", "flee", "return", "tear", "rush"
 	]
 	add_abilities_to_drop_pool(ability_names)
 
