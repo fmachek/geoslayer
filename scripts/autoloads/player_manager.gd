@@ -13,6 +13,9 @@ signal perk_points_changed(points: int)
 
 const _PLAYER_SCENE_PATH := "res://scenes/characters/player/player_character.tscn"
 const _PLAYER_SCENE := preload(_PLAYER_SCENE_PATH)
+const _BUFF_LABEL_SCENE := preload(
+	"res://scenes/user_interface/world_labels/buff_pickup_label.tscn"
+)
 
 ## The [PlayerCharacter] currently loaded in the world.
 var current_player: PlayerCharacter
@@ -20,6 +23,7 @@ var current_player: PlayerCharacter
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	SignalBus.selected_buff.connect(apply_buff_to_player.unbind(1))
 
 
 ## Spawns the [PlayerCharacter] at a given position.
@@ -102,3 +106,25 @@ func _on_UI_unequip_all_pressed() -> void:
 		return
 	current_player.replace_ability1(null)
 	current_player.replace_ability2(null)
+
+
+func apply_buff_to_player(buff: Buff, stat_name: String) -> void:
+	if not is_instance_valid(current_player):
+		return
+	var stat: CharacterStat = current_player.get_node("CharacterStats").get_node(stat_name)
+	if not is_instance_valid(stat):
+		return
+	buff.apply_to_stat(stat)
+	_spawn_buff_pickup_label(buff)
+
+
+func _spawn_buff_pickup_label(buff: Buff) -> void:
+	if not is_instance_valid(current_player):
+		return
+	var buff_pickup_label: BuffPickupLabel = _BUFF_LABEL_SCENE.instantiate()
+	current_player.add_child(buff_pickup_label)
+	var offset := Vector2(randi_range(-30, 30), randi_range(-30, 30))
+	buff_pickup_label.global_position = current_player.global_position \
+			+ offset - Vector2(buff_pickup_label.size.x / 2, buff_pickup_label.size.y / 2)
+	buff_pickup_label.load_buff(buff)
+	buff_pickup_label.play_tween()

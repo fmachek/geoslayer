@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bkrtqgqtfvo7w"]
+
+[ext_resource type="Script" uid="uid://dla3ww5ohk7yc" path="res://scripts/user_interface/buff_picker/buff_container.gd" id="1_tdu7u"]
+[ext_resource type="StyleBox" uid="uid://b77slu6e5lrvn" path="res://assets/user_interface/styles/regular_button/regular_button_normal.tres" id="1_ybwoi"]
+[ext_resource type="StyleBox" uid="uid://btot0y1uy4bm4" path="res://assets/user_interface/styles/regular_button/regular_button_pressed.tres" id="2_tdu7u"]
+[ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="3_3yorj"]
+[ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="4_rj0de"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbyx0"]
+bg_color = Color(0, 0, 0, 0.512)
+
+[sub_resource type="Gradient" id="Gradient_tdu7u"]
+offsets = PackedFloat32Array(0.51778656, 1)
+colors = PackedColorArray(1, 1, 1, 0.15, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ybwoi"]
+color = Color(0.59607846, 0.59607846, 0.59607846, 1)
+thickness = 2
+
+[node name="BuffContainer" type="PanelContainer" unique_id=329632986]
+clip_contents = true
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbyx0")
+script = ExtResource("1_tdu7u")
+
+[node name="BackgroundParticles" type="CPUParticles2D" parent="." unique_id=846739659]
+visible = false
+position = Vector2(150, 275)
+amount = 5
+lifetime = 1.5
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(160, 0)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color_ramp = SubResource("Gradient_tdu7u")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=268060420]
+custom_minimum_size = Vector2(300, 250)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1535171703]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1151668187]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2077258558]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AmountLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer" unique_id=505754203]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "+50 Health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DurationLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer" unique_id=1218177845]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.59607846, 0.59607846, 0.59607846, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "for 10 seconds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1585552225]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ybwoi")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1627393182]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BaseLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer2" unique_id=1732854679]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+text = "Base Health: 100"
+horizontal_alignment = 1
+
+[node name="BuffedLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer2" unique_id=1649214111]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+text = "Current buffed Health: 150"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1401381116]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_ybwoi")
+theme_override_styles/normal_mirrored = ExtResource("1_ybwoi")
+theme_override_styles/pressed = ExtResource("2_tdu7u")
+theme_override_styles/pressed_mirrored = ExtResource("2_tdu7u")
+theme_override_styles/hover = ExtResource("3_3yorj")
+theme_override_styles/hover_mirrored = ExtResource("3_3yorj")
+theme_override_styles/hover_pressed = ExtResource("2_tdu7u")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_tdu7u")
+theme_override_styles/disabled = ExtResource("4_rj0de")
+theme_override_styles/disabled_mirrored = ExtResource("4_rj0de")
+theme_override_styles/focus = ExtResource("3_3yorj")
+text = "Select"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SelectButton" to="." method="_handle_selection"]

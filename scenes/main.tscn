@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://blrpytnhphj5t" path="res://scenes/user_interface/large_tab_container/enemies_tab/enemies_tab.tscn" id="17_yc10j"]
 [ext_resource type="Script" uid="uid://bnsmjmif7fccx" path="res://scripts/user_interface/hud/small_hud.gd" id="18_yq6so"]
 [ext_resource type="Script" uid="uid://cmlti0osrpr4c" path="res://scripts/user_interface/hud/wave_info/enemies_remaining_label.gd" id="23_og1vs"]
+[ext_resource type="PackedScene" uid="uid://cntyjvgpalphy" path="res://scenes/user_interface/buff_picker/buff_picker_ui.tscn" id="31_tel4y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_muem4"]
 font_size = 32
@@ -641,6 +642,9 @@ size_flags_vertical = 0
 theme_override_constants/outline_size = 8
 text = "Enemies remaining: N"
 script = ExtResource("23_og1vs")
+
+[node name="BuffPickerUI" parent="CanvasLayer" unique_id=1074320045 instance=ExtResource("31_tel4y")]
+visible = false
 
 [node name="DeathUserInterface" parent="CanvasLayer" unique_id=1370909485 instance=ExtResource("15_jbj1t")]
 visible = false

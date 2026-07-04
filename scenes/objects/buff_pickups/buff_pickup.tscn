@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cc3t7nos063vs"]
+
+[ext_resource type="Script" uid="uid://dbc40gpnrmuwl" path="res://scripts/objects/buff_pickups/buff_pickup.gd" id="1_aq5wc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lj3b"]
+size = Vector2(30, 30)
+
+[node name="BuffPickup" type="Node2D" unique_id=184492373]
+script = ExtResource("1_aq5wc")
+outline_color = Color(0.5529554, 0.5529556, 0.55295557, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1034763640]
+collision_layer = 16
+collision_mask = 512
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=200453494]
+shape = SubResource("RectangleShape2D_6lj3b")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

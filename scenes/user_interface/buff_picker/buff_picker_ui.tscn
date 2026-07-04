@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cntyjvgpalphy"]
+
+[ext_resource type="Script" uid="uid://bsxldxo88t2yj" path="res://scripts/user_interface/buff_picker/buff_picker_ui.gd" id="1_y5ev6"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_y5ev6"]
+
+[node name="BuffPickerUI" type="Control" unique_id=1074320045]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y5ev6")
+
+[node name="Background" type="Control" parent="." unique_id=35700800]
+modulate = Color(0.5526029, 0.5526029, 0.5526029, 0.8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=585924318]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=1685875163]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.90000004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y5ev6")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1405879372]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=285486095]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2100281563]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Pick a buff!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2143300431]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1

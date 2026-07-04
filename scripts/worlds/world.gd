@@ -32,6 +32,8 @@ var _unopened_chests: Array = []
 
 func _ready() -> void:
 	wave_manager.wave_ended.connect(_handle_wave_end)
+	SignalBus.picked_up_buff.connect(_on_picked_up_buff.unbind(1))
+	SignalBus.selected_buff.connect(_on_selected_buff)
 	_player_spawn_pos = _player_spawn_point.global_position
 	XPOrb.xp_amount = xp_per_orb
 	call_deferred("spawn_player")
@@ -58,6 +60,14 @@ func spawn_chest() -> void:
 	_unopened_chests.append(chest)
 
 
+func pause() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func resume() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+
+
 func _on_chest_opened(chest: Chest) -> void:
 	_unopened_chests.erase(chest)
 	if not _unopened_chests.is_empty(): # Spawn another chest
@@ -80,3 +90,12 @@ func _handle_wave_end() -> void:
 
 func handle_boss_spawn(boss: Character) -> void:
 	boss_spawned.emit(boss)
+
+
+func _on_picked_up_buff() -> void:
+	pause()
+
+
+func _on_selected_buff(_buff: Buff, _stat_name: String, has_queue: bool) -> void:
+	if not has_queue:
+		resume()

@@ -50,12 +50,9 @@ func _draw():
 ## Generates the drop pool. By default, a [Chest] can drop temporary buffs,
 ## [XPOrb]s and a [HealingOrb].
 func generate_drop_pool():
-	drop_pool.append(
-			Drop.new("res://scenes/objects/buff_objects/health_buff_object.tscn", 30))
-	drop_pool.append(
-			Drop.new("res://scenes/objects/buff_objects/speed_buff_object.tscn", 30))
-	drop_pool.append(
-			Drop.new("res://scenes/objects/buff_objects/damage_buff_object.tscn", 30))
+	drop_pool.append(Drop.new(
+		"res://scenes/objects/buff_pickups/buff_pickup.tscn", 100)
+	)
 	for i in range(xp_amount):
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))
 		drop_pool.append(Drop.new("res://scenes/objects/xp_orb.tscn", 50))

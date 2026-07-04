@@ -2,15 +2,14 @@ class_name AbilityPickup
 extends Node2D
 ## Represents an object a [PlayerCharacter] can pick up to unlock an [Ability].
 
-const _PARTICLE_SCENE := preload(
-		"res://scenes/particle_effects/ability_pickup_particles.tscn")
-
 ## Emitted when picked up by a [PlayerCharacter].
 signal picked_up()
 
+const _PARTICLE_SCENE := preload(
+		"res://scenes/particle_effects/ability_pickup_particles.tscn")
 const _LABEL_SCENE := preload(
 		"res://scenes/user_interface/world_labels/ability_pickup_label.tscn")
-	
+
 ## Fill color of the shape.
 @export var draw_color := Color.GRAY
 ## Outline color of the shape.
@@ -84,7 +83,7 @@ func _play_tween() -> void:
 
 
 func _spawn_label() -> void:
-	var label: AbilityPickupLabel = _LABEL_SCENE.instantiate()
+	var label: PickupLabel = _LABEL_SCENE.instantiate()
 	label.text = _ability_name
 	label.global_position = global_position - Vector2(label.size.x / 2, 60)
 	picked_up.connect(label.fade_out)

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://k8tl3bgv28mu"]
+
+[ext_resource type="PackedScene" uid="uid://bofg7cm63ykck" path="res://scenes/user_interface/world_labels/pickup_label.tscn" id="1_v0607"]
+
+[node name="BuffPickupLabel" unique_id=220541199 instance=ExtResource("1_v0607")]
+theme_override_colors/font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
+text = "Buff"
