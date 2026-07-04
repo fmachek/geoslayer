@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b1qcqh81a03yg"]
 
 [ext_resource type="Script" uid="uid://kf1tkrqd4dvl" path="res://scripts/user_interface/death_user_interface/death_user_interface.gd" id="1_ko8uv"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_d5n1b"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_kv8eg"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_d5n1b"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_2qkag"]
@@ -15,14 +16,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ko8uv")
 
-[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1627618480]
+[node name="Background" type="Control" parent="." unique_id=1257498864]
+modulate = Color(0.5526029, 0.5526029, 0.5526029, 0.8)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.62700003)
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=1878649213]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=1704550339]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.90000004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d5n1b")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=616965276]
 layout_mode = 1
@@ -59,16 +80,16 @@ horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1949312984]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 
 [node name="RestartButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=88688813]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("2_kv8eg")
 theme_override_styles/normal_mirrored = ExtResource("2_kv8eg")
 theme_override_styles/pressed = ExtResource("3_d5n1b")
@@ -80,16 +101,37 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("3_d5n1b")
 theme_override_styles/disabled = ExtResource("5_7ifyo")
 theme_override_styles/disabled_mirrored = ExtResource("5_7ifyo")
 theme_override_styles/focus = ExtResource("4_2qkag")
-text = "Restart"
+text = "Try again"
 
-[node name="BackToMenuButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=272731280]
+[node name="WorldSelectionButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=239823327]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_kv8eg")
+theme_override_styles/normal_mirrored = ExtResource("2_kv8eg")
+theme_override_styles/pressed = ExtResource("3_d5n1b")
+theme_override_styles/pressed_mirrored = ExtResource("3_d5n1b")
+theme_override_styles/hover = ExtResource("4_2qkag")
+theme_override_styles/hover_mirrored = ExtResource("4_2qkag")
+theme_override_styles/hover_pressed = ExtResource("3_d5n1b")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_d5n1b")
+theme_override_styles/disabled = ExtResource("5_7ifyo")
+theme_override_styles/disabled_mirrored = ExtResource("5_7ifyo")
+theme_override_styles/focus = ExtResource("4_2qkag")
+text = "World selection"
+
+[node name="BackToMenuButton" type="Button" parent="VBoxContainer/ButtonContainer" unique_id=272731280]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("2_kv8eg")
 theme_override_styles/normal_mirrored = ExtResource("2_kv8eg")
 theme_override_styles/pressed = ExtResource("3_d5n1b")
@@ -107,6 +149,4 @@ text = "Back to menu"
 wait_time = 0.5
 one_shot = true
 
-[connection signal="pressed" from="VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="timeout" from="ClickEnableTimer" to="." method="_on_click_enable_timer_timeout"]

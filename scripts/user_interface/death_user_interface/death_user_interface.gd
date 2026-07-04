@@ -6,6 +6,7 @@ extends Control
 
 @onready var _restart_button: Button = %RestartButton
 @onready var _menu_button: Button = %BackToMenuButton
+@onready var _selection_button: Button = %WorldSelectionButton
 @onready var _enable_timer: Timer = $ClickEnableTimer
 
 
@@ -21,3 +22,4 @@ func _on_player_died() -> void:
 func _on_click_enable_timer_timeout() -> void:
 	_restart_button.pressed.connect(GameManager.start_game)
 	_menu_button.pressed.connect(GameManager.switch_to_menu)
+	_selection_button.pressed.connect(GameManager.switch_to_world_selection)
