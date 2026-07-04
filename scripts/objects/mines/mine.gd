@@ -160,8 +160,8 @@ func _apply_stun(body: Node2D) -> void:
 		body.stun(stun_duration)
 
 
-func _update_detection_collision_mask(char: Character) -> void:
-	CollisionMaskFunctions.set_area_collision_mask(_char_det_area, char)
+func _update_detection_collision_mask(character: Character) -> void:
+	CollisionMaskFunctions.set_area_collision_mask(_char_det_area, character)
 
 
 func _on_character_detection_area_body_entered(body: Node2D) -> void:

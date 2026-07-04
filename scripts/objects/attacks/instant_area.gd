@@ -41,8 +41,8 @@ var _performed: bool = false
 
 
 func _ready() -> void:
-	_update_shape_radius(radius)
-	_update_area_mask(source)
+	call_deferred("_update_shape_radius", radius)
+	call_deferred("_update_area_mask", source)
 	radius_changed.connect(_update_shape_radius)
 	_fade_out()
 

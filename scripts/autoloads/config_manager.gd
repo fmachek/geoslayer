@@ -26,10 +26,10 @@ func load_config() -> void:
 		if world is not int:
 			world = 1
 		chosen_world = world
-		var collapse_hud = config.get_value(cfg_section, "Collapse HUD")
-		if collapse_hud is not bool:
-			collapse_hud = false
-		self.collapse_hud = collapse_hud
+		var should_collapse_hud = config.get_value(cfg_section, "Collapse HUD")
+		if should_collapse_hud is not bool:
+			should_collapse_hud = false
+		self.collapse_hud = should_collapse_hud
 
 
 func save_config() -> void:

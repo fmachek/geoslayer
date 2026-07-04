@@ -76,6 +76,6 @@ func _randomize_radius() -> void:
 	shape.radius = randf_range(min_radius, max_radius)
 
 
-func _spawn_label(char: Character) -> void:
+func _spawn_label(character: Character) -> void:
 	var label: XPLabel = _LABEL_SCENE.instantiate()
-	label.spawn_at(char, xp_amount)
+	label.spawn_at(character, xp_amount)

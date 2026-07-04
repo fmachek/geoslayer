@@ -50,9 +50,9 @@ func _ready() -> void:
 	_set_bg_particles()
 
 
-func load_buff(new_buff: Buff, stat_name: String) -> void:
+func load_buff(new_buff: Buff, target_stat: String) -> void:
 	self.buff = new_buff
-	self.stat_name = stat_name
+	self.stat_name = target_stat
 
 
 func _on_gui_input(event: InputEvent) -> void:

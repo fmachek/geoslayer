@@ -11,12 +11,12 @@ var _alpha_tween: Tween
 var _pos_tween: Tween
 
 
-func spawn_at(char: Character, xp_amount: int) -> void:
+func spawn_at(character: Character, xp_amount: int) -> void:
 	text = "+%d XP" % xp_amount
 	var rand_offset_x: float = randf_range(-rand_offset_range, rand_offset_range)
 	var rand_offset_y: float = randf_range(-rand_offset_range, rand_offset_range)
-	char.add_child(self)
-	global_position = (char.global_position + Vector2(rand_offset_x, rand_offset_y)) - \
+	character.add_child(self)
+	global_position = (character.global_position + Vector2(rand_offset_x, rand_offset_y)) - \
 			Vector2(size.x / 2, size.y / 2)
 	_play_tweens()
 

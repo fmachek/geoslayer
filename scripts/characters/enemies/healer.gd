@@ -27,9 +27,9 @@ func _load_abilities() -> void:
 
 
 func cast_large_heal() -> void:
-	var heal := Heal.new()
-	heal.radius = 600.0
-	heal.base_heal_amount = 200
-	heal.cooldown = 10.0
-	_load_ability(heal)
-	heal.cast()
+	var heal_ability := Heal.new()
+	heal_ability.radius = 600.0
+	heal_ability.base_heal_amount = 200
+	heal_ability.cooldown = 10.0
+	_load_ability(heal_ability)
+	heal_ability.cast()

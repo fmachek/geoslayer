@@ -12,10 +12,10 @@ var distance_remaining: float: set = _set_distance_remaining
 var has_ended: bool = false
 
 
-func _init(distance: float, duration: float, direction: Vector2) -> void:
-	self.distance = distance
-	self.duration = duration
-	self.direction = direction
+func _init(dash_distance: float, dash_duration: float, dash_direction: Vector2) -> void:
+	self.distance = dash_distance
+	self.duration = dash_duration
+	self.direction = dash_direction
 	decrease_per_sec = distance / duration
 	distance_remaining = distance
 
