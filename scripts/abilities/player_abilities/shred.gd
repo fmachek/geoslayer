@@ -84,5 +84,7 @@ func _update_armor_buff_multiplier() -> void:
 
 func _emit_buff_particles() -> void:
 	var particles: ShredBuffParticles = _BUFF_PARTICLES_SCENE.instantiate()
+	particles.speed_particle_color = character.draw_color.lightened(0.3)
+	particles.shield_particle_color = character.draw_color.lightened(0.2)
 	character.add_child(particles)
 	particles.global_position = character.global_position
