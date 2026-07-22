@@ -14,7 +14,9 @@ static func fire_projectile(projectile_scene: PackedScene, properties: Projectil
 	projectile.set_properties(properties)
 	
 	if is_instance_valid(properties.source):
-		properties.source.get_parent().add_child(projectile)
+		var parent = properties.source.get_parent()
+		if is_instance_valid(parent):
+			parent.add_child(projectile)
 	else:
 		WorldManager.current_world.add_child(projectile)
 	
@@ -45,7 +47,9 @@ static func fire_projectile_from_character(projectile_scene: PackedScene, charac
 	projectile.set_properties(properties)
 	
 	if is_instance_valid(properties.source):
-		properties.source.get_parent().add_child(projectile)
+		var parent = properties.source.get_parent()
+		if is_instance_valid(parent):
+			parent.add_child(projectile)
 	else:
 		WorldManager.current_world.add_child(projectile)
 	
