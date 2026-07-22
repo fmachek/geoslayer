@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cgdlnpkt1oa8q" path="res://assets/sprites/characters/particles/heart.png" id="4_q7puk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtu2x"]
-radius = 400.0
+radius = 800.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wigwm"]
 radius = 42.0
@@ -19,7 +19,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 script = ExtResource("2_wigwm")
 draw_color = Color(0.42847714, 0.8038078, 0.8696842, 1)
 outline_color = Color(0.31398138, 0.6922131, 0.757147, 1)
-base_health = 200
+base_health = 300
 knockback_resistance = 1000
 
 [node name="BuffArea" type="Area2D" parent="." index="2" unique_id=597588783]

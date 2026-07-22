@@ -4,9 +4,9 @@ extends Enemy
 ## enemies' health and damage.
 
 ## Base damage buff applied to nearby allies.
-var base_damage_buff_amount: int = 15
+var base_damage_buff_amount: int = 25
 ## Base health buff applied to nearby allies.
-var base_health_buff_amount: int = 15
+var base_health_buff_amount: int = 25
 
 @onready var _buff_area: Area2D = $BuffArea
 @onready var _sword_particles: CPUParticles2D = $SwordParticles

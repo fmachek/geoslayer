@@ -7,7 +7,7 @@ const _APPLICATION_AREA_SCENE := preload(
 		"res://scenes/objects/attacks/shield_application_area.tscn")
 
 ## Radius of the [ShieldApplicationArea].
-var area_radius: float = 300.0
+var area_radius: float = 600.0
 ## Duration of the [Shield]s applied.
 var shield_duration: float = 2.0
 ## Radius of the [Shield]s applied.

@@ -4,14 +4,14 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 var projectile_speed: float = 5.0
-var base_damage: int = 20
-var projectile_radius: int = 12
+var base_damage: int = 15
+var projectile_radius: float = 10.0
 var projectile_amount: int = 4
 var projectile_knockback: float = 200.0
 
 
 func _init() -> void:
-	var ability_cooldown: float = 2.0
+	var ability_cooldown: float = 3.0
 	var ability_cast_time: float = 0.0
 	var ability_description := "Fires projectiles in all directions."
 	super(ability_cooldown, ability_cast_time, ability_description)

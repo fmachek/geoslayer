@@ -11,6 +11,7 @@ script = ExtResource("2_s6v1f")
 draw_color = Color(0.44498768, 0.5424314, 0.9590569, 1)
 outline_color = Color(0.281193, 0.35660335, 0.8730979, 1)
 base_health = 200
+base_damage = 75
 knockback_resistance = 600
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
