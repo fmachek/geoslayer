@@ -15,7 +15,7 @@ var zone_tick_time: float = 1.0
 ## Used to set [member StormZone.base_damage].
 var zone_base_damage: int = 15
 ## Used to set [member StormZone.radius].
-var zone_radius: int = 250
+var zone_radius: int = 350
 ## Amount by which the caster's speed is decreased when casting.
 var speed_debuff_amount: int = 50
 
