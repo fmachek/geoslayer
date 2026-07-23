@@ -8,7 +8,7 @@ const _SWIPE_SCENE := preload("res://scenes/objects/attacks/swipe_attack.tscn")
 ## Base damage dealt by the [SwipeAttack].
 var swipe_damage: int = 35
 ## Length of the [SwipeAttack].
-var swipe_length: float = 250.0
+var swipe_length: float = 325.0
 ## Angle which the [SwipeAttack] covers, in degrees.
 var swipe_degrees: float = 120.0
 ## Time until the [SwipeAttack] reaches its destination.
