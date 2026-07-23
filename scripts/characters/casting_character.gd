@@ -13,6 +13,9 @@ signal target_reached()
 ## Emitted when [member target] changes.
 signal target_changed(new_target: Character)
 
+## Distance at which the [CastingCharacter] stops following its [member target].
+@export var stop_distance: float = 180.0
+
 ## [Character] being followed by the [CastingCharacter].
 var target: Character: set = set_target
 ## Array of abilities ready to be cast.
@@ -21,8 +24,6 @@ var castable_abilities: Array[Ability] = []
 var min_cast_cooldown: float = 1.0
 ## Maximum cooldown applied after every [Ability] cast, in seconds.
 var max_cast_cooldown: float = 2.0
-## Distance at which the [CastingCharacter] stops following its [member target].
-var stop_distance: float = 180.0
 var _attempting_to_cast: bool = false
 
 ## [NavigationAgent2D] used for avoidance of other casting characters.

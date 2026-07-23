@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cseux8swy34io"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_pns1a"]
+[ext_resource type="Script" uid="uid://o4yq6fll8p68" path="res://scripts/characters/enemies/ghost.gd" id="2_c2u7v"]
+
+[node name="Ghost" unique_id=1080282355 instance=ExtResource("1_pns1a")]
+script = ExtResource("2_c2u7v")
+stop_distance = 86.0
+draw_color = Color(0, 0.85105014, 0.89827347, 0.35000002)
+outline_color = Color(0, 0.6704099, 0.7055968, 0.35000002)
+base_health = 120
+knockback_resistance = 50000
+
+[node name="NavigationAgent2D" parent="." index="0" unique_id=902596167]
+target_desired_distance = 20.0
+
+[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
+max_value = 125
+current_value = 125

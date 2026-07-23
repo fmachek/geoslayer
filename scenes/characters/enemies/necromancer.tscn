@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b11058gkr0blj"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_3o7pk"]
+[ext_resource type="Script" uid="uid://bhss1o7qe1d5g" path="res://scripts/characters/enemies/necromancer.gd" id="2_1iqh6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1iqh6"]
+radius = 36.0
+
+[node name="Necromancer" unique_id=1080282355 instance=ExtResource("1_3o7pk")]
+script = ExtResource("2_1iqh6")
+stop_distance = 180.0
+draw_color = Color(0.2757027, 0.6296574, 0.62215537, 1)
+outline_color = Color(0.1779159, 0.45027947, 0.44450143, 1)
+base_health = 200
+knockback_resistance = 100
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_1iqh6")
+
+[connection signal="body_entered" from="CharacterDetectionArea" to="." method="_check_character_range_entered"]
+[connection signal="body_exited" from="CharacterDetectionArea" to="." method="_check_character_range_exited"]

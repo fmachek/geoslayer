@@ -6,11 +6,11 @@ extends Ability
 const _PROJ_SCENE := preload("res://scenes/objects/projectiles/projectile.tscn")
 
 ## Travel speed of the [Projectile] fired when cast.
-var projectile_speed: int = 3
+var projectile_speed: float = 3.0
 ## Base damage of the [Projectile] fired when cast.
 var base_damage: int = 30
 ## Radius of the [Projectile] fired when cast.
-var projectile_radius: int = 11
+var projectile_radius: float = 11.0
 ## Knockback applied to [Character]s hit by the [Projectile].
 var projectile_knockback: float = 350.0
 

@@ -43,12 +43,13 @@ func _handle_casting() -> void:
 
 
 func _spawn_zone() -> void:
-	var zone: DamagingZone = _ZONE_SCENE.instantiate()
+	var zone: StormZone = _ZONE_SCENE.instantiate()
 	zone.caster = character
 	zone.radius = zone_radius
 	zone.base_damage = zone_base_damage
 	zone.time_per_tick = zone_tick_time
 	zone.global_position = _zone_pos
+	zone.speed_debuff = speed_debuff_amount
 	character.get_parent().add_child(zone)
 
 

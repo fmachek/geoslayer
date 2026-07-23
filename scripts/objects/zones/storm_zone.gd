@@ -19,5 +19,7 @@ func _apply_additional_effects(character: Character) -> void:
 
 # Applies a speed debuff to the target.
 func _slow_character(target: Character) -> void:
+	if speed_debuff == 0.0:
+		return
 	var debuff := Buff.new(-speed_debuff, speed_debuff_duration)
 	debuff.apply_to_stat(target.speed)
