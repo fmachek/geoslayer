@@ -301,18 +301,24 @@ func _apply_user_stats() -> void:
 
 
 func _cast_ability_1_if_pressed() -> void:
+	if is_stunned:
+		return
 	if Input.is_action_pressed("cast_1"):
 		if ability1:
 			ability1.cast()
 
 
 func _cast_ability_2_if_pressed() -> void:
+	if is_stunned:
+		return
 	if Input.is_action_pressed("cast_2"):
 		if ability2:
 			ability2.cast()
 
 
 func _cast_dodge_if_pressed() -> void:
+	if is_stunned:
+		return
 	if Input.is_action_pressed("dodge"):
 		if dodge:
 			dodge.cast()
