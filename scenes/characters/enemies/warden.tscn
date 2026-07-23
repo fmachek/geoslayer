@@ -17,6 +17,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Warden" unique_id=1080282355 instance=ExtResource("1_py5sx")]
 script = ExtResource("2_wigwm")
+stop_distance = 180.0
 draw_color = Color(0.42847714, 0.8038078, 0.8696842, 1)
 outline_color = Color(0.31398138, 0.6922131, 0.757147, 1)
 base_health = 300
@@ -45,7 +46,7 @@ wait_time = 2.0
 
 [node name="SwordParticles" type="CPUParticles2D" parent="." index="11" unique_id=537267957]
 emitting = false
-amount = 5
+amount = 15
 texture = ExtResource("3_mtu2x")
 one_shot = true
 explosiveness = 1.0
@@ -58,13 +59,13 @@ spread = 0.0
 gravity = Vector2(0, -200)
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
-scale_amount_min = 0.2
-scale_amount_max = 0.3
+scale_amount_min = 0.3
+scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_q7puk")
 
 [node name="HeartParticles" type="CPUParticles2D" parent="." index="12" unique_id=132571528]
 emitting = false
-amount = 5
+amount = 15
 texture = ExtResource("4_q7puk")
 one_shot = true
 explosiveness = 1.0
@@ -77,8 +78,8 @@ spread = 0.0
 gravity = Vector2(0, -200)
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
-scale_amount_min = 0.2
-scale_amount_max = 0.3
+scale_amount_min = 0.3
+scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_q7puk")
 
 [connection signal="timeout" from="BuffTimer" to="." method="_on_buff_timer_timeout"]
