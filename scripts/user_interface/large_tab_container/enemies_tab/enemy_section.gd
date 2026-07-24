@@ -63,3 +63,29 @@ func load_assassin() -> void:
 	var desc := "Dashes at its enemy and swipes at close range. \
 			Is very fast."
 	load_enemy("Assassin", desc)
+
+
+## Loads information about [Mage].
+func load_mage() -> void:
+	var desc := "Fires directly at its enemy and sometimes outward. Also teleports \
+			to its enemy. Leaves a growing damaging puddle upon death."
+	load_enemy("Mage", desc)
+
+
+## Loads information about [Warden].
+func load_warden() -> void:
+	var desc := "Fires a stunning projectile, followed by two regular ones. \
+			Also buffs allies' damage and health continuously."
+	load_enemy("Warden", desc)
+
+
+## Loads information about [Sentry].
+func load_sentry() -> void:
+	var desc := "Fires projectiles in all directions. Applies weak shields to allies."
+	load_enemy("Sentry", desc)
+
+
+## Loads information about [Necromancer].
+func load_necromancer() -> void:
+	var desc := "Spawns damaging storms. Resurrects allies as ghosts."
+	load_enemy("Necromancer", desc)

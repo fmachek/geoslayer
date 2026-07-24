@@ -22,6 +22,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-896, -896, 896, -896, 
 [node name="World2" unique_id=514046658 instance=ExtResource("1_dl5br")]
 chest_scene = ExtResource("2_53un6")
 xp_per_orb = 40
+enemy_names = Array[String](["Shooter", "Healer", "Mage", "Warden", "Sentry", "Necromancer"])
 stat_multiplier = 1.5
 
 [node name="TileMapLayer" parent="Background" parent_id_path=PackedInt32Array(485589500) index="0" unique_id=866321150]
