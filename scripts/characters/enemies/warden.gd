@@ -46,6 +46,8 @@ func _buff_nearby_friendly_units() -> void:
 	var bodies: Array[Node2D] = _buff_area.get_overlapping_bodies()
 	for body in bodies:
 		if body is Enemy:
+			if body == self:
+				continue
 			_buff_friendly_unit(body)
 	_emit_buff_particles()
 
