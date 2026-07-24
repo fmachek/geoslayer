@@ -52,6 +52,10 @@ func _ready() -> void:
 	_fill_health()
 	finished_casting.connect(_cast_ability_1_if_pressed)
 	finished_casting.connect(_cast_ability_2_if_pressed)
+	finished_casting.connect(_cast_dodge_if_pressed)
+	stun_ended.connect(_cast_ability_1_if_pressed)
+	stun_ended.connect(_cast_ability_2_if_pressed)
+	stun_ended.connect(_cast_dodge_if_pressed)
 
 
 func _process(delta: float) -> void:
