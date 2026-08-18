@@ -295,18 +295,22 @@ func die() -> void:
 	died.emit()
 	drop_items()
 	_spawn_death_particles()
-	get_parent().remove_child(self)
+	var parent = get_parent()
+	if is_instance_valid(parent):
+		parent.remove_child(self)
 	queue_free()
 
 
 # Instantiates DeathParticles.
 func _spawn_death_particles() -> void:
-	var death_particles_scene = load("res://scenes/particle_effects/death_particles.tscn")
-	var death_particles = death_particles_scene.instantiate()
-	death_particles.color = draw_color
-	get_parent().add_child(death_particles)
-	death_particles.global_position = global_position
-	death_particles.emitting = true
+	var parent = get_parent()
+	if is_instance_valid(parent):
+		var death_particles_scene = load("res://scenes/particle_effects/death_particles.tscn")
+		var death_particles = death_particles_scene.instantiate()
+		death_particles.color = draw_color
+		parent.add_child(death_particles)
+		death_particles.global_position = global_position
+		death_particles.emitting = true
 
 
 ## Equips a new [Ability]. The [Ability] node is added as a
