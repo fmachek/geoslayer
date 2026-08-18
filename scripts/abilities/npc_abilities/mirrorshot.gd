@@ -10,7 +10,7 @@ var projectile_speed: float = 1.5
 ## Base damage of the [Projectile]s fired on cast.
 var base_damage: int = 15
 ## Radius of the [Projectile]s fired on cast.
-var projectile_radius: int = 8
+var projectile_radius: float = 10.0
 ## Amount of [Projectile] fire steps.
 var step_amount: int = 8
 ## Amount of time between the firing of individual [Projectile]s,
