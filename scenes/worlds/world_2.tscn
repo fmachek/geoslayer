@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://ck0hcelmv6sco" path="res://scenes/characters/enemies/healer.tscn" id="12_nce6f"]
 [ext_resource type="PackedScene" uid="uid://b11058gkr0blj" path="res://scenes/characters/enemies/necromancer.tscn" id="13_2krbc"]
 [ext_resource type="PackedScene" uid="uid://cnyqxqibx7elo" path="res://scenes/objects/turrets/aiming_turret.tscn" id="13_36o8v"]
+[ext_resource type="PackedScene" uid="uid://boyx3bq88vsgj" path="res://scenes/objects/spawners/boss_spawner.tscn" id="13_efige"]
+[ext_resource type="Script" uid="uid://bqwra8hiw5j43" path="res://scripts/objects/attacks/attack_tile_manager.gd" id="14_2krbc"]
+[ext_resource type="PackedScene" uid="uid://cb3ayi0gxhn31" path="res://scenes/characters/enemies/bosses/boss_2/boss_2.tscn" id="14_efige"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dl5br"]
 vertices = PackedVector2Array(886, 886, -886, 886, -886, -886, 886, -886)
@@ -208,7 +211,15 @@ draw_color = Color(0.27395758, 0.63105136, 0.62377065, 0.25)
 outline_color = Color(0.17558163, 0.45043758, 0.44297108, 0.25)
 spawn_waves = PackedInt32Array(8, 9)
 
-[node name="AimingTurret1" parent="." index="26" unique_id=1853365755 instance=ExtResource("13_36o8v")]
+[node name="BossSpawner" parent="." index="26" unique_id=942073283 instance=ExtResource("13_efige")]
+position = Vector2(768, -768.00006)
+scale = Vector2(1.5, 1.5)
+character_scene = ExtResource("14_efige")
+draw_color = Color(0.65457314, 0, 0.7845677, 0.25)
+outline_color = Color(0.53313285, 0, 0.6390162, 0.25)
+spawn_waves = PackedInt32Array(10)
+
+[node name="AimingTurret1" parent="." index="27" unique_id=1853365755 instance=ExtResource("13_36o8v")]
 position = Vector2(832, 832)
 rotation = -0.7853982
 draw_color = Color(0.654902, 0, 0.78431374, 1)
@@ -217,7 +228,7 @@ damage = 20
 projectile_radius = 12
 projectile_knockback = 200.0
 
-[node name="AimingTurret2" parent="." index="27" unique_id=66360635 instance=ExtResource("13_36o8v")]
+[node name="AimingTurret2" parent="." index="28" unique_id=66360635 instance=ExtResource("13_36o8v")]
 position = Vector2(-832, -832)
 rotation = 2.3561945
 draw_color = Color(0.654902, 0, 0.78431374, 1)
@@ -226,9 +237,15 @@ damage = 20
 projectile_radius = 12
 projectile_knockback = 200.0
 
-[node name="NavigationRegion2D" parent="." index="28" unique_id=732517934]
+[node name="NavigationRegion2D" parent="." index="29" unique_id=732517934]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_dl5br")
+
+[node name="BossAttackTileManager" type="Node" parent="." index="30" unique_id=1719894141]
+script = ExtResource("14_2krbc")
+tile_size = 128
+map_extents = 7
+tile_color = Color(0.654902, 0, 0.78431374, 1)
 
 [connection signal="alert_next_wave" from="WaveManager" to="MageSpawner1" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="MageSpawner2" method="_on_wave_manager_alert_next_wave"]
@@ -243,6 +260,7 @@ navigation_polygon = SubResource("NavigationPolygon_dl5br")
 [connection signal="alert_next_wave" from="WaveManager" to="HealerSpawner1" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="HealerSpawner2" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="NecromancerSpawner1" method="_on_wave_manager_alert_next_wave"]
+[connection signal="alert_next_wave" from="WaveManager" to="BossSpawner" method="_on_wave_manager_alert_next_wave"]
 [connection signal="current_wave_changed" from="WaveManager" to="MageSpawner1" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="MageSpawner2" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="MageSpawner3" method="_on_wave_changed"]
@@ -256,12 +274,17 @@ navigation_polygon = SubResource("NavigationPolygon_dl5br")
 [connection signal="current_wave_changed" from="WaveManager" to="HealerSpawner1" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="HealerSpawner2" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="NecromancerSpawner1" method="_on_wave_changed"]
+[connection signal="current_wave_changed" from="WaveManager" to="BossSpawner" method="_on_wave_changed"]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret" method="increase_damage" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret2" method="increase_damage" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret3" method="increase_damage" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="Turret4" method="increase_damage" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="AimingTurret1" method="increase_damage" unbinds=1]
 [connection signal="current_wave_changed" from="WaveManager" to="AimingTurret2" method="increase_damage" unbinds=1]
+[connection signal="final_wave_started" from="WaveManager" to="TeleporterCoupleManager1" method="_on_final_wave_started"]
+[connection signal="final_wave_started" from="WaveManager" to="TeleporterCoupleManager2" method="_on_final_wave_started"]
+[connection signal="final_wave_started" from="WaveManager" to="TeleporterCoupleManager3" method="_on_final_wave_started"]
+[connection signal="final_wave_started" from="WaveManager" to="TeleporterCoupleManager4" method="_on_final_wave_started"]
 [connection signal="spawning_character" from="MageSpawner1" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="MageSpawner2" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="MageSpawner3" to="WaveManager" method="register_enemy"]
@@ -275,3 +298,5 @@ navigation_polygon = SubResource("NavigationPolygon_dl5br")
 [connection signal="spawning_character" from="HealerSpawner1" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="HealerSpawner2" to="WaveManager" method="register_enemy"]
 [connection signal="spawning_character" from="NecromancerSpawner1" to="WaveManager" method="register_enemy"]
+[connection signal="spawning_character" from="BossSpawner" to="." method="handle_boss_spawn"]
+[connection signal="spawning_character" from="BossSpawner" to="WaveManager" method="register_enemy"]

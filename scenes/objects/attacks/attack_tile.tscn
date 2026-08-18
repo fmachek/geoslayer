@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bdxruglvcjjy4"]
+
+[ext_resource type="Script" uid="uid://dtqyqeau0nx5i" path="res://scripts/objects/attacks/attack_tile.gd" id="1_akx6l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4qk5"]
+
+[node name="AttackTile" type="Area2D" unique_id=9327186]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_akx6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=716641046]
+shape = SubResource("RectangleShape2D_p4qk5")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=372263322]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

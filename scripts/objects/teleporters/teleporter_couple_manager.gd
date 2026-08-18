@@ -40,6 +40,12 @@ func _ready() -> void:
 	_cd_timer.wait_time = cooldown
 
 
+func disable() -> void:
+	_cd_timer.stop()
+	teleporter_1.disable()
+	teleporter_2.disable()
+
+
 func _handle_teleport_1(player: PlayerCharacter) -> void:
 	_teleport_player(player, teleporter_2)
 
@@ -75,3 +81,7 @@ func _set_is_on_cooldown(value: bool) -> void:
 		cooldown_started.emit()
 	else:
 		cooldown_ended.emit()
+
+
+func _on_final_wave_started() -> void:
+	disable()

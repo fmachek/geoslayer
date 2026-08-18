@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://pb6y7ph8yp6f"]
+
+[ext_resource type="PackedScene" uid="uid://257ey2rc8ygl" path="res://scenes/characters/enemies/enemy.tscn" id="1_xxesp"]
+[ext_resource type="Script" uid="uid://cxgi2gwa0lwvr" path="res://scripts/characters/enemies/bosses/boss_2/explosive_orb.gd" id="2_uiyo4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxesp"]
+radius = 28.0
+
+[sub_resource type="Gradient" id="Gradient_xxesp"]
+offsets = PackedFloat32Array(0, 0.7980769, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uiyo4"]
+bg_color = Color(0, 0, 0, 0.32941177)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pvmp"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ExplosiveOrb" unique_id=1080282355 instance=ExtResource("1_xxesp")]
+script = ExtResource("2_uiyo4")
+stop_distance = 180.0
+draw_color = Color(0.85490197, 0.32941177, 1, 1)
+outline_color = Color(0.8143022, 0.0021067793, 0.98521703, 1)
+base_health = 300
+shows_aim_indicator = false
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=295435238]
+shape = SubResource("CircleShape2D_xxesp")
+
+[node name="Speed" parent="CharacterStats" parent_id_path=PackedInt32Array(465904387) index="3" unique_id=1314298599]
+max_value = 0
+current_value = 0
+
+[node name="HealthBar" parent="." index="5" unique_id=385742775]
+offset_top = 58.0
+offset_bottom = 82.0
+
+[node name="OrbParticles" type="CPUParticles2D" parent="." index="11" unique_id=1980425750]
+amount = 20
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+linear_accel_min = -175.0
+linear_accel_max = -175.0
+scale_amount_min = 6.0
+scale_amount_max = 12.0
+color = Color(0.85490197, 0.32941177, 1, 1)
+color_ramp = SubResource("Gradient_xxesp")
+
+[node name="ExplosionTimer" type="Timer" parent="." index="12" unique_id=1361264778]
+
+[node name="ExplosionProgressBar" type="ProgressBar" parent="." index="13" unique_id=1430823042]
+offset_left = -40.0
+offset_top = 38.0
+offset_right = 40.0
+offset_bottom = 52.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_uiyo4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4pvmp")
+value = 50.0
+show_percentage = false
+
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

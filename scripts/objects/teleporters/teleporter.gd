@@ -53,6 +53,12 @@ func play_progress_bar_effect(cooldown: float) -> void:
 	_bar_tween.tween_callback(_progress_bar.hide)
 
 
+func disable() -> void:
+	_sprite.texture = _depleted_texture
+	_area.monitoring = false
+	_progress_bar.hide()
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is PlayerCharacter and not is_on_cooldown:
 		player_entered.emit(body)
