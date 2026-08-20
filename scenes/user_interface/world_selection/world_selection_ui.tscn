@@ -89,7 +89,6 @@ size_flags_vertical = 4
 theme_override_constants/separation = 80
 
 [node name="LeftContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1929627055]
-custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
@@ -130,6 +129,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=2008140232]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 10
@@ -183,7 +183,7 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("2_41qj7")
 theme_override_styles/disabled = ExtResource("4_0fdx1")
 theme_override_styles/disabled_mirrored = ExtResource("4_0fdx1")
 theme_override_styles/focus = ExtResource("3_xxlyo")
-text = "Back to main menu"
+text = "Back to menu"
 
 [node name="RightContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=26449306]
 layout_mode = 2

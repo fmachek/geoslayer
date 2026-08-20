@@ -212,7 +212,7 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("5_h5p5c")
 theme_override_styles/disabled = ExtResource("7_m3r6q")
 theme_override_styles/disabled_mirrored = ExtResource("7_m3r6q")
 theme_override_styles/focus = ExtResource("6_r6n0o")
-text = "Back to main menu"
+text = "Main menu"
 
 [node name="PlayAgainButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer" unique_id=361360946]
 unique_name_in_owner = true

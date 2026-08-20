@@ -271,6 +271,6 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("2_d8fo5")
 theme_override_styles/disabled = ExtResource("4_cehwu")
 theme_override_styles/disabled_mirrored = ExtResource("4_cehwu")
 theme_override_styles/focus = ExtResource("3_2xkh7")
-text = "Back to main menu"
+text = "Back to menu"
 
 [connection signal="hidden" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer/MarginContainer/UnlockRowContainer/NextWorldUnlock" to="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/UnlocksContainer" method="_on_next_world_unlock_hidden"]
