@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://c2vtf7qlhecwb" path="res://assets/user_interface/styles/world_selection/selected_world_panel.tres" id="2_xxlyo"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_xxlyo"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_0fdx1"]
+[ext_resource type="Script" uid="uid://dygif8blalx25" path="res://scripts/user_interface/glowing_button.gd" id="8_1hh77"]
 [ext_resource type="StyleBox" uid="uid://drdfeywyh31j2" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_normal.tres" id="8_nkh4k"]
 [ext_resource type="StyleBox" uid="uid://vktcx58ov2p5" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_pressed.tres" id="9_1hh77"]
 [ext_resource type="StyleBox" uid="uid://c6y1h4eipw4fm" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_hover.tres" id="10_o7x43"]
@@ -15,6 +16,16 @@
 [sub_resource type="Gradient" id="Gradient_t77po"]
 offsets = PackedFloat32Array(0.17218544, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkh4k"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t77po"]
 bg_color = Color(0, 0, 0, 0.102000006)
@@ -111,8 +122,8 @@ text = "Current world selected"
 
 [node name="SelectedWorldPanel" type="Panel" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1765578081]
 unique_name_in_owner = true
-clip_contents = true
 custom_minimum_size = Vector2(200, 200)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = ExtResource("2_xxlyo")
@@ -161,6 +172,17 @@ theme_override_styles/disabled = ExtResource("4_0fdx1")
 theme_override_styles/disabled_mirrored = ExtResource("4_0fdx1")
 theme_override_styles/focus = ExtResource("3_xxlyo")
 text = "Enter world"
+script = ExtResource("8_1hh77")
+
+[node name="HighlightPanel" type="Panel" parent="MarginContainer/HBoxContainer/LeftContainer/ButtonContainer/EnterWorldButton" unique_id=68315861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nkh4k")
 
 [node name="BackToMenuButton" type="Button" parent="MarginContainer/HBoxContainer/LeftContainer/ButtonContainer" unique_id=2138976093]
 unique_name_in_owner = true
