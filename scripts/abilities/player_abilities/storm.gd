@@ -9,13 +9,13 @@ const _PARTICLE_SCENE := preload(
 		"res://scenes/particle_effects/zones/zone_spawning_particles.tscn")
 
 ## Time until the [StormZone] disappears, in seconds.
-var zone_duration: float = 10.0
+var zone_duration: float = 5.0
 ## Used to set [member StormZone.time_per_tick].
 var zone_tick_time: float = 1.0
 ## Used to set [member StormZone.base_damage].
-var zone_base_damage: int = 15
+var zone_base_damage: int = 20
 ## Used to set [member StormZone.radius].
-var zone_radius: int = 350
+var zone_radius: int = 400
 ## Amount by which the caster's speed is decreased when casting.
 var speed_debuff_amount: int = 50
 
@@ -24,7 +24,7 @@ var _zone_pos: Vector2
 
 
 func _init() -> void:
-	var ability_cooldown: float = 12.0
+	var ability_cooldown: float = 7.5
 	var ability_cast_time: float = 1.0
 	var ability_description := "Summons a damaging and slowing storm."
 	super(ability_cooldown, ability_cast_time, ability_description)
