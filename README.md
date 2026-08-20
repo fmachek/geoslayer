@@ -2,7 +2,7 @@
 
 This is the repository for my game: Geoslayer. I am currently working on version 0.2.1. The game is not completely finished yet, because I'd like to add more features. It is definitely playable though.
 
-To play the game, you can download the latest release [here](https://github.com/fmachek/geoslayer/releases/tag/v0.2.0).
+To play the game, you can download the latest release [here](https://github.com/fmachek/geoslayer/releases/latest).
 
 ## Technologies used
 
