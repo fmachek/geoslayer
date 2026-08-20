@@ -50,6 +50,7 @@ func _spawn_zone() -> void:
 	zone.time_per_tick = zone_tick_time
 	zone.global_position = _zone_pos
 	zone.speed_debuff = speed_debuff_amount
+	zone.life_time = zone_duration
 	character.get_parent().add_child(zone)
 
 

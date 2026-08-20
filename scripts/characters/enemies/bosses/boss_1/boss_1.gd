@@ -28,6 +28,7 @@ func _load_abilities() -> void:
 	storm.zone_radius = 350
 	storm.cast_time = 2.0
 	storm.cooldown = 18.0
+	storm.zone_duration = 10.0
 	_load_ability(storm)
 	_load_ability(Cannonball.new())
 
