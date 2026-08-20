@@ -89,6 +89,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 80
 
 [node name="LeftContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1929627055]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
@@ -97,7 +98,8 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
-text = "Current world selected"
+text = "Selected world"
+horizontal_alignment = 1
 
 [node name="SelectedWorldPanel" type="Panel" parent="MarginContainer/HBoxContainer/LeftContainer" unique_id=1765578081]
 unique_name_in_owner = true
