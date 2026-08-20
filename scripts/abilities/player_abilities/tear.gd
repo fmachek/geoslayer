@@ -6,7 +6,7 @@ const _PROJ_SCENE := preload(
 )
 
 var projectile_speed: float = 4.0
-var base_damage: int = 12
+var base_damage: int = 18
 var projectile_radius: float = 6.0
 var projectile_knockback: float = 200.0
 
@@ -14,7 +14,7 @@ var projectile_amount: int = 4
 var spread_angle: float = deg_to_rad(30)
 
 var speed_debuff: int = 30
-var speed_debuff_duration: float = 0.5
+var speed_debuff_duration: float = 1.0
 
 
 func _init() -> void:
