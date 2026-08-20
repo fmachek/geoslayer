@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://c63bs3kd1n24u"]
+
+[ext_resource type="Script" uid="uid://wlvlmmaln6hy" path="res://scripts/user_interface/credits/credits_ui.gd" id="1_41mx7"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="1_w5vtu"]
+[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_5qt3u"]
+[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_41mx7"]
+[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_onca8"]
+[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_7316l"]
+
+[sub_resource type="Gradient" id="Gradient_8bjeh"]
+offsets = PackedFloat32Array(0.17218544, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CreditsUI" type="Control" unique_id=1026947150]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_41mx7")
+
+[node name="Background" type="Control" parent="." unique_id=1873478212]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=1976942221]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=740363017]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.54800004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_w5vtu")
+
+[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1412299258]
+position = Vector2(576, 680)
+amount = 5
+lifetime = 2.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 0)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+color_ramp = SubResource("Gradient_8bjeh")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1379236761]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=749702265]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=322345223]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=975090085]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PanelContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=186956110]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer" unique_id=1788406107]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1595159507]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Created by František Machek (see LICENSE.txt)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1061746236]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Created using Godot Engine (see GODOT_LICENSE.txt)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1228762721]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Godot Engine also contains third party software (see GODOT_COPYRIGHT.txt)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=330948903]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "The game uses the Sora font (see SORA_OFL.txt)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=713561821]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("2_5qt3u")
+theme_override_styles/normal_mirrored = ExtResource("2_5qt3u")
+theme_override_styles/pressed = ExtResource("3_41mx7")
+theme_override_styles/pressed_mirrored = ExtResource("3_41mx7")
+theme_override_styles/hover = ExtResource("4_onca8")
+theme_override_styles/hover_mirrored = ExtResource("4_onca8")
+theme_override_styles/hover_pressed = ExtResource("3_41mx7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_41mx7")
+theme_override_styles/disabled = ExtResource("5_7316l")
+theme_override_styles/disabled_mirrored = ExtResource("5_7316l")
+theme_override_styles/focus = ExtResource("4_onca8")
+text = "Back to main menu"

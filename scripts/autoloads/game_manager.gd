@@ -87,6 +87,11 @@ func switch_to_progression() -> void:
 	switch_to_ui_scene("res://scenes/user_interface/progression/progression_ui.tscn")
 
 
+## Switches to the credits screen.
+func switch_to_credits() -> void:
+	switch_to_ui_scene("res://scenes/user_interface/credits/credits_ui.tscn")
+
+
 ## Switches to a scene at a given [param path]. This assumes
 ## the scene is a UI scene - it disables pausing.
 func switch_to_ui_scene(path: String) -> void:
