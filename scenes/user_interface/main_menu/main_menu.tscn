@@ -10,10 +10,6 @@
 [ext_resource type="Script" uid="uid://df34nsjklmou6" path="res://scripts/user_interface/main_menu/buttons/side_button_container.gd" id="8_r18ae"]
 [ext_resource type="Script" uid="uid://cqgmditcl03fi" path="res://scripts/user_interface/main_menu/version_label.gd" id="8_tlslw"]
 
-[sub_resource type="Gradient" id="Gradient_01m43"]
-offsets = PackedFloat32Array(0.17218544, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p4qk5"]
 content_margin_right = 20.0
 
@@ -53,23 +49,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_tlslw")
-
-[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1501132238]
-position = Vector2(576, 680)
-amount = 5
-lifetime = 2.0
-preprocess = 15.0
-emission_shape = 3
-emission_rect_extents = Vector2(576, 0)
-direction = Vector2(0, -1)
-spread = 0.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-scale_amount_min = 20.0
-scale_amount_max = 40.0
-color = Color(0.078431375, 0.3372549, 0.6862745, 1)
-color_ramp = SubResource("Gradient_01m43")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=15512468]
 layout_mode = 1

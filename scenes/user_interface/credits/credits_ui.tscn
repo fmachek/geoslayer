@@ -7,10 +7,6 @@
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_onca8"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_7316l"]
 
-[sub_resource type="Gradient" id="Gradient_8bjeh"]
-offsets = PackedFloat32Array(0.17218544, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
 [node name="CreditsUI" type="Control" unique_id=1026947150]
 layout_mode = 3
 anchors_preset = 15
@@ -47,23 +43,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_w5vtu")
-
-[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1412299258]
-position = Vector2(576, 680)
-amount = 5
-lifetime = 2.0
-preprocess = 15.0
-emission_shape = 3
-emission_rect_extents = Vector2(576, 0)
-direction = Vector2(0, -1)
-spread = 0.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-scale_amount_min = 20.0
-scale_amount_max = 40.0
-color = Color(0.078431375, 0.3372549, 0.6862745, 1)
-color_ramp = SubResource("Gradient_8bjeh")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1379236761]
 layout_mode = 1

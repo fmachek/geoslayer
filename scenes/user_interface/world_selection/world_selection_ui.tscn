@@ -13,10 +13,6 @@
 [ext_resource type="StyleBox" uid="uid://c6y1h4eipw4fm" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_hover.tres" id="10_o7x43"]
 [ext_resource type="StyleBox" uid="uid://crohalqwxxov1" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_disabled.tres" id="11_o4hdu"]
 
-[sub_resource type="Gradient" id="Gradient_t77po"]
-offsets = PackedFloat32Array(0.17218544, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkh4k"]
 bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
 border_width_left = 4
@@ -74,23 +70,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_t77po")
-
-[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=1099198104]
-position = Vector2(576, 680)
-amount = 5
-lifetime = 2.0
-preprocess = 15.0
-emission_shape = 3
-emission_rect_extents = Vector2(576, 0)
-direction = Vector2(0, -1)
-spread = 0.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-scale_amount_min = 20.0
-scale_amount_max = 40.0
-color = Color(0.078431375, 0.3372549, 0.6862745, 1)
-color_ramp = SubResource("Gradient_t77po")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2024073401]
 layout_mode = 1

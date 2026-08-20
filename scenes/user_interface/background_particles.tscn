@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cpsvlmcyqmyk8"]
+
+[sub_resource type="Gradient" id="Gradient_01m43"]
+offsets = PackedFloat32Array(0.17218544, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="SquareParticles" type="CPUParticles2D" unique_id=916787076]
+amount = 5
+lifetime = 2.0
+preprocess = 15.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 0)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+color_ramp = SubResource("Gradient_01m43")

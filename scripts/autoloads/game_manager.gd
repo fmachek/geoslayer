@@ -23,9 +23,15 @@ var last_xp_gained: int = 0
 ## Last game level achieved.
 var level_achieved: int
 
+var bg_particles_scene: PackedScene = preload(
+	"res://scenes/user_interface/background_particles.tscn"
+)
+var bg_particles: CPUParticles2D
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_add_particles_to_ui(get_tree().root.get_node("MainMenu"))
 
 
 ## Selects a new world and starts the game.
@@ -97,7 +103,9 @@ func switch_to_credits() -> void:
 func switch_to_ui_scene(path: String) -> void:
 	resume_game()
 	can_pause_game = false
-	get_tree().change_scene_to_file(path)
+	var new_node = load(path).instantiate()
+	_add_particles_to_ui(new_node)
+	get_tree().change_scene_to_node(new_node)
 	main_node = null
 #endregion
 
@@ -132,3 +140,16 @@ func win_game() -> void:
 	last_xp_gained = user_xp
 	UserManager.add_world_completion(selected_world_number)
 	switch_to_win_screen()
+
+
+func _add_particles_to_ui(ui_node: Control) -> void:
+	if not is_instance_valid(bg_particles):
+		bg_particles = bg_particles_scene.instantiate()
+		bg_particles.name = "BackgroundParticles"
+		var bg_particle_pos := Vector2(576, 680)
+		bg_particles.position = bg_particle_pos
+	if is_instance_valid(bg_particles.get_parent()):
+		bg_particles.call_deferred("reparent", ui_node)
+	else:
+		ui_node.call_deferred("add_child", bg_particles)
+	ui_node.call_deferred("move_child", bg_particles, 1)

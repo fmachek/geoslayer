@@ -11,10 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bx3ny53bt2m3d" path="res://assets/user_interface/misc/fight_fist.png" id="5_uai83"]
 [ext_resource type="Script" uid="uid://dfs2ak7ngrs5b" path="res://scripts/user_interface/progression/unlocks_container.gd" id="5_w11sk"]
 
-[sub_resource type="Gradient" id="Gradient_cehwu"]
-offsets = PackedFloat32Array(0.17218544, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u1a8"]
 bg_color = Color(0, 0, 0, 0.32941177)
 
@@ -65,23 +61,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_uai83")
-
-[node name="SquareParticles" type="CPUParticles2D" parent="." unique_id=523975272]
-position = Vector2(576, 680)
-amount = 5
-lifetime = 2.0
-preprocess = 15.0
-emission_shape = 3
-emission_rect_extents = Vector2(576, 0)
-direction = Vector2(0, -1)
-spread = 0.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-scale_amount_min = 20.0
-scale_amount_max = 40.0
-color = Color(0.078431375, 0.3372549, 0.6862745, 1)
-color_ramp = SubResource("Gradient_cehwu")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1192774379]
 layout_mode = 1
@@ -144,8 +123,8 @@ horizontal_alignment = 1
 
 [node name="LevelProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/VBoxContainer/LevelContainer" unique_id=201354857]
 unique_name_in_owner = true
-clip_contents = true
 custom_minimum_size = Vector2(300, 0)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
