@@ -6,6 +6,7 @@ extends Node
 
 ## Emitted when [member user_stat_points] changes.
 signal user_stat_points_changed(new_points: int)
+signal added_stat_point()
 
 enum LoadStatus {
 	NOT_FOUND,
@@ -201,6 +202,7 @@ func increase_stat(stat_name: String) -> void:
 
 ## Gives a single stat point to the user and saves the data.
 func add_stat_point() -> void:
+	added_stat_point.emit()
 	user_stat_points += 1
 	save_user()
 

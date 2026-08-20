@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bqg4v6lvah0ib" path="res://scripts/user_interface/hud/bottom_hud.gd" id="4_jscy8"]
 [ext_resource type="Script" uid="uid://drkjvql1keyu7" path="res://scripts/user_interface/hud/boss_health/boss_health_container.gd" id="4_vxglm"]
 [ext_resource type="Script" uid="uid://dev0qupvxtfcl" path="res://scripts/user_interface/hud/casting_bar.gd" id="5_2wyq8"]
+[ext_resource type="Script" uid="uid://didns7y7rguac" path="res://scripts/user_interface/stat_point_popup.gd" id="5_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://camk1jn3ffjai" path="res://scenes/user_interface/hud/ability_item.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://cgfq22n83n0g4" path="res://scripts/user_interface/user_interface.gd" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://cwjp3a61svi3j" path="res://scenes/user_interface/hud/stats_tab/stats_tab.tscn" id="8_jkv2x"]
@@ -227,6 +228,35 @@ text = "You can equip it in the Abilities tab."
 horizontal_alignment = 1
 
 [node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" unique_id=599509163]
+wait_time = 3.0
+one_shot = true
+
+[node name="StatPointPopup" type="VBoxContainer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer" unique_id=1371614762]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("5_qkpxi")
+
+[node name="Label" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/StatPointPopup" unique_id=864876324]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Permanent stat point unlocked!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/StatPointPopup" unique_id=1999821739]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "You can assign it to a slot on the Progression screen when you're done with this."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FadeOutTimer" type="Timer" parent="CanvasLayer/UserInterface/MarginContainer/TopContainer/StatPointPopup" unique_id=186418493]
 wait_time = 3.0
 one_shot = true
 
@@ -655,6 +685,7 @@ offset_left = 0.0
 offset_right = 0.0
 
 [connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/TopContainer/AbilityUnlockPopup" method="_on_fade_out_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/UserInterface/MarginContainer/TopContainer/StatPointPopup/FadeOutTimer" to="CanvasLayer/UserInterface/MarginContainer/TopContainer/StatPointPopup" method="_on_fade_out_timer_timeout"]
 [connection signal="gained_points_while_hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_gained_points_while_hidden"]
 [connection signal="hidden" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD" method="_on_stats_tab_hidden"]
 [connection signal="opened" from="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/StatsTab" to="CanvasLayer/UserInterface/MarginContainer/BottomHUD/StatsTabContainer/Reminder" method="_on_stats_tab_opened"]
