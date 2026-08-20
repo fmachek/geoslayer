@@ -5,7 +5,7 @@ var time_until_fade: float = 0.5
 var fade_time: float = 1.0
 var y_movement: float = 30.0
 
-var rand_offset_range: float = 50.0
+var rand_offset_range: float = 75.0
 
 var _alpha_tween: Tween
 var _pos_tween: Tween
@@ -15,7 +15,8 @@ func spawn_at(character: Character, xp_amount: int) -> void:
 	text = "+%d XP" % xp_amount
 	var rand_offset_x: float = randf_range(-rand_offset_range, rand_offset_range)
 	var rand_offset_y: float = randf_range(-rand_offset_range, rand_offset_range)
-	character.add_child(self)
+	var world = WorldManager.current_world
+	world.add_child(self)
 	global_position = (character.global_position + Vector2(rand_offset_x, rand_offset_y)) - \
 			Vector2(size.x / 2, size.y / 2)
 	_play_tweens()
