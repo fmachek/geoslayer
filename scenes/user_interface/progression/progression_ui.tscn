@@ -5,10 +5,8 @@
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="2_d8fo5"]
 [ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_uai83"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="3_2xkh7"]
-[ext_resource type="Texture2D" uid="uid://cvknunjfhq8fx" path="res://assets/user_interface/misc/arrow_up.png" id="3_5u1a8"]
 [ext_resource type="Texture2D" uid="uid://bxd516lq4j480" path="res://assets/user_interface/misc/unlocked.png" id="3_cehwu"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="4_cehwu"]
-[ext_resource type="Texture2D" uid="uid://bx3ny53bt2m3d" path="res://assets/user_interface/misc/fight_fist.png" id="5_uai83"]
 [ext_resource type="Script" uid="uid://dfs2ak7ngrs5b" path="res://scripts/user_interface/progression/unlocks_container.gd" id="5_w11sk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u1a8"]
@@ -79,27 +77,13 @@ clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1538903072]
-layout_mode = 2
-alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1178024065]
-layout_mode = 2
-texture = ExtResource("3_5u1a8")
-expand_mode = 2
-
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1279370458]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1279370458]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "Progression"
 horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=827496379]
-layout_mode = 2
-texture = ExtResource("3_5u1a8")
-expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=314024853]
 custom_minimum_size = Vector2(800, 0)
@@ -162,26 +146,12 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=7304583]
-layout_mode = 2
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=132569299]
-layout_mode = 2
-texture = ExtResource("5_uai83")
-expand_mode = 2
-
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=173739619]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer" unique_id=173739619]
 layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "Permanent stats"
 horizontal_alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer/TextContainer/HBoxContainer" unique_id=927146079]
-layout_mode = 2
-texture = ExtResource("5_uai83")
-expand_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PermanentStatsContainer/MarginContainer/VBoxContainer" unique_id=444743340]
 layout_mode = 2
