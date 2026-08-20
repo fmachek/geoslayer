@@ -50,64 +50,64 @@ spawn_waves = PackedInt32Array()
 character_level_scales = false
 
 [node name="BlastPickup" parent="." index="6" unique_id=176297332 instance=ExtResource("2_fi2f5")]
-position = Vector2(-256, -512)
-
-[node name="CannonballPickup" parent="." index="7" unique_id=1057423627 instance=ExtResource("3_3cia4")]
-position = Vector2(128, 512)
-
-[node name="DoubleshotPickup" parent="." index="8" unique_id=1673554195 instance=ExtResource("4_fi2f5")]
-position = Vector2(-256, 512)
-
-[node name="ExplosivePickup" parent="." index="9" unique_id=1940546441 instance=ExtResource("13_gvw4d")]
-position = Vector2(-512, 384)
-
-[node name="FleePickup" parent="." index="10" unique_id=1801754429 instance=ExtResource("19_3mp3j")]
-position = Vector2(-384, 512)
-
-[node name="FlurryPickup" parent="." index="11" unique_id=130732119 instance=ExtResource("3_86yod")]
-position = Vector2(-384, 384)
-
-[node name="LifestealPickup" parent="." index="12" unique_id=1609710680 instance=ExtResource("17_2msne")]
-position = Vector2(256, 384)
-
-[node name="PiercePickup" parent="." index="13" unique_id=1861116237 instance=ExtResource("2_fw473")]
-position = Vector2(-128, 384)
-
-[node name="ReturnPickup" parent="." index="14" unique_id=1255495882 instance=ExtResource("12_2msne")]
-position = Vector2(-128, 512)
-
-[node name="ShredPickup" parent="." index="15" unique_id=873522180 instance=ExtResource("18_rs0df")]
-position = Vector2(-512, 512)
-
-[node name="SmashPickup" parent="." index="16" unique_id=556755772 instance=ExtResource("20_wb0r4")]
-position = Vector2(0, 384)
-
-[node name="SwipePickup" parent="." index="17" unique_id=1461530783 instance=ExtResource("18_3mp3j")]
-position = Vector2(-257, 384)
-
-[node name="TrapPickup" parent="." index="18" unique_id=1538108205 instance=ExtResource("18_wb0r4")]
-position = Vector2(128, 384)
-
-[node name="WideshotPickup" parent="." index="19" unique_id=1861787158 instance=ExtResource("7_3cia4")]
-position = Vector2(0, 512)
-
-[node name="CollapsePickup" parent="." index="20" unique_id=790621767 instance=ExtResource("18_dwshc")]
-position = Vector2(-512, -384)
-
-[node name="StormPickup" parent="." index="21" unique_id=488317536 instance=ExtResource("16_dj1uu")]
-position = Vector2(-384, -384)
-
-[node name="SummonPickup" parent="." index="22" unique_id=1381401209 instance=ExtResource("15_hqw31")]
 position = Vector2(-512, -512)
 
-[node name="TeleportPickup" parent="." index="23" unique_id=1848796911 instance=ExtResource("14_f2clg")]
-position = Vector2(-384, -512)
+[node name="CannonballPickup" parent="." index="7" unique_id=1057423627 instance=ExtResource("3_3cia4")]
+position = Vector2(-512, 384)
 
-[node name="TearPickup" parent="." index="24" unique_id=1421496365 instance=ExtResource("22_75mrf")]
+[node name="DoubleshotPickup" parent="." index="8" unique_id=1673554195 instance=ExtResource("4_fi2f5")]
+position = Vector2(-384, 384)
+
+[node name="ExplosivePickup" parent="." index="9" unique_id=1940546441 instance=ExtResource("13_gvw4d")]
+position = Vector2(-256, 384)
+
+[node name="FleePickup" parent="." index="10" unique_id=1801754429 instance=ExtResource("19_3mp3j")]
+position = Vector2(-128, 384)
+
+[node name="FlurryPickup" parent="." index="11" unique_id=130732119 instance=ExtResource("3_86yod")]
+position = Vector2(0, 384)
+
+[node name="LifestealPickup" parent="." index="12" unique_id=1609710680 instance=ExtResource("17_2msne")]
+position = Vector2(128, 384)
+
+[node name="PiercePickup" parent="." index="13" unique_id=1861116237 instance=ExtResource("2_fw473")]
+position = Vector2(256, 384)
+
+[node name="ReturnPickup" parent="." index="14" unique_id=1255495882 instance=ExtResource("12_2msne")]
+position = Vector2(384, 384)
+
+[node name="ShredPickup" parent="." index="15" unique_id=873522180 instance=ExtResource("18_rs0df")]
+position = Vector2(-384, 512)
+
+[node name="SmashPickup" parent="." index="16" unique_id=556755772 instance=ExtResource("20_wb0r4")]
+position = Vector2(-256, 512)
+
+[node name="SwipePickup" parent="." index="17" unique_id=1461530783 instance=ExtResource("18_3mp3j")]
+position = Vector2(-128, 512)
+
+[node name="TrapPickup" parent="." index="18" unique_id=1538108205 instance=ExtResource("18_wb0r4")]
+position = Vector2(128, 512)
+
+[node name="WideshotPickup" parent="." index="19" unique_id=1861787158 instance=ExtResource("7_3cia4")]
 position = Vector2(256, 512)
 
+[node name="CollapsePickup" parent="." index="20" unique_id=790621767 instance=ExtResource("18_dwshc")]
+position = Vector2(-384, -512)
+
+[node name="StormPickup" parent="." index="21" unique_id=488317536 instance=ExtResource("16_dj1uu")]
+position = Vector2(-256, -512)
+
+[node name="SummonPickup" parent="." index="22" unique_id=1381401209 instance=ExtResource("15_hqw31")]
+position = Vector2(-512, -384)
+
+[node name="TeleportPickup" parent="." index="23" unique_id=1848796911 instance=ExtResource("14_f2clg")]
+position = Vector2(-384, -384)
+
+[node name="TearPickup" parent="." index="24" unique_id=1421496365 instance=ExtResource("22_75mrf")]
+position = Vector2(0, 512)
+
 [node name="RushPickup" parent="." index="25" unique_id=1711296584 instance=ExtResource("23_7c3gn")]
-position = Vector2(384, 384)
+position = Vector2(-512, 512)
 
 [node name="NavigationRegion2D" parent="." index="26" unique_id=732517934]
 visible = false
