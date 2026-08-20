@@ -12,11 +12,13 @@ const _ORB_SPRITE_SCENE := preload(
 @onready var _level_label: Label = %LevelAchievedLabel
 @onready var _menu_button: Button = %BackToMenuButton
 @onready var _progression_button: Button = %ProgressionButton
+@onready var _play_again_button: Button = %PlayAgainButton
 
 
 func _ready() -> void:
 	_menu_button.pressed.connect(GameManager.switch_to_menu)
 	_progression_button.pressed.connect(GameManager.switch_to_progression)
+	_play_again_button.pressed.connect(GameManager.start_game)
 	_level_label.text = str(GameManager.level_achieved)
 	call_deferred("_play_orb_effect")
 
