@@ -93,7 +93,7 @@ func _draw_projectile_shape() -> void:
 	var draw_color := projectile_properties.draw_color
 	var outline_color := projectile_properties.outline_color
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: float = radius / 8
+	var outline_width: float = radius / 4
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
