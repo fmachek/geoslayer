@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://d4my5w3xnan63" path="res://scenes/characters/enemies/assassin.tscn" id="9_mqxdf"]
 [ext_resource type="PackedScene" uid="uid://boyx3bq88vsgj" path="res://scenes/objects/spawners/boss_spawner.tscn" id="9_s0mag"]
 [ext_resource type="PackedScene" uid="uid://b2lrfilv77kch" path="res://scenes/characters/enemies/bosses/boss_1/boss_1.tscn" id="10_uhyjc"]
-[ext_resource type="PackedScene" uid="uid://cen1aasepgsyg" path="res://scenes/objects/stat_point_drops/stat_point_drop.tscn" id="12_nea8h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tekg8"]
 vertices = PackedVector2Array(630, 630, -630, 630, -630, -630, 630, -630)
@@ -151,15 +150,6 @@ spawn_waves = PackedInt32Array(10)
 [node name="NavigationRegion2D" parent="." index="24" unique_id=732517934]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_tekg8")
-
-[node name="StatPointDrop" parent="." index="25" unique_id=2053437211 instance=ExtResource("12_nea8h")]
-position = Vector2(-120, 291)
-
-[node name="StatPointDrop2" parent="." index="26" unique_id=271577230 instance=ExtResource("12_nea8h")]
-position = Vector2(222, 274)
-
-[node name="StatPointDrop3" parent="." index="27" unique_id=855306723 instance=ExtResource("12_nea8h")]
-position = Vector2(165, 88)
 
 [connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner1" method="_on_wave_manager_alert_next_wave"]
 [connection signal="alert_next_wave" from="WaveManager" to="ShooterSpawner2" method="_on_wave_manager_alert_next_wave"]
