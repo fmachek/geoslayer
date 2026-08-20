@@ -158,15 +158,15 @@ func _physics_process(delta: float) -> void:
 func _draw() -> void:
 	var shape = $CollisionShape2D.shape
 	if shape is CircleShape2D:
-		var radius: int = shape.radius
+		var radius: float = shape.radius
 		draw_circle(Vector2.ZERO, radius, draw_color)
-		var outline_width: int = radius / 8
+		var outline_width: float = radius / 7
 		draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 	elif shape is RectangleShape2D:
-		var width: int = shape.size.x
-		var height: int = shape.size.y
+		var width: float = shape.size.x
+		var height: float = shape.size.y
 		var rect := Rect2(-width / 2, -height / 2, width, height)
-		var outline_width: int = 4
+		var outline_width: float = 4.0
 		draw_rect(rect, draw_color)
 		draw_rect(rect, outline_color, false, outline_width)
 
