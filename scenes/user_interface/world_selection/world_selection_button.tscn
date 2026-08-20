@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://c6y1h4eipw4fm" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_hover.tres" id="3_ghl0j"]
 [ext_resource type="StyleBox" uid="uid://crohalqwxxov1" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_disabled.tres" id="4_rsocg"]
 [ext_resource type="Texture2D" uid="uid://d2wgmsf530hmy" path="res://assets/user_interface/misc/locked.png" id="6_s03fu"]
+[ext_resource type="Texture2D" uid="uid://balu48u7sphuw" path="res://assets/user_interface/misc/trophy.png" id="7_ghl0j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghl0j"]
 bg_color = Color(0, 0, 0, 0.5)
@@ -39,8 +40,41 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("2_s03fu")
 theme_override_styles/disabled = ExtResource("4_rsocg")
 theme_override_styles/disabled_mirrored = ExtResource("4_rsocg")
 theme_override_styles/focus = ExtResource("3_ghl0j")
-text = "?"
 script = ExtResource("1_kchnc")
+
+[node name="TrophyIcon" type="TextureRect" parent="." unique_id=1212716877]
+visible = false
+modulate = Color(1, 1, 1, 0.25)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_ghl0j")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="NumberLabel" type="Label" parent="." unique_id=1440238472]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 42
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LockedIndicator" type="Control" parent="." unique_id=238774865]
 layout_mode = 1

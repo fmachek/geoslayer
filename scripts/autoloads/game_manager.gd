@@ -125,4 +125,5 @@ func win_game() -> void:
 	var user_xp: int = level_achieved * 5
 	UserManager.add_xp(user_xp)
 	last_xp_gained = user_xp
+	UserManager.add_world_completion(selected_world_number)
 	switch_to_win_screen()

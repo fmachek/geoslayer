@@ -30,6 +30,9 @@ var user_stat_points: int:
 		user_stat_points_changed.emit(value)
 ## Array of permanent stat upgrades.
 var user_stats: Array[UserStat] = []
+## Array of numbers of worlds the user has finished (for example
+## 1 if the user has finished world 1).
+var user_completed_worlds: Array[int] = []
 ## Says whether the user load was successful or not.
 var load_status: LoadStatus = LoadStatus.NOT_FOUND
 
@@ -53,10 +56,10 @@ func load_user() -> void:
 		return
 	
 	var sections: PackedStringArray = config.get_sections()
-	var expected_sections: Array[String] = ["Level", "Stats"]
+	var expected_sections: Array[String] = ["Level", "Stats"] # Completion not included
 	
 	# Missing sections - create new user, ignore existing sections.
-	if sections.size() != expected_sections.size():
+	if sections.size() < expected_sections.size():
 		load_status = LoadStatus.INCOMPLETE
 		print("Missing sections in user config file. Creating new user.")
 		create_new_user()
@@ -64,6 +67,7 @@ func load_user() -> void:
 	
 	var level_section = sections[0]
 	var stat_section = sections[1]
+	
 	# Check for incorrect section names.
 	if level_section != "Level" or stat_section != "Stats":
 		load_status = LoadStatus.INCOMPLETE
@@ -102,6 +106,16 @@ func load_user() -> void:
 	_load_stats(health, armor, damage, speed)
 	user_stat_points = stat_points
 	
+	# Completion section is loaded separately and it not being there doesn't
+	# trigger new save creation. This should make pre-v0.2.1 saves compatible
+	# with v0.2.1, but not the other way around.
+	if "Completion" not in sections:
+		user_completed_worlds = []
+		save_user()
+	else:
+		user_completed_worlds = load_completed_worlds(config, "Completion")
+		print("User completed worlds: " + str(user_completed_worlds))
+	
 	load_status = LoadStatus.SUCCESS
 
 
@@ -127,6 +141,13 @@ func load_integers_from_section(config: ConfigFile, section: String, value_names
 	return values
 
 
+func load_completed_worlds(config: ConfigFile, section: String) -> Array[int]:
+	var worlds = config.get_value(section, "Worlds", [])
+	if worlds is not Array[int]:
+		return []
+	return worlds
+
+
 ## Creates a new user with default values.
 func create_new_user() -> void:
 	_load_user_level(1, 0, 100)
@@ -146,6 +167,8 @@ func save_user() -> void:
 	
 	for stat: UserStat in user_stats:
 		config.set_value("Stats", stat.stat_name, stat.stat_value)
+	
+	config.set_value("Completion", "Worlds", user_completed_worlds)
 	
 	var err = config.save(CONFIG_PATH)
 	if err != OK:
@@ -180,6 +203,12 @@ func increase_stat(stat_name: String) -> void:
 func add_stat_point() -> void:
 	user_stat_points += 1
 	save_user()
+
+
+func add_world_completion(number: int) -> void:
+	if not number in user_completed_worlds:
+		user_completed_worlds.append(number)
+		save_user()
 
 
 func _load_user_level(current_level: int, xp: int, required_xp: int) -> void:

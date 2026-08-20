@@ -9,14 +9,18 @@ extends Button
 
 @onready var _locked_indicator: Control = $LockedIndicator
 @onready var _highlight_panel: Panel = $HighlightPanel
+@onready var _trophy_icon: TextureRect = $TrophyIcon
+@onready var _label: Label = $NumberLabel
 
 
 func _ready() -> void:
-	text = str(world_number)
+	_label.text = str(world_number)
 	if WorldManager.is_world_unlocked(world_number):
 		set_to_unlocked()
 	else:
 		set_to_locked()
+	if world_number in UserManager.user_completed_worlds:
+		_trophy_icon.show()
 
 
 ## Changes [member world_number] and updates the text.
