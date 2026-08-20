@@ -13,13 +13,13 @@ const _BUFF_PARTICLES_SCENE := preload(
 ## Travel speed of the [FalloffProjectile]s fired when cast.
 var projectile_speed: int = 4
 ## Base damage of the [FalloffProjectile]s fired when cast.
-var base_damage: int = 20
+var base_damage: int = 30
 ## Radius of the [FalloffProjectile]s fired when cast.
 var projectile_radius: int = 6
 ## Time until the [FalloffProjectile] disappears.
-var projectile_free_time: float = 0.25
+var projectile_free_time: float = 0.5
 ## Knockback applied by the [FalloffProjectile]s.
-var projectile_knockback: float = 100.0
+var projectile_knockback: float = 300.0
 
 ## Amount of [FalloffProjectile]s fired on cast.
 var projectile_amount: int = 4
