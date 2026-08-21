@@ -1,6 +1,6 @@
 # Geoslayer
 
-This is the repository for my game: Geoslayer. I am currently working on version 0.2.1. The game is not completely finished yet, because I'd like to add more features. It is definitely playable though.
+This is the repository for my game: Geoslayer. I'm currently working on version 0.2.2. The game is not completely finished yet, because I'd like to add more features and polish. It is definitely playable though.
 
 To play the game, you can download the latest release [here](https://github.com/fmachek/geoslayer/releases/latest).
 
@@ -13,11 +13,13 @@ To play the game, you can download the latest release [here](https://github.com/
 
 Geoslayer is a 2D wave survival game with simple graphics. You use your 2 abilities to defeat incoming enemies. You also have a dashing ability you can use to dodge incoming attacks. Beat the boss who spawns at the end to win.
 
-Unlock abilities from chests you get for surviving waves, pick the ones you want to use. Currently there are 22 player abilities in total.
+Unlock abilities from chests you get for surviving waves. Currently there are 22 usable abilities in total. Also pick a temporary buff as a reward for surviving a wave.
 
-You get XP by defeating enemies or opening chests. When you level up, you gain a few points you can use to upgrade your stats. When you win the game by defeating the boss and you exit the arena, the XP you earned is converted into permanent XP. When you increase your permanent level, you also gain stat points similar to the ones you earned in-game. These permanent stat points can also occasionally drop from enemies.
+You get XP by defeating enemies or opening chests. When you level up, you gain a few points you can use to upgrade your stats.
 
-Your permament level is important when entering different worlds. Worlds after World 1 require you to have be at a certain level to enter.
+When you win, the XP you gained is converted into XP for your permanent level. When you level up, you gain points you can use to become stronger forever. These points can also drop from enemies.
+
+Your permament level is important when entering different worlds. Worlds after World 1 require you to be at a certain level to enter.
 
 ### Gameplay showcase
 
@@ -25,7 +27,9 @@ Your permament level is important when entering different worlds. Worlds after W
 
 ### Player abilities
 
-There are currently 22 abilities usable by the player. Abilities are unlocked from chests. Each ability has a "theme", for example magical. Regular abilities with no particular theme (the abilities with a regular gray background in their icon) are unlockable in World 1, whereas magical abilities are unlockable in World 2. Regular abilities are unlockable in World 2 as well - the magical abilities are added into the drop pool on top of the World 1 drop pool.
+There are currently 22 abilities usable by the player. Abilities are unlocked from chests. Each ability has a theme, for example magical.
+
+Regular abilities drop in World 1. World 2 adds magical abilities on top of that.
 
 The player also always has a dodge ability alongside the two abilities they equip.
 
