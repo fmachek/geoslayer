@@ -40,6 +40,7 @@ func _load_level() -> void:
 	_level_label.text = "Player level: %d" % current_level
 	_level_bar.max_value = xp_required
 	_level_bar.value = current_xp
+	_level_bar.get_node("XPLabel").text = "%d/%d" % [current_xp, xp_required]
 
 
 func _load_user_stats() -> void:
