@@ -252,7 +252,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-text = "You can assign it to a slot on the Progression screen when you're done with this."
+text = "You can assign it to a stat on the Progression screen when you're done with this."
 horizontal_alignment = 1
 autowrap_mode = 2
 
