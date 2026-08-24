@@ -1,4 +1,4 @@
-# Geoslayer
+![Logo](./assets/logo.svg)
 
 This is the repository for my game: Geoslayer. I'm currently working on version 0.2.2. The game is not completely finished yet, because I'd like to add more features and polish. It is definitely playable though.
 
