@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="1_w5vtu"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_5qt3u"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_41mx7"]
+[ext_resource type="Texture2D" uid="uid://dx4alk333grim" path="res://assets/socials/GitHub_Invertocat_White.svg" id="3_7316l"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_onca8"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_7316l"]
 
@@ -82,41 +83,104 @@ theme_override_constants/margin_right = 150
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer" unique_id=1788406107]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1595159507]
+[node name="DeveloperContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1709369662]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer" unique_id=1728421611]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer/HBoxContainer" unique_id=1595159507]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 16
-text = "Created by František Machek (see LICENSE.txt)"
+theme_override_font_sizes/font_size = 20
+text = "Created by "
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1061746236]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer/HBoxContainer" unique_id=940015870]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "František Machek"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer" unique_id=1862905635]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-text = "Created using Godot Engine (see GODOT_LICENSE.txt)"
+text = "See my socials here:"
+horizontal_alignment = 1
+
+[node name="SocialLinkContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer" unique_id=1931878534]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="GitHubContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer/SocialLinkContainer" unique_id=760650865]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer/SocialLinkContainer/GitHubContainer" unique_id=614815204]
+layout_mode = 2
+texture = ExtResource("3_7316l")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/DeveloperContainer/SocialLinkContainer/GitHubContainer" unique_id=2020042467]
+layout_mode = 2
+uri = "https://github.com/fmachek"
+
+[node name="LicenseInfoLabel" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1684860738]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "You can find the license in LICENSE.txt file, which is provided with the game."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1061746236]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "The game has been created and exported using Godot Engine (see GODOT_LICENSE.txt)."
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=1228762721]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-text = "Godot Engine also contains third party software (see GODOT_COPYRIGHT.txt)"
+text = "Godot Engine also contains third party software (see GODOT_COPYRIGHT.txt)."
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" unique_id=330948903]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 16
-text = "The game uses the Sora font (see SORA_OFL.txt)"
+text = "The game (and the game logo) uses the Sora font (see SORA_OFL.txt)."
 horizontal_alignment = 1
 autowrap_mode = 2
 
