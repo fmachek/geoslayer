@@ -40,4 +40,5 @@ Here is some of the stuff I used:
 * Kenney: https://kenney.nl/
     * Some assets, such as UI icons
 * Sora: https://fonts.google.com/specimen/Sora
-    * This is the main font the game uses
+    * Used in-game
+    * Used in the game logo
