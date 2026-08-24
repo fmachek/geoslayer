@@ -73,6 +73,7 @@ stretch_mode = 5
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/LeftContainer" unique_id=472313929]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 20
 
 [node name="ResumeButton" type="Button" parent="MarginContainer/LeftContainer/ButtonContainer" unique_id=1543947509]

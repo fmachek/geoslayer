@@ -78,7 +78,9 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="ButtonContainer" type="VBoxContainer" parent="HBoxContainer/LeftMarginContainer/VBoxContainer" unique_id=1748120606]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 20
 script = ExtResource("2_tlslw")
 
