@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cyt3si31ylbh0" path="res://scripts/user_interface/pause_interface/pause_interface.gd" id="1_1xlts"]
 [ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_b4b17"]
 [ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="2_b6otm"]
+[ext_resource type="Texture2D" uid="uid://c448uhyqukdkr" path="res://assets/logo.svg" id="3_77yv1"]
 [ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_clr6w"]
 [ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_r8txd"]
 [ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_atr6k"]
@@ -63,11 +64,12 @@ size_flags_horizontal = 0
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="GameNameLabel" type="Label" parent="MarginContainer/LeftContainer" unique_id=628827102]
+[node name="GameLogo" type="TextureRect" parent="MarginContainer/LeftContainer" unique_id=812255145]
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
-theme_override_constants/outline_size = 24
-theme_override_font_sizes/font_size = 64
-text = "Geoslayer"
+texture = ExtResource("3_77yv1")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/LeftContainer" unique_id=472313929]
 layout_mode = 2
