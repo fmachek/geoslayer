@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://wlvlmmaln6hy" path="res://scripts/user_interface/credits/credits_ui.gd" id="1_41mx7"]
 [ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="1_w5vtu"]
-[ext_resource type="StyleBox" uid="uid://bu0n8su06su4k" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_normal.tres" id="2_5qt3u"]
-[ext_resource type="StyleBox" uid="uid://d2rcpq127ycqm" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_pressed.tres" id="3_41mx7"]
 [ext_resource type="Texture2D" uid="uid://dx4alk333grim" path="res://assets/socials/GitHub_Invertocat_White.svg" id="3_7316l"]
-[ext_resource type="StyleBox" uid="uid://dfolmbboeef30" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_hover.tres" id="4_onca8"]
-[ext_resource type="StyleBox" uid="uid://3vs5om0tvqkl" path="res://assets/user_interface/styles/main_menu/buttons/menu_button_disabled.tres" id="5_7316l"]
+[ext_resource type="PackedScene" uid="uid://3a4jw7ctqhb2" path="res://scenes/user_interface/icon_menu_button.tscn" id="4_lwebj"]
 
 [node name="CreditsUI" type="Control" unique_id=1026947150]
 layout_mode = 3
@@ -184,23 +181,6 @@ text = "The game (and the game logo) uses the Sora font (see SORA_OFL.txt)."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BackToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=713561821]
+[node name="BackToMenuButton" parent="MarginContainer/VBoxContainer" unique_id=32405831 instance=ExtResource("4_lwebj")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = ExtResource("2_5qt3u")
-theme_override_styles/normal_mirrored = ExtResource("2_5qt3u")
-theme_override_styles/pressed = ExtResource("3_41mx7")
-theme_override_styles/pressed_mirrored = ExtResource("3_41mx7")
-theme_override_styles/hover = ExtResource("4_onca8")
-theme_override_styles/hover_mirrored = ExtResource("4_onca8")
-theme_override_styles/hover_pressed = ExtResource("3_41mx7")
-theme_override_styles/hover_pressed_mirrored = ExtResource("3_41mx7")
-theme_override_styles/disabled = ExtResource("5_7316l")
-theme_override_styles/disabled_mirrored = ExtResource("5_7316l")
-theme_override_styles/focus = ExtResource("4_onca8")
-text = "Back to menu"

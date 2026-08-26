@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dygif8blalx25" path="res://scripts/user_interface/glowing_button.gd" id="8_1hh77"]
 [ext_resource type="StyleBox" uid="uid://drdfeywyh31j2" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_normal.tres" id="8_nkh4k"]
 [ext_resource type="StyleBox" uid="uid://vktcx58ov2p5" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_pressed.tres" id="9_1hh77"]
+[ext_resource type="PackedScene" uid="uid://3a4jw7ctqhb2" path="res://scenes/user_interface/icon_menu_button.tscn" id="9_o7x43"]
 [ext_resource type="StyleBox" uid="uid://c6y1h4eipw4fm" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_hover.tres" id="10_o7x43"]
 [ext_resource type="StyleBox" uid="uid://crohalqwxxov1" path="res://assets/user_interface/styles/world_selection/world_selection_button/world_selection_button_disabled.tres" id="11_o4hdu"]
 
@@ -165,25 +166,9 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nkh4k")
 
-[node name="BackToMenuButton" type="Button" parent="MarginContainer/HBoxContainer/LeftContainer/ButtonContainer" unique_id=2138976093]
+[node name="BackToMenuButton" parent="MarginContainer/HBoxContainer/LeftContainer/ButtonContainer" unique_id=32405831 instance=ExtResource("9_o7x43")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = ExtResource("1_wi1en")
-theme_override_styles/normal_mirrored = ExtResource("1_wi1en")
-theme_override_styles/pressed = ExtResource("2_41qj7")
-theme_override_styles/pressed_mirrored = ExtResource("2_41qj7")
-theme_override_styles/hover = ExtResource("3_xxlyo")
-theme_override_styles/hover_mirrored = ExtResource("3_xxlyo")
-theme_override_styles/hover_pressed = ExtResource("2_41qj7")
-theme_override_styles/hover_pressed_mirrored = ExtResource("2_41qj7")
-theme_override_styles/disabled = ExtResource("4_0fdx1")
-theme_override_styles/disabled_mirrored = ExtResource("4_0fdx1")
-theme_override_styles/focus = ExtResource("3_xxlyo")
-text = "Back to menu"
 
 [node name="RightContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=26449306]
 layout_mode = 2
