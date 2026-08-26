@@ -18,6 +18,7 @@ const _STAT_ROW_SCENE := preload(
 
 @onready var _row_container: VBoxContainer = %StatRowContainer
 @onready var _points_label: Label = %StatPointsLabel
+@onready var _highlight_panel: Panel = $HighlightPanel
 
 
 func _ready() -> void:
@@ -77,10 +78,8 @@ func _on_visibility_changed() -> void:
 
 
 func _enable_panel_highlight() -> void:
-	var stylebox: StyleBoxFlat = get_theme_stylebox("panel")
-	stylebox.set_border_width_all(2)
+	_highlight_panel.show()
 
 
 func _disable_panel_highlight() -> void:
-	var stylebox: StyleBoxFlat = get_theme_stylebox("panel")
-	stylebox.set_border_width_all(0)
+	_highlight_panel.hide()

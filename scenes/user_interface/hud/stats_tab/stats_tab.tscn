@@ -3,12 +3,7 @@
 [ext_resource type="Script" uid="uid://6vw25iml7gif" path="res://scripts/user_interface/hud/stats_tab/stats_tab.gd" id="1_76cvo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76cvo"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
 bg_color = Color(0, 0, 0, 0.32941177)
-border_color = Color(0, 0.83784014, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_76cvo"]
 font_size = 12
@@ -27,6 +22,14 @@ bg_color = Color(0, 0, 0, 0.32941177)
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4i4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4i4k"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8392157, 0, 1)
 
 [node name="StatsTab" type="PanelContainer" unique_id=2867727]
 offset_right = 122.0
@@ -92,6 +95,11 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_m4i4k")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_m4i4k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_rkvu0")
 text = "X"
+
+[node name="HighlightPanel" type="Panel" parent="." unique_id=1293973458]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m4i4k")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
