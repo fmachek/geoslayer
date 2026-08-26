@@ -7,6 +7,13 @@
 [ext_resource type="StyleBox" uid="uid://ddhkmpa1s5qb6" path="res://assets/user_interface/styles/regular_button/regular_button_hover.tres" id="4_te8my"]
 [ext_resource type="StyleBox" uid="uid://dsursuhghomlo" path="res://assets/user_interface/styles/regular_button/regular_button_disabled.tres" id="5_5332j"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_b0n25"]
+line_spacing = -3.0
+font_size = 10
+font_color = Color(1, 0, 0, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqmmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc10j"]
@@ -111,10 +118,10 @@ text = "Unequip all"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 10
 text = "You cannot equip and unequip abilities while a wave is in progress."
+label_settings = SubResource("LabelSettings_b0n25")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
