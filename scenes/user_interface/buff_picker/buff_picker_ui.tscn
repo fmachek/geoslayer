@@ -69,3 +69,15 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
+
+[node name="ExplanationLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=654200829]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "The buff you pick will start once the next wave starts."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

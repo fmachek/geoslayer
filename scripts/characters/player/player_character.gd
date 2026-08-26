@@ -20,6 +20,10 @@ signal perk_points_available_changed(new_amount: int)
 signal gained_perk_points(amount: int)
 #endregion
 
+const _BUFF_LABEL_SCENE := preload(
+	"res://scenes/user_interface/world_labels/buff_pickup_label.tscn"
+)
+
 #region variables
 ## [Ability] equipped in slot 1.
 var ability1: Ability = null
@@ -39,6 +43,7 @@ var perk_points_available: int = 5:
 ## Amount of perk points the player gains with every level up.
 var perk_points_per_level: int = 5
 var dodge: Dodge
+var buff_bank: Dictionary[Buff, CharacterStat] = {}
 #endregion
 
 
@@ -289,6 +294,32 @@ func apply_perk_point(stat: CharacterStat) -> bool:
 		stat.apply_perk_point()
 		return true
 	return false
+
+
+func store_buff(buff: Buff, target_stat: CharacterStat) -> void:
+	if not buff in buff_bank.keys():
+		buff_bank[buff] = target_stat
+
+
+func use_buff_bank() -> void:
+	for buff: Buff in buff_bank.keys():
+		var target_stat: CharacterStat = buff_bank.get(buff)
+		buff.apply_to_stat(target_stat)
+		_spawn_buff_pickup_label(buff)
+	buff_bank.clear()
+
+
+func _spawn_buff_pickup_label(buff: Buff) -> void:
+	var parent = get_parent()
+	if not is_instance_valid(parent):
+		return
+	var buff_pickup_label: BuffPickupLabel = _BUFF_LABEL_SCENE.instantiate()
+	parent.add_child(buff_pickup_label)
+	var offset := Vector2(randi_range(-30, 30), randi_range(-30, 30))
+	buff_pickup_label.global_position = global_position + offset - \
+			Vector2(buff_pickup_label.size.x / 2, buff_pickup_label.size.y / 2)
+	buff_pickup_label.load_buff(buff)
+	buff_pickup_label.play_tween()
 
 
 func _apply_user_stats() -> void:
