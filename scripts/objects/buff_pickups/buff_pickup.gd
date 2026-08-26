@@ -2,6 +2,7 @@ class_name BuffPickup
 extends Node2D
 
 signal picked_up()
+signal expired()
 
 const _LABEL_SCENE := preload(
 	"res://scenes/user_interface/world_labels/buff_pickup_object_label.tscn"
@@ -20,6 +21,7 @@ var possible_stats: Dictionary[String, int] = {
 	"Speed": 1
 }
 var buff_options: Dictionary[Buff, String] = {}
+var has_expired: bool = false
 
 var _was_picked_up := false
 var _scale_tween: Tween
@@ -34,6 +36,10 @@ func _ready() -> void:
 	_update_stat_multiplier()
 	_spawn_label()
 	_generate_buff_options()
+	var world: World = WorldManager.current_world
+	var wave_manager: WaveManager = world.wave_manager
+	wave_manager.wave_started.connect(_expire)
+	expired.connect(_play_scale_tween)
 
 
 func _process(delta: float) -> void:
@@ -48,6 +54,13 @@ func _draw() -> void:
 	var outline_width: float = 4.0
 	draw_rect(rect, draw_color)
 	draw_rect(rect, outline_color, false, outline_width)
+
+
+func _expire() -> void:
+	if has_expired:
+		return
+	has_expired = true
+	expired.emit()
 
 
 func _generate_buff_options() -> void:
@@ -88,7 +101,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _handle_pick_up(body: Node2D) -> void:
-	if body is not PlayerCharacter or _was_picked_up:
+	if body is not PlayerCharacter or _was_picked_up or has_expired:
 		return
 	_was_picked_up = true
 	picked_up.emit()
@@ -106,6 +119,7 @@ func _spawn_label() -> void:
 	var label: PickupLabel = _LABEL_SCENE.instantiate()
 	label.global_position = global_position - Vector2(label.size.x / 2, 60)
 	picked_up.connect(label.fade_out)
+	expired.connect(label.fade_out)
 	var parent = get_parent()
 	if is_instance_valid(parent):
 		parent.call_deferred("add_child", label)
