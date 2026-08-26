@@ -11,7 +11,7 @@ extends Node2D
 func _draw():
 	var radius: float = $Area2D/CollisionShape2D.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: float = radius / 8
+	var outline_width: float = radius / 4
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 

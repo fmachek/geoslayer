@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 func _draw():
 	var radius: float = _col_shape.shape.radius
 	draw_circle(Vector2.ZERO, radius, draw_color)
-	var outline_width: float = radius / 8
+	var outline_width: float = radius / 3
 	draw_arc(Vector2.ZERO, radius, 0, TAU, 32, outline_color, outline_width, true)
 
 
