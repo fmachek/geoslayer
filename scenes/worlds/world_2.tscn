@@ -42,10 +42,10 @@ position = Vector2(864, 32)
 rotation = -1.5707964
 draw_color = Color(0.654902, 0, 0.78431374, 1)
 outline_color = Color(0.5336316, 0.000757578, 0.640893, 1)
-damage = 50
-projectile_speed = 5
-projectile_radius = 12
-shoot_time = 0.15
+damage = 300
+projectile_speed = 3
+projectile_radius = 20
+shoot_time = 0.25
 projectile_knockback = 500.0
 
 [node name="Turret2" parent="." index="6" unique_id=786025142 instance=ExtResource("2_1t1ea")]
@@ -53,20 +53,20 @@ position = Vector2(-864, -32)
 rotation = 1.5707964
 draw_color = Color(0.654902, 0, 0.78431374, 1)
 outline_color = Color(0.5336316, 0.000757578, 0.640893, 1)
-damage = 50
-projectile_speed = 5
-projectile_radius = 12
-shoot_time = 0.15
+damage = 300
+projectile_speed = 3
+projectile_radius = 20
+shoot_time = 0.25
 projectile_knockback = 500.0
 
 [node name="Turret3" parent="." index="7" unique_id=687198818 instance=ExtResource("2_1t1ea")]
 position = Vector2(-32, 864)
 draw_color = Color(0.654902, 0, 0.78431374, 1)
 outline_color = Color(0.5336316, 0.000757578, 0.640893, 1)
-damage = 50
-projectile_speed = 5
-projectile_radius = 12
-shoot_time = 0.15
+damage = 300
+projectile_speed = 3
+projectile_radius = 20
+shoot_time = 0.25
 projectile_knockback = 500.0
 
 [node name="Turret4" parent="." index="8" unique_id=54311294 instance=ExtResource("2_1t1ea")]
@@ -74,10 +74,10 @@ position = Vector2(32, -864)
 rotation = 3.1415927
 draw_color = Color(0.654902, 0, 0.78431374, 1)
 outline_color = Color(0.5336316, 0.000757578, 0.640893, 1)
-damage = 50
-projectile_speed = 5
-projectile_radius = 12
-shoot_time = 0.15
+damage = 300
+projectile_speed = 3
+projectile_radius = 20
+shoot_time = 0.25
 projectile_knockback = 500.0
 
 [node name="TeleporterCoupleManager1" parent="." index="9" unique_id=798777720 node_paths=PackedStringArray("teleporter_1", "teleporter_2") instance=ExtResource("5_e55p6")]
