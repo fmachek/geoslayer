@@ -12,5 +12,5 @@ func _ready() -> void:
 # (https://docs.godotengine.org/en/stable/tutorials/inputs/inputevent.html)
 func _unhandled_input(event) -> void:
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_ESCAPE:
+		if event.is_action_pressed("escape"):
 			GameManager.switch_to_menu()

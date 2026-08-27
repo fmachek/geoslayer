@@ -65,7 +65,7 @@ func _on_main_ready() -> void:
 ## Handles ESC presses and pauses/resumes if the game can be paused/resumed.
 func _unhandled_input(event) -> void:
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_ESCAPE:
+		if event.is_action_pressed("escape"):
 			if get_tree().paused:
 				resume_game()
 			else:
