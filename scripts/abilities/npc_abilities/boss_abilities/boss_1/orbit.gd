@@ -7,7 +7,7 @@ const _LASER_PATH := "res://scenes/objects/lasers/laser_cross.tscn"
 const _LASER_CROSS_SCENE := preload(_LASER_PATH)
 
 ## Base amount of damage dealt by the [Laser]s.
-var laser_base_damage: int = 10
+var laser_base_damage: int = 40
 ## Time until the [LaserCross] disappears.
 var laser_lifetime: float = 5.0
 
