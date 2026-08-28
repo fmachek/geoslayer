@@ -44,6 +44,12 @@ func apply_to_stat(stat: CharacterStat) -> void:
 	target_stat.added_buff.connect(_on_added_buff)
 	ended.connect(target_stat.remove_buff)
 	target_stat.add_buff(self)
+	var stats_node = target_stat.get_parent()
+	if not is_instance_valid(stats_node):
+		return
+	var character = stats_node.get_parent()
+	if character is PlayerCharacter:
+		SignalBus.applied_buff_to_player.emit(self)
 
 
 func end() -> void:

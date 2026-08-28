@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://blrpytnhphj5t" path="res://scenes/user_interface/large_tab_container/enemies_tab/enemies_tab.tscn" id="17_yc10j"]
 [ext_resource type="Script" uid="uid://bnsmjmif7fccx" path="res://scripts/user_interface/hud/small_hud.gd" id="18_yq6so"]
 [ext_resource type="Script" uid="uid://cmlti0osrpr4c" path="res://scripts/user_interface/hud/wave_info/enemies_remaining_label.gd" id="23_og1vs"]
+[ext_resource type="Script" uid="uid://bujfunpsh0ofj" path="res://scripts/user_interface/buffs/buff_flow_container.gd" id="30_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://cntyjvgpalphy" path="res://scenes/user_interface/buff_picker/buff_picker_ui.tscn" id="31_tel4y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_muem4"]
@@ -672,6 +673,18 @@ size_flags_vertical = 0
 theme_override_constants/outline_size = 8
 text = "Enemies remaining: N"
 script = ExtResource("23_og1vs")
+
+[node name="BuffFlowContainer" type="HFlowContainer" parent="CanvasLayer/UserInterface/MarginContainer" unique_id=1633519829]
+custom_minimum_size = Vector2(300, 0)
+custom_maximum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+alignment = 2
+script = ExtResource("30_5q0nq")
 
 [node name="BuffPickerUI" parent="CanvasLayer" unique_id=1074320045 instance=ExtResource("31_tel4y")]
 visible = false
