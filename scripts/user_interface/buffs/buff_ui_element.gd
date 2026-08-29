@@ -47,6 +47,8 @@ func _update_panel_color(stat_buff: Buff) -> void:
 
 
 func _play_duration_tween(stat_buff: Buff) -> void:
+	if stat_buff.duration == 0:
+		return
 	var tween: Tween = _duration_rect.create_tween()
 	tween.tween_property(_duration_rect, "size:y", size.y, stat_buff.duration)
 
@@ -55,8 +57,9 @@ func _update_tooltip(stat_buff: Buff) -> void:
 	var text: String = ""
 	var symbol: String = "+"
 	if stat_buff.amount < 0:
-		symbol = "-"
+		symbol = ""
 	text += symbol
-	text += str(stat_buff.amount) + " " + stat_buff.target_stat.stat_name + \
-			" for " + str(stat_buff.duration) + " seconds"
+	text += str(stat_buff.amount) + " " + stat_buff.target_stat.stat_name
+	if stat_buff.duration > 0:
+		text += " for " + str(stat_buff.duration) + " seconds"
 	tooltip_text = text
