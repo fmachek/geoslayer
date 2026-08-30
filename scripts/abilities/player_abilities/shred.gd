@@ -11,7 +11,7 @@ const _BUFF_PARTICLES_SCENE := preload(
 )
 
 ## Travel speed of the [FalloffProjectile]s fired when cast.
-var projectile_speed: int = 4
+var projectile_speed: float = 7.0
 ## Base damage of the [FalloffProjectile]s fired when cast.
 var base_damage: int = 30
 ## Radius of the [FalloffProjectile]s fired when cast.
