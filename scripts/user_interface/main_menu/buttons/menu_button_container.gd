@@ -13,4 +13,5 @@ extends VBoxContainer
 func _ready() -> void:
 	play_button.pressed.connect(GameManager.switch_to_world_selection)
 	progression_button.pressed.connect(GameManager.switch_to_progression)
+	settings_button.pressed.connect(GameManager.switch_to_settings)
 	exit_button.pressed.connect(GameManager.exit_game)

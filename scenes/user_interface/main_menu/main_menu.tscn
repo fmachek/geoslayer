@@ -146,8 +146,8 @@ text = "Shop"
 alignment = 0
 
 [node name="SettingsButton" type="Button" parent="HBoxContainer/LeftMarginContainer/VBoxContainer/ButtonContainer" unique_id=360731962]
-visible = false
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
@@ -162,7 +162,6 @@ theme_override_styles/hover_pressed_mirrored = ExtResource("2_w5fdl")
 theme_override_styles/disabled = ExtResource("4_tlslw")
 theme_override_styles/disabled_mirrored = ExtResource("4_tlslw")
 theme_override_styles/focus = ExtResource("3_01m43")
-disabled = true
 text = "Settings"
 alignment = 0
 

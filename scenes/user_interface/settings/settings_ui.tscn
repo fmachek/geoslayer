@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://ce5w2cnmky2al"]
+
+[ext_resource type="Script" uid="uid://dr7xpcynnr1tk" path="res://scripts/user_interface/settings/settings_ui.gd" id="1_dj4qx"]
+[ext_resource type="Texture2D" uid="uid://canoywhq5tpu0" path="res://assets/sprites/gradient/gradient-vertical.png" id="1_w36d1"]
+[ext_resource type="StyleBox" uid="uid://ndakmdwacc5y" path="res://assets/user_interface/styles/panels/outlined_panel.tres" id="2_d6qeu"]
+[ext_resource type="PackedScene" uid="uid://3a4jw7ctqhb2" path="res://scenes/user_interface/icon_menu_button.tscn" id="3_q330f"]
+[ext_resource type="Theme" uid="uid://yp1b5ds7a0bv" path="res://assets/user_interface/themes/check_button_override_theme.tres" id="4_q330f"]
+
+[node name="SettingsUI" type="Control" unique_id=870549596]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dj4qx")
+
+[node name="Background" type="Control" parent="." unique_id=30858152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGColorRect" type="ColorRect" parent="Background" unique_id=852954669]
+modulate = Color(0.6378432, 0.6378432, 0.63784313, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.3372549, 0.6862745, 1)
+
+[node name="BGGradientRect" type="TextureRect" parent="Background" unique_id=359808508]
+modulate = Color(0.07846785, 0.33715135, 0.6864975, 0.54800004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_w36d1")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1499657622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=171044559]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=2098053767]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=966134662]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1401470584]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer" unique_id=773962619]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1064304634]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="UISettingsContainer" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=198486870]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_d6qeu")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/UISettingsContainer" unique_id=1728014141]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RowContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/UISettingsContainer/MarginContainer" unique_id=621579162]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/UISettingsContainer/MarginContainer/RowContainer" unique_id=724633781]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "User Interface"
+horizontal_alignment = 1
+
+[node name="CollapseHUDButton" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/UISettingsContainer/MarginContainer/RowContainer" unique_id=1781772896]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Makes the XP bar and ability elements compact, 
+so that they take up less space."
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_q330f")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_constants/h_separation = 20
+theme_override_font_sizes/font_size = 24
+text = "Collapse HUD"
+
+[node name="BackToMenuButton" parent="." unique_id=32405831 instance=ExtResource("3_q330f")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 584.0
+offset_right = 220.0
+offset_bottom = 628.0
