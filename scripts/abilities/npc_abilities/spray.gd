@@ -21,7 +21,7 @@ var fire_time: float = 0.1
 ## Spread of the attack pattern in radians.
 var spread: float = deg_to_rad(90)
 ## Damage dealt by [member DoTProjectile.dot] on every tick.
-var dot_damage: int = 1
+var base_dot_damage: int = 1
 ## Time between individual [member DoTProjectile.dot] ticks.
 var dot_tick_time: float = 1.0
 ## Total amount of [member DoTProjectile.dot] ticks.
@@ -69,6 +69,7 @@ func _fire_projectile(angle: float) -> void:
 			_PROJ_SCENE, angle, character, base_damage,
 			(projectile_speed - _proj_speed_decrease), projectile_radius
 	)
+	var dot_damage: int = float(base_dot_damage) * (float(character.damage.max_value_after_buffs) / 100)
 	var dot := ParticleDoT.new(dot_damage, dot_tick_time, dot_tick_amount)
 	dot.particle_color = proj.projectile_properties.draw_color
 	proj.dot = dot
